@@ -1,0 +1,53 @@
+<div class=" faden-min-width" id="div-login">
+    <div class="col-12 form-signin">
+        <form [formGroup]="val.ValForm"   novalidate>
+    
+            <div class="logo-login">
+                <img  src="../assets/images/logo-pie.png"  width="128px" height="128px"><!--217px-->
+            </div>
+            
+    
+            <div>
+                <h1  class="h3 fw-normal faden-text" id="lblTitulo1">FADEN</h1>
+                <h2 class="h3 fw-normal faden-text" id="lblTitulo2">Fundación Alzheimer de Nicaragua</h2>
+            </div>
+            
+    
+            <mat-form-field >
+                <mat-label>Usuario.</mat-label>
+                <input matInput type="text" id="txtUsuario" formControlName="txtUsuario" appAutofocus
+                (keydown.enter)="onKeyEnter($event)">
+                <mat-icon matPrefix >person</mat-icon>
+                <mat-error *ngIf="val.ValForm.get('txtUsuario')?.errors?.['Regla']=='1'">Usuario es <strong>requerido</strong></mat-error>
+                <mat-error *ngIf="val.ValForm.get('txtUsuario')?.errors?.['Regla']=='2'">Debe de contener al menos <strong>{{val.C("txtUsuario", "2")}}</strong> cáracteres</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field >
+                <mat-label>Contraseña.</mat-label>
+                <input matInput [type]="bol_HidePass ? 'password' : 'text'" id="txtPass" formControlName="txtPass"
+                (keydown.enter)="onKeyEnter($event)">
+                <mat-icon matSuffix (click)="bol_HidePass = !bol_HidePass">{{bol_HidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon matPrefix >lock</mat-icon>
+                <mat-error *ngIf="val.ValForm.get('txtPass')?.errors?.['Regla']=='1'">Contraseña es <strong>requerido</strong></mat-error>
+                <mat-error *ngIf="val.ValForm.get('txtPass')?.errors?.['Regla']=='2'">Debe de contener al menos <strong>{{val.C("txtPass", "2")}}</strong> cáracteres</mat-error>
+            </mat-form-field>
+    
+            <div class="checkbox mb-3">
+                <mat-checkbox  color="primary" formControlName="chkRecordar"  (click)="Recordar()">
+                    <b>Recordar ?</b>
+                </mat-checkbox>
+            </div>
+    
+            <div>
+                <button type="button" class="w-100 btn btn-lg btn-primary" id="btnIniciar" 
+                (click)="InicioSesion()"
+                [disabled]="val.ValForm.invalid">
+                    <span  class="" [ngClass]="bol_Load ? 'spinner-border spinner-border-md' : ''"></span>
+                    <span *ngIf="!bol_Load"> Iniciar</span>
+                    <span *ngIf="bol_Load"> Conectando...</span>
+                </button>
+            </div>
+    
+        </form>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-md navbar-dark  faden-nav no-padding-margin">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">{{str_Nombre}}</a>
+        <button class="navbar-toggler" type="button"  data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbars">
+
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+            <ng-container *ngFor="let item of Menu(); let i = index">
+
+              <li class="nav-item" *ngIf="item.EsMenu" appDropDown #r="appDropDown">
+                <a class="nav-link dropdown-toggle" href="#" id="{{item.Id}}" data-bs-toggle="dropdown"><i class="{{item.Clase}}"></i> {{item.Link}}</a>
+                <ul class="dropdown-menu"  [ngClass]="{'show':r.isOpen}">
+                  <li *ngFor="let subItem of SubMenu(item.Id);">
+                    <a class="dropdown-item" href="#" id="{{(subItem.Id)}}"><i class="{{subItem.Clase}}"></i> {{subItem.Link}}</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item" *ngIf="!item.EsMenu">
+                <a class="nav-link" href="#" id="{{item.Id}}"><i class="{{item.Clase}}"></i> {{item.Link}}</a>
+              </li>
+      
+              
+
+            </ng-container>
+
+            
+          </ul>
+         
+        </div>
+      </div>
+</nav>
+
+
+
+
+
+<ng-template #OTRO>
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Item</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Item</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled">Item</a>
+  </li>
+  
+  <li class="nav-item" appDropDown #r="appDropDown">
+    <a class="nav-link dropdown-toggle" href="#" id="appDropdown" data-bs-toggle="dropdown" aria-expanded="false">Item</a>
+    <ul class="dropdown-menu" aria-labelledby="dropdown04" [ngClass]="{'show':r.isOpen}">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </li>
+</ng-template>

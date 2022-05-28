@@ -1,0 +1,21 @@
+
+.formulario{
+
+    min-width: var(--faden-min--width);
+    max-width: calc(var(--faden-min--width) * 2);
+
+    & .mat-card{
+        max-width: calc(var(--faden-min--width) - 10px);;
+    }
+
+    & mat-checkbox{
+        display: flex;
+        justify-content: flex-end; 
+        align-items: flex-end;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+}
+
+
+  

@@ -1,0 +1,458 @@
+<div class="" id="frmProforma">
+
+    <div class="formulario" >
+        <div>
+            <form [formGroup]="val.ValForm"  novalidate>
+
+                <div class="row col-12 no-padding-margin">
+        
+                    <div class="col-12 btnAccion">
+                        <button mat-fab class="btn-escan-aceptar"><mat-icon>save</mat-icon></button>
+                        <button mat-fab class="btn-escan-cancelar"><mat-icon>undo</mat-icon></button>
+                        <div class="line-vertical"></div>
+                        <button mat-fab class="btn-escan-salir" (click)="Cerrar();"><mat-icon>exit_to_app</mat-icon></button>
+                    </div>
+
+                    <div>
+                      
+                    </div>
+        
+        
+                    <mat-accordion class="col-12 col-sm-12 col-md-6 col-lg-4 col-lx-4" >
+                        <mat-expansion-panel [expanded]="estadoPanel === true" hideToggle>
+                          <mat-expansion-panel-header class="escan-expan-panel">
+                            <mat-panel-title>
+                              DATOS
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                CLIENTE
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+        
+        
+        
+                          <mat-card-content class="row col-12 no-padding-margin">
+                
+                            <igx-combo class="col-12" #withValueKey [data]="lstCliente" valueKey="Codigo" displayKey="Nombre"
+                                    id="txtCliente"
+                                    formControlName="txtCliente"
+                                    placeholder="Cliente" searchPlaceholder="Seleccione un cliente..."
+                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                                </igx-combo>
+        
+        
+                            <mat-form-field class="col-12">
+                                <mat-label>Nombre.</mat-label>
+                                <input matInput type="text"  id="txtNombre" formControlName="txtNombre">
+                                <mat-error *ngIf="val.ValForm.get('txtNombre')?.errors?.['Regla']=='1'">Nombre es <strong>requerido</strong></mat-error>
+                            </mat-form-field>
+        
+            
+                            <mat-form-field class="col-6">
+                                <mat-label>Ruc</mat-label>
+                                <input matInput type="text"  id="txtRuc" formControlName="txtRuc">
+                                <mat-error *ngIf="val.ValForm.get('txtRuc')?.errors?.['Regla']=='1'">Ruc es <strong>requerido</strong></mat-error>
+                            </mat-form-field>
+        
+                            <mat-form-field class="col-6">
+                                <mat-label>Cedula.</mat-label>
+                                <input matInput type="text"  id="txtCedula" formControlName="txtCedula">
+                                <mat-error *ngIf="val.ValForm.get('txtCedula')?.errors?.['Regla']=='1'">Cedula es <strong>requerido</strong></mat-error>
+                            </mat-form-field>
+        
+        
+                            <mat-form-field class="col-6">
+                                <mat-label>Telefono.</mat-label>
+                                <input matInput type="text"  id="txtTelefono" formControlName="txtTelefono">
+                                <mat-error *ngIf="val.ValForm.get('txtTelefono')?.errors?.['Regla']=='1'">Telefono es <strong>requerido</strong></mat-error>
+                            </mat-form-field>
+        
+                            <mat-form-field class="col-6">
+                                <mat-label>Celular.</mat-label>
+                                <input matInput type="text"  id="txtCelular" formControlName="txtCelular">
+                                <mat-error *ngIf="val.ValForm.get('txtCelular')?.errors?.['Regla']=='1'">Celular es <strong>requerido</strong></mat-error>
+                            </mat-form-field>
+        
+                            <mat-form-field class="col-12">
+                                <mat-label>Correo.</mat-label>
+                                <input matInput type="text"  id="txtCorreo" formControlName="txtCorreo">
+                                <mat-error *ngIf="val.ValForm.get('txtCorreo')?.errors?.['Regla']=='1'">Ruc es <strong>requerido</strong></mat-error>
+                            </mat-form-field>
+        
+            
+                        </mat-card-content>
+        
+        
+                        </mat-expansion-panel>
+                        <mat-expansion-panel (opened)="estadoPanel = true"
+                                             (closed)="estadoPanel = false">
+                         
+                        </mat-expansion-panel>
+                    </mat-accordion>
+        
+        
+        
+        
+                      <mat-accordion class="col-12 col-sm-12 col-md-6 col-lg-4 col-lx-4" >
+                        <mat-expansion-panel [expanded]="estadoPanel === true" hideToggle>
+                          <mat-expansion-panel-header class="escan-expan-panel">
+                            <mat-panel-title>
+                              DATOS
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                PROFORMA
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+        
+        
+                          <mat-card-content class="row col-12">
+        
+                            <div class="row col-12">
+                                <mat-form-field class="col-6">
+                                    <mat-label>Serie.</mat-label>
+                                    <input matInput type="text"  id="txtSerie" formControlName="txtSerie">
+                                    <mat-error *ngIf="val.ValForm.get('txtSerie')?.errors?.['Regla']=='1'">Serie es <strong>requerido</strong></mat-error>
+                                </mat-form-field>
+                                
+        
+                                <mat-form-field class="col-6" appearance="legacy">
+                                    <mat-label>Fecha</mat-label>
+                                    <input matInput [matDatepicker]="picker" id="txtFecha" formControlName="txtFecha">
+                                    <mat-datepicker-toggle matSuffix [for]="picker">
+                                      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <mat-error *ngIf="val.ValForm.get('txtFecha')?.errors?.['Regla']=='1'">Fecha es <strong>requerido</strong></mat-error>
+                                </mat-form-field>
+                            </div>
+        
+        
+                            <div class="row col-12">
+                               
+                                <igx-combo class="col-5"  #withValueKey [data]="lstPlazo" valueKey="IdPlazo" displayKey="Dias"
+                                    id="txtDias"
+                                    formControlName="txtDias"
+                                    placeholder="Dias" searchPlaceholder="Seleccione un plazo..."
+                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                                </igx-combo>
+                            
+                                <mat-radio-group class="col-7">
+                                    <mat-radio-button value="1">Contado</mat-radio-button>
+                                    <mat-radio-button value="2">Credito</mat-radio-button>
+                                </mat-radio-group>
+        
+                          
+                            </div>
+                           
+                           
+        
+                            <igx-combo class="col-12" #withValueKey [data]="lstBodega" valueKey="Codigo" displayKey="Bodega"
+                                    id="txtBodega"
+                                    formControlName="txtBodega"
+                                    placeholder="Bodega" searchPlaceholder="Seleccione una bodega..."
+                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                                </igx-combo>
+        
+                            <igx-combo class="col-12" #withValueKey [data]="lstVendedor" valueKey="IdVendedor" displayKey="Vendedor"
+                                id="txtVendedor"
+                                formControlName="txtVendedor"
+                                placeholder="Vendedor" searchPlaceholder="Seleccione un plazo..."
+                                (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                            </igx-combo>
+        
+        
+                        </mat-card-content>
+        
+        
+        
+                        </mat-expansion-panel>
+                        <mat-expansion-panel (opened)="estadoPanel = true"
+                                             (closed)="estadoPanel = false">
+                         
+                        </mat-expansion-panel>
+                      </mat-accordion>
+        
+                      
+                </div>
+        
+        
+            </form>
+
+            <mat-accordion>
+              <mat-expansion-panel   [expanded]="estadoPanel === true" hideToggle>
+                <mat-expansion-panel-header class="escan-expan-panel">
+                  <mat-panel-title>
+                    DETALLE
+                  </mat-panel-title>
+                  <mat-panel-description>
+                      PRODUCTOS
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+      
+                <mat-card-content class="escan-contenedor">
+                  
+                  <div class="mat-elevation-z8">
+
+
+                    <!--<table class="escan-tabla" mat-table   [dataSource]="dataSource"  matSort (matSortChange)="announceSort($event)">
+                  
+
+                      <ng-container matColumnDef="Codigo">
+                        <th  mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by Codigo">
+                          Codigo
+                        </th>
+                        <td mat-cell *matCellDef="let element" [ngClass]="element.Operacion == 'Bonificado' ? 'escan-fila-borde' : 'escan-fila-no-borde'">
+                         <span *ngIf="element.Fila != '' "> {{element.Codigo}} </span>
+                        </td>
+                      </ng-container>
+
+
+                      <ng-container matColumnDef="Producto">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Producto">
+                          Producto
+                        </th>
+                        <td mat-cell *matCellDef="let element" [ngClass]="element.Operacion == 'Bonificado' ? 'escan-fila-borde' : 'escan-fila-no-borde'"> {{element.Producto}} </td>
+                      </ng-container>
+
+
+                      <ng-container matColumnDef="Operacion">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Operacion">
+                          Descripcion
+                        </th>
+                        <td mat-cell *matCellDef="let element" [ngClass]="element.Operacion == 'Bonificado' ? 'escan-fila-borde' : 'escan-fila-no-borde'"> {{element.Operacion}} </td>
+                      </ng-container>
+   
+                    
+
+                      <ng-container matColumnDef="Valor">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Valor">
+                          
+                        </th>
+                        <td mat-cell *matCellDef="let element" [ngClass]="element.Operacion == 'Bonificado' ? 'escan-fila-borde' : 'escan-fila-no-borde'" >
+                           <span *ngIf="element.Operacion =='Bonificado' && element.Valor =='Si'"><i class="bi bi-check" style="font-size: 3em; color: var(--escan-verde)"></i></span>
+
+                           <span *ngIf="element.Operacion !='Bonificado' && element.Valor != ''">
+
+                            <mat-form-field  class="input-tabla" floatLabel="never">
+                              <input  matInput placeholder="" [value]="element.Valor" [disabled]="TieneBonificado(element.Codigo)">
+                            </mat-form-field>
+                          </span>
+                          
+                        </td>
+                      </ng-container>
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr
+                    mat-row  [class.demo-row-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+                    
+                  </table>-->
+
+
+                  <!--<mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 escan-tabla">
+                    <ng-container matColumnDef="{{column}}" *ngFor="let column of MasterColumns">
+                      <mat-header-cell *matHeaderCellDef class=""> {{column}} </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
+                    </ng-container>
+           
+                    <ng-container matColumnDef="expandedDetail">
+                      <mat-cell *matCellDef="let element" [attr.colspan]="MasterColumns.length">
+                        <div class="example-element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'">
+                          <table class="escan-tabla-detalle">
+                              
+                             
+                            <tr class="mat-header-row">
+                              <ng-container *ngFor="let column of DetailColumns">
+                                <th mat-header-cell class="mat-header-cell mat-header-cell-detail mat-sort-header mat-column-{{column}}">{{column}}</th>
+                              </ng-container>
+                            </tr>
+                      
+                          
+
+
+                            <tr class="mat-row">
+                              <ng-container *ngFor="let column of DetailColumns">
+
+                                <td *ngIf="column !='Cantidad'" mat-cell class=" mat-cell-detail  mat-column-{{column}}">
+
+                                  <span *ngIf="column !='Bonif'">{{element[column]}}</span>
+                                  <i *ngIf="column =='Bonif' && element.Bonif == 'Si'" class="bi bi-check" style="font-size: 3em; color: var(--escan-verde)"></i>
+        
+                                </td>
+        
+                                <td *ngIf="column =='Cantidad'" mat-cell class=" mat-cell-detail  mat-column-{{column}}">
+                                  <mat-form-field  class="input-tabla" floatLabel="never">
+                                    <input  matInput placeholder="" [value]="element.Cantidad" [disabled]="element.Bonif == 'Si'">
+                                  </mat-form-field>
+                                </td>
+                                
+                                
+
+                              </ng-container>
+                            </tr>
+                            
+                          </table>
+                        </div>
+                      </mat-cell>
+                    </ng-container>
+                
+                    <mat-header-row *matHeaderRowDef="MasterColumns"></mat-header-row>
+                    <mat-row *matRowDef="let element; columns: MasterColumns;" class="example-element-row"
+                      [class.example-expanded-row]="element.expanded" (click)="toggleRow(element)">
+                    </mat-row>
+                    <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row>
+                  </mat-table>-->
+
+
+                  <table class="escan-tabla" mat-table multiTemplateDataRows  [dataSource]="dataSource"  matSort (matSortChange)="announceSort($event)">
+                  
+
+                    <ng-container matColumnDef="{{column}}" *ngFor="let column of MasterColumns">
+                      <th  mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by {{column}}">
+                        {{column}}
+                      </th>
+
+                  
+
+                      <td mat-cell *matCellDef="let element">
+
+                        <span *ngIf="column !='Cantidad'">
+
+                          <span *ngIf="column !='Bonif'">{{element[column]}}</span>
+                          <i *ngIf="column =='Bonif' && element.Bonif == 'Si'" class="bi bi-check" style="font-size: 3em; color: var(--escan-verde)"></i>
+
+                        </span>
+
+                        <span *ngIf="column =='Cantidad'">
+                          <mat-form-field  class="input-tabla" floatLabel="never">
+                            <input  matInput placeholder="" [value]="element.Cantidad" [disabled]="element.Bonif == 'Si'">
+                          </mat-form-field>
+                        </span>
+                        
+                      </td>
+
+                    </ng-container>
+
+
+                   
+
+                    <ng-container matColumnDef="expandedDetail">
+
+                      <td mat-cell *matCellDef="let d_element" [attr.colspan]="DetailColumns.length">
+                        
+                        <div class="example-element-detail" [@detailExpand]="d_element.expanded ? 'expanded' : 'collapsed'">
+                          
+                          <table class="escan-tabla" mat-table   [dataSource]="dataSource"  matSort (matSortChange)="announceSort($event)">
+                  
+
+                            <ng-container matColumnDef="{{d_column}}" *ngFor="let d_column of DetailColumns">
+                              <th  mat-header-cell class="mat-header-cell-detail" *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by {{d_column}}">
+                                {{d_column}}
+                              </th>
+                              <td mat-cell class="mat-cell-detail" *matCellDef="let d_element">{{d_element[d_column]}}</td>
+                            </ng-container>
+          
+                            <tr mat-header-row *matHeaderRowDef="DetailColumns"></tr>
+          
+                            <tr mat-row  [class.demo-row-is-clicked]="clickedRows.has(row)" *matRowDef="let row;
+                            columns: DetailColumns;"></tr>
+
+                          </table>
+
+                        </div>
+                      </td>
+
+              
+                    </ng-container>
+                     
+                
+          
+                  <tr mat-header-row *matHeaderRowDef="MasterColumns"></tr>
+
+                  <tr mat-row  [class.demo-row-is-clicked]="clickedRows.has(row)" *matRowDef="let row;
+                  columns: MasterColumns;"
+                  [class.example-expanded-row]="row.expanded" (click)="toggleRow(row)"
+                  class="example-element-row"></tr>
+
+                  <tr mat-row  *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+            
+                </table>
+
+
+                <!--<mat-table class="escan-tabla" multiTemplateDataRows [dataSource]="dataSource">
+                  
+
+                  <ng-container matColumnDef="{{column}}" *ngFor="let column of MasterColumns">
+                    <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="expandedDetail">
+                    <mat-cell *matCellDef="let element" [attr.colspan]="MasterColumns.length">
+                      <div class="example-element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'">
+                        <table class="detail-table">
+                          <tr>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Descuento</th>
+                            <th>Bonificacion</th>
+                          </tr>
+                          <tr>
+                            <td>{{element.Cantidad}}</td>
+                            <td>{{element.Precio}}</td>
+                            <td>{{element.Descuento}}</td>
+                            <td>{{element.Bonificacion}}</td>
+                          </tr>
+                        </table>
+                      </div>
+                    </mat-cell>
+                  </ng-container>
+              
+                   
+              
+        
+
+                  <mat-header-row *matHeaderRowDef="MasterColumns"></mat-header-row>
+                  <mat-row *matRowDef="let element; columns: MasterColumns;" class="example-element-row"
+                    [class.example-expanded-row]="element.expanded" (click)="toggleRow(element)">
+                  </mat-row>
+                  <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row>
+
+
+              </mat-table>-->
+
+
+                
+
+    
+
+
+              </div>
+
+                </mat-card-content>
+      
+                 
+      
+              </mat-expansion-panel>
+              <mat-expansion-panel (opened)="estadoPanel = true"
+                                   (closed)="estadoPanel = false">
+               
+              </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+     
+    </div>
+  
+
+    
+
+
+    
+    
+</div>
+
+

@@ -1,0 +1,53 @@
+
+.faden-nav{
+    width: 100%;
+    background-color: var(--faden-morado);
+}
+
+
+.faden-nav .nav-item i{
+    font-size: 32px;
+}
+
+.faden-nav .nav-item ul i{
+    font-size: 16px;
+}
+  
+  
+
+.faden-nav  a{
+    color: var(--faden-fondo);
+}
+
+
+.faden-nav ul li a:hover, .faden-nav ul li a:focus{
+    background-color: var(--faden-fondo);
+    color: var(--faden-lila);
+}
+
+
+ .faden-nav ul li a:hover > i{
+    color: var(--faden-morado);
+}
+
+
+
+.faden-nav li ul  a{
+    background-color: var(--faden-fondo);
+    color: var(--faden-lila);
+}
+
+
+.faden-nav li ul a:hover{
+    background-color: var(--faden-lila);
+    color: var(--faden-fondo);
+}
+
+ .faden-nav li ul a:hover > i{
+    color: var(--faden-morado);
+}
+
+
+
+
+

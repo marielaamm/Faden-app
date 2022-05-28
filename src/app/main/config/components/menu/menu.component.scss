@@ -1,0 +1,96 @@
+.faden-body{
+    padding: 0;
+    margin: 0;
+    min-width: 300px;
+    
+}
+
+.faden-content-header{
+    padding: 0;
+    margin: 0;
+    background-color: var(--faden-fondo);
+    width: 100%;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px;
+    border-color: var(--faden-lila);
+    border-style: solid;
+}
+
+
+
+
+
+.faden-header ul li a{
+    color: var(--faden-lila);
+    margin: 2px;
+}
+
+
+.faden-header ul li a:focus, .faden-header  ul li .activo{
+    color: var(--faden-fondo);
+    background-color: var(--faden-morado);
+}
+
+.faden-header ul li a:hover{
+    color: var(--faden-fondo);
+    background-color: var(--faden-lila);
+}
+
+.faden-header span{
+    color: var(--faden-morado);
+    padding-left: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+.faden-content{
+   border: 1px solid var(--faden-fondo);
+   min-width: 100%;
+   /*min-height: calc(100vh - 354px);*/
+   background-color: var(--faden-fondo);
+   z-index: 1;
+}
+    
+
+
+
+
+    .faden-footer{
+        /*position:fixed;*/
+        /*clear: both;*/
+        position:relative;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 0;
+    }
+    
+    .faden-footer div{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+    
+    
+    .text-pie1, .text-pie2{
+        color: var(--faden-fondo);
+        font-size: 1em;  
+    }
+    
+    .text-pie1{
+        font-size: 3.5em;
+        font-family: 'SavingsBond';
+    }
+    
+    
+    

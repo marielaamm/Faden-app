@@ -1,0 +1,12 @@
+<div id="msj" class="container escan-dialog-container">
+    <img  src="../assets/images/logo-msj.png" alt="" width="300px" height="95px">
+    <h1  class="escan-dialog-title">{{str_Titulo}}</h1>
+    <div class="escan-dialog-content">
+        <div class="escan-dialog-caption"><p><b>{{str_Caption}}<span style="color: red;">{{str_Error}}</span></b></p></div>
+        <div class="escan-dialog-msj" [innerHTML]="str_Mensaje"></div>
+    </div>
+    
+    <div class="text-end dialog-actions">
+        <button type="button" class="btn btn-outline-secondary escan-dialog-btn-a" (click)="Cerrar()">Aceptar</button>
+    </div>
+</div>
