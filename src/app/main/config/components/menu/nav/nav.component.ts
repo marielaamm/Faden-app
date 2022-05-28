@@ -39,14 +39,12 @@ export class NavComponent{
     {EsMenu: false, Modulo : "SIS", ModuloNombre : "Configuración", Id: "navRol", Link : "Roles", MenuPadre : "", Clase : "bi bi-key-fill"},
    
 
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navDepartamento", Link: "Departamento", MenuPadre: "", Clase: ""}
 
 
     
   
 
-    {EsMenu: true, Modulo : "FAC", ModuloNombre : "Facturación", Id: "navProforma", Link : "Proforma", MenuPadre : "", Clase : "fa-solid fa-handshake"},
-    {EsMenu: false, Modulo : "FAC", ModuloNombre : "Facturación", Id: "LinkProforma", Link : "Nueva Proforma", MenuPadre : "navProforma", Clase : "bi bi-receipt"},
-    {EsMenu: false, Modulo : "FAC", ModuloNombre : "Facturación", Id: "LinkRegistrosProforma", Link : "Registro Proforma", MenuPadre : "navProforma", Clase : "bi bi-table"},
 
     
   ]

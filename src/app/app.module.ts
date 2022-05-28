@@ -75,6 +75,7 @@ import { RolesComponent } from './main/config/components/roles/roles.component';
 import { RolesRegistroComponent } from './main/config/components/roles/roles-registro/roles-registro.component';
 import { ProformaComponent } from './main/fac/components/proforma/proforma.component';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import { DepartamentoComponent } from './main/cat/components/departamento/departamento.component';
 //FIN
 
 export const DateFormat = {
@@ -106,7 +107,8 @@ export const DateFormat = {
     DynamicFormDirective,
     RolesComponent,
     RolesRegistroComponent,
-    ProformaComponent
+    ProformaComponent,
+    DepartamentoComponent
   ],
   imports: [
     BrowserModule,

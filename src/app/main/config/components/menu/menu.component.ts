@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
+import { DepartamentoComponent } from 'src/app/main/cat/components/departamento/departamento.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
@@ -79,9 +80,9 @@ export class MenuComponent {
         document.getElementById("mov_sis")?.classList.add('activo');
         break;
 
-      case "FAC":
-        this.str_NomModulo = "FACTURACIÓN";
-        document.getElementById("mov_fac")?.classList.add('activo');
+      case "CAT":
+        this.str_NomModulo= "CATALOGO";
+        document.getElementById("mov_cat")?.classList.add('activo');
         break;
       
       default:
@@ -108,8 +109,8 @@ export class MenuComponent {
         this.Modulo_SIS(f)
         break;
 
-      case "FAC":
-        this.Modulo_FAC(f)
+      case "CAT":
+        this.Modulo_CAT(f)
         break;
     }
 
@@ -150,13 +151,13 @@ export class MenuComponent {
   }
 
 
-  private Modulo_FAC(f : string) : void{
+  private Modulo_CAT(f : string) : void{
     switch(f){
-      case "LinkProforma":
+      case "navDepartamento":
         
         if(this.str_formulario != f){
           this.dynamicForm.viewContainerRef.clear();
-          this.dynamicForm.viewContainerRef.createComponent(ProformaComponent);
+          this.dynamicForm.viewContainerRef.createComponent(DepartamentoComponent);
           this.str_formulario = f;
         }
 
