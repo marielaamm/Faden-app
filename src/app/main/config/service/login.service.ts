@@ -156,6 +156,8 @@ export class LoginService {
 
   private ProcesarAcceso(s : any) : void{
 
+    this._Router.navigate(['/Menu'], { skipLocationChange: false });
+    return;
         let _json = s
   
         if(s == ""){
