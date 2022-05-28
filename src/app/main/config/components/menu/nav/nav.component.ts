@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { faLocust } from '@fortawesome/free-solid-svg-icons';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
 
 export interface I_Nav {
@@ -39,10 +40,11 @@ export class NavComponent{
     {EsMenu: false, Modulo : "SIS", ModuloNombre : "Configuración", Id: "navRol", Link : "Roles", MenuPadre : "", Clase : "bi bi-key-fill"},
    
 
-    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navDepartamento", Link: "Departamento", MenuPadre: "", Clase: ""}
-
-
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navDepartamento", Link: "Departamento", MenuPadre: "", Clase: ""},
     
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navMunicipio", Link: "Municipio", MenuPadre: "", Clase: ""}, 
+
+      
   
 
 

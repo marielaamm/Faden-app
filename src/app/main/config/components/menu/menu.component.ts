@@ -1,5 +1,6 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
 import { DepartamentoComponent } from 'src/app/main/cat/components/departamento/departamento.component';
+import { MunicipioComponent } from 'src/app/main/cat/components/municipio/municipio.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
@@ -164,7 +165,14 @@ export class MenuComponent {
         
         break;
 
-        break;
+      case "navMunicipio":
+        if(this.str_formulario != f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(MunicipioComponent);
+          this.str_formulario = f;
+        }
+
+      break;
     }
     
    

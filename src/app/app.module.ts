@@ -76,6 +76,7 @@ import { RolesRegistroComponent } from './main/config/components/roles/roles-reg
 import { ProformaComponent } from './main/fac/components/proforma/proforma.component';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import { DepartamentoComponent } from './main/cat/components/departamento/departamento.component';
+import { MunicipioComponent } from './main/cat/components/municipio/municipio.component';
 //FIN
 
 export const DateFormat = {
@@ -108,7 +109,8 @@ export const DateFormat = {
     RolesComponent,
     RolesRegistroComponent,
     ProformaComponent,
-    DepartamentoComponent
+    DepartamentoComponent,
+    MunicipioComponent
   ],
   imports: [
     BrowserModule,
