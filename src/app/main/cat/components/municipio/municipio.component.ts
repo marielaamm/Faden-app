@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
   selector: 'app-municipio',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MunicipioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ServerScv : ServerService) { }
+
+  Cerrar() : void {
+
+    this.ServerScv.CerrarFormulario();
+
+  }
 
   ngOnInit(): void {
   }
