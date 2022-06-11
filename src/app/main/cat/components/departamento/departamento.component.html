@@ -7,7 +7,7 @@
                 <div class="row col-12 no padding-margin">
 
                     <div class ="col-12 btnAccion">
-                        <button mat-fab class="btn-faden-buscar"><mat-icon>search</mat-icon></button>
+                        <button mat-fab class="btn-faden-buscar" (click)="modal1.show();"><mat-icon>search</mat-icon></button>
                         <div class="line-vertical"></div>
                         <button mat-fab class="btn-faden-aceptar"><mat-icon>save</mat-icon></button>
                         <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
@@ -42,3 +42,16 @@
         </form>
     </div>
 </div>
+
+<app-modal #modal1 class="container row faden-modal" [maximizable]="true" [backdrop]="true">
+    <ng-container class="app-modal-header">DEPARTAMENTOS</ng-container> 
+    <ng-container class="app-modal-body">
+        <app-departamento-registro></app-departamento-registro>
+    </ng-container>
+    
+    <ng-container class="app-modal-footer">
+        <div class="col-12 btnAccion hide-element">
+            <button mat-fab class="btn-faden-salir" id="modal-departamento" (click)="modal1.hide();"><mat-icon>exit_to_app</mat-icon></button>
+        </div>
+    </ng-container>
+</app-modal>
