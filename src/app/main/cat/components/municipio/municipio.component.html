@@ -13,11 +13,33 @@
                     <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
                     <div class="line-vertical"></div>
                     <button mat-fab class="btn-faden-salir" (click)="Cerrar();"><mat-icon>exit_to_app</mat-icon></button>
-
-                   
-
                 </div>
 
+
+                <div class="col-12 no-padding-margin">
+                    <mat-card >
+                        <mat-card-header>
+                            <mat-card-title Class="mat-card-title">Municipio</mat-card-title>
+                        </mat-card-header>
+
+                        <mat-card-content class="rows">
+                            <mat-form-field class="col-12">
+                                <mat-label>Municipio</mat-label>
+                                <input matInput type="text" id="txtMunicipio">
+                        </mat-form-field>
+
+                        <igx-combo _ngcontent-pmm-5 class="col-12" #withValueKey [data]="lstDepartamento" valueKey="IdDepartamento" displayKey="Departamento"
+                                    id="txtDepartamento"
+                                    placeholder="Departamento" searchPlaceholder="Seleccione un Departamento"
+                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                        </igx-combo>
+
+                        </mat-card-content>
+
+                    </mat-card>
+                </div>
+
+         
 
             </div>
 
