@@ -78,6 +78,7 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import { DepartamentoComponent } from './main/cat/components/departamento/departamento.component';
 import { MunicipioComponent } from './main/cat/components/municipio/municipio.component';
 import { DepartamentoRegistroComponent } from './main/cat/components/departamento/departamento-registro/departamento-registro/departamento-registro.component';
+
 //FIN
 
 export const DateFormat = {

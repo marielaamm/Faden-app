@@ -7,17 +7,25 @@
             <div class="row col-12 no-padding-margin">
 
                 <div class="col-12 btnAccion">
-                    <button mat-fab class="btn-faden-buscar" ><mat-icon>search</mat-icon></button>
+                    <button mat-fab class="btn-faden-buscar" (click)="modal1.show();">
+                        <mat-icon>search</mat-icon>
+                    </button>
                     <div class="line-vertical"></div>
-                    <button mat-fab class="btn-faden-aceptar"><mat-icon>save</mat-icon></button>
-                    <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
+                    <button mat-fab class="btn-faden-aceptar">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-fab class="btn-faden-cancelar">
+                        <mat-icon>undo</mat-icon>
+                    </button>
                     <div class="line-vertical"></div>
-                    <button mat-fab class="btn-faden-salir" (click)="Cerrar();"><mat-icon>exit_to_app</mat-icon></button>
+                    <button mat-fab class="btn-faden-salir" (click)="Cerrar();">
+                        <mat-icon>exit_to_app</mat-icon>
+                    </button>
                 </div>
 
 
                 <div class="col-12 no-padding-margin">
-                    <mat-card >
+                    <mat-card>
                         <mat-card-header>
                             <mat-card-title Class="mat-card-title">Municipio</mat-card-title>
                         </mat-card-header>
@@ -26,24 +34,44 @@
                             <mat-form-field class="col-12">
                                 <mat-label>Municipio</mat-label>
                                 <input matInput type="text" id="txtMunicipio">
-                        </mat-form-field>
+                            </mat-form-field>
 
-                        <igx-combo _ngcontent-pmm-5 class="col-12" #withValueKey [data]="lstDepartamento" valueKey="IdDepartamento" displayKey="Departamento"
-                                    id="txtDepartamento"
-                                    placeholder="Departamento" searchPlaceholder="Seleccione un Departamento"
-                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
-                        </igx-combo>
+                            <igx-combo _ngcontent-pmm-5 class="col-12" #withValueKey [data]="lstDepartamento"
+                                valueKey="IdDepartamento" displayKey="Departamento" id="txtDepartamento"
+                                placeholder="Departamento" searchPlaceholder="Seleccione un Departamento"
+                                (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                            </igx-combo>
 
                         </mat-card-content>
 
                     </mat-card>
                 </div>
 
-         
+
 
             </div>
 
-       </form>
+        </form>
+    </div>
+
 </div>
- 
-</div>
+
+<app-modal #modal1 class="container row faden-modal" [maximizable]="true" [backdrop]="true"> 
+<ng-container class="app-modal-header"> REGISTROS DE MUNICIPIO</ng-container>
+<ng-container class="app-modal-body">
+<app-registro-municipio></app-registro-municipio>
+</ng-container>
+
+<ng-container class="app-modal-footer">
+    <div class="row col-12">
+        <div class="col-12 btnAction hide-element">
+            <button mat-fab class="btn-faden-salir" id="modal-registro-municipio" (click)="modal1.hide();"><mat-icon>exit_to_app</mat-icon>
+            </button>
+
+
+        </div>
+
+    </div>
+</ng-container>
+
+</app-modal>
