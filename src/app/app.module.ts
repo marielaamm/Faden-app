@@ -78,6 +78,7 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import { DepartamentoComponent } from './main/cat/components/departamento/departamento.component';
 import { MunicipioComponent } from './main/cat/components/municipio/municipio.component';
 import { DepartamentoRegistroComponent } from './main/cat/components/departamento/departamento-registro/departamento-registro/departamento-registro.component';
+import { EscolaridadComponent } from './main/cat/components/escolaridad/escolaridad.component';
 //FIN
 
 export const DateFormat = {
@@ -112,7 +113,8 @@ export const DateFormat = {
     ProformaComponent,
     DepartamentoComponent,
     MunicipioComponent,
-    DepartamentoRegistroComponent
+    DepartamentoRegistroComponent,
+    EscolaridadComponent
   ],
   imports: [
     BrowserModule,
