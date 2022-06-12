@@ -77,12 +77,9 @@ import { ProformaComponent } from './main/fac/components/proforma/proforma.compo
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import { DepartamentoComponent } from './main/cat/components/departamento/departamento.component';
 import { MunicipioComponent } from './main/cat/components/municipio/municipio.component';
+import { MunicipioRegistroComponent } from './main/cat/components/municipio/municipio-registro/municipio-registro.component';
 import { DepartamentoRegistroComponent } from './main/cat/components/departamento/departamento-registro/departamento-registro/departamento-registro.component';
-<<<<<<< HEAD
-
-=======
 import { EscolaridadComponent } from './main/cat/components/escolaridad/escolaridad.component';
->>>>>>> f8b9f2dfa11459cb4fe23884961c619686e573aa
 //FIN
 
 export const DateFormat = {
@@ -117,6 +114,7 @@ export const DateFormat = {
     ProformaComponent,
     DepartamentoComponent,
     MunicipioComponent,
+    MunicipioRegistroComponent,
     DepartamentoRegistroComponent,
     EscolaridadComponent
   ],
