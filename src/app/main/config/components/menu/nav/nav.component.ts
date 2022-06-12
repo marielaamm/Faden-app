@@ -44,6 +44,8 @@ export class NavComponent{
     
     {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navMunicipio", Link: "Municipio", MenuPadre: "", Clase: ""}, 
 
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navEscolaridad", Link: "Escolaridad", MenuPadre: "", Clase: ""}, 
+
       
   
 
