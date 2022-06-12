@@ -18,6 +18,17 @@ export class DepartamentoComponent implements OnInit {
       
   }
   ngOnInit(): void {
+    
+    this.ServerScv.change.subscribe(s =>{
+
+      if(s instanceof Array){
+        if(s[0] == "DatosModal" && s[1] == "modal-registro-departamento" ) {
+          console.log(s[2]);
+        }
+      }
+
+    });
+    
   }
 
 }
