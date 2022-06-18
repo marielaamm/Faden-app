@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServerService } from 'src/app/main/shared/service/server.service';
-import { iDepartamento } from '../../../interface/i-departamento';
+import { iEscolaridad } from '../../../interface/i-escolaridad';
+
+let ELEMENT_DATA: iEscolaridad[] = [];
 
 @Component({
   selector: 'app-escolaridad-registro',
@@ -10,9 +13,9 @@ import { iDepartamento } from '../../../interface/i-departamento';
 })
 export class EscolaridadRegistroComponent implements OnInit {
 
-  displayedColumns: string[] = ['IdDepartamento', 'Departamento'];
+  displayedColumns: string[] = ['IdEscolaridad', 'Escolaridad'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  clickedRows = new Set<iDepartamento>();
+  clickedRows = new Set<iEscolaridad>();
   private _liveAnnouncer: any;
 
   constructor(private ServerScv : ServerService) { }
@@ -47,11 +50,11 @@ export class EscolaridadRegistroComponent implements OnInit {
    /*************************************************************************/
    Editar() : void{
 
-    this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", 1]);
+    this.ServerScv.change.emit(["CerrarModal", "modal-registro-escolaridad", 1]);
   }
 
    Cerrar() : void{
-    this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", undefined]);
+    this.ServerScv.change.emit(["CerrarModal", "modal-registro-escolaridad", undefined]);
       
   }
   ngOnInit(): void {
