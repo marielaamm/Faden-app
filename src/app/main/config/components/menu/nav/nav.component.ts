@@ -30,6 +30,8 @@ export class NavComponent{
 
   public Perfiles: I_Nav[] = [
 
+
+
     /**************************************USUARIO************************************* */
     {EsMenu: true, Modulo : "SIS", ModuloNombre : "Configuración", Id: "navUsuario", Link : "Usuarios", MenuPadre : "", Clase : "bi bi-people-fill"},
     {EsMenu: false, Modulo : "SIS", ModuloNombre : "Configuración", Id: "LinkUsuario", Link : "Nuevo Usuario", MenuPadre : "navUsuario", Clase : "bi bi-person-plus-fill"},
@@ -46,8 +48,11 @@ export class NavComponent{
 
     {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navEscolaridad", Link: "Escolaridad", MenuPadre: "", Clase: ""}, 
 
+      /**************************************INICIO************************************* */ 
+
+      {EsMenu: true, Modulo: "HOME", ModuloNombre: "Inicio", Id:"navPaciente", Link: "Paciente" , MenuPadre: "", Clase : ""},
+      {EsMenu: false, Modulo: "HOME", ModuloNombre: "Inicio", Id: "LinkPaciente", Link: "Nuevo Paciente", MenuPadre: "navPaciente", Clase: ""},
       
-  
 
 
     

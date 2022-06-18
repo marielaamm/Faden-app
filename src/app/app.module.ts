@@ -81,6 +81,7 @@ import { MunicipioRegistroComponent } from './main/cat/components/municipio/muni
 import { DepartamentoRegistroComponent } from './main/cat/components/departamento/departamento-registro/departamento-registro/departamento-registro.component';
 import { EscolaridadComponent } from './main/cat/components/escolaridad/escolaridad.component';
 import { EscolaridadRegistroComponent } from './main/cat/components/escolaridad/escolaridad-registro/escolaridad-registro.component';
+import { PacienteComponent } from './main/inicio/components/paciente/paciente.component';
 //FIN
 
 export const DateFormat = {
@@ -118,7 +119,8 @@ export const DateFormat = {
     MunicipioRegistroComponent,
     DepartamentoRegistroComponent,
     EscolaridadComponent,
-    EscolaridadRegistroComponent
+    EscolaridadRegistroComponent,
+    PacienteComponent
   ],
   imports: [
     BrowserModule,

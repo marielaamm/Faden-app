@@ -4,6 +4,7 @@ import { EscolaridadComponent } from 'src/app/main/cat/components/escolaridad/es
 import { MunicipioComponent } from 'src/app/main/cat/components/municipio/municipio.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
+import { PacienteComponent } from 'src/app/main/inicio/components/paciente/paciente.component';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { RolesComponent } from '../roles/roles.component';
@@ -21,8 +22,8 @@ export class MenuComponent {
   @ViewChild(DynamicFormDirective, { static: true }) dynamicForm!: DynamicFormDirective;
 
 
-  private str_NomModulo : string = "INICIO";
-  private str_Modulo : string = "";
+  private str_NomModulo : string = "Inicio";
+  private str_Modulo : string = "HOME";
   private str_formulario : string = "";
 
 
@@ -53,6 +54,7 @@ export class MenuComponent {
 
   constructor(private ServerScv : ServerService) {
     //this.ServerScv._loginserv.VerificarSession();
+    
   }
 
 
@@ -87,7 +89,7 @@ export class MenuComponent {
         document.getElementById("mov_cat")?.classList.add('activo');
         break;
       
-      default:
+      case "HOME":
         this.str_NomModulo = "INICIO";
         document.getElementById("mov_inicio")?.classList.add('activo');
         break;
@@ -107,17 +109,36 @@ export class MenuComponent {
   public AbrirFormulario(f : string) : void{
 
     switch(this.str_Modulo){
+
+      case "HOME":
+        this.Modulo_INICIO(f);
+        break;
+
       case "SIS":
-        this.Modulo_SIS(f)
+        this.Modulo_SIS(f);
         break;
 
       case "CAT":
-        this.Modulo_CAT(f)
+        this.Modulo_CAT(f);
         break;
     }
 
     
   }
+  private Modulo_INICIO(f: string){
+
+    switch(f){
+      case "LinkPaciente":
+         if (this.str_formulario !=f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(PacienteComponent);
+          this.str_formulario=f;
+         }
+        break;
+    }
+
+  }
+
 
 
   private Modulo_SIS(f : string) : void{
@@ -211,7 +232,7 @@ export class MenuComponent {
   }
 
   ngAfterContentInit(): void {
-    this.AbrirModulo("");
+    this.AbrirModulo("HOME");
   }
 
 }
