@@ -42,7 +42,7 @@ export class MunicipioRegistroComponent implements OnInit {
     this.ServerScv.change.emit(["CerrarModal","modal-registro-municipio", 1]);
   }
 
-  cerrar() : void {
+  Cerrar() : void {
     this.ServerScv.change.emit(["CerrarModal", "modal-registro-municipio", undefined]);
   }
   ngOnInit(): void {
