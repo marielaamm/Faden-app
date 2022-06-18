@@ -23,7 +23,7 @@ export class EscolaridadComponent implements OnInit {
     this.ServerScv.change.subscribe(s =>{
 
       if(s instanceof Array){
-        if(s[0] == "DatosModal" && s[1] == "modal-registro-departamento" ) {
+        if(s[0] == "DatosModal" && s[1] == "modal-registro-escolaridad" ) {
           console.log(s[2]);
         }
       }
