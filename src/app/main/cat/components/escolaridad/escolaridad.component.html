@@ -2,19 +2,18 @@
     <div id="frmEscolaridad">
 
         <form class="formulario">
-
             <div class="row col-12 no-padding-margin">
 
-                <div class="col-12 btnAccion">
-                    <button mat-fab class="btn-faden-buscar" (click)="modal1.show();"><mat-icon>search</mat-icon></button>
-                    <div class="line-vertical"></div>
-                    <button mat-fab class="btn-faden-aceptar" ><mat-icon>save</mat-icon></button>
-                    <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
-                    <div class="line-vertical"></div>
-                    <button mat-fab class="btn-faden-salir" (click)="Cerrar();"><mat-icon>exit_to_app</mat-icon></button>
-                </div>
-                        
-                <div class="col-12">
+                <div class="row col-12 no-padding-margin">
+                    <div class="col-12 btnAccion">
+                        <button mat-fab class="btn-faden-buscar" (click)="modal1.show();"><mat-icon>search</mat-icon></button>
+                        <div class="line-vertical"></div>
+                        <button mat-fab class="btn-faden-aceptar" ><mat-icon>save</mat-icon></button>
+                        <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
+                        <div class="line-vertical"></div>
+                        <button mat-fab class="btn-faden-salir" (click)="Cerrar();"><mat-icon>exit_to_app</mat-icon></button>
+                    </div>
+                    <div class="col-12">
                         <mat-card class="mat-card">
                             <mat-card-header>
                                 <mat-card-title class="mat-card-title">Escolaridad</mat-card-title>
@@ -30,10 +29,9 @@
                             </mat-card-content>
 
                         </mat-card>
+                    </div>
                 </div>
-
             </div>
-            
         </form>
     </div>
 </div>
@@ -44,10 +42,8 @@
         <app-escolaridad-registro></app-escolaridad-registro>
     </ng-container>
     <ng-container class="app-modal-footer">
-        <div class="row col-12">
             <div class="col-12 btnAccion hide-element">
                 <button mat-fab class="btn-faden-salir" id="modal-registro-escolaridad" (click)="modal1.hide();"><mat-icon>exit_to_app</mat-icon></button>
             </div>
-        </div>
     </ng-container>
 </app-modal>
