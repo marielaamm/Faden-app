@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ServerService } from 'src/app/main/shared/service/server.service';
+import { iDepartamento } from '../../../interface/i-departamento';
 
 @Component({
   selector: 'app-escolaridad-registro',
@@ -7,8 +10,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscolaridadRegistroComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['IdDepartamento', 'Departamento'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  clickedRows = new Set<iDepartamento>();
+  private _liveAnnouncer: any;
 
+  constructor(private ServerScv : ServerService) { }
+
+
+  /*************************EVENTOS TABLA************************************/
+
+  
+  /** Announce the change in sort state for assistive technology. */
+  announceSort(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+  filtrar(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filtro.trim().toLowerCase();
+  }  
+ 
+
+  clickRow(evento : string, row : any){
+
+  }
+
+   /*************************************************************************/
+   Editar() : void{
+
+    this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", 1]);
+  }
+
+   Cerrar() : void{
+    this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", undefined]);
+      
+  }
   ngOnInit(): void {
   }
 
