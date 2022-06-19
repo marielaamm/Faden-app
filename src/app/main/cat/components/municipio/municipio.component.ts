@@ -12,8 +12,6 @@ export class MunicipioComponent implements OnInit {
 
   constructor(private ServerScv : ServerService) { }
 
-
-
   public singleSelection(event: any) {
     if (event.added.length) {
         event.newSelection = event.added;

@@ -16,6 +16,7 @@
                             <mat-card-header>
                                 <mat-card-title class="mat-card-title">Paciente</mat-card-title>
                             </mat-card-header>
+
                             <mat-card-content>
                         
                                 <div class="row">
@@ -114,8 +115,70 @@
                                         <mat-label>Dirección</mat-label>
                                         <input matInput type="text" id="txtDireccion">
                                     </mat-form-field>
-
                                 </div>
+
+                                <div class="row"> 
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Teléfono </mat-label>
+                                        <input matInput type="text" id="txtTelefono">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Celular </mat-label>
+                                        <input matInput type="text" id="txtCelular">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Correo</mat-label>
+                                        <input matInput type="text" id="txtCorreo">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Religión</mat-label>
+                                        <input matInput type="text" id="txReligion">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="row" id="ac">
+                                    <div class="col-12">
+                                        <label><b>¿Con quién vive en su casa?</b> </label>
+                                            <section class="acompañante-section">
+                                                <mat-checkbox class="acompañante-margin" class="acSolo">Solo/Sola</mat-checkbox>
+                                                <mat-checkbox class="acompañante-margin" class="acHijo">Hijo/Hija</mat-checkbox>
+                                                <mat-checkbox class="acompañante-margin" class="acNietos">Nietos</mat-checkbox>
+                                                <mat-checkbox class="acompañante-margin" class="acEsposos">Esposo/Esposa</mat-checkbox>
+                                                <mat-checkbox class="acompañante-margin" class="acHermanos">Hermano/Hermana</mat-checkbox>
+                                                <mat-checkbox class="acompañante-margin" class="acAmigos">Amigo/Amiga</mat-checkbox>
+                                                
+                                            </section>
+                                     </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label><b>Visita</b> </label>
+                                        <section class="visita-section">
+                                            <mat-checkbox class="visita-margin" class="vsEspontaneo">Espontáneo</mat-checkbox>
+                                            <mat-checkbox class="visita-margin" class="vsReferido">Referido</mat-checkbox>
+                                            <mat-checkbox class="visita-margin" class="vsRecomendado">Recomendado</mat-checkbox>
+                                            <mat-checkbox class="visita-margin" class="vsMedios">Por Medios Sociales</mat-checkbox>
+                                            
+                                        </section>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label><b>¿Como sabe de FADEN?</b></label>
+                                        <section class="referencia-section">
+                                            <mat-checkbox class="referencia-margin" class="nombre">Transferido</mat-checkbox>  
+                                            <mat-checkbox class="referencia-margin" class="nombre">Internet</mat-checkbox> 
+                                        </section>
+
+                                    </div>
+                                </div>
+
+
                                               
                             </mat-card-content>
                         </mat-card>
