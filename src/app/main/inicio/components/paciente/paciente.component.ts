@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
@@ -28,18 +29,17 @@ export class PacienteComponent implements OnInit {
   }
 
 }
-/******** */
-/**export interface Task {
+/** 
+export interface Task {
   name: string;
   completed: boolean;
   color: ThemePalette;
   subtasks?: Task[];
 }
 
-/**
- * *@title Basic checkboxes
- */
-/**@Component({
+/** @title Basic checkboxes
+ 
+@Component({
   selector: 'checkbox-overview-example',
   templateUrl: 'checkbox-overview-example.html',
   styleUrls: ['checkbox-overview-example.css'],
