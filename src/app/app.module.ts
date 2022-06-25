@@ -82,6 +82,7 @@ import { DepartamentoRegistroComponent } from './main/cat/components/departament
 import { EscolaridadComponent } from './main/cat/components/escolaridad/escolaridad.component';
 import { EscolaridadRegistroComponent } from './main/cat/components/escolaridad/escolaridad-registro/escolaridad-registro.component';
 import { PacienteComponent } from './main/inicio/components/paciente/paciente.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 //FIN
 
 export const DateFormat = {
@@ -170,7 +171,8 @@ export const DateFormat = {
     ReactiveFormsModule,
     HttpClientModule,
     IgxComboModule,
-    ModalModule
+    ModalModule,
+    DragDropModule
 
   ],
   exports: [

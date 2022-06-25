@@ -30,6 +30,7 @@
     "@igniteui/material-icons-extended": "^2.10.0",
     "@ng-bootstrap/ng-bootstrap": "^12.1.0",
     "@popperjs/core": "^2.11.5",
+    "angular-draggable-droppable": "^6.1.0",
     "angular-popper": "^2.0.1",
     "autoprefixer": "10.4.5",
     "bootstrap": "^5.1.3",
