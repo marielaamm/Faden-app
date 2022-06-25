@@ -2,12 +2,255 @@
     <div id="frmPaciente">
 
         <form class="formulario">
-            <div class="row col-12 no-padding-margine">
+            <div class="row col-12 no-padding-margin">
 
-                
+                <div class="row col-12 no-padding-margin" >
+                    <div class="col-12 btnAccion">
+                        <button mat-fab class="btn-faden-aceptar" ><mat-icon>save</mat-icon></button>
+                        <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
+                        <div class="line-vertical"></div>
+                        <button mat-fab class="btn-faden-salir" (click)="Cerrar();"><mat-icon>exit_to_app</mat-icon></button>
+                    </div>
+                    <div class="col-12">
+                        <mat-card class="mat-card">
+                            <mat-card-header>
+                                <mat-card-title class="mat-card-title">Paciente</mat-card-title>
+                            </mat-card-header>
+
+                            <mat-card-content>
+                        
+                                <div class="row">
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-2 col-lg-2">
+                                        <mat-label>No de Expediente</mat-label>
+                                        <input matInput type="text" id="txtNoExpediente">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-lg-8" appearance="legacy">
+                                        <mat-label>Fecha</mat-label>
+                                        <input matInput [matDatepicker]="picker" id="txtFecha" >
+                                        <mat-datepicker-toggle matSuffix [for]="picker">
+                                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                       
+                                    </mat-form-field>
+                                </div>
+                                
+                                <div class="row">
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Primer Nombre </mat-label>
+                                        <input matInput type="text" id="txtPrimerNombre">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Segundo Nombre </mat-label>
+                                        <input matInput type="text" id="txtSegundoNombre">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Primer Apellido </mat-label>
+                                        <input matInput type="text" id="txtPrimerApellido">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Segundo Apellido </mat-label>
+                                        <input matInput type="text" id="txSegundoApellido">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="row" id="ej">
+                                    <div class="col-1">
+                                        <label><b>Género:</b> </label>
+                                    </div>
+                                    <mat-radio-group aria-label="Seleccione género" class="col-5">
+                                        <mat-radio-button value="1">Masculino</mat-radio-button>
+                                        <mat-radio-button value="2">Femenino</mat-radio-button>
+                                    </mat-radio-group>                                   
+                                </div>
+
+                                <div class="row">
+                                    <igx-combo _ngcontent-pmm-5 class="col-12 col-sm-6 col-md-6 col-lg-6" #withValueKey [data]="lstMunicipio"
+                                         valueKey="IdMunicipio" displayKey="Municipio" id="txtMunicipio"
+                                         placeholder="Lugar de Nacimiento" searchPlaceholder="Seleccione una Ciudad"
+                                         (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                                    </igx-combo>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3" appearance="legacy">
+                                        <mat-label>Fecha de Nacimiento</mat-label>
+                                        <input matInput [matDatepicker]="pickerNacimiento" id="txtFechaNacimiento" >
+                                        <mat-datepicker-toggle matSuffix [for]="pickerNacimiento">
+                                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #pickerNacimiento></mat-datepicker>
+                                       
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Edad</mat-label>
+                                        <input matInput type="text" id="txtEdad">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="row">
+                                    <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <mat-label>Ocupación</mat-label>
+                                        <input matInput type="text" id="txtOcupacion">
+                                    </mat-form-field>
+
+                                    <igx-combo _ngcontent-pmm-5 class="col-12 col-sm-6 col-md-6 col-lg-6" #withValueKey [data]="lstEscolaridad"
+                                    valueKey="IdEscolaridad" displayKey="Escolaridad" id="txtEscolaridad"
+                                    placeholder="Escolaridad" searchPlaceholder="Seleccione una Opción"
+                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                                    </igx-combo>
+                                </div>
+
+                                <div class="row">
+                                    <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <mat-label>Estado Civil</mat-label>
+                                        <input matInput type="text" id="txtEstadoCivil">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <mat-label>Dirección</mat-label>
+                                        <input matInput type="text" id="txtDireccion">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="row"> 
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Teléfono </mat-label>
+                                        <input matInput type="text" id="txtTelefono">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Celular </mat-label>
+                                        <input matInput type="text" id="txtCelular">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Correo</mat-label>
+                                        <input matInput type="text" id="txtCorreo">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>Religión</mat-label>
+                                        <input matInput type="text" id="txReligion">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="row" id="ac">
+                                    <div class="col-12">
+                                        <label><b>¿Con quién vive en su casa?</b> </label>
+                                            <section >
+                                                <mat-checkbox >Solo/Sola</mat-checkbox>
+                                                <mat-checkbox >Hijo/Hija</mat-checkbox>
+                                                <mat-checkbox >Nietos</mat-checkbox>
+                                                <mat-checkbox >Esposo/Esposa</mat-checkbox>
+                                                <mat-checkbox >Hermano/Hermana</mat-checkbox>
+                                                <mat-checkbox >Amigo/Amiga</mat-checkbox>
+                                                
+                                            </section>
+                                     </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label><b>Visita</b> </label>
+                                        <section >
+                                            <mat-checkbox >Espontáneo</mat-checkbox>
+                                            <mat-checkbox >Referido</mat-checkbox>
+                                            <mat-checkbox >Recomendado</mat-checkbox>
+                                            <mat-checkbox >Por Medios Sociales</mat-checkbox>
+                                            
+                                        </section>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label><b>¿Cómo sabe de FADEN?</b></label>
+                                        <section class="row">
+                                            <mat-checkbox class="col-4" >Internet</mat-checkbox>  
+                                            <div class="col-8">
+                                                <mat-checkbox>Internet</mat-checkbox> 
+                                                <section>
+                                                    <span>
+                                                        <ul>
+                                                        <li><mat-checkbox>Internet</mat-checkbox></li>
+                                                        <li><mat-checkbox >Internet</mat-checkbox></li>
+                                                        <li><mat-checkbox>Internet</mat-checkbox></li>
+                                                        <li><mat-checkbox >Internet</mat-checkbox></li>
+                                                        <li><mat-checkbox >Internet</mat-checkbox></li>
+                                                        </ul>
+                                                    </span>
+                                                </section>
+                                            </div>
+                                                  
+                                        </section> 
 
 
-            </div>
+
+
+                                        
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label><b>Antecedentes laborales</b></label>
+                                        <section class="trabajo-section">
+                                            <mat-checkbox class="trabajo-margin" class="nombre">Trabaja Actualmente</mat-checkbox>  
+                                            
+                                        </section>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <section class="trabajo-section">
+                                            <mat-checkbox class="trabajo-margin" class="nombre">Último trabajo</mat-checkbox>  
+                                       
+                                        </section>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <section class="trabajo-section">
+                                            <mat-checkbox class="trabajo-margin" class="nombre">¿Es Jubilado?</mat-checkbox>  
+                                             
+                                        </section>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <section class="trabajo-section">
+                                            <mat-checkbox class="trabajo-margin" class="nombre"> ¿Recibe pensión?</mat-checkbox>  
+                                             
+                                        </section>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label><b>Sobre el acompañante</b></label>
+                                        <section class="trabajo-section">
+                                            <mat-checkbox class="trabajo-margin" class="nombre">Trabaja Actualmente</mat-checkbox>  
+                                            
+                                        </section>
+                                    </div>
+                                </div>
+                                              
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+             </div>
+            
         </form>
     </div>
 </div>
