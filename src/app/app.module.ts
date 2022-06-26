@@ -82,6 +82,7 @@ import { DepartamentoRegistroComponent } from './main/cat/components/departament
 import { EscolaridadComponent } from './main/cat/components/escolaridad/escolaridad.component';
 import { EscolaridadRegistroComponent } from './main/cat/components/escolaridad/escolaridad-registro/escolaridad-registro.component';
 import { PacienteComponent } from './main/inicio/components/paciente/paciente.component';
+import { HistoriamedicaComponent } from './main/inicio/components/historiamedica/historiamedica.component';
 //FIN
 
 export const DateFormat = {
@@ -120,7 +121,8 @@ export const DateFormat = {
     DepartamentoRegistroComponent,
     EscolaridadComponent,
     EscolaridadRegistroComponent,
-    PacienteComponent
+    PacienteComponent,
+    HistoriamedicaComponent
   ],
   imports: [
     BrowserModule,

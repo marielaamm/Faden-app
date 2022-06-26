@@ -4,6 +4,7 @@ import { EscolaridadComponent } from 'src/app/main/cat/components/escolaridad/es
 import { MunicipioComponent } from 'src/app/main/cat/components/municipio/municipio.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
+import { HistoriamedicaComponent } from 'src/app/main/inicio/components/historiamedica/historiamedica.component';
 import { PacienteComponent } from 'src/app/main/inicio/components/paciente/paciente.component';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
 import { ServerService } from 'src/app/main/shared/service/server.service';
@@ -135,6 +136,15 @@ export class MenuComponent {
           this.str_formulario=f;
          }
         break;
+      case "navhistoriamedica":
+        if (this.str_formulario !=f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(HistoriamedicaComponent);
+          this.str_formulario=f;
+        }
+
+      break;
+
     }
 
   }
@@ -236,3 +246,7 @@ export class MenuComponent {
   }
 
 }
+function historiamedicaComponent(historiamedicaComponent: any) {
+  throw new Error('Function not implemented.');
+}
+
