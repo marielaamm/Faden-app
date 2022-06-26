@@ -60,13 +60,14 @@
                                 </div>
 
                                 <div class="row" id="ej">
-                                    <div class="col-1">
-                                        <label><b>Género:</b> </label>
+                                    <div class="col-12">
+                                        <label class="col-3 col-sm-1 col-md-1 col-lg-1"><b>Género:</b></label>
+                                        <mat-radio-group aria-label="Seleccione género" class="col-9 col-sm-11 col-md-11 col-lg-11">
+                                            <mat-radio-button value="1">Masculino</mat-radio-button>
+                                            <mat-radio-button value="2">Femenino</mat-radio-button>
+                                        </mat-radio-group>   
                                     </div>
-                                    <mat-radio-group aria-label="Seleccione género" class="col-5">
-                                        <mat-radio-button value="1">Masculino</mat-radio-button>
-                                        <mat-radio-button value="2">Femenino</mat-radio-button>
-                                    </mat-radio-group>                                   
+                                                                    
                                 </div>
 
                                 <div class="row">
@@ -140,106 +141,80 @@
                                 </div>
 
                                 <div class="row" id="ac">
-                                    <div class="col-12">
-                                        <label><b>¿Con quién vive en su casa?</b> </label>
-                                            <section >
-                                                <mat-checkbox >Solo/Sola</mat-checkbox>
-                                                <mat-checkbox >Hijo/Hija</mat-checkbox>
-                                                <mat-checkbox >Nietos</mat-checkbox>
-                                                <mat-checkbox >Esposo/Esposa</mat-checkbox>
-                                                <mat-checkbox >Hermano/Hermana</mat-checkbox>
-                                                <mat-checkbox >Amigo/Amiga</mat-checkbox>
-                                                
-                                            </section>
-                                     </div>
+                                    <label><b>¿Con quién vive en su casa?</b> </label>
+                                    <section>
+                                        <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Sol@</mat-checkbox>
+                                        <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Hij@</mat-checkbox>
+                                        <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Nietos</mat-checkbox>
+                                        <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Espos@</mat-checkbox>
+                                        <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Herman@</mat-checkbox>
+                                        <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Amig@</mat-checkbox>
+                                        
+                                    </section>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-12">
-                                        <label><b>Visita</b> </label>
+                                    <label><b>Visita</b> </label>
                                         <section >
-                                            <mat-checkbox >Espontáneo</mat-checkbox>
-                                            <mat-checkbox >Referido</mat-checkbox>
-                                            <mat-checkbox >Recomendado</mat-checkbox>
-                                            <mat-checkbox >Por Medios Sociales</mat-checkbox>
+                                            <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2" >Espontáneo</mat-checkbox>
+                                            <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Referido</mat-checkbox>
+                                            <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Recomendado</mat-checkbox>
+                                            <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Por Medios Sociales</mat-checkbox>
                                             
                                         </section>
-                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-12">
                                         <label><b>¿Cómo sabe de FADEN?</b></label>
-                                        <section class="row">
-                                            <mat-checkbox class="col-4" >Internet</mat-checkbox>  
-                                            <div class="col-8">
-                                                <mat-checkbox>Internet</mat-checkbox> 
-                                                <section>
-                                                    <span>
-                                                        <ul>
-                                                        <li><mat-checkbox>Internet</mat-checkbox></li>
-                                                        <li><mat-checkbox >Internet</mat-checkbox></li>
-                                                        <li><mat-checkbox>Internet</mat-checkbox></li>
-                                                        <li><mat-checkbox >Internet</mat-checkbox></li>
-                                                        <li><mat-checkbox >Internet</mat-checkbox></li>
-                                                        </ul>
-                                                    </span>
-                                                </section>
-                                            </div>
-                                                  
+                                        <section class="col-12">
+                                            <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Facebook</mat-checkbox>  
+                                            <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Instragram</mat-checkbox>
+                                            <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Twitter</mat-checkbox>
+                                            <mat-checkbox class="col-6 col-sm-4 col-md-6 col-lg-6">Transferido</mat-checkbox>
+                                            <mat-checkbox class="col-12 col-sm-4 col-md-2 col-lg-2">Otros, especifíque</mat-checkbox>
+                                            <mat-form-field  class="col-12 col-sm-4 col-md-6 col-lg-6 offset-md-1 offset-lg-1" floatLabel="never">
+                                                <input matInput type="text">
+                                            </mat-form-field>
+                                                                                      
                                         </section> 
-
-
-
-
-                                        
-
-                                    </div>
+                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-12">
                                         <label><b>Antecedentes laborales</b></label>
-                                        <section class="trabajo-section">
-                                            <mat-checkbox class="trabajo-margin" class="nombre">Trabaja Actualmente</mat-checkbox>  
-                                            
+                                        <section class="col-12">
+                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Trabaja Actualmente</mat-checkbox>  
+                                            <mat-form-field  class="col-12 col-sm-9 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
+                                                <mat-label>¿En qué trabaja?</mat-label>
+                                                <input matInput type="text">
+                                            </mat-form-field >
+
+                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Último trabajo</mat-checkbox>  
+                                            <mat-form-field  class="col-12 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
+                                                <mat-label>¿Cúal fue?</mat-label>
+                                                <input matInput type="text">
+                                            </mat-form-field>
+
+                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Es jubilado</mat-checkbox>  
+                                            <mat-form-field  class="col-12 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
+                                                <input matInput type="text">
+                                            </mat-form-field>
+
+                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Recibe pensión</mat-checkbox>  
+                                            <mat-form-field  class="col-12 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
+                                                <input matInput type="text">
+                                            </mat-form-field>
                                         </section>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-12">
-                                        <section class="trabajo-section">
-                                            <mat-checkbox class="trabajo-margin" class="nombre">Último trabajo</mat-checkbox>  
-                                       
-                                        </section>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <section class="trabajo-section">
-                                            <mat-checkbox class="trabajo-margin" class="nombre">¿Es Jubilado?</mat-checkbox>  
-                                             
-                                        </section>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <section class="trabajo-section">
-                                            <mat-checkbox class="trabajo-margin" class="nombre"> ¿Recibe pensión?</mat-checkbox>  
-                                             
-                                        </section>
-                                    </div>
-                                </div>
-
-                                <div class="row">
+                                 <div class="row">
                                     <div class="col-12">
                                         <label><b>Sobre el acompañante</b></label>
                                         <section class="trabajo-section">
                                             <mat-checkbox class="trabajo-margin" class="nombre">Trabaja Actualmente</mat-checkbox>  
-                                            
                                         </section>
                                     </div>
                                 </div>
