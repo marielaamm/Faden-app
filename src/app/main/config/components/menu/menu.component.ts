@@ -6,6 +6,7 @@ import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dyn
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
 import { HistoriamedicaComponent } from 'src/app/main/inicio/components/historiamedica/historiamedica.component';
 import { PacienteComponent } from 'src/app/main/inicio/components/paciente/paciente.component';
+import { SoapComponent } from 'src/app/main/inicio/components/soap/soap.component';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { RolesComponent } from '../roles/roles.component';
@@ -144,6 +145,14 @@ export class MenuComponent {
         }
 
       break;
+
+      case "navsoap":
+        if(this.str_formulario !=f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(SoapComponent);
+          this.str_formulario=f; 
+        }
+        break;
 
     }
 
