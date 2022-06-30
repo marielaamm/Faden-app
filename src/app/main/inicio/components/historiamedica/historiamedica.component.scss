@@ -2,10 +2,13 @@
     width: 1000px
 }
 
-.mat-tab-label-content[_ngcontent-c1]{
-    font-weight: bold;
-    color: rebeccapurple
+#frmHistoriamedica{
+    .mat-tab-label-content{
+        font-weight: bold;
+        color: red;
+    }
 }
+
 
 .text-area-medica-clinica{
     padding-left: 5px;
