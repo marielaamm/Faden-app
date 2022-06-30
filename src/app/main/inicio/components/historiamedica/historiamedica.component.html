@@ -12,6 +12,52 @@
                         <button mat-fab class="btn-faden-salir"><mat-icon>exit_to_app</mat-icon></button>
                     </div>
 
+
+                    <div class="row">
+                        <mat-form-field class="col-lg-3">
+                            <mat-label>Expediente No. </mat-label>
+                            <input matInput type="text" id="txtNoExpediente">
+                        </mat-form-field>
+
+                        <igx-combo _ngcontent-pmm-5 class="col-lg-6" #withValueKey [data]="lstPaciente"
+                        valueKey="NoPaciente" displayKey="Paciente" id="txtPaciente"
+                        placeholder="Paciente" searchPlaceholder="Seleccione un paciente"
+                        (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                        </igx-combo>
+
+                    </div>
+
+                    <mat-tab-group animationDuration="0ms" class="row">
+
+                        <mat-tab label="Historia Médica y Clínica" class="row">
+                            
+                            <div class="col-12 no-padding-margin">
+                                <mat-form-field class="col-lg-6 text-area-medica-clinica" >
+                                    <mat-label>Fammiliar</mat-label>
+                                    <textarea matInput></textarea>
+                                </mat-form-field>
+    
+                                <mat-form-field class="col-lg-6 text-area-medica-clinica">
+                                    <mat-label>Social</mat-label>
+                                    <textarea matInput></textarea>
+                                </mat-form-field>
+
+                            </div>
+
+
+                        </mat-tab>
+
+
+                        <mat-tab label="PAG 2">
+
+                            Content 2
+
+                        </mat-tab>
+    
+                    </mat-tab-group>
+
+
+<!--
                     <div class="col-12">
                         <mat-card-header>
                             <mat-card-title class="mat-card-title">Historia Médica y Clínica</mat-card-title>
@@ -43,7 +89,7 @@
 
                             </div>
                         </mat-card-content>
-                    </div>
+                    </div>-->
 
 
                     

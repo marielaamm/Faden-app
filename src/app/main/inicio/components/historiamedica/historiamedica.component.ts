@@ -7,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoriamedicaComponent implements OnInit {
 
+  public lstPaciente:{}[]=[];
+
   constructor() { }
+
+
+  public singleSelection(event: any) {
+    if (event.added.length) {
+        event.newSelection = event.added;
+    }
+}
 
   ngOnInit(): void {
   }
