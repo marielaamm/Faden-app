@@ -42,39 +42,51 @@
                                 </div>
 
                                 <div>
-                                    <mat-form-field class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                    <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6">
                                         <mat-label>Edad </mat-label>
                                         <input matInput type="text" id="txtEdad">
                                     </mat-form-field> 
 
-                                    <mat-radio-group aria-label="Seleccione tipo"  class="col-sm-4 col-md-2 col-lg-2">
+                                    <mat-radio-group aria-label="Seleccione tipo"  class="col-12 col-sm-4 col-md-2 col-lg-2">
                                         <mat-radio-button value="1">Acompañante</mat-radio-button>
                                         <mat-radio-button value="2">Cuidador</mat-radio-button>
                                     </mat-radio-group> 
                                 </div>
 
                                 <div class="row"> 
-                                    <mat-form-field class="col-6 col-sm-6 col-md-6 offset-sm-6 offset-md-6 offset-lg-6">
+                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-6">
                                         <mat-label>Nombre</mat-label>
                                         <input matInput type="text" id="txtNombrecuidador">
                                     </mat-form-field>
 
-                                    <mat-form-field class="col-6 col-sm-6 col-md-6 offset-sm-6 offset-md-6 offset-lg-6">
-                                        <mat-label>Direccion </mat-label>
+                                    <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                        <mat-label>Dirección </mat-label>
                                         <input matInput type="text" id="txtDireccion">
                                     </mat-form-field>
 
-                                    <mat-form-field class="col-6 col-sm-6 col-md-6 offset-sm-6 offset-md-6 offset-lg-6">
-                                        <mat-label>Telefono</mat-label>
+                                    <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                        <mat-label>Teléfono</mat-label>
                                         <input matInput type="text" id="txtTelefono">
                                     </mat-form-field>
-
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-12"><b>Propósito de la visita:</b></label>
+                                        <mat-radio-group aria-label="Seleccione visita" class="col-6 col-sm-4 col-md-4 col-lg-4">
+                                            <mat-radio-button value="1" class="col-6 col-sm-4 col-md-2 col-lg-2">Cita</mat-radio-button>
+                                            <mat-radio-button value="2" class="col-6 col-sm-4 col-md-2 col-lg-2">Control</mat-radio-button>
+                                            <mat-radio-button value="3" class="col-6 col-sm-4 col-md-2 col-lg-2">Seguimiento</mat-radio-button>
+                                            <mat-radio-button value="4" class="col-6 col-sm-4 col-md-2 col-lg-2">Urgencia</mat-radio-button>
+                                            <mat-radio-button value="5" class="col-6 col-sm-4 col-md-2 col-lg-2">Emergencia</mat-radio-button>
+                                        </mat-radio-group> 
+                                    </div>                                                                          
+                                </div>
 
-                    
-
-
+                                <div>
+                                    
+                                </div>
+                  
                             </mat-card-content>
 
                         </mat-card>
