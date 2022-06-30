@@ -27,6 +27,54 @@
 
                     </div>
 
+
+                    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+                        <mat-step>
+                          <form>
+                            <ng-template matStepLabel>Historia Médica y Clínica</ng-template>
+                            <div class="col-12 no-padding-margin">
+                                <mat-form-field class="col-lg-6 text-area-medica-clinica" >
+                                    <mat-label>Fammiliar</mat-label>
+                                    <textarea matInput></textarea>
+                                </mat-form-field>
+    
+                                <mat-form-field class="col-lg-6 text-area-medica-clinica">
+                                    <mat-label>Social</mat-label>
+                                    <textarea matInput></textarea>
+                                </mat-form-field>
+
+                            </div>
+                            <div>
+                              <button mat-button matStepperNext>Siguiente</button>
+                            </div>
+                          </form>
+                        </mat-step>
+                        <mat-step>
+                          <form>
+                            <ng-template matStepLabel>PAG 2</ng-template>
+                            <mat-form-field class="col-lg-12">
+                                <mat-label>Prueba</mat-label>
+                                <textarea matInput></textarea>
+                            </mat-form-field>
+                            <div>
+                              <button mat-button matStepperPrevious>Atras</button>
+                              <button mat-button matStepperNext>Siguiente</button>
+                            </div>
+                          </form>
+                        </mat-step>
+                        <mat-step>
+                          <ng-template matStepLabel>PAG 3</ng-template>
+      
+                          <mat-form-field class="col-lg-12">
+                            <mat-label>otro</mat-label>
+                            <textarea matInput></textarea>
+                        </mat-form-field>
+
+                        </mat-step>
+                      </mat-stepper>
+
+                      
+<!--
                     <mat-tab-group animationDuration="0ms" class="row">
 
                         <mat-tab label="Historia Médica y Clínica" class="row">
@@ -56,43 +104,7 @@
     
                     </mat-tab-group>
 
-
-<!--
-                    <div class="col-12">
-                        <mat-card-header>
-                            <mat-card-title class="mat-card-title">Historia Médica y Clínica</mat-card-title>
-                        </mat-card-header>
-
-                        <mat-card-content>
-
-                            <div class="row">
-                                <mat-form-field class="col-12">
-                                    <mat-card-title class="mat-card-title">1. Historia de la Enfermedad</mat-card-title>  
-                                </mat-form-field>
-
-                                <mat-form-field class="col-6">
-                                    <mat-card-title class="mat-card-title">Familiar</mat-card-title>
-                                    <input matInput type="text" id="txtfamiliar">
-                                </mat-form-field>
-
-                                <mat-form-field class="col-6">
-                                    <mat-card-title class="mat-card-title">Social</mat-card-title>
-                                    <input matInput type="text" id="txtsocial">
-                                </mat-form-field>
-
-                            </div>
-
-                            <div >
-                                <mat-form-field class="col-12">
-                                    <mat-card-title class="mat-card-title">2. Tratamiento Actual</mat-card-title>
-                                </mat-form-field>
-
-                            </div>
-                        </mat-card-content>
-                    </div>-->
-
-
-                    
+-->
                 
 
                 </div>

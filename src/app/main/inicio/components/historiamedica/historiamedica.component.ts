@@ -9,6 +9,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class HistoriamedicaComponent implements OnInit {
 
   public lstPaciente:{}[]=[];
+  public isLinear = false;
 
   constructor() { }
 
