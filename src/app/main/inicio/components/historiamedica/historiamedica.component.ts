@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-historiamedica',
   templateUrl: './historiamedica.component.html',
-  styleUrls: ['./historiamedica.component.scss']
+  styleUrls: ['./historiamedica.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HistoriamedicaComponent implements OnInit {
 
