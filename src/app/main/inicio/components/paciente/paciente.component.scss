@@ -2,46 +2,11 @@
     width: 1000px;
 }
 
-#ej{
-border: 1px solid #6e3e79;
-border-left: 0;
-border-right: 0;
-padding-top: 10px;
-padding-bottom: 10px;
-}
-
-#ac{
-border: 1px solid #6e3e79;
-border-left: 0;
-border-right: 0;
-padding-top: 10px;
-padding-bottom: 10px; 
-}
-
-#vis{
-border: 1px solid #6e3e79;
-border-left: 0;
-border-right: 0;
-padding-top: 10px;
-padding-bottom: 10px;     
-}
-
-#sab{
-border: 1px solid #6e3e79;
-border-left: 0;
-border-right: 0;
-padding-top: 10px;
-padding-bottom: 10px;    
-}
-
-#al{
-border: 1px solid #6e3e79;
-border-left: 0;
-border-right: 0;
-padding-top: 10px;
-padding-bottom: 10px;    
-}
-
-
-
-
+.border-paciente{
+    border: 2px solid var(--faden-morado);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    }
