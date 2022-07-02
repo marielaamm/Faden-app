@@ -44,7 +44,8 @@ export class TratamientoActualComponent implements OnInit {
 
     ELEMENT_DATA.push(_Fila);
     _Fila.Tratamiento = "";
-    _Fila.Dosis = "aaaa";
+    _Fila.Dosis = "";
+    _Fila.TipoTratamiento = "1";
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
   }
 

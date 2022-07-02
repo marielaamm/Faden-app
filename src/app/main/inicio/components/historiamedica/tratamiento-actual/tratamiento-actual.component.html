@@ -45,7 +45,15 @@
         <ng-container matColumnDef="TipoTratamiento">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by TipoTratamiento">
                 Tipo</th>
-            <td mat-cell *matCellDef="let element"> {{element.TipoTratamiento}} </td>
+            <td mat-cell *matCellDef="let element">
+
+                <mat-radio-group [value]="element.TipoTratamiento" aria-label="Seleccione género" class="col-9 col-sm-11 col-md-11 col-lg-11">
+                    <mat-radio-button value="1">Farmacológico</mat-radio-button>
+                    <mat-radio-button value="2">No Farmacológico</mat-radio-button>
+                </mat-radio-group>  
+
+                
+            </td>
         </ng-container>
 
         
