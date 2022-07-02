@@ -8,7 +8,7 @@
                         <button mat-fab class="btn-faden-aceptar" ><mat-icon>save</mat-icon></button>
                         <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
                         <div class="line-vertical"></div>
-                        <button mat-fab class="btn-faden-salir" ><mat-icon>exit_to_app</mat-icon></button>
+                        <button mat-fab class="btn-faden-salir" (click)="Cerrar();"><mat-icon>exit_to_app</mat-icon></button>
                     </div>
 
                     <div class="col-12">
@@ -34,26 +34,37 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div class="row">
-                                    <mat-form-field class="col-12 col-md-12 col-lg-12">
-                                        <mat-label>Nombre </mat-label>
-                                        <input matInput type="text" id="txtNombre">
-                                    </mat-form-field>
-                                </div>
+                                <div class="row border-paciente">
+                                    <igx-combo _ngcontent-pmm-5 class="col-6 col-sm-6 col-md-6 col-lg-6" #withValueKey [data]="lstPaciente"
+                                    valueKey="NoPaciente" displayKey="Paciente" id="txtPaciente"
+                                    placeholder="Paciente" searchPlaceholder="Seleccione un Paciente"
+                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
+                                    </igx-combo>
 
-                                <div>
-                                    <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <mat-form-field class="col-3 col-sm-3 col-md-3 col-lg-3 ">
+                                        <mat-label>No. Expediente </mat-label>
+                                        <input matInput type="text" id="txtNoExpediente">
+                                    </mat-form-field> 
+
+                                    <mat-form-field class="col-3 col-sm-3 col-md-3 col-lg-3 ">
                                         <mat-label>Edad </mat-label>
                                         <input matInput type="text" id="txtEdad">
                                     </mat-form-field> 
 
-                                    <mat-radio-group aria-label="Seleccione tipo"  class="col-12 col-sm-4 col-md-2 col-lg-2">
-                                        <mat-radio-button value="1">Acompañante</mat-radio-button>
-                                        <mat-radio-button value="2">Cuidador</mat-radio-button>
-                                    </mat-radio-group> 
+                                </div>
+                                                               
+                                <div class="row ">
+                                    <div class="col-12">
+                                        <label class="col-12"><b>Sobre el acompañante: </b></label>
+                                        <mat-radio-group aria-label="Seleccione tipo"  class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                            <mat-radio-button value="1">Acompañante</mat-radio-button>
+                                            <mat-radio-button value="2">Cuidador</mat-radio-button>
+                                         </mat-radio-group> 
+
+                                    </div>
                                 </div>
 
-                                <div class="row"> 
+                                <div class="row border-paciente"> 
                                     <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-6">
                                         <mat-label>Nombre</mat-label>
                                         <input matInput type="text" id="txtNombrecuidador">
@@ -70,7 +81,7 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div class="row">
+                                <div class="row border-paciente">
                                     <div class="col-12">
                                         <label class="col-12"><b>Propósito de la visita:</b></label>
                                         <mat-radio-group aria-label="Seleccione visita" class="col-6 col-sm-4 col-md-4 col-lg-4">
@@ -82,42 +93,34 @@
                                         </mat-radio-group> 
                                     </div>                                                                          
                                 </div>
+                                
+                      
+                                <div class="col-12 no-padding-margin">
+                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap"> 
+                                        <mat-label>Subjetivo</mat-label>                                                       
+                                        <textarea matInput></textarea>
+                                    </mat-form-field>                                                  
+                                </div>
+
+                                <div class="col-12 no-padding-margin">
+                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">    
+                                        <mat-label>Objetivo</mat-label>                                         
+                                        <textarea matInput></textarea>
+                                    </mat-form-field>
+                                </div>
 
                                 <div>
-                                    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-                                        <mat-step>
-                                            <form>
-                                                <ng-template matStepLabel>SOAP</ng-template>
-                                                <div class="col-12 no-padding-margin">
-                                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap"> 
-                                                        <mat-label>Subjetivo</mat-label>                                                       
-                                                        <textarea matInput></textarea>
-                                                    </mat-form-field>                                                  
-                                                </div>
+                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">    
+                                        <mat-label>Avalúo</mat-label>                                         
+                                        <textarea matInput></textarea>
+                                    </mat-form-field> 
+                                </div>
 
-                                                <div class="col-12 no-padding-margin">
-                                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">    
-                                                        <mat-label>Objetivo</mat-label>                                         
-                                                        <textarea matInput></textarea>
-                                                    </mat-form-field>
-                                                </div>
-
-                                                <div>
-                                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">    
-                                                        <mat-label>Avalúo</mat-label>                                         
-                                                        <textarea matInput></textarea>
-                                                    </mat-form-field> 
-                                                </div>
-
-                                                <div>
-                                                    <mat-form-field class="col-12 col-sm-12  col-md-12 col-lg-12 text-area-soap">    
-                                                        <mat-label>Planes</mat-label>                                         
-                                                        <textarea matInput></textarea>
-                                                    </mat-form-field> 
-                                                </div>
-                                            </form>
-                                        </mat-step>
-                                    </mat-stepper>
+                                <div>
+                                    <mat-form-field class="col-12 col-sm-12  col-md-12 col-lg-12 text-area-soap">    
+                                        <mat-label>Planes</mat-label>                                         
+                                        <textarea matInput></textarea>
+                                    </mat-form-field> 
                                 </div>
                   
                             </mat-card-content>
