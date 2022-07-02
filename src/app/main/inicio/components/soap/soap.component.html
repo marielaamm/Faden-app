@@ -84,7 +84,40 @@
                                 </div>
 
                                 <div>
-                                    
+                                    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+                                        <mat-step>
+                                            <form>
+                                                <ng-template matStepLabel>SOAP</ng-template>
+                                                <div class="col-12 no-padding-margin">
+                                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap"> 
+                                                        <mat-label>Subjetivo</mat-label>                                                       
+                                                        <textarea matInput></textarea>
+                                                    </mat-form-field>                                                  
+                                                </div>
+
+                                                <div class="col-12 no-padding-margin">
+                                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">    
+                                                        <mat-label>Objetivo</mat-label>                                         
+                                                        <textarea matInput></textarea>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div>
+                                                    <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">    
+                                                        <mat-label>Avalúo</mat-label>                                         
+                                                        <textarea matInput></textarea>
+                                                    </mat-form-field> 
+                                                </div>
+
+                                                <div>
+                                                    <mat-form-field class="col-12 col-sm-12  col-md-12 col-lg-12 text-area-soap">    
+                                                        <mat-label>Planes</mat-label>                                         
+                                                        <textarea matInput></textarea>
+                                                    </mat-form-field> 
+                                                </div>
+                                            </form>
+                                        </mat-step>
+                                    </mat-stepper>
                                 </div>
                   
                             </mat-card-content>

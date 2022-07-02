@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SoapComponent implements OnInit {
 
+  public isLinear = false;
+
   constructor() { }
 
   ngOnInit(): void {
