@@ -34,26 +34,25 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div class="row">
-                                    <igx-combo _ngcontent-pmm-5 class="col-12 col-sm-12 col-md-6 col-lg-6" #withValueKey [data]="lstPaciente"
+                                <div class="row border-paciente">
+                                    <igx-combo _ngcontent-pmm-5 class="col-6 col-sm-6 col-md-6 col-lg-6" #withValueKey [data]="lstPaciente"
                                     valueKey="NoPaciente" displayKey="Paciente" id="txtPaciente"
                                     placeholder="Paciente" searchPlaceholder="Seleccione un Paciente"
                                     (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
                                     </igx-combo>
-                                </div>
-                               
 
-                                <div class="row border-paciente">
-                                    <mat-form-field class="col-4 col-sm-4 col-md-4 col-lg-4 ">
+                                    <mat-form-field class="col-3 col-sm-3 col-md-3 col-lg-3 ">
                                         <mat-label>No. Expediente </mat-label>
                                         <input matInput type="text" id="txtNoExpediente">
                                     </mat-form-field> 
 
-                                    <mat-form-field class="col-8 col-sm-4 col-md-4 col-lg-4 ">
+                                    <mat-form-field class="col-3 col-sm-3 col-md-3 col-lg-3 ">
                                         <mat-label>Edad </mat-label>
                                         <input matInput type="text" id="txtEdad">
                                     </mat-form-field> 
+
                                 </div>
+                                                               
                                 <div class="row ">
                                     <div class="col-12">
                                         <label class="col-12"><b>Sobre el acompañante: </b></label>
