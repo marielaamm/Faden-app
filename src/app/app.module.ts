@@ -84,6 +84,7 @@ import { EscolaridadRegistroComponent } from './main/cat/components/escolaridad/
 import { PacienteComponent } from './main/inicio/components/paciente/paciente.component';
 import { HistoriamedicaComponent } from './main/inicio/components/historiamedica/historiamedica.component';
 import { SoapComponent } from './main/inicio/components/soap/soap.component';
+import { TratamientoActualComponent } from './main/inicio/components/historiamedica/tratamiento-actual/tratamiento-actual.component';
 //FIN
 
 export const DateFormat = {
@@ -124,7 +125,8 @@ export const DateFormat = {
     EscolaridadRegistroComponent,
     PacienteComponent,
     HistoriamedicaComponent,
-    SoapComponent
+    SoapComponent,
+    TratamientoActualComponent
   ],
   imports: [
     BrowserModule,
