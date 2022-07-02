@@ -85,6 +85,8 @@ import { PacienteComponent } from './main/inicio/components/paciente/paciente.co
 import { HistoriamedicaComponent } from './main/inicio/components/historiamedica/historiamedica.component';
 import { SoapComponent } from './main/inicio/components/soap/soap.component';
 import { TratamientoActualComponent } from './main/inicio/components/historiamedica/tratamiento-actual/tratamiento-actual.component';
+import { ExamenClinicoComponent } from './main/inicio/components/historiamedica/examen-clinico/examen-clinico.component';
+import { AntecedentesFamiliaresComponent } from './main/inicio/components/historiamedica/antecedentes-familiares/antecedentes-familiares.component';
 //FIN
 
 export const DateFormat = {
@@ -126,7 +128,9 @@ export const DateFormat = {
     PacienteComponent,
     HistoriamedicaComponent,
     SoapComponent,
-    TratamientoActualComponent
+    TratamientoActualComponent,
+    ExamenClinicoComponent,
+    AntecedentesFamiliaresComponent
   ],
   imports: [
     BrowserModule,

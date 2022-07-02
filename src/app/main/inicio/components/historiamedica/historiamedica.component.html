@@ -57,10 +57,7 @@
 
                         <mat-step>
                             <ng-template matStepLabel>Exámenes clínicos y marcadores biológicos más relevantes, estudio de neuroimagen</ng-template>
-                            <mat-form-field class="col-lg-12">
-                                <mat-label>Descripción</mat-label>
-                                <textarea matInput></textarea>
-                            </mat-form-field>
+                            <app-examen-clinico></app-examen-clinico>
                             <div>
                               <button mat-button matStepperPrevious>Atras</button>
                               <button mat-button matStepperNext>Siguiente</button>
@@ -69,10 +66,7 @@
 
                         <mat-step>
                             <ng-template matStepLabel>Antecedentes Patológicos</ng-template>
-                            <mat-form-field class="col-lg-12">
-                                <mat-label>Descripción</mat-label>
-                                <textarea matInput></textarea>
-                            </mat-form-field>
+    
                             <div>
                               <button mat-button matStepperPrevious>Atras</button>
                               <button mat-button matStepperNext>Siguiente</button>
@@ -81,10 +75,7 @@
 
                         <mat-step>
                             <ng-template matStepLabel>Antecedentes Quirúrgicos</ng-template>
-                              <mat-form-field class="col-lg-12">
-                                  <mat-label>Descripción</mat-label>
-                                  <textarea matInput></textarea>
-                              </mat-form-field>
+                             
                               <div>
                                 <button mat-button matStepperPrevious>Atras</button>
                                 <button mat-button matStepperNext>Siguiente</button>
@@ -93,7 +84,7 @@
 
                         <mat-step>
                             <ng-template matStepLabel>Antecedentes Familiares más relevantes</ng-template>
-                             
+                             <app-antecedentes-familiares></app-antecedentes-familiares>
                             <div>
                               <button mat-button matStepperPrevious>Atras</button>
                               <button mat-button matStepperNext>Siguiente</button>
