@@ -29,11 +29,10 @@
 
                     <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
                         <mat-step>
-                          <form>
                             <ng-template matStepLabel>Historia Médica y Clínica</ng-template>
                             <div class="col-12 no-padding-margin">
                                 <mat-form-field class="col-lg-6 text-area-medica-clinica" >
-                                    <mat-label>Fammiliar</mat-label>
+                                    <mat-label>Familiar</mat-label>
                                     <textarea matInput></textarea>
                                 </mat-form-field>
     
@@ -46,29 +45,95 @@
                             <div>
                               <button mat-button matStepperNext>Siguiente</button>
                             </div>
-                          </form>
                         </mat-step>
                         <mat-step>
-                          <form>
-                            <ng-template matStepLabel>PAG gfgfhgfhfhfg</ng-template>
+                            <ng-template matStepLabel>Tratamiento Actual</ng-template>
+                            <app-tratamiento-actual></app-tratamiento-actual>
+                            <div>
+                              <button mat-button matStepperPrevious>Atras</button>
+                              <button mat-button matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
+
+                        <mat-step>
+                            <ng-template matStepLabel>Exámenes clínicos y marcadores biológicos más relevantes, estudio de neuroimagen</ng-template>
                             <mat-form-field class="col-lg-12">
-                                <mat-label>Prueba</mat-label>
+                                <mat-label>Descripción</mat-label>
                                 <textarea matInput></textarea>
                             </mat-form-field>
                             <div>
                               <button mat-button matStepperPrevious>Atras</button>
                               <button mat-button matStepperNext>Siguiente</button>
                             </div>
-                          </form>
                         </mat-step>
-                        <mat-step>
-                          <ng-template matStepLabel>PAG 3</ng-template>
-      
-                          <mat-form-field class="col-lg-12">
-                            <mat-label>otro</mat-label>
-                            <textarea matInput></textarea>
-                        </mat-form-field>
 
+                        <mat-step>
+                            <ng-template matStepLabel>Antecedentes Patológicos</ng-template>
+                            <mat-form-field class="col-lg-12">
+                                <mat-label>Descripción</mat-label>
+                                <textarea matInput></textarea>
+                            </mat-form-field>
+                            <div>
+                              <button mat-button matStepperPrevious>Atras</button>
+                              <button mat-button matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
+
+                        <mat-step>
+                            <ng-template matStepLabel>Antecedentes Quirúrgicos</ng-template>
+                              <mat-form-field class="col-lg-12">
+                                  <mat-label>Descripción</mat-label>
+                                  <textarea matInput></textarea>
+                              </mat-form-field>
+                              <div>
+                                <button mat-button matStepperPrevious>Atras</button>
+                                <button mat-button matStepperNext>Siguiente</button>
+                              </div>
+                        </mat-step>
+
+                        <mat-step>
+                            <ng-template matStepLabel>Antecedentes Familiares más relevantes</ng-template>
+                             
+                            <div>
+                              <button mat-button matStepperPrevious>Atras</button>
+                              <button mat-button matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
+
+                        <mat-step>
+                            <ng-template matStepLabel>Antecedentes familiares Neurológicos y Psiquiátricos</ng-template>
+                              
+                              <div>
+                                <button mat-button matStepperPrevious>Atras</button>
+                                <button mat-button matStepperNext>Siguiente</button>
+                              </div>
+                        </mat-step>
+
+                        <mat-step>
+                            <ng-template matStepLabel>Práctica de estilo de vida saludable</ng-template>
+                       
+                            <div>
+                              <button mat-button matStepperPrevious>Atras</button>
+                              <button mat-button matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
+
+                        <mat-step>
+                            <ng-template matStepLabel>Examen Físico por sistemas</ng-template>
+                              
+                              <div>
+                                <button mat-button matStepperPrevious>Atras</button>
+                                <button mat-button matStepperNext>Siguiente</button>
+                              </div>
+                        </mat-step>
+
+                        <mat-step>
+                            <ng-template matStepLabel>Análisis y diagnóstico de presunción</ng-template>
+                      
+                            <div>
+                              <button mat-button matStepperPrevious>Atras</button>
+                              <button mat-button matStepperNext>Siguiente</button>
+                            </div>
                         </mat-step>
                       </mat-stepper>
 
