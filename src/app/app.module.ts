@@ -88,6 +88,7 @@ import { TratamientoActualComponent } from './main/inicio/components/historiamed
 import { ExamenClinicoComponent } from './main/inicio/components/historiamedica/examen-clinico/examen-clinico.component';
 import { AntecedentesFamiliaresComponent } from './main/inicio/components/historiamedica/antecedentes-familiares/antecedentes-familiares.component';
 import { AntecedentePatologicoComponent } from './main/inicio/components/historiamedica/antecedente-patologico/antecedente-patologico.component';
+import { AntecedenteNeuropsiquiatricoComponent } from './main/inicio/components/historiamedica/antecedente-neuropsiquiatrico/antecedente-neuropsiquiatrico.component';
 
 //FIN
 
@@ -133,7 +134,8 @@ export const DateFormat = {
     TratamientoActualComponent,
     ExamenClinicoComponent,
     AntecedentesFamiliaresComponent,
-    AntecedentePatologicoComponent
+    AntecedentePatologicoComponent,
+    AntecedenteNeuropsiquiatricoComponent
   ],
   imports: [
     BrowserModule,
