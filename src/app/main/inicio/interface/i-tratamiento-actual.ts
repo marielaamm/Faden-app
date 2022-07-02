@@ -4,5 +4,5 @@ export interface iTratamientoActual{
     Dosis : String;
     IdMedico : Number;
     Fecha : Date;
-    TipoTratamiento : boolean;
+    TipoTratamiento : String;
 }
