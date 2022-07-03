@@ -1,1 +1,47 @@
-<p>antecedente-neuropsiquiatrico works!</p>
+<div>
+    <mat-card-content>
+        <div class="row">
+            <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <mat-label> Nombre del Familiar </mat-label>
+                <input matInput type="text" id="txtNombre">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <section>
+                <label>¿Vive?</label>
+                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Si</mat-checkbox>
+                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">No</mat-checkbox>
+            </section>
+        </div>
+
+        <div>
+            <mat-form-field  class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-descripcion">
+                <mat-label>Descripción de la enfermedad</mat-label>                                         
+                <textarea matInput></textarea>                
+            </mat-form-field >
+        </div>
+
+        <div>
+            <section>
+                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Padece</mat-checkbox>
+                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Padeció</mat-checkbox>
+            </section>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <label class="col-12">Parentesco</label>
+                <mat-radio-group aria-label="Seleccione Parentesco" class="col-6 col-sm-4 col-md-4 col-lg-4">
+                    <mat-radio-button value="1" class="col-6 col-sm-4 col-md-3 col-lg-3">Padre</mat-radio-button>
+                    <mat-radio-button value="2" class="col-6 col-sm-4 col-md-3 col-lg-3">Madre</mat-radio-button>
+                    <mat-radio-button value="3" class="col-6 col-sm-4 col-md-3 col-lg-3">Herman@s</mat-radio-button>
+                    <mat-radio-button value="5" class="col-6 col-sm-4 col-md-3 col-lg-3">Hij@s</mat-radio-button>
+                    <mat-radio-button value="4" class="col-6 col-sm-4 col-md-3 col-lg-3">Abuel@s</mat-radio-button>
+                    <mat-radio-button value="5" class="col-6 col-sm-4 col-md-3 col-lg-3">Ti@s</mat-radio-button>
+                    <mat-radio-button value="5" class="col-6 col-sm-4 col-md-3 col-lg-3">Prim@s</mat-radio-button>
+                </mat-radio-group> 
+            </div>    
+        </div>
+    </mat-card-content>
+</div>
