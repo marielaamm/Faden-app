@@ -4,6 +4,7 @@ import { EscolaridadComponent } from 'src/app/main/cat/components/escolaridad/es
 import { MunicipioComponent } from 'src/app/main/cat/components/municipio/municipio.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
+import { ConsensomedicoComponent } from 'src/app/main/inicio/components/consensomedico/consensomedico.component';
 import { HistoriamedicaComponent } from 'src/app/main/inicio/components/historiamedica/historiamedica.component';
 import { PacienteComponent } from 'src/app/main/inicio/components/paciente/paciente.component';
 import { SoapComponent } from 'src/app/main/inicio/components/soap/soap.component';
@@ -153,6 +154,14 @@ export class MenuComponent {
           this.str_formulario=f; 
         }
         break;
+
+        case "navconsensomedico":
+          if(this.str_formulario !=f){
+            this.dynamicForm.viewContainerRef.clear();
+            this.dynamicForm.viewContainerRef.createComponent(ConsensomedicoComponent);
+            this.str_formulario=f; 
+          }
+          break;
 
     }
 
