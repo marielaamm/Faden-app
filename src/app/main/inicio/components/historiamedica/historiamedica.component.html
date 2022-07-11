@@ -13,154 +13,121 @@
                     </div>
 
 
-                    <div class="row">
-                        <mat-form-field class="col-lg-3">
-                            <mat-label>Expediente No. </mat-label>
-                            <input matInput type="text" id="txtNoExpediente">
-                        </mat-form-field>
+                    <div class="col-12">
+                        <mat-card class="mat-card">
+                            <mat-card-header>
+                                <mat-card-title class="mat-card-title">Historia Médica y Clínica</mat-card-title>
+                            </mat-card-header>
 
-                        <igx-combo _ngcontent-pmm-5 class="col-lg-6" #withValueKey [data]="lstPaciente"
-                        valueKey="NoPaciente" displayKey="Paciente" id="txtPaciente"
-                        placeholder="Paciente" searchPlaceholder="Seleccione un paciente"
-                        (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
-                        </igx-combo>
-
-                    </div>
-
-                    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-                        <mat-step>
-                            <ng-template matStepLabel>Historia Médica y Clínica</ng-template>
-                            <div class="col-12 no-padding-margin">
-                                <mat-form-field class="col-lg-6 text-area-medica-clinica" >
-                                    <mat-label>Familiar</mat-label>
-                                    <textarea matInput></textarea>
-                                </mat-form-field>
-    
-                                <mat-form-field class="col-lg-6 text-area-medica-clinica">
-                                    <mat-label>Social</mat-label>
-                                    <textarea matInput></textarea>
-                                </mat-form-field>
-
-                            </div>
-                            <div>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                        </mat-step>
-                        <mat-step>
-                            <ng-template matStepLabel>Tratamiento Actual</ng-template>
-                            <app-tratamiento-actual></app-tratamiento-actual>
-                            <div>
-                              <button mat-button matStepperPrevious>Atras</button>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                        </mat-step>
-
-                        <mat-step>
-                            <ng-template matStepLabel>Exámenes clínicos y marcadores biológicos más relevantes, estudio de neuroimagen</ng-template>
-                            <app-examen-clinico></app-examen-clinico>
-                            <div>
-                              <button mat-button matStepperPrevious>Atras</button>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                        </mat-step>
-
-                        <mat-step>
-                            <ng-template matStepLabel>Antecedentes Patológicos</ng-template>
-                            <app-antecedente-patologico></app-antecedente-patologico>
-                            <div>
-                              <button mat-button matStepperPrevious>Atras</button>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                        </mat-step>
-
-                        <mat-step>
-                            <ng-template matStepLabel>Antecedentes Quirúrgicos</ng-template>
-                             
-                              <div>
-                                <button mat-button matStepperPrevious>Atras</button>
-                                <button mat-button matStepperNext>Siguiente</button>
-                              </div>
-                        </mat-step>
-
-                        <mat-step>
-                            <ng-template matStepLabel>Antecedentes Familiares más relevantes</ng-template>
-                             <app-antecedentes-familiares></app-antecedentes-familiares>
-                            <div>
-                              <button mat-button matStepperPrevious>Atras</button>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                        </mat-step>
-
-                        <mat-step>
-                            <ng-template matStepLabel>Antecedentes familiares Neurológicos y Psiquiátricos</ng-template>
-                              <app-antecedente-neuropsiquiatrico></app-antecedente-neuropsiquiatrico>
-                              <div>
-                                <button mat-button matStepperPrevious>Atras</button>
-                                <button mat-button matStepperNext>Siguiente</button>
-                              </div>
-                        </mat-step>
-
-                        <mat-step>
-                            <ng-template matStepLabel>Práctica de estilo de vida saludable</ng-template>
-                       
-                            <div>
-                              <button mat-button matStepperPrevious>Atras</button>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                        </mat-step>
-
-                        <mat-step>
-                            <ng-template matStepLabel>Examen Físico por sistemas</ng-template>
-                              
-                              <div>
-                                <button mat-button matStepperPrevious>Atras</button>
-                                <button mat-button matStepperNext>Siguiente</button>
-                              </div>
-                        </mat-step>
-
-                        <mat-step>
-                            <ng-template matStepLabel>Análisis y diagnóstico de presunción</ng-template>
-                      
-                            <div>
-                              <button mat-button matStepperPrevious>Atras</button>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                        </mat-step>
-                      </mat-stepper>
-
-                      
-<!--
-                    <mat-tab-group animationDuration="0ms" class="row">
-
-                        <mat-tab label="Historia Médica y Clínica" class="row">
-                            
-                            <div class="col-12 no-padding-margin">
-                                <mat-form-field class="col-lg-6 text-area-medica-clinica" >
-                                    <mat-label>Fammiliar</mat-label>
-                                    <textarea matInput></textarea>
-                                </mat-form-field>
-    
-                                <mat-form-field class="col-lg-6 text-area-medica-clinica">
-                                    <mat-label>Social</mat-label>
-                                    <textarea matInput></textarea>
-                                </mat-form-field>
-
-                            </div>
-
-
-                        </mat-tab>
-
-
-                        <mat-tab label="PAG 2">
-
-                            Content 2
-
-                        </mat-tab>
-    
-                    </mat-tab-group>
-
--->
+                            <mat-card-content>
+                        
+                                <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+                                    <mat-step>
+                                        <ng-template matStepLabel>Historia Médica y Clínica</ng-template>
+                                        <div class="col-12 no-padding-margin">
+                                            <mat-form-field class="col-lg-6 text-area-medica-clinica" >
+                                                <mat-label>Familiar</mat-label>
+                                                <textarea matInput></textarea>
+                                            </mat-form-field>
                 
+                                            <mat-form-field class="col-lg-6 text-area-medica-clinica">
+                                                <mat-label>Social</mat-label>
+                                                <textarea matInput></textarea>
+                                            </mat-form-field>
+            
+                                        </div>
+                                        <div>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step>
+                                        <ng-template matStepLabel>Tratamiento Actual</ng-template>
+                                        <app-tratamiento-actual></app-tratamiento-actual>
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+            
+                                    <mat-step>
+                                        <ng-template matStepLabel>Exámenes clínicos y marcadores biológicos más relevantes, estudio de neuroimagen</ng-template>
+                                        <app-examen-clinico></app-examen-clinico>
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+            
+                                    <mat-step>
+                                        <ng-template matStepLabel>Antecedentes Patológicos</ng-template>
+                                        <app-antecedente-patologico></app-antecedente-patologico>
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+            
+                                    <mat-step>
+                                        <ng-template matStepLabel>Antecedentes Quirúrgicos</ng-template>
+                                         
+                                          <div>
+                                            <button mat-button matStepperPrevious>Atras</button>
+                                            <button mat-button matStepperNext>Siguiente</button>
+                                          </div>
+                                    </mat-step>
+            
+                                    <mat-step>
+                                        <ng-template matStepLabel>Antecedentes Familiares más relevantes</ng-template>
+                                         <app-antecedentes-familiares></app-antecedentes-familiares>
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+            
+                                    <mat-step>
+                                        <ng-template matStepLabel>Antecedentes familiares Neurológicos y Psiquiátricos</ng-template>
+                                          <app-antecedente-neuropsiquiatrico></app-antecedente-neuropsiquiatrico>
+                                          <div>
+                                            <button mat-button matStepperPrevious>Atras</button>
+                                            <button mat-button matStepperNext>Siguiente</button>
+                                          </div>
+                                    </mat-step>
+            
+                                    <mat-step>
+                                        <ng-template matStepLabel>Práctica de estilo de vida saludable</ng-template>
+                                   
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+            
+                                    <mat-step>
+                                        <ng-template matStepLabel>Examen Físico por sistemas</ng-template>
+                                          
+                                          <div>
+                                            <button mat-button matStepperPrevious>Atras</button>
+                                            <button mat-button matStepperNext>Siguiente</button>
+                                          </div>
+                                    </mat-step>
+            
+                                    <mat-step>
+                                        <ng-template matStepLabel>Análisis y diagnóstico de presunción</ng-template>
+                                  
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+                                  </mat-stepper>
+            
+                
+
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                  
 
                 </div>
 

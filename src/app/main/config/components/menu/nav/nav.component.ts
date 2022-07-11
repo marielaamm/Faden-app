@@ -50,13 +50,9 @@ export class NavComponent{
 
       /**************************************INICIO************************************* */ 
 
-      {EsMenu: true, Modulo: "HOME", ModuloNombre: "Inicio", Id:"navPaciente", Link: "Paciente" , MenuPadre: "", Clase : ""},
-      {EsMenu: false, Modulo: "HOME", ModuloNombre: "Inicio", Id: "LinkPaciente", Link: "Nuevo Paciente", MenuPadre: "navPaciente", Clase: ""},
-      {EsMenu: false, Modulo: "HOME", ModuloNombre: "Inicio", Id:"navhistoriamedica", Link: "Historial Médico" , MenuPadre: "", Clase : ""},
+      {EsMenu: false, Modulo: "HOME", ModuloNombre: "Inicio", Id:"navExpediente", Link: "Expediente" , MenuPadre: "", Clase : ""},
       {EsMenu: false, Modulo:"HOME", ModuloNombre:"Inicio", Id:"navsoap",Link:"Sistema SOAP", MenuPadre: "", Clase: "" },
-      {EsMenu: false, Modulo:"HOME", ModuloNombre:"Inicio", Id:"navconsensomedico", Link:"Consenso Médico", MenuPadre:"", Clase:""},
-      
-      
+   
 
     
 
