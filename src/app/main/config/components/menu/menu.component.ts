@@ -141,21 +141,6 @@ export class MenuComponent {
         }
        break;
 
-      case "LinkPaciente":
-         if (this.str_formulario !=f){
-          this.dynamicForm.viewContainerRef.clear();
-          this.dynamicForm.viewContainerRef.createComponent(PacienteComponent);
-          this.str_formulario=f;
-         }
-        break;
-      case "navhistoriamedica":
-        if (this.str_formulario !=f){
-          this.dynamicForm.viewContainerRef.clear();
-          this.dynamicForm.viewContainerRef.createComponent(HistoriamedicaComponent);
-          this.str_formulario=f;
-        }
-
-      break;
 
       case "navsoap":
         if(this.str_formulario !=f){
@@ -165,13 +150,6 @@ export class MenuComponent {
         }
         break;
 
-        case "navconsensomedico":
-          if(this.str_formulario !=f){
-            this.dynamicForm.viewContainerRef.clear();
-            this.dynamicForm.viewContainerRef.createComponent(ConsensomedicoComponent);
-            this.str_formulario=f; 
-          }
-          break;
 
     }
 
