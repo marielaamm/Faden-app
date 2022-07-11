@@ -4,10 +4,10 @@ import { EscolaridadComponent } from 'src/app/main/cat/components/escolaridad/es
 import { MunicipioComponent } from 'src/app/main/cat/components/municipio/municipio.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
-import { ConsensomedicoComponent } from 'src/app/main/inicio/components/consensomedico/consensomedico.component';
+import { ConsensomedicoComponent } from 'src/app/main/inicio/components/expediente/consensomedico/consensomedico.component';
 import { ExpedienteComponent } from 'src/app/main/inicio/components/expediente/expediente.component';
-import { HistoriamedicaComponent } from 'src/app/main/inicio/components/historiamedica/historiamedica.component';
-import { PacienteComponent } from 'src/app/main/inicio/components/paciente/paciente.component';
+import { HistoriamedicaComponent } from 'src/app/main/inicio/components/expediente/historiamedica/historiamedica.component';
+import { PacienteComponent } from 'src/app/main/inicio/components/expediente/paciente/paciente.component';
 import { SoapComponent } from 'src/app/main/inicio/components/soap/soap.component';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
 import { ServerService } from 'src/app/main/shared/service/server.service';

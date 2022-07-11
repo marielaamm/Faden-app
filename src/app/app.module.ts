@@ -81,15 +81,15 @@ import { MunicipioRegistroComponent } from './main/cat/components/municipio/muni
 import { DepartamentoRegistroComponent } from './main/cat/components/departamento/departamento-registro/departamento-registro/departamento-registro.component';
 import { EscolaridadComponent } from './main/cat/components/escolaridad/escolaridad.component';
 import { EscolaridadRegistroComponent } from './main/cat/components/escolaridad/escolaridad-registro/escolaridad-registro.component';
-import { PacienteComponent } from './main/inicio/components/paciente/paciente.component';
-import { HistoriamedicaComponent } from './main/inicio/components/historiamedica/historiamedica.component';
+import { PacienteComponent } from './main/inicio/components/expediente/paciente/paciente.component';
+import { HistoriamedicaComponent } from './main/inicio/components/expediente/historiamedica/historiamedica.component';
 import { SoapComponent } from './main/inicio/components/soap/soap.component';
-import { TratamientoActualComponent } from './main/inicio/components/historiamedica/tratamiento-actual/tratamiento-actual.component';
-import { ExamenClinicoComponent } from './main/inicio/components/historiamedica/examen-clinico/examen-clinico.component';
-import { AntecedentesFamiliaresComponent } from './main/inicio/components/historiamedica/antecedentes-familiares/antecedentes-familiares.component';
-import { AntecedentePatologicoComponent } from './main/inicio/components/historiamedica/antecedente-patologico/antecedente-patologico.component';
-import { AntecedenteNeuropsiquiatricoComponent } from './main/inicio/components/historiamedica/antecedente-neuropsiquiatrico/antecedente-neuropsiquiatrico.component';
-import { ConsensomedicoComponent } from './main/inicio/components/consensomedico/consensomedico.component';
+import { TratamientoActualComponent } from './main/inicio/components/expediente/historiamedica/tratamiento-actual/tratamiento-actual.component';
+import { ExamenClinicoComponent } from './main/inicio/components/expediente/historiamedica/examen-clinico/examen-clinico.component';
+import { AntecedentesFamiliaresComponent } from './main/inicio/components/expediente/historiamedica/antecedentes-familiares/antecedentes-familiares.component';
+import { AntecedentePatologicoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-patologico/antecedente-patologico.component';
+import { AntecedenteNeuropsiquiatricoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-neuropsiquiatrico/antecedente-neuropsiquiatrico.component';
+import { ConsensomedicoComponent } from './main/inicio/components/expediente/consensomedico/consensomedico.component';
 import { ExpedienteComponent } from './main/inicio/components/expediente/expediente.component';
 
 //FIN

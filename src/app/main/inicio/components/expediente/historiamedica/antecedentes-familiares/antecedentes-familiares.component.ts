@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServerService } from 'src/app/main/shared/service/server.service';
-import { iAntecedentePatologico } from '../../../interface/i-antecedente-patologico';
+import { iAntecedentesFamiliares } from '../../../../interface/i-antecedentes-familiares';
 
-let ELEMENT_DATA: iAntecedentePatologico[] =[];
+
+let ELEMENT_DATA: iAntecedentesFamiliares[]=[];
 
 @Component({
-  selector: 'app-antecedente-patologico',
-  templateUrl: './antecedente-patologico.component.html',
-  styleUrls: ['./antecedente-patologico.component.scss']
+  selector: 'app-antecedentes-familiares',
+  templateUrl: './antecedentes-familiares.component.html',
+  styleUrls: ['./antecedentes-familiares.component.scss']
 })
-export class AntecedentePatologicoComponent implements OnInit {
+export class AntecedentesFamiliaresComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdAntecedentePatologico","Enfermedad", "Descripcion"];
+displayedColumns: string[] = ["IdAntecedente","TipoAntecedente", "Descripcion"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  clickedRows = new Set<iAntecedentePatologico>();
+  clickedRows = new Set<iAntecedentesFamiliares>();
   private _liveAnnouncer:any;
 
   constructor(private ServerScv : ServerService) { }
@@ -39,7 +40,7 @@ export class AntecedentePatologicoComponent implements OnInit {
   
 
   f_Agregar_Fila() : void{
-    let _Fila : iAntecedentePatologico = {} as iAntecedentePatologico;
+    let _Fila : iAntecedentesFamiliares = {} as iAntecedentesFamiliares;
 
     ELEMENT_DATA.push(_Fila);
    

@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServerService } from 'src/app/main/shared/service/server.service';
-import { iExamenClinico } from '../../../interface/i-examen-clinico';
+import { iTratamientoActual } from '../../../../interface/i-tratamiento-actual';
 
-let ELEMENT_DATA: iExamenClinico[]=[];
+
+let ELEMENT_DATA: iTratamientoActual[] =[];
 
 @Component({
-  selector: 'app-examen-clinico',
-  templateUrl: './examen-clinico.component.html',
-  styleUrls: ['./examen-clinico.component.scss']
+  selector: 'app-tratamiento-actual',
+  templateUrl: './tratamiento-actual.component.html',
+  styleUrls: ['./tratamiento-actual.component.scss']
 })
-export class ExamenClinicoComponent implements OnInit {
+export class TratamientoActualComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdExamenClinico","Descripcion", "Fecha", "TipoExamen"];
+  displayedColumns: string[] = ["IdTratamiento","Tratamiento", "Dosis", "IdMedico", "Fecha", "TipoTratamiento"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  clickedRows = new Set<iExamenClinico>();
+  clickedRows = new Set<iTratamientoActual>();
   private _liveAnnouncer:any;
 
   constructor(private ServerScv : ServerService) { }
@@ -39,10 +40,12 @@ export class ExamenClinicoComponent implements OnInit {
   
 
   f_Agregar_Fila() : void{
-    let _Fila : iExamenClinico = {} as iExamenClinico;
+    let _Fila : iTratamientoActual = {} as iTratamientoActual;
 
     ELEMENT_DATA.push(_Fila);
-   
+    _Fila.Tratamiento = "";
+    _Fila.Dosis = "";
+    _Fila.TipoTratamiento = "1";
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
   }
 
