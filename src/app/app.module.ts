@@ -91,6 +91,7 @@ import { AntecedentePatologicoComponent } from './main/inicio/components/expedie
 import { AntecedenteNeuropsiquiatricoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-neuropsiquiatrico/antecedente-neuropsiquiatrico.component';
 import { ConsensomedicoComponent } from './main/inicio/components/expediente/consensomedico/consensomedico.component';
 import { ExpedienteComponent } from './main/inicio/components/expediente/expediente.component';
+import { AntecedenteQuirurgicoComponent } from './main/inicio/components/historiamedica/antecedente-quirurgico/antecedente-quirurgico.component';
 
 //FIN
 
@@ -139,7 +140,8 @@ export const DateFormat = {
     AntecedentePatologicoComponent,
     AntecedenteNeuropsiquiatricoComponent,
     ConsensomedicoComponent,
-    ExpedienteComponent
+    ExpedienteComponent,
+    AntecedenteQuirurgicoComponent
   ],
   imports: [
     BrowserModule,
