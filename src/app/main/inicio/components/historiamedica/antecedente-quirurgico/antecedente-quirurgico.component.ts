@@ -7,6 +7,7 @@ import { iAntecedenteQuirurgico } from '../../../interface/i-antecedente-quirurg
 
 let ELEMENT_DATA: iAntecedenteQuirurgico[] =[];
 
+
 @Component({
   selector: 'app-antecedente-quirurgico',
   templateUrl: './antecedente-quirurgico.component.html',
