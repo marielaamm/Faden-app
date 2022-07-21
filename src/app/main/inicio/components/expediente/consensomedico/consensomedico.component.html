@@ -4,6 +4,73 @@
             <div class="row col-12 no-padding-margin">
 
                 <div class="row col-12 no-padding-margin" >
+                    <div class="col-12 btnAccion">
+                        <button mat-fab class="btn-faden-aceptar" ><mat-icon>save</mat-icon></button>
+                        <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
+                        <div class="line-vertical"></div>
+                        <button mat-fab class="btn-faden-salir" ><mat-icon>exit_to_app</mat-icon></button>
+                    </div>
+
+                    <div class="col-12">
+                        <mat-card class="mat-card">
+                            <mat-card-header>
+                                <mat-card-title class="mat-card-title">Consenso Diagnóstico</mat-card-title>
+                            </mat-card-header>
+                        </mat-card>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="col-12"><b>Nivel de Deterioro Cognitivo</b></label>
+                            <mat-radio-group aria-label="Seleccione nivel de deterioro">
+                                <mat-radio-button value="1">Normal</mat-radio-button>
+                                <mat-form-field  class="col-9 col-sm-9 col-md-10 col-lg-12 ">
+                                     <input matInput type="text">
+                                </mat-form-field >
+                                <mat-radio-button value="2">Leve</mat-radio-button>
+                                <mat-form-field  class="col-9  col-sm-9 col-md-10 col-lg-11 ">
+                                    <input matInput type="text">
+                               </mat-form-field >
+                                <mat-radio-button value="3">Mayor/Demencia</mat-radio-button>
+                                <mat-form-field  class="col-9  col-sm-9 col-md-8 col-lg-10 ">
+                                    <input matInput type="text">
+                               </mat-form-field >
+                            </mat-radio-group>   
+                        </div>
+                    </div>
+
+                    <div class="row border-paciente">
+                        <div class="col-12">
+                            <label><b>Otro diagnóstico</b></label>
+                            <section class="col-12">
+                                <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Depresión</mat-checkbox>  
+                                            <mat-form-field  class="col-12 col-sm-9 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
+                                                <input matInput type="text">
+                                            </mat-form-field >
+
+                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Trastorno Bipolar</mat-checkbox>  
+                                            <mat-form-field  class="col-12 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
+                                                
+                                            <input matInput type="text">
+                                            </mat-form-field>
+
+                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Esquizofrenia</mat-checkbox>  
+                                            <mat-form-field  class="col-12 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
+                                                <input matInput type="text">
+                                            </mat-form-field>
+
+                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Otro</mat-checkbox>  
+                                            <mat-form-field  class="col-12 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
+                                                <input matInput type="text">
+                                            </mat-form-field>                                                                     
+                            </section>
+
+
+                        </div>
+
+                    </div>
+
+
 
                 </div>
             </div>
