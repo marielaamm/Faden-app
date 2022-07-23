@@ -8,9 +8,24 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
 })
 export class MunicipioComponent implements OnInit {
 
-  public lstDepartamento: {}[] = [];
+  public lstDepartamento: {IdDepartamento: Number, Departamento: String}[] = [];
 
-  constructor(private ServerScv : ServerService) { }
+  constructor(private ServerScv : ServerService) {
+    ServerScv._DptoService.BuscarDpto();
+   }
+
+
+  private LlenarDpto(datos:string):void{
+    let _json = JSON.parse(datos);
+
+    _json["d"].forEach(
+      (b:any)=>{
+        this.lstDepartamento.push({IdDepartamento : b.IdDepartamento, Departamento: b.Departamento});
+      }
+    );
+    
+  }
+
 
   public singleSelection(event: any) {
     if (event.added.length) {
@@ -26,6 +41,19 @@ export class MunicipioComponent implements OnInit {
 
   ngOnInit(): void {
  
+  }
+
+
+  
+  ngAfterViewInit(): void {
+
+    this.ServerScv._DptoService.change.subscribe(
+
+      s =>{
+        this.LlenarDpto(s[1]);
+      }
+    );
+  
   }
 
 }
