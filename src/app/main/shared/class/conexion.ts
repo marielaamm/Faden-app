@@ -17,7 +17,7 @@ export class Conexion {
     public TimeClose: number = 30;
 
 
-    Url() : string{
+    public Url() : string{
         return "http://"+this.IP+":"+this.PORT+"/api/"; 
     }
 

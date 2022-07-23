@@ -8,7 +8,14 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
 })
 export class DepartamentoComponent implements OnInit {
 
-  constructor(private ServerScv : ServerService) { }
+  constructor(private ServerScv : ServerService) { 
+    
+  }
+
+
+  
+
+
 
   
   Cerrar() : void{
@@ -28,7 +35,9 @@ export class DepartamentoComponent implements OnInit {
       }
 
     });
-    
+     
   }
+
+
 
 }
