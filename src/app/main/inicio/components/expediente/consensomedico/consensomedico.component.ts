@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
   selector: 'app-consensomedico',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsensomedicoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ServerScv : ServerService) { }
+  public singleSelection(event: any) {
+    if (event.added.length) {
+        event.newSelection = event.added;
+    }
+}
+   Cerrar() : void{
+    
+   this.ServerScv.CerrarFormulario();
+}
 
   ngOnInit(): void {
   }

@@ -2,7 +2,13 @@
     width: 1000px;
 }
 
-.border-paciente{
+
+mat-form-field{
+    width: 100%;
+}
+
+
+.faden-border{
     border: 2px solid var(--faden-morado);
     border-top: 0;
     border-left: 0;
@@ -10,3 +16,14 @@
     padding-top: 10px;
     padding-bottom: 10px; 
     }
+
+    .faden-radio-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+
+      .faden-radio-button {
+        margin: 15px;
+      }
