@@ -121,16 +121,30 @@
                                     <mat-form-field floatLabel="never">
                                         <input matInput type="text">
                                     </mat-form-field >
-                                </div>   
-
-                                    
-
-                                                                                                                 
-                            </section>
-
+                                </div>                                      
+                            </section>                          
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="col-12"><b>Síndrome Predominante</b></label>                               
+                        </div>
+                    </div>
+
+                    <div>
+                        <mat-step>
+                            <ng-template matStepLabel>Síndrome Predominante</ng-template>
+                            <app-sindromepredominante></app-sindromepredominante>
+                            <div>
+                              <button mat-button matStepperPrevious>Atras</button>
+                              <button mat-button matStepperNext>Siguiente</button>
+                            </div>
+                        </mat-step>
+
 
                     </div>
+
 
 
                 </div>
