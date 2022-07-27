@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { iSindromePredominante } from 'src/app/main/inicio/interface/i-sindromepredominante';
+
+let ELEMENT_DATA: iSindromePredominante[]=[];
+
+@Component({
+  selector: 'app-sindromepredominante',
+  templateUrl: './sindromepredominante.component.html',
+  styleUrls: ['./sindromepredominante.component.scss']
+})
+export class SindromepredominanteComponent implements OnInit {
+
+  displayedColumns: string[] = ["IdTratamiento","Tratamiento", "Dosis", "IdMedico", "Fecha", "TipoTratamiento"];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  clickedRows = new Set<iSindromePredominante>();
+  private _liveAnnouncer:any;
+
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}

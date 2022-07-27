@@ -92,6 +92,7 @@ import { AntecedenteNeuropsiquiatricoComponent } from './main/inicio/components/
 import { ConsensomedicoComponent } from './main/inicio/components/expediente/consensomedico/consensomedico.component';
 import { ExpedienteComponent } from './main/inicio/components/expediente/expediente.component';
 import { AntecedenteQuirurgicoComponent } from './main/inicio/components/historiamedica/antecedente-quirurgico/antecedente-quirurgico.component';
+import { SindromepredominanteComponent } from './main/inicio/components/expediente/consensomedico/sindromepredominante/sindromepredominante.component';
 
 //FIN
 
@@ -142,6 +143,7 @@ export const DateFormat = {
     ConsensomedicoComponent,
     ExpedienteComponent,
     AntecedenteQuirurgicoComponent,
+    SindromepredominanteComponent,
     
   ],
   imports: [
