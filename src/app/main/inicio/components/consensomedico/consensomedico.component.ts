@@ -8,6 +8,7 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
 })
 export class ConsensomedicoComponent implements OnInit {
 
+  public isLinear = false;
   
   constructor(private ServerScv : ServerService) { }
   public singleSelection(event: any) {

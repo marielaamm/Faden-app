@@ -136,7 +136,8 @@
                         <app-sindromepredominante></app-sindromepredominante>
                     </div>
 
-                    <div class="row">
+                    <div class="faden-border">
+
                         <div class="col-12">
                             <label class="col-12"><b>Sospecha Diagnóstica</b></label>                               
                         </div>
@@ -147,7 +148,7 @@
                             </mat-radio-group>
                         </div>
                                     
-                        <div class="col-sm-7 col-md-6 col-lg-7">
+                        <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
                             <mat-form-field floatLabel="never">
                                 <input matInput type="text">
                             </mat-form-field>
@@ -156,21 +157,87 @@
                         <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
                             <mat-radio-group>
                                 <mat-radio-button value="2">Confirmado</mat-radio-button>
-                            </mat-radio-group>
+                            </mat-radio-group>                            
                         </div>
                                     
-                        <div class="col-sm-7 col-md-6 col-lg-7">
+                        <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
                             <mat-form-field floatLabel="never">
                                 <input matInput type="text">
                             </mat-form-field>
                         </div>
                     </div>
-                    
 
+                    <div class="col-12">
+                        <mat-card class="mat-card">
+                            <mat-card-header>
+                                <mat-card-title class="mat-card-title">Plan de tratamiento</mat-card-title>
+                            </mat-card-header>
+                        </mat-card>
+                    </div>
 
+                    <div class="col-12">
+                        <mat-card class="mat-card">
+                            <mat-card-content>
+                                 <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+                                    
+                                    <mat-step>
+                                        <ng-template matStepLabel>Tratamiento Farmacológico</ng-template>
+                                        <div class="col-12 no-padding-margin">
+                                            <mat-form-field class="col-lg-6 text-area-tratamiento-farmacologico" >
+                                                <textarea matInput></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        
+                                        <div>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
 
+                                    <mat-step>
+                                        <ng-template matStepLabel>Tratamiento No Farmacológico</ng-template>
+                                        <div class="col-12 no-padding-margin">
+                                            <mat-form-field class="col-lg-6 text-area-tratamiento-no-farmacologico" >
+                                                <textarea matInput></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
 
+                                    <mat-step>
+                                        <ng-template matStepLabel>Recomendaciones Generales</ng-template>
+                                        <div class="col-12 no-padding-margin">
+                                            <mat-form-field class="col-lg-6 text-area-recomendaciones-generales" >
+                                                <textarea matInput></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                          <button mat-button matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
 
+                                    <mat-step>
+                                        <ng-template matStepLabel>Exámenes</ng-template>
+                                        <div class="col-12 no-padding-margin">
+                                            <mat-form-field class="col-lg-6 text-area-examenes" >
+                                                <textarea matInput></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        
+                                        <div>
+                                          <button mat-button matStepperPrevious>Atras</button>
+                                        </div>
+                                    </mat-step>
+                                 </mat-stepper>
+                            </mat-card-content>
+                        </mat-card>
+
+                    </div>
 
                 </div>
             </div>
