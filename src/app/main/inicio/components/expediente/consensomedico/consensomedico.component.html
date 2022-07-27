@@ -46,7 +46,7 @@
                     
                             <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
                                 <mat-radio-group>
-                                    <mat-radio-button value="1">Leve</mat-radio-button>
+                                    <mat-radio-button value="2">Leve</mat-radio-button>
                                 </mat-radio-group>
                             </div>
                                         
@@ -62,7 +62,7 @@
                     
                             <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
                                 <mat-radio-group>
-                                    <mat-radio-button value="1">Mayor/Demencia</mat-radio-button>
+                                    <mat-radio-button value="3">Mayor/Demencia</mat-radio-button>
                                 </mat-radio-group>
                             </div>
                                         
@@ -140,9 +140,41 @@
                               <button mat-button matStepperPrevious>Atras</button>
                               <button mat-button matStepperNext>Siguiente</button>
                             </div>
-                        </mat-step>
-                        
+                        </mat-step>                        
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="col-12"><b>Sospecha Diagnóstica</b></label>                               
+                        </div>
+
+                        <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                            <mat-radio-group>
+                                <mat-radio-button value="1">Probable</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                                    
+                        <div class="col-sm-7 col-md-6 col-lg-7">
+                            <mat-form-field floatLabel="never">
+                                <input matInput type="text">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                            <mat-radio-group>
+                                <mat-radio-button value="2">Confirmado</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                                    
+                        <div class="col-sm-7 col-md-6 col-lg-7">
+                            <mat-form-field floatLabel="never">
+                                <input matInput type="text">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    
+
 
 
 
