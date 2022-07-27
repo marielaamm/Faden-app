@@ -11,7 +11,7 @@ let ELEMENT_DATA: iSindromePredominante[]=[];
 })
 export class SindromepredominanteComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdTratamiento","Tratamiento", "Dosis", "IdMedico", "Fecha", "TipoTratamiento"];
+  displayedColumns: string[] = ["IdSindrome","Tiposindrome"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iSindromePredominante>();
   private _liveAnnouncer:any;
