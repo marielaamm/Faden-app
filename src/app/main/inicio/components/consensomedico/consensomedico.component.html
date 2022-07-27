@@ -1,0 +1,176 @@
+<div class="faden-contenedor">
+    <div id="frmConsensomedico">
+        <form class="formulario"> 
+            <div class="row col-12 no-padding-margin">
+
+                <div class="row col-12 no-padding-margin" >
+                    <div class="col-12 btnAccion">
+                        <button mat-fab class="btn-faden-aceptar" ><mat-icon>save</mat-icon></button>
+                        <button mat-fab class="btn-faden-cancelar"><mat-icon>undo</mat-icon></button>
+                        <div class="line-vertical"></div>
+                        <button mat-fab class="btn-faden-salir" (click)="Cerrar();" ><mat-icon>exit_to_app</mat-icon></button>
+                    </div>
+
+                    <div class="col-12">
+                        <mat-card class="mat-card">
+                            <mat-card-header>
+                                <mat-card-title class="mat-card-title">Consenso Diagnóstico</mat-card-title>
+                            </mat-card-header>
+                        </mat-card>
+                    </div>
+
+
+                    <div class="faden-border">
+                    
+                        <div class="row">
+                            <label><b>Nivel de Deterioro Cognitivo</b></label>
+                        </div>
+                    
+                        <div class="row">
+                                                           
+                            <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                                <mat-radio-group>
+                                    <mat-radio-button value="1">Normal</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            
+                            <div class="col-sm-7 col-md-6 col-lg-7">
+                                <mat-form-field floatLabel="never">
+                                    <input matInput type="text">
+                                </mat-form-field>
+                            </div>
+                    
+                        </div>
+                    
+                        <div class="row">
+                    
+                            <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                                <mat-radio-group>
+                                    <mat-radio-button value="2">Leve</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                                        
+                            <div class="col-sm-7 col-md-6 col-lg-7">
+                                <mat-form-field floatLabel="never">
+                                    <input matInput type="text">
+                                </mat-form-field>
+                            </div>
+                    
+                        </div>
+                    
+                        <div class="row">
+                    
+                            <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                                <mat-radio-group>
+                                    <mat-radio-button value="3">Mayor/Demencia</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                                        
+                            <div class="col-sm-7 col-md-6 col-lg-7">
+                                <mat-form-field floatLabel="never">
+                                    <input matInput type="text">
+                                </mat-form-field>
+                            </div>
+                    
+                                       
+                        </div>
+                    </div>
+
+                    <div class="faden-border">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="col-12"><b>Otro Diagnóstico</b></label>                               
+                            </div>
+                        </div>  
+
+                                                
+                        <div class="row">                                                      
+                            <section>
+                                <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                                    <mat-checkbox>Depresión</mat-checkbox>
+                                </div>  
+                                <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
+                                    <mat-form-field floatLabel="never">
+                                        <input matInput type="text">
+                                    </mat-form-field >
+                                </div>     
+                                
+                                <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                                    <mat-checkbox>Trastorno Bipolar</mat-checkbox>
+                                </div>  
+                                <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
+                                    <mat-form-field floatLabel="never">
+                                        <input matInput type="text">
+                                    </mat-form-field >
+                                </div>   
+                                
+                                <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                                    <mat-checkbox>Esquizofrenia</mat-checkbox>
+                                </div>  
+                                <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
+                                    <mat-form-field floatLabel="never">
+                                        <input matInput type="text">
+                                    </mat-form-field >
+                                </div>   
+
+                                <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                                    <mat-checkbox>Otro</mat-checkbox>
+                                </div>  
+                                <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
+                                    <mat-form-field floatLabel="never">
+                                        <input matInput type="text">
+                                    </mat-form-field >
+                                </div>                                      
+                            </section>                          
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="col-12"><b>Síndrome Predominante</b></label>                               
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="col-12"><b>Sospecha Diagnóstica</b></label>                               
+                        </div>
+
+                        <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                            <mat-radio-group>
+                                <mat-radio-button value="1">Probable</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                                    
+                        <div class="col-sm-7 col-md-6 col-lg-7">
+                            <mat-form-field floatLabel="never">
+                                <input matInput type="text">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
+                            <mat-radio-group>
+                                <mat-radio-button value="2">Confirmado</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                                    
+                        <div class="col-sm-7 col-md-6 col-lg-7">
+                            <mat-form-field floatLabel="never">
+                                <input matInput type="text">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    
+
+
+
+
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

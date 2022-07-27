@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from 'src/app/main/shared/service/server.service';
-import { iSindromePredominante } from '../../../interface/i-sindromepredominante';
 
 @Component({
   selector: 'app-consensomedico',

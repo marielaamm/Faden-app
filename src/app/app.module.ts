@@ -89,10 +89,10 @@ import { ExamenClinicoComponent } from './main/inicio/components/expediente/hist
 import { AntecedentesFamiliaresComponent } from './main/inicio/components/expediente/historiamedica/antecedentes-familiares/antecedentes-familiares.component';
 import { AntecedentePatologicoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-patologico/antecedente-patologico.component';
 import { AntecedenteNeuropsiquiatricoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-neuropsiquiatrico/antecedente-neuropsiquiatrico.component';
-import { ConsensomedicoComponent } from './main/inicio/components/expediente/consensomedico/consensomedico.component';
+import { ConsensomedicoComponent } from './main/inicio/components/consensomedico/consensomedico.component';
 import { ExpedienteComponent } from './main/inicio/components/expediente/expediente.component';
 import { AntecedenteQuirurgicoComponent } from './main/inicio/components/historiamedica/antecedente-quirurgico/antecedente-quirurgico.component';
-import { SindromepredominanteComponent } from './main/inicio/components/expediente/consensomedico/sindromepredominante/sindromepredominante.component';
+import { SindromepredominanteComponent } from './main/inicio/components/consensomedico/sindromepredominante/sindromepredominante.component';
 
 //FIN
 
