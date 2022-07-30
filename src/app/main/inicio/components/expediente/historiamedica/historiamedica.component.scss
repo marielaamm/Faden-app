@@ -1,4 +1,11 @@
-#frmHistoriamedica{
-    width: 1000px
+#historia-medica{
+    .mat-form-field{
+        padding: 10px;
+        textarea{
+            background-color: #f0f0f0;
+        }
+        
+    }
 }
+
 

@@ -23,18 +23,21 @@
                         
                                 <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
                                     <mat-step>
+                                      <div id="historia-medica">
                                         <ng-template matStepLabel>Historia Médica y Clínica</ng-template>
                                         <div class="col-12 no-padding-margin">
-                                            <mat-form-field class="col-lg-6 text-area-medica-clinica" >
-                                                <mat-label>Familiar</mat-label>
-                                                <textarea matInput></textarea>
+                                            <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6 text-area-medica-clinica" >
+                                                <mat-label><b>Familiar</b></mat-label>
+                                                <textarea matInput rows="10"></textarea>
                                             </mat-form-field>
                 
-                                            <mat-form-field class="col-lg-6 text-area-medica-clinica">
-                                                <mat-label>Social</mat-label>
-                                                <textarea matInput></textarea>
+                                            <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6 text-area-medica-clinica">
+                                                <mat-label><b>Social</b></mat-label>
+                                                <textarea matInput rows="10" ></textarea>
                                             </mat-form-field>
                                         </div>
+                                      </div>
+                                        
                                         
                                         <div>
                                           <button mat-button matStepperNext>Siguiente</button>

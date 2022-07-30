@@ -7,12 +7,16 @@
             </mat-form-field>
         </div>
 
-        <div>
-            <section>
+        <div class="row">
+            <div class="col-3 col-sm-3 col-md-2 col-lg-1">
                 <label>¿Vive?</label>
-                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Si</mat-checkbox>
-                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">No</mat-checkbox>
-            </section>
+            </div>
+            <mat-radio-group class="col-9 col-sm-9 col-md-10 col-lg-4">
+                <mat-radio-button value="1">Si</mat-radio-button>
+                <mat-radio-button value="2">No</mat-radio-button>
+            </mat-radio-group>
+
+    
         </div>
 
         <div>
@@ -22,11 +26,12 @@
             </mat-form-field >
         </div>
 
-        <div>
-            <section>
-                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Padece</mat-checkbox>
-                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Padeció</mat-checkbox>
-            </section>
+        <div class="row">
+            <mat-radio-group >
+                <mat-radio-button value="1">Padece</mat-radio-button>
+                <mat-radio-button value="2">Padeció</mat-radio-button>
+            </mat-radio-group>
+    
         </div>
 
         <div class="row">
