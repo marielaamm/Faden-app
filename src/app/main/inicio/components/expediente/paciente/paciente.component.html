@@ -66,8 +66,9 @@
                                             <mat-radio-button value="1">Masculino</mat-radio-button>
                                             <mat-radio-button value="2">Femenino</mat-radio-button>
                                         </mat-radio-group>   
-                                    </div>
-                                                                    
+
+                                    </div>   
+                                                                                                                                            
                                 </div>
 
                                 <div class="row">
@@ -94,9 +95,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
                                         <mat-label>Ocupación</mat-label>
                                         <input matInput type="text" id="txtOcupacion">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                        <mat-label>No de Cédula </mat-label>
+                                        <input matInput type="text" id="txCedula">
                                     </mat-form-field>
 
                                     <igx-combo _ngcontent-pmm-5 class="col-12 col-sm-6 col-md-6 col-lg-6" #withValueKey [data]="lstEscolaridad"
