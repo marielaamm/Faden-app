@@ -1,6 +1,7 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
 import { DepartamentoComponent } from 'src/app/main/cat/components/departamento/departamento.component';
 import { EscolaridadComponent } from 'src/app/main/cat/components/escolaridad/escolaridad.component';
+import { MedicosComponent } from 'src/app/main/cat/components/medicos/medicos.component';
 import { MunicipioComponent } from 'src/app/main/cat/components/municipio/municipio.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
@@ -222,6 +223,14 @@ export class MenuComponent {
       break;
 
       case "navMedicos":
+        if(this.str_formulario != f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(MedicosComponent);
+          this.str_formulario = f;
+
+        }
+
+      break;  
     
     }
     
