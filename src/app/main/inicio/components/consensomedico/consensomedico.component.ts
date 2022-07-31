@@ -11,6 +11,7 @@ export class ConsensomedicoComponent implements OnInit {
   public isLinear = false;
   
   constructor(private ServerScv : ServerService) { }
+  
   public singleSelection(event: any) {
     if (event.added.length) {
         event.newSelection = event.added;
