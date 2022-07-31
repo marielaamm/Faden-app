@@ -220,6 +220,9 @@ export class MenuComponent {
         }
 
       break;
+
+      case "navMedicos":
+    
     }
     
    
