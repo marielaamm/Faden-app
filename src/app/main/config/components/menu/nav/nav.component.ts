@@ -48,6 +48,10 @@ export class NavComponent{
 
     {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navEscolaridad", Link: "Escolaridad", MenuPadre: "", Clase: ""}, 
 
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"navMedicos", Link: "Medicos", MenuPadre: "", Clase: ""},
+
+  
+
       /**************************************INICIO************************************* */ 
 
       {EsMenu: false, Modulo: "HOME", ModuloNombre: "Inicio", Id:"navExpediente", Link: "Expediente" , MenuPadre: "", Clase : ""},
