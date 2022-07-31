@@ -187,28 +187,54 @@
                                      </div>
                                 </div>
 
-                                <div class="row  border-paciente">
-                                    <div class="col-12">
-                                        <label><b>Antecedentes laborales</b></label>
-                                        <section class="col-12">
-                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Trabaja Actualmente</mat-checkbox>  
-                                            <mat-form-field  class="col-12 col-sm-9 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
-                                                <mat-label>¿En qué trabaja?</mat-label>
-                                                <input matInput type="text">
-                                            </mat-form-field >
+                    
+                                <div class="border-paciente" id="antecendentes-laborales">
+                                    
+                                    <div class="row col-12"><label><b>Antecedentes laborales</b></label></div>
+                                        
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-2">
+                                            <mat-checkbox>Trabaja Actualmente</mat-checkbox>  
+                                        </div>
 
-                                            <mat-checkbox class="col-2 col-sm-2 col-md-2 col-lg-2">Último trabajo</mat-checkbox>  
-                                            <mat-form-field  class="col-12 col-sm-9 col-md-9 col-lg-9 offset-sm-1 offset-md-1 offset-lg-1">
-                                                <mat-label>¿Cúal fue?</mat-label>
-                                                <input matInput type="text">
-                                            </mat-form-field>
-
-                                            <mat-checkbox class="col-12 col-sm-9 col-md-9 col-lg-9 ">Es jubilado</mat-checkbox>  
-                                            
-                                            <mat-checkbox class="col-12 col-sm-9 col-md-9 col-lg-9 ">Recibe pensión</mat-checkbox>  
-                                            
-                                        </section>
+                                        <mat-form-field  class="col-12 col-sm-12 col-md-8 col-lg-9 offset-md-1 offset-lg-1">
+                                            <mat-label>¿En qué trabaja?</mat-label>
+                                            <input matInput type="text">
+                                        </mat-form-field >
+                                        
                                     </div>
+
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-2">
+                                            <mat-checkbox>Último trabajo</mat-checkbox>  
+                                        </div>
+
+                                        <mat-form-field  class="col-12 col-sm-12 col-md-8 col-lg-9 offset-md-1 offset-lg-1">
+                                            <mat-label>¿Cúal fue?</mat-label>
+                                            <input matInput type="text">
+                                        </mat-form-field >
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-2">
+                                            <mat-checkbox>Es Jubilado</mat-checkbox>  
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-2">
+                                            <mat-checkbox>Recibe Pensión</mat-checkbox>  
+                                        </div>
+                                    </div>
+
+
+
+                                    
+
+                                    
+                    
                                 </div>
 
                                  <div class="row">
@@ -247,8 +273,8 @@
 
                                 <div class="row">
                                     <mat-form-field class="col-12">
-                                        <mat-label>Dirección</mat-label>
-                                        <input matInput type="text">
+                                        <mat-label><b>Dirección</b></mat-label>
+                                        <textarea matInput rows="10"></textarea>
                                     </mat-form-field> 
                                 </div>
 
