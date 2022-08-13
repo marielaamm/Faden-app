@@ -1,0 +1,280 @@
+.faden-mat-form {
+
+
+    /**************************************************************************************************
+                                          FORMULARIO
+  **************************************************************************************************/
+
+
+    mat-form-field:not(.mat-paginator-page-size-select),
+    .igx-input-group {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .mat-form-field.mat-focused {
+        .mat-form-field-ripple {
+            background-color: var(--faden-morado);
+        }
+    }
+
+    .mat-form-field-label {
+        color: rgba(0, 0, 0, .6);
+    }
+
+    .mat-form-field.mat-focused .mat-form-field-label {
+        color: rgba(0, 0, 0, .6)
+    }
+
+
+    .mat-calendar-body {
+
+        &-selected {
+            background-color: var(--faden-morado);
+            color: var(--faden-fondo);
+        }
+
+        &-today {
+            background-color: var(--faden-morado);
+            color: var(--faden-fondo);
+
+            &:not(&-selected),
+            &:not(&-comparison-identical) {
+                background-color: var(--faden-morado);
+                color: var(--faden-fondo);
+            }
+        }
+
+    }
+
+
+
+
+
+    .mat-form-field.mat-form-field-invalid .mat-form-field-ripple,
+    .mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent {
+        background-color: var(--faden-morado);
+    }
+
+
+
+    .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+        background-color: var(--faden-morado);
+    }
+
+    .mat-checkbox .mat-checkbox-inner-container {
+        width: 24px;
+        height: 24px;
+    }
+
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+        border-color: var(--faden-morado);
+    }
+
+    .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: var(--faden-morado);
+    }
+
+
+
+
+
+    .formulario,
+
+    .faden-registros {
+        background-color: var(--faden-fondo);
+        border: var(--faden-border-size) solid var(--faden-morado);
+        box-shadow: var(--faden-border-size) 4px 14px 6px rgba(0, 0, 0, 0.76);
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        min-width: var(--faden-min--width);
+        margin-left: 0;
+        margin-right: 0;
+
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+
+
+
+        & .btnAccion .btn-contenedor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: var(--faden-min--width);
+            width: auto;
+           
+            div{
+                padding-right: 10px;
+                padding-right: 10px;
+            }
+
+            & button {
+                margin: 10px;
+                
+
+                & .mat-icon {
+                    transform: scale(1.5);
+                }
+            }
+
+            & .line-vertical {
+                border-left: 2px solid black;
+                height: 100%;
+            }
+
+
+            & .btn-faden {
+
+
+
+                &-aceptar {
+                    background-color: transparent;
+                    border: 2px solid var(--faden-morado);
+                    color: var(--faden-morado);
+
+                    &:hover {
+                        background-color: var(--faden-morado);
+                        border: 0;
+                        color: var(--faden-fondo);
+                    }
+
+                }
+
+                &-cancelar {
+                    background-color: transparent;
+                    border: 2px solid var(--faden-amarillo);
+                    color: var(--faden-amarillo);
+
+                    &:hover {
+                        background-color: var(--faden-amarillo);
+                        border: 0;
+                        color: var(--faden-fondo);
+                    }
+
+                }
+
+                &-salir,
+                &-buscar,
+                &-default {
+                    background-color: transparent;
+                    border: 2px solid black;
+                    color: black;
+
+                    &:hover {
+                        background-color: black;
+                        border: 0;
+                        color: var(--faden-fondo);
+                    }
+                }
+
+
+
+            }
+
+        }
+
+        & input,
+        & label {
+            margin-left: 10px;
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+    /**************************************************************************************************
+                                          EXPANSION PANEL
+  **************************************************************************************************/
+
+    .mat-expansion-panel {
+
+
+
+        &-header {
+            background-color: var(--faden-morado);
+            color: var(--faden-fondo);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 30px;
+            padding: 0;
+
+            &-title,
+            &-description {
+                color: var(--faden-fondo);
+                margin-left: 20px;
+            }
+        }
+
+
+
+        &-body {
+            padding: 0;
+            margin: 0;
+        }
+
+
+
+    }
+
+
+
+
+
+
+    .faden-expan-panel.mat-expanded,
+    .faden-expan-panel.mat-expanded:hover,
+    .faden-expan-panel:hover,
+    .faden-expan-panel.mat-expanded:focus,
+    .faden-expan-panel.mat-expanded:focus:not([aria-disabled=true]),
+    .mat-expansion-panel .faden-expan-panel.cdk-keyboard-focused:not([aria-disabled=true]),
+    .mat-expansion-panel .faden-expan-panel.cdk-program-focused:not([aria-disabled=true]),
+    .mat-expansion-panel:not(.mat-expanded) .faden-expan-panel:hover:not([aria-disabled=true]),
+    .faden-expan-panel.mat-expanded:hover:not([aria-disabled=true]) {
+        background-color: var(--faden-morado);
+    }
+
+
+
+
+
+    /**************************************************************************************************
+                                          MAT-CARD
+  **************************************************************************************************/
+
+    .formulario {
+
+        & .mat-card {
+
+            &-header {
+                background-color: var(--faden-morado);
+                color: var(--faden-fondo);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 10px;
+            }
+
+            &-title {
+                font-weight: bold;
+                font-size: 1em;
+            }
+
+        }
+
+
+
+    }
+
+
+}

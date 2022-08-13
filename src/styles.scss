@@ -1,36 +1,79 @@
 :root{
-  --faden-lila:  #ddcf0a;
-  --faden-morado: #572364;
+  --faden-morado:  #572364;
+  --faden-amarillo: #ddcf0a;
   --faden-fondo: white;
-  --faden-fondo-secuendario: #d5d0ca;
+  --faden-fondo-secundario: #d5d0ca;
 
   --faden-border-size: 3px;
-  --faden-min--width: calc(360px var(--faden-border-size)) ;
+  --faden-min--width: calc(360px - var(--faden-border-size)) ;
   --faden-font--size: 1em;
 
-
-
-
-  .mat-calendar-body{
-
-    &-selected{
-      background-color: var(--faden-lila);
-      color: var(--faden-fondo);
-    }
-
-    &-today{
-      background-color: var(--faden-morado);
-      color: var(--faden-fondo);
-
-      &:not(&-selected), &:not(&-comparison-identical){
-        background-color: var(--faden-morado);
-        color: var(--faden-fondo);
-      }
-    }
-
-
+  *{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 
   }
+
+
+
+
+    
+  /***************************************************************************************************************/
+  
+  
+  /**************************************************************************************************
+                                          COMBO BOX
+  **************************************************************************************************/
+  
+
+
+  [class^=igx-] {
+  
+    --box-background : var(--faden-fondo);
+    
+    
+      igx-combo-item{
+
+        padding-left: 20px;
+        padding-right: 20px;
+
+       /* &.igx-drop-down__item--selected.igx-drop-down__item--focused{
+          background-color: var(--faden-amarillo);
+          color: var(--faden-fondo);
+        }*/
+        --selected-hover-item-background: var(--faden-morado);
+        --selected-item-background: var(--faden-morado);
+        --selected-focus-item-background :var(--faden-morado);
+        --focused-item-background : var(--faden-morado);
+        --igx-drop-down-focused-item-text-color : var(--faden-fondo);
+        --focused-item-text-color : var(--faden-fondo);
+        --selected-focus-item-text-color : var(--faden-fondo);
+      }
+  
+      igx-input-group{
+        --focused-secondary-color: var(--faden-morado) !important;
+        --success-secondary-color: var(--faden-morado)  !important;
+        --error-secondary-color: var(--faden-morado) !important;
+      }
+  
+      
+      igx-checkbox {
+        --fill-color: var(--faden-morado);
+      }
+
+
+  
+    }
+
+
+
+
+    
 }
 
 
@@ -82,14 +125,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--faden-min--width);
+ // min-width: var(--faden-min--width);
 }
 
 
 
-app-root{
+*{
   
-
 
   /**************************************************************************************************
                                           
@@ -117,6 +159,7 @@ app-root{
     color: black;
   }
   
+
   .mat-form-field.mat-focused {
     .mat-form-field-ripple {
       background-color: var(--faden-morado); 
@@ -126,12 +169,12 @@ app-root{
   
   .mat-error
   {
-    color: var(--faden-lila);
+    color: var(--faden-amarillo);
   }
   
   .mat-form-field-invalid{
     .mat-icon{
-      border-color: var(--faden-lila);
+      border-color: var(--faden-morado);
     }
 
     
@@ -143,7 +186,7 @@ app-root{
       &-prefix,
       &-suffix{
         .mat-icon{
-          color: var(--faden-morado);
+          color: var(--faden-amarillo);
         }
       }
       
@@ -152,33 +195,6 @@ app-root{
 
   
 
-
-  
-  .mat-form-field.mat-form-field-invalid .mat-form-field-ripple,
-  .mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent {
-    background-color:  var(--faden-lila);
-  }
-  
-  
-  
-  .mat-checkbox-checked.mat-primary .mat-checkbox-background{
-    background-color: var(--faden-lila);
-  }
-  
-  .mat-checkbox .mat-checkbox-inner-container {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
-    border-color: var(--faden-lila) ;
-  }
-  
-  .mat-radio-button.mat-accent .mat-radio-inner-circle{
-    background-color: var(--faden-lila);
-  }
-  
-  
   
   
   .faden-text{
@@ -186,107 +202,8 @@ app-root{
       font-family: 'SavingsBond';
   }
   
-  
-  /**************************************************************************************************
-                                          FORMULARIO
-  **************************************************************************************************/
-  
-  
-  
-  .formulario,
-  .faden-registros{
-    background-color: var(--faden-fondo);
-    border: var(--faden-border-size ) solid var(--faden-morado);
-    box-shadow: var(--faden-border-size) 4px 14px 6px rgba(0,0,0,0.76);
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    min-width: var(--faden-min--width);
-    margin-left: 0;
-    margin-right: 0;
 
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 0;
-    margin-right: 0;
-
-
-
-  & .btnAccion{
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    min-width: var(--faden-min--width);
-    width: 100%;
-    
-    & button{
-      margin: 10px;
-
-      & .mat-icon {
-        transform: scale(1.5);
-      }
-    }
-
-    & .line-vertical {
-      border-left: 2px solid black;
-      height: 100%;
-    }
-
-
-    & .btn-faden{
-
-      &-aceptar{
-        background-color: transparent;
-        border: 2px solid var(--faden-morado);
-        color: var(--faden-morado);
-
-        &:hover{
-          background-color: var(--faden-morado);
-          border: 0;
-          color: var(--faden-fondo);
-        }
-
-      }
-
-      &-cancelar{
-        background-color: transparent;
-        border: 2px solid var(--faden-lila);
-        color: var(--faden-lila);
-
-        &:hover{
-          background-color: var(--faden-lila);
-          border: 0;
-          color: var(--faden-fondo);
-      }
-    }
-
-    &-salir,
-    &-buscar{
-      background-color: transparent;
-      border: 2px solid black;
-      color: black;
-
-      &:hover{
-        background-color: black;
-        border: 0;
-        color: var(--faden-fondo);
-      }
-    }
-    
-
-     
-  }
-
-  }
-  
-  & input,
-  & label{
-    margin-left: 10px;
-  }
-
-  
-}
-  
+ 
   
   
 mat-label {
@@ -302,323 +219,4 @@ mat-label {
  
   
 
-  
-  
-  /**************************************************************************************************
-                                          EXPANSION PANEL
-  **************************************************************************************************/
-
-  .mat-expansion-panel{
-
-    
-
-    &-header{
-      background-color: var(--faden-lila);
-      color: var(--faden-fondo);
-      display: flex;
-      justify-content: center; 
-      align-items: center;
-      max-height: 30px;
-      padding: 0;
-
-      &-title,
-      &-description{
-        color: var(--faden-fondo);
-        margin-left: 20px;
-      }
-    }
-
-   
-
-    &-body{
-      padding: 0;
-      margin: 0;
-    }
-
-    
-
-  }
-
-
-  
-
-  
-  
-  .faden-expan-panel.mat-expanded,
-  .faden-expan-panel.mat-expanded:hover,
-  .faden-expan-panel:hover,
-  .faden-expan-panel.mat-expanded:focus,
-  .faden-expan-panel.mat-expanded:focus:not([aria-disabled=true]),
-  .mat-expansion-panel .faden-expan-panel.cdk-keyboard-focused:not([aria-disabled=true]),
-  .mat-expansion-panel .faden-expan-panel.cdk-program-focused:not([aria-disabled=true]),
-  .mat-expansion-panel:not(.mat-expanded) .faden-expan-panel:hover:not([aria-disabled=true]),
-  .faden-expan-panel.mat-expanded:hover:not([aria-disabled=true]) {
-    background-color: var(--faden-morado);
-  }
-  
-  
-  
-  
-  
-  /**************************************************************************************************
-                                          MAT-CARD
-  **************************************************************************************************/
-  
-  .formulario{
-
-    & .mat-card{
-
-      &-header{
-        background-color: var(--faden-morado);
-        color: var(--faden-fondo);
-        display: flex;
-        justify-content: center; 
-        align-items: center;
-        padding-top: 10px;    
-      }
-
-      &-title{
-        font-weight: bold;
-        font-size: 1em;
-      }
-
-    }
-
- 
-    
-  }
-
-  
-  
-  
-  /**************************************************************************************************
-                                          TABLA
-  **************************************************************************************************/
-  .mat-elevation-z8{
-    overflow-x: hidden;
-  }
-  
-  
-  table{
-    width: 100%;
-    & .mat-header{
-      &-cell{
-        width: 100px;
-        background-color: var(--faden-morado);
-        color: var(--faden-fondo);
-        border: none;
-
-        &-detail{
-          background-color: var(--faden-lila);
-        }
-       
-      }
-  
-    }
-
-
-    
-    & .mat-cell-detail{
-      background-color: var(--faden-fondo-secuendario);
-    }
-    
-
-    &-container{
-      width: 100%;
-      padding: 0;
-      margin: 0;
-    }
-    
-
-
-
-    .mat-sort-header{
-      color: var(--faden-fondo);
-
-      &-indicator,
-      &-pointer-left,
-      &-arrow,
-      &-pointer-right{
-        color: var(--faden-fondo);
-      }
-      
-    }
-
-    th.mat-header,
-    td.mat,
-    td.footer{
-      &-cell:first-of-type,  &-cell:last-of-type{
-        padding-left: 5px;
-        padding-right: 5px;
-      }
-    }   
-   // mat-sort-header mat-header-cell cdk-header-cell ng-tns-c510-2 cdk-column-Rol mat-column-Rol ng-star-inserted
-    
-  }
-
-
-  .mat-expansion-panel{
-    &-body{
-      padding: 0;
-    }
-  }
-
-  .faden-tabla-franja{
-    background-color: var(--faden-lila);
-    color: var(--faden-fondo);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-weight: bold;
-    font-size: 1.5em;
-    text-align: center;
-  }
-
-  .faden-tabla-filtro{
-
-    &-franja{
-      background-color: var(--faden-lila);
-      color: var(--faden-fondo);
-      padding-top: 10px;
-      padding-bottom: 10px;
-      font-weight: bold;
-      font-size: 1.5em;
-      text-align: center;
-    }
-  }
-  
-  & .mat-input-element{
-    margin-top: 3px;
-  }
-
-  
-  /***************************************************************************************************************/
-  
-  
-  /**************************************************************************************************
-                                          COMBO BOX
-  **************************************************************************************************/
-  
-  
-   [class^=igx-] {
-  
-    
-      igx-combo-item{
-       /* &.igx-drop-down__item--selected.igx-drop-down__item--focused{
-          background-color: var(--faden-morado);
-          color: var(--faden-fondo);
-        }*/
-        --selected-hover-item-background: var(--faden-morado);
-        --selected-item-background: var(--faden-morado);
-        --selected-focus-item-background :var(--faden-morado);
-      }
-  
-      igx-input-group{
-        --focused-secondary-color: var(--faden-morado);
-        --success-secondary-color: var(--faden-morado);
-        --error-secondary-color: var(--faden-lila);
-      }
-  
-      
-      igx-checkbox {
-        --fill-color: var(--faden-lila);
-      }
-  
-    }
-    
-  
-  
-  
-  
-  
-  /**************************************************************************************************
-                                          MODAL
-  **************************************************************************************************/
-  app-modal{
-  
-    
-    .dt-green {background-color: #4CAF50;} /* Green */
-    .dt-blue {background-color: #008CBA;} /* Blue */
-    .dt-red {background-color: #f44336;} /* Red */
-    .dt-orange {background-color: #ff9800;} /* Orange */
-    .dt-rocedes {background-color: #1b364c;} 
-  
-    .faden-modal, .ui-modal-header {
-      background-color: var(--faden-morado);
-    }
-  
-    .ui-modal-body {
-      padding: 0px;
-      width: 100%;
-    }
-  
-    .hide-element {
-      display: none;
-    }
-  
-     
-    .faden-modal .ui-modal {
-      min-width: var(--faden-min--width);
-      max-width: 1000000px;
-      width:var(--faden-min--width);
-    }
-  
-    .faden-modal  .ui-modal-overlay, .faden-modal  .ui-modal {
-      z-index: 10;
-    }
-  }
-  
-
-
-
-  tr.example-detail-row {
-    height: auto;
-  }
-  /*
-  tr.example-element-row:not(.example-expanded-row):hover {
-    background: red;
-  }
-  
-  tr.example-element-row:not(.example-expanded-row):active {
-    background: blueviolet;
-  }*/
-  
-  .example-element-row td {
-    border-bottom-width: 0;
-  }
-  
-  .example-element-detail {
-    overflow: hidden;
-    display: flex;
-  }
-  
-  
-  .example-element-Cantidad {
-    padding: 16px;
-  }
-  
-
-  
- /**************************************************************************************************
-                                          MAT STEP
-  **************************************************************************************************/
-  .mat-step-header{
-    padding: 0;
-  }
-  
-  .mat-vertical-content-container {
-    margin-left: 0 ;
-  }
-  
-  .mat-vertical-content {
-    padding: 0;
-  }
-  
 }
-
-
-
-
-
-
-  
- 

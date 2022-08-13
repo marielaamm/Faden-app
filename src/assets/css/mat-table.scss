@@ -1,0 +1,126 @@
+.faden-container-table {
+    .mat-elevation-z8 {
+        overflow-x: scroll;
+    }
+
+    table {
+        width: 100%;
+
+        & .mat-header {
+
+            &-cell {
+                width: 100px;
+                background-color: var(--faden-amarillo);
+                color: var(--faden-fondo);
+                border: none;
+
+                &-detail {
+                    background-color: var(--faden-morado);
+                }
+
+            }
+
+        }
+
+
+
+        & .mat-cell-detail {
+            background-color: var(--faden-fondo-secundario);
+        }
+
+
+        &-container {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+
+
+
+        .mat-sort-header {
+            color: var(--faden-fondo);
+
+            &-indicator,
+            &-pointer-left,
+            &-arrow,
+            &-pointer-right {
+                color: var(--faden-fondo);
+            }
+
+        }
+
+        th.mat-header,
+        td.mat,
+        td.footer {
+
+            &-cell:first-of-type,
+            &-cell:last-of-type {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+        // mat-sort-header mat-header-cell cdk-header-cell ng-tns-c510-2 cdk-column-Rol mat-column-Rol ng-star-inserted
+
+    }
+
+
+    .mat-expansion-panel {
+        &-body {
+            padding: 0;
+        }
+    }
+
+    .faden-tabla-franja {
+        background-color: var(--faden-morado);
+        color: var(--faden-fondo);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-weight: bold;
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .faden-tabla-filtro {
+
+        &-franja {
+            background-color: var(--faden-morado);
+            color: var(--faden-fondo);
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.5em;
+            text-align: center;
+        }
+    }
+
+    .mat-input-element {
+        margin-top: 3px;
+    }
+
+
+
+
+
+
+
+
+
+    tr.example-detail-row {
+        height: auto;
+    }
+
+
+    .example-element-row td {
+        border-bottom-width: 0;
+    }
+
+    .example-element-detail {
+        overflow: hidden;
+        display: flex;
+    }
+
+
+
+}

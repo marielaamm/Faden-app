@@ -35,7 +35,11 @@
 							"./node_modules/bootstrap-icons/font/bootstrap-icons.css",
 							"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
 							"node_modules/igniteui-angular/styles/igniteui-angular.css",
-							"src/styles.scss"
+							"src/styles.scss",
+							"src/assets/css/mat-dialog.scss",
+							"src/assets/css/modal.scss",
+							"src/assets/css/mat-table.scss",
+							"src/assets/css/mat-form.scss"
 						],
 						"scripts": [
 							"./node_modules/jquery/dist/jquery.min.js",

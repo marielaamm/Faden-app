@@ -1,76 +1,79 @@
-#msj * {
-    margin: 0;
-    padding: 0;
-}
+.app-dialogo{
 
-
-::ng-deep .mat-dialog-container{
-    border: 5px solid var(--escan-verde) ;
-    min-width: 350px;
-    max-width: 400px;
-}
-
-
-
-
-#msj .escan-dialog-container{
-    margin: 0 auto;
-    word-wrap:break-word;
-  
-}
-
-
-
-#msj .escan-dialog-title{
-    width: 100%;
-    font-style: italic;
-    color: var(--escan-naranja);
-    font-family: 'SavingsBond';
-    font-size: 2em;
-    text-align: center;
-    max-height: 100px;
-}
-
-#msj .escan-dialog-content{
-    width: 100%;
-}
-
-
-
-#msj div .escan-dialog-msj{
-    margin: 0;
-    padding: 0;
-    margin-bottom: 25px;
-    text-align: left;
-    font-size: 1em;
-    color: black;
-    font-weight: bold;
-    word-wrap: break-word;
-}
-
-#msj button {
-    padding: 5px;
-}
-
-
-#msj .escan-dialog-btn-a{
-    box-shadow: none;
-    background-color: var(--escan-naranja);
-    color: var(--escan-fondo);
-}
-
-#msj .escan-dialog-btn-a:hover{
-    background-color: var(--escan-verde) ;
-    color: var(--escan-fondo);
-    box-shadow: 0px 15px 20px var(--escan-verde) ;
-    transform: translateY(-2px);
-  }
-  
-
-::ng-deep .color-red{
-    color:red;
-}
-
-::ng-deep .color-blue{
-    color:blue;
+    #msj * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    
+     .mat-dialog-container{
+        border: 5px solid var(--faden-amarillo) ;
+        min-width: 350px;
+        max-width: 400px;
+    }
+    
+    
+    
+    
+    #msj .faden-dialog-container{
+        margin: 0 auto;
+        word-wrap:break-word;
+      
+    }
+    
+    
+    
+    #msj .faden-dialog-title{
+        width: 100%;
+        font-style: italic;
+        color: var(--faden-morado);
+        font-family: 'SavingsBond';
+        font-size: 2em;
+        text-align: center;
+        max-height: 100px;
+    }
+    
+    #msj .faden-dialog-content{
+        width: 100%;
+    }
+    
+    
+    
+    #msj div .faden-dialog-msj{
+        margin: 0;
+        padding: 0;
+        margin-bottom: 25px;
+        text-align: left;
+        font-size: 1em;
+        color: black;
+        font-weight: bold;
+        word-wrap: break-word;
+    }
+    
+    #msj button {
+        padding: 5px;
+    }
+    
+    
+    #msj .faden-dialog-btn-a{
+        box-shadow: none;
+        background-color: var(--faden-morado);
+        color: var(--faden-fondo);
+    }
+    
+    #msj .faden-dialog-btn-a:hover{
+        background-color: var(--faden-amarillo) ;
+        color: var(--faden-fondo);
+        box-shadow: 0px 15px 20px var(--faden-amarillo) ;
+        transform: translateY(-2px);
+      }
+      
+    
+    .color-red{
+        color:red;
+    }
+    
+    ::ng-deep .color-blue{
+        color:blue;
+    }
 }

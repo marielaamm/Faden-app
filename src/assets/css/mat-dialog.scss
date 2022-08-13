@@ -1,0 +1,14 @@
+.mat-dialog-container{
+    padding: 0 !important;
+    box-shadow: initial;
+    background: initial;
+    color: initial;
+    overflow: initial !important;
+
+    .faden-dialog-container{
+      padding: 24px;
+      background: var(--faden-fondo);
+      border: 5px solid var(--faden-amarillo) ;
+    }
+
+  }

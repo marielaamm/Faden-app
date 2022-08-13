@@ -14,7 +14,7 @@
     border-left: 0px;
     border-right: 0px;
     border-bottom: 1px;
-    border-color: var(--faden-lila);
+    border-color: var(--faden-amarillo);
     border-style: solid;
 }
 
@@ -23,7 +23,7 @@
 
 
 .faden-header ul li a{
-    color: var(--faden-lila);
+    color: var(--faden-amarillo);
     margin: 2px;
 }
 
@@ -35,7 +35,7 @@
 
 .faden-header ul li a:hover{
     color: var(--faden-fondo);
-    background-color: var(--faden-lila);
+    background-color: var(--faden-amarillo);
 }
 
 .faden-header span{
