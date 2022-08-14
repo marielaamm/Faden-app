@@ -2,7 +2,7 @@
     <div class="faden-mat-form">
         <div id="frmPaciente" class="formulario">
 
-            <form >
+            <form>
                 <div class="row ">
 
                     <div class="row">
@@ -24,7 +24,7 @@
 
 
                         <div class="row">
-                            
+
                             <mat-card class="mat-card">
                                 <mat-card-header>
                                     <mat-card-title class="mat-card-title">Paciente</mat-card-title>
@@ -42,7 +42,8 @@
 
                                         </div>
 
-                                        <div class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-lg-8">
+                                        <div
+                                            class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-md-8">
                                             <mat-form-field appearance="legacy">
                                                 <mat-label>Fecha</mat-label>
                                                 <input matInput [matDatepicker]="picker" id="txtFecha">
@@ -53,36 +54,45 @@
 
                                             </mat-form-field>
 
-
                                         </div>
 
-
-
                                     </div>
 
+
+
                                     <div class="row">
-                                        <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-label>Primer Nombre </mat-label>
-                                            <input matInput type="text" id="txtPrimerNombre">
-                                        </mat-form-field>
+                                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                            <mat-form-field>
+                                                <mat-label>Primer Nombre </mat-label>
+                                                <input matInput type="text" id="txtPrimerNombre">
+                                            </mat-form-field>
+                                        </div>
 
-                                        <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-label>Segundo Nombre </mat-label>
-                                            <input matInput type="text" id="txtSegundoNombre">
-                                        </mat-form-field>
+                                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                            <mat-form-field>
+                                                <mat-label>Segundo Nombre </mat-label>
+                                                <input matInput type="text" id="txtSegundoNombre">
+                                            </mat-form-field>
+                                        </div>
 
-                                        <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-label>Primer Apellido </mat-label>
-                                            <input matInput type="text" id="txtPrimerApellido">
-                                        </mat-form-field>
+                                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                            <mat-form-field>
+                                                <mat-label>Primer Apellido </mat-label>
+                                                <input matInput type="text" id="txtPrimerApellido">
+                                            </mat-form-field>
+                                        </div>
 
-                                        <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-label>Segundo Apellido </mat-label>
-                                            <input matInput type="text" id="txSegundoApellido">
-                                        </mat-form-field>
+                                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                            <mat-form-field>
+                                                <mat-label>Segundo Apellido </mat-label>
+                                                <input matInput type="text" id="txSegundoApellido">
+                                            </mat-form-field>
+                                        </div>
                                     </div>
 
+
                                     <div class="row">
+
                                         <div class="col-12">
                                             <label class="col-3 col-sm-1 col-md-1 col-lg-1"><b>Género:</b></label>
                                             <mat-radio-group aria-label="Seleccione género"
@@ -96,51 +106,67 @@
                                     </div>
 
                                     <div class="row">
-                                        <igx-combo _ngcontent-pmm-5 class="col-12 col-sm-6 col-md-6 col-lg-6"
-                                            #withValueKey [data]="lstMunicipio" valueKey="IdMunicipio"
-                                            displayKey="Municipio" id="txtMunicipio"
-                                            placeholder="Lugar de Nacimiento"
-                                            searchPlaceholder="Seleccione una Ciudad"
-                                            (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
-                                            appAutofocus>
-                                        </igx-combo>
 
-                                        <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3"
-                                            appearance="legacy">
-                                            <mat-label>Fecha de Nacimiento</mat-label>
-                                            <input matInput [matDatepicker]="pickerNacimiento"
-                                                id="txtFechaNacimiento">
-                                            <mat-datepicker-toggle matSuffix [for]="pickerNacimiento">
-                                                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                                            </mat-datepicker-toggle>
-                                            <mat-datepicker #pickerNacimiento></mat-datepicker>
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                            <igx-combo #withValueKey [data]="lstMunicipio" valueKey="IdCiudad"
+                                                displayKey="Nombre" id="txtMunicipio"
+                                                placeholder="Lugar de Nacimiento"
+                                                searchPlaceholder="Seleccione una Ciudad"
+                                                (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
+                                                appAutofocus>
+                                            </igx-combo>
+                                        </div>
 
-                                        </mat-form-field>
+                                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                            <mat-form-field  appearance="legacy">
+                                                <mat-label>Fecha de Nacimiento</mat-label>
+                                                <input matInput [matDatepicker]="pickerNacimiento" id="txtFechaNacimiento">
+                                                <mat-datepicker-toggle matSuffix [for]="pickerNacimiento">
+                                                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #pickerNacimiento></mat-datepicker>
+    
+                                            </mat-form-field>
 
-                                        <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-label>Edad</mat-label>
-                                            <input matInput type="text" id="txtEdad">
-                                        </mat-form-field>
+                                        </div>
+
+                                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                            <mat-form-field >
+                                                <mat-label>Edad</mat-label>
+                                                <input matInput type="text" id="txtEdad">
+                                            </mat-form-field>
+                                        </div>
                                     </div>
 
+
                                     <div class="row">
-                                        <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-label>Ocupación</mat-label>
-                                            <input matInput type="text" id="txtOcupacion">
-                                        </mat-form-field>
 
-                                        <mat-form-field class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-label>No de Cédula </mat-label>
-                                            <input matInput type="text" id="txCedula">
-                                        </mat-form-field>
+                                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                            <mat-form-field >
+                                                <mat-label>Ocupación</mat-label>
+                                                <input matInput type="text" id="txtOcupacion">
+                                            </mat-form-field>
+                                        </div>
+                                        
 
-                                        <igx-combo _ngcontent-pmm-5 class="col-12 col-sm-6 col-md-6 col-lg-6"
+                                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                                            <mat-form-field >
+                                                <mat-label>No de Cédula </mat-label>
+                                                <input matInput type="text" id="txCedula">
+                                            </mat-form-field>
+                                        </div>
+                                        
+
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                            <igx-combo  
                                             #withValueKey [data]="lstEscolaridad" valueKey="IdEscolaridad"
                                             displayKey="Escolaridad" id="txtEscolaridad" placeholder="Escolaridad"
                                             searchPlaceholder="Seleccione una Opción"
                                             (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
                                             appAutofocus>
                                         </igx-combo>
+                                        </div>
+                                        
                                     </div>
 
                                     <div class="row">

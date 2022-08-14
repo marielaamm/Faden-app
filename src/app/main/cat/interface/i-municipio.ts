@@ -1,4 +1,5 @@
 export interface iMunicipio{
-    IdMunicipio: Number,
-    Municipio: String
+    IdCiudad : Number,
+    Nombre: String,
+    IdDepto: String
 }
