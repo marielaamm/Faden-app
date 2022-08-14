@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from 'src/app/main/shared/service/server.service';
+import { iDepartamento } from '../../interface/i-departamento';
 
 @Component({
   selector: 'app-municipio',
@@ -8,19 +9,20 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
 })
 export class MunicipioComponent implements OnInit {
 
-  public lstDepartamento: {IdDepartamento: Number, Departamento: String}[] = [];
+  public lstDepartamento: iDepartamento [] = [];
 
   constructor(private ServerScv : ServerService) {
-    ServerScv._DptoService.BuscarDpto();
+    ServerScv._CatalogoService.BuscarDpto("");
    }
 
 
   private LlenarDpto(datos:string):void{
+
     let _json = JSON.parse(datos);
 
     _json["d"].forEach(
       (b:any)=>{
-        this.lstDepartamento.push({IdDepartamento : b.IdDepartamento, Departamento: b.Departamento});
+        this.lstDepartamento.push({IdDepartamento : b.IdDpto, Codigo : b.Codigo, Departamento : b.Nombre});
       }
     );
     
@@ -40,20 +42,19 @@ export class MunicipioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+    this.ServerScv._CatalogoService.change.subscribe(s =>{
+
+      if(s[0] == "Llenar_departamento"){
+        this.LlenarDpto(s[1]);
+      }
+    });
  
   }
 
 
   
-  ngAfterViewInit(): void {
 
-    this.ServerScv._DptoService.change.subscribe(
-
-      s =>{
-        this.LlenarDpto(s[1]);
-      }
-    );
-  
-  }
 
 }

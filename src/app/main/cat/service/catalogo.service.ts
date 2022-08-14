@@ -8,7 +8,7 @@ import { DialogoComponent } from '../../shared/components/dialogo/dialogo.compon
 @Injectable({
   providedIn: 'root'
 })
-export class DepartamentoService {
+export class CatalogoService {
 
   private cnx = new Conexion();
   @Output() change: EventEmitter<any> = new EventEmitter();
@@ -16,8 +16,8 @@ export class DepartamentoService {
   constructor(private _Router: Router, private http: HttpClient, private _Dialog: MatDialog) { }
 
 
-  public BuscarDpto(){
-    this.http.get<any>(this.cnx.Url() + "Departamento/Buscar").subscribe(
+  public BuscarDpto(codigo : string){
+    this.http.get<any>(this.cnx.Url() + "cat/Departamento/Buscar" + "?Codigo="+ codigo).subscribe(
       datos =>{
         this.change.emit(["Llenar_departamento", datos]);
       },
