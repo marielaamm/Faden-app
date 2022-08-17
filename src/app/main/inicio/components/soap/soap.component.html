@@ -4,7 +4,7 @@
             <div id="frmSoap">
                 <form class="formulario">
                     <div class="row">
-        
+
                         <div class="row">
                             <div class="btnAccion">
                                 <div class="btn-contenedor">
@@ -20,18 +20,18 @@
                                     </button>
                                 </div>
                             </div>
-        
+
                             <div class="row">
                                 <mat-card class="mat-card">
                                     <mat-card-header>
                                         <mat-card-title class="mat-card-title">SOAP: Notas de seguimiento y evolución
                                         </mat-card-title>
                                     </mat-card-header>
-        
+
                                     <mat-card-content>
                                         <div class="row">
                                             <div class="col-6 col-sm-3 col-md-2 col-lg-2">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label> Fecha </mat-label>
                                                     <input matInput [matDatepicker]="picker" id="txtFecha">
                                                     <mat-datepicker-toggle matSuffix [for]="picker">
@@ -41,119 +41,137 @@
                                                 </mat-form-field>
                                             </div>
 
-                                            <div class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-lg-8">
-                                                <mat-form-field                                           
-                                                appearance="legacy">
-                                                <mat-label>Hora</mat-label>
-                                                <input matInput type="text" id="txtHora">
-                                            </mat-form-field>
+                                            <div
+                                                class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-lg-8">
+                                                <mat-form-field appearance="legacy">
+                                                    <mat-label>Hora</mat-label>
+                                                    <input matInput type="text" id="txtHora">
+                                                </mat-form-field>
                                             </div>
                                         </div>
-        
+
                                         <div class="row border-paciente">
-                                            <igx-combo _ngcontent-pmm-5 class="col-6 col-sm-6 col-md-6 col-lg-6" #withValueKey
-                                                [data]="lstPaciente" valueKey="NoPaciente" displayKey="Paciente"
-                                                id="txtPaciente" placeholder="Paciente"
-                                                searchPlaceholder="Seleccione un Paciente"
-                                                (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
-                                                appAutofocus>
-                                            </igx-combo>
-        
-                                            <mat-form-field class="col-3 col-sm-3 col-md-3 col-lg-3 ">
-                                                <mat-label>No de Expediente </mat-label>
-                                                <input matInput type="text" id="txtNoExpediente">
-                                            </mat-form-field>
-        
-                                            <mat-form-field class="col-3 col-sm-3 col-md-3 col-lg-3 ">
-                                                <mat-label>Edad </mat-label>
-                                                <input matInput type="text" id="txtEdad">
-                                            </mat-form-field>
-        
+
+                                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                <igx-combo _ngcontent-pmm-5 
+                                                    #withValueKey [data]="lstPaciente" valueKey="NoPaciente"
+                                                    displayKey="Paciente" id="txtPaciente" placeholder="Paciente"
+                                                    searchPlaceholder="Seleccione un Paciente"
+                                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
+                                                    appAutofocus>
+                                                </igx-combo>
+                                            </div>
+
+                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 ">
+                                                <mat-form-field >
+                                                    <mat-label>No de Expediente </mat-label>
+                                                    <input matInput type="text" id="txtNoExpediente">
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 ">
+                                                <mat-form-field >
+                                                    <mat-label>Edad </mat-label>
+                                                    <input matInput type="text" id="txtEdad">
+                                                </mat-form-field>
+                                            </div>
+
                                         </div>
-        
+
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                                 <label class="col-12"><b>Sobre el acompañante: </b></label>
-                                                <mat-radio-group aria-label="Seleccione tipo"
-                                                    class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                <mat-radio-group aria-label="Seleccione tipo" >
                                                     <mat-radio-button value="1">Acompañante</mat-radio-button>
                                                     <mat-radio-button value="2">Cuidador</mat-radio-button>
                                                 </mat-radio-group>
-        
+
                                             </div>
                                         </div>
-        
+
                                         <div class="row border-paciente">
-                                            <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-6">
-                                                <mat-label>Nombre</mat-label>
-                                                <input matInput type="text" id="txtNombrecuidador">
-                                            </mat-form-field>
-        
-                                            <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                                <mat-label>Dirección </mat-label>
-                                                <input matInput type="text" id="txtDireccion">
-                                            </mat-form-field>
-        
-                                            <mat-form-field class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                                <mat-label>Teléfono</mat-label>
-                                                <input matInput type="text" id="txtTelefono">
-                                            </mat-form-field>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                                                <mat-form-field >
+                                                    <mat-label>Nombre</mat-label>
+                                                    <input matInput type="text" id="txtNombrecuidador">
+                                                </mat-form-field>
+                                            </div>                                            
+
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                <mat-form-field >
+                                                    <mat-label>Dirección </mat-label>
+                                                    <input matInput type="text" id="txtDireccion">
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                <mat-form-field >
+                                                    <mat-label>Teléfono</mat-label>
+                                                    <input matInput type="text" id="txtTelefono">
+                                                </mat-form-field>
+                                            </div>
                                         </div>
-        
+
                                         <div class="row border-paciente">
                                             <div class="col-12">
                                                 <label class="col-12"><b>Propósito de la visita:</b></label>
                                                 <mat-radio-group aria-label="Seleccione visita"
                                                     class="col-6 col-sm-4 col-md-4 col-lg-4">
-                                                    <mat-radio-button value="1" class="col-6 col-sm-4 col-md-2 col-lg-2">Cita
+                                                    <mat-radio-button value="1"
+                                                        class="col-6 col-sm-4 col-md-2 col-lg-2">Cita
                                                     </mat-radio-button>
-                                                    <mat-radio-button value="2" class="col-6 col-sm-4 col-md-2 col-lg-2">Control
+                                                    <mat-radio-button value="2"
+                                                        class="col-6 col-sm-4 col-md-2 col-lg-2">Control
                                                     </mat-radio-button>
-                                                    <mat-radio-button value="3" class="col-6 col-sm-4 col-md-2 col-lg-2">
+                                                    <mat-radio-button value="3"
+                                                        class="col-6 col-sm-4 col-md-2 col-lg-2">
                                                         Seguimiento</mat-radio-button>
-                                                    <mat-radio-button value="4" class="col-6 col-sm-4 col-md-2 col-lg-2">
+                                                    <mat-radio-button value="4"
+                                                        class="col-6 col-sm-4 col-md-2 col-lg-2">
                                                         Urgencia</mat-radio-button>
-                                                    <mat-radio-button value="5" class="col-6 col-sm-4 col-md-2 col-lg-2">
+                                                    <mat-radio-button value="5"
+                                                        class="col-6 col-sm-4 col-md-2 col-lg-2">
                                                         Emergencia</mat-radio-button>
                                                 </mat-radio-group>
                                             </div>
                                         </div>
-        
-        
-                                        <div class="row  text-area-soap">
-                                            <mat-form-field >
+
+
+                                        <div class="row ">
+                                            <mat-form-field>
                                                 <mat-label>Subjetivo</mat-label>
                                                 <textarea matInput></textarea>
                                             </mat-form-field>
                                         </div>
-        
-                                        <div class="col-12 ">
+
+                                        <div class="row ">
                                             <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Objetivo</mat-label>
                                                 <textarea matInput></textarea>
                                             </mat-form-field>
                                         </div>
-        
-                                        <div>
+
+                                        <div class="row">
                                             <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Avalúo</mat-label>
                                                 <textarea matInput></textarea>
                                             </mat-form-field>
                                         </div>
-        
-                                        <div>
-                                            <mat-form-field class="col-12 col-sm-12  col-md-12 col-lg-12 text-area-soap">
+
+                                        <div class="row">
+                                            <mat-form-field
+                                                class="col-12 col-sm-12  col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Planes</mat-label>
                                                 <textarea matInput></textarea>
                                             </mat-form-field>
                                         </div>
-        
+
                                     </mat-card-content>
-        
+
                                 </mat-card>
-        
+
                             </div>
-        
+
                         </div>
                     </div>
                 </form>
@@ -164,4 +182,3 @@
     </div>
 
 </div>
-
