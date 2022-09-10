@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Validacion } from 'src/app/main/shared/class/validacion';
+import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
@@ -7,20 +10,53 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
   styleUrls: ['./departamento.component.scss']
 })
 export class DepartamentoComponent implements OnInit {
+public val : Validacion = new Validacion();
 
-  constructor(private ServerScv : ServerService) { 
-    
+
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) { 
+    this.val.add("txtCodigo", "1", "LEN>", "0");
+    this.val.add("txtCodigo","2", "LEN<=", "4");
+    this.val.add("txtDepartamento","1","LEN>","0");
+    this.val.add("txtDepartamento","2","LEN<=","50");
+
   }
 
+  public v_Guardar() : void{
+    let esError : string =" ";
+    let mensaje : string =" <ol>";
 
-  
+    if (this.val.ValForm.get("txtCodigo")?.invalid)
+    {
+      mensaje += "<li>Ingrese el código del departamento o revise la cantidad de caracteres</li>";
+      esError +="1";
+    }
 
+    if(this.val.ValForm.get("txtDepartamento")?.invalid)
+    {
+      mensaje += "<li>El nombre del departamento no debe exceder 50 caracteres</li>";
+      esError += "1";
+    }
 
+    mensaje += "</ol>"
 
-  
+    if (esError.includes("1"))
+    {
+      let s : string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\""+ 1 + "\",\"Mensaje\":\""+ mensaje + "\"}"+ ", \"count\":"+ 0 + ", \"esError\":"+ 1 + "}";
+      let _json= JSON.parse(s);
+      this._Dialog.open(DialogoComponent,{
+
+        data: _json["msj"]
+      });
+
+      return;
+
+    }
+ 
+  }
+
+   
   Cerrar() : void{
-    
-  
+      
       this.ServerScv.CerrarFormulario();
       
   }
