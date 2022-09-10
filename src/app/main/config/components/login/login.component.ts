@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validacion } from 'src/app/main/shared/class/validacion';
-import { ServerService } from 'src/app/main/shared/service/server.service';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   val = new Validacion();
 
   
-  constructor(private ServerScv : ServerService) {
+  constructor(private _loginserv : LoginService) {
 
     this.val.add("txtUsuario", "1","LEN>", "0");
     this.val.add("txtUsuario", "2","LEN>=", "3");
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.val.ValForm.get("txtLoginPass")?.disable();
     this.val.ValForm.get("chkRecordar")?.disable();
     this.bol_Load = true;
-    this.ServerScv._loginserv.InicioSesion(this.val.ValForm.get("txtUsuario")?.value, this.val.ValForm.get("txtPass")?.value, this.bol_Recordar);
+    this._loginserv.InicioSesion(this.val.ValForm.get("txtUsuario")?.value, this.val.ValForm.get("txtPass")?.value, this.bol_Recordar);
   }
 
 
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void {
 
-    this.ServerScv._loginserv.change.subscribe(s =>{
+    this._loginserv.change.subscribe(s =>{
 
 
       this.val.ValForm.get("txtUsuario")?.enable();

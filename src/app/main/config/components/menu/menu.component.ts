@@ -12,6 +12,7 @@ import { PacienteComponent } from 'src/app/main/inicio/components/expediente/pac
 import { SoapComponent } from 'src/app/main/inicio/components/soap/soap.component';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
 import { ServerService } from 'src/app/main/shared/service/server.service';
+import { LoginService } from '../../service/login.service';
 import { RolesComponent } from '../roles/roles.component';
 import { UsuarioComponent } from '../usuario/usuario.component';
 import { NavComponent } from './nav/nav.component';
@@ -57,7 +58,7 @@ export class MenuComponent {
 
   
 
-  constructor(private ServerScv : ServerService) {
+  constructor(private _loginserv : LoginService, private ServerScv : ServerService) {
     //this.ServerScv._loginserv.VerificarSession();
     
   }
@@ -107,7 +108,7 @@ export class MenuComponent {
   }
 
   public CerrarSession() : void{
-    this.ServerScv._loginserv.CerrarSession();
+    this._loginserv.CerrarSession();
   }
 
 

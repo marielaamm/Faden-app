@@ -1,6 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { ServerService } from './main/shared/service/server.service';
-
+import { LoginService } from './main/config/service/login.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,9 @@ import { ServerService } from './main/shared/service/server.service';
 export class AppComponent implements OnInit {
   public title = 'Escalante Sanchez S.A.';
 
-  constructor(private ServerScv : ServerService){
+  constructor(private _loginserv : LoginService){
     
-    ServerScv._loginserv.VerificarSession();
+    _loginserv.VerificarSession();
 
   }
 

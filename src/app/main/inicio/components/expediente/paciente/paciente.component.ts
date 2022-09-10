@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { iMunicipio } from 'src/app/main/cat/interface/i-municipio';
+import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
@@ -13,9 +14,7 @@ export class PacienteComponent implements OnInit {
   public lstMunicipio: iMunicipio[] = [];
   public lstEscolaridad:{}[]=[];
 
-
   constructor(private ServerScv : ServerService) {
-    ServerScv._PruebaService.BuscarCiudad();
    }
 
 
@@ -44,12 +43,12 @@ export class PacienteComponent implements OnInit {
   
   ngOnInit(): void {
 
-    this.ServerScv._PruebaService.change.subscribe(s =>{
+    /*this.ServerScv._PruebaService.change.subscribe(s =>{
 
       if(s[0] == "Llenar_ciudad"){
         this.LlenarCiudad(s[1]);
       }
-    });
+    });*/
 
     
     

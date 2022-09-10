@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iDepartamento } from '../../interface/i-departamento';
+import { CatalogoService } from '../../service/catalogo.service';
 
 @Component({
   selector: 'app-municipio',
@@ -10,9 +12,11 @@ import { iDepartamento } from '../../interface/i-departamento';
 export class MunicipioComponent implements OnInit {
 
   public lstDepartamento: iDepartamento [] = [];
+  private _CatalogoService : CatalogoService;
 
-  constructor(private ServerScv : ServerService) {
-    ServerScv._CatalogoService.BuscarDpto("");
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+    this._CatalogoService = new CatalogoService(this._Dialog)
+    this._CatalogoService.BuscarDpto("");
    }
 
 
@@ -44,7 +48,7 @@ export class MunicipioComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.ServerScv._CatalogoService.change.subscribe(s =>{
+    this._CatalogoService.change.subscribe(s =>{
 
       if(s[0] == "Llenar_departamento"){
         this.LlenarDpto(s[1]);

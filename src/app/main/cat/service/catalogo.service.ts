@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
 
@@ -10,14 +9,32 @@ import { DialogoComponent } from '../../shared/components/dialogo/dialogo.compon
 })
 export class CatalogoService {
 
-  private cnx = new Conexion();
+  private _Cnx = new Conexion();
   @Output() change: EventEmitter<any> = new EventEmitter();
   
-  constructor(private _Router: Router, private http: HttpClient, private _Dialog: MatDialog) { }
+  
+  private IsDialogOpen : boolean = false;
+
+  private http: HttpClient;
+
+  constructor(public _Dialog: MatDialog) { 
+
+    this.http = new HttpClient(new HttpXhrBackend({ 
+      build: () => new XMLHttpRequest() 
+  }));
+
+    this._Dialog.afterOpened.subscribe(() => {
+      this.IsDialogOpen = true;
+    });
+
+    this._Dialog.afterAllClosed.subscribe(() => {
+      this.IsDialogOpen = false;
+    });
+  }
 
 
   public BuscarDpto(codigo : string){
-    this.http.get<any>(this.cnx.Url() + "cat/Departamento/Buscar" + "?Codigo="+ codigo).subscribe(
+    this.http.get<any>(this._Cnx.Url() + "cat/Departamento/Buscar" + "?Codigo="+ codigo).subscribe(
       datos =>{
         this.change.emit(["Llenar_departamento", datos]);
       },
