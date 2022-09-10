@@ -3,9 +3,9 @@
 
         <div class="faden-contenedor" >
 
-            <div id="frmMunicipio" cdkDrag>
+            <div id="frmMunicipio">
         
-                <form class="formulario">
+                <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
         
                     <div class="row">
         
@@ -15,7 +15,7 @@
                                     <mat-icon>search</mat-icon>
                                 </button>
                                 <div class="line-vertical"></div>
-                                <button mat-fab class="btn-faden-aceptar">
+                                <button mat-fab class="btn-faden-aceptar" (click)="v_Guardar();">
                                     <mat-icon>save</mat-icon>
                                 </button>
                                 <button mat-fab class="btn-faden-cancelar">
@@ -40,14 +40,18 @@
                                     <div class="row">
                                         <mat-form-field>
                                             <mat-label>Municipio</mat-label>
-                                            <input matInput type="text" id="txtMunicipio">
+                                            <input matInput type="text" id="txtMunicipio" formControlName="txtMunicipio">
+                                            <mat-error *ngIf="val.ValForm.get('txtMunicipio')?.errors?.['Regla']=='1'" style="color:black">Escriba el nombre del<strong>Municipio</strong></mat-error>
+                                            <mat-error *ngIf="val.ValForm.get('txtMunicipio')?.errors?.['Regla']=='2'"style="color:black">El código debe tener máximo 50 caracteres</mat-error>
                                         </mat-form-field>   
+                                        
+                                    
 
                                     </div>
 
                                     <div class="row">
                                         <igx-combo #withValueKey [data]="lstDepartamento"
-                                        valueKey="IdDepartamento" displayKey="Departamento" id="txtDepartamento"
+                                        valueKey="IdDepartamento" displayKey="Departamento" id="txtDepartamento" formControlName="txtDepartamento"
                                         placeholder="Departamento" searchPlaceholder="Seleccione un Departamento"
                                         (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
                                     </igx-combo>
