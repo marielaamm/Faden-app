@@ -48,8 +48,8 @@ export class CatalogoService {
     );
   }
 
-  public GuardarMunicipio(Municipio : iMunicipio){
-    this.http.post<any>(this._Cnx.Url() +"cat/Municipio/Guardar", JSON.stringify(Municipio), {headers: {"content-type" :"aplication/json" }}).subscribe(
+  public GuardarMunicipio(d : iMunicipio){
+    this.http.post<any>(this._Cnx.Url() +"cat/Municipio/Guardar", JSON.stringify(d), {headers: {"content-type" :"aplication/json" }}).subscribe(
       dato =>{
         let _json =  JSON.parse(dato);
         if(_json["esError"] == 1){
