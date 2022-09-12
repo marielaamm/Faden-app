@@ -3,6 +3,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
+import { iMunicipio } from '../interface/i-municipio';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,24 @@ export class CatalogoService {
 
 
     );
+  }
+
+  public GuardarMunicipio(Municipio : iMunicipio){
+    this.http.post<any>(this._Cnx.Url() +"Municipio/Guardar", JSON.stringify(Municipio), {headers: {"content-type" :"aplication/json" }}).subscribe(
+      dato =>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Municipio_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Municipio_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Municipio_Guardar", undefined]);
+          this.Msj();
+        }
+    );
+
   }
 
 
