@@ -5,6 +5,7 @@ import { iDepartamento } from '../../interface/i-departamento';
 import { CatalogoService } from '../../service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
+import { iMunicipio } from '../../interface/i-municipio';
 
 @Component({
   selector: 'app-municipio',
@@ -85,6 +86,13 @@ export class MunicipioComponent implements OnInit {
 
 
     }
+    
+    let M: iMunicipio = {}as iMunicipio;
+    M.IdCiudad = 0;
+    M.Nombre  = this.val.ValForm.get("txtMunicipio")?.value;
+    M.IdDepto = this.val.ValForm.get("txtDepartamento")?.value;
+    this._CatalogoService.GuardarMunicipio(M);
+
   }
 
 
@@ -121,11 +129,6 @@ export class MunicipioComponent implements OnInit {
           }
           this.Limpiar();
 
-
-          
-
-
-          
 
 
         }
