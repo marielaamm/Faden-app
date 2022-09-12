@@ -12,74 +12,83 @@ import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo
   styleUrls: ['./municipio.component.scss']
 })
 export class MunicipioComponent implements OnInit {
-  public val : Validacion = new Validacion();
+  public val: Validacion = new Validacion();
 
-  public lstDepartamento: iDepartamento [] = [];
-  private _CatalogoService : CatalogoService;
+  public lstDepartamento: iDepartamento[] = [];
+  private _CatalogoService: CatalogoService;
 
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
-    this.val.add("txtMunicipio","1","LEN>", "0");
-    this.val.add("txtMunicipio", "2","LEN<=", "50");
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
+    this.val.add("txtMunicipio", "1", "LEN>", "0");
+    this.val.add("txtMunicipio", "2", "LEN<=", "50");
     this.val.add("txtDepartamento", "1", "LEN>", "0");
 
-    this._CatalogoService = new CatalogoService(this._Dialog)
+    this._CatalogoService = new CatalogoService(this._Dialog);
+    this.Limpiar();
     this._CatalogoService.BuscarDpto("");
-   }
+
+  }
+
+
+  private Limpiar(){
+    this.val.ValForm.get("txtMunicipio")?.setValue("");
+    this.val.ValForm.get("txtDepartamento")?.setValue("");
+
+
+  }
 
 
 
-
-  private LlenarDpto(datos:string):void{
+  private LlenarDpto(datos: string): void {
 
     let _json = JSON.parse(datos);
 
     _json["d"].forEach(
-      (b:any)=>{
-        this.lstDepartamento.push({IdDepartamento : b.IdDpto, Codigo : b.Codigo, Departamento : b.Nombre});
+      (b: any) => {
+        this.lstDepartamento.push({ IdDepartamento: b.IdDpto, Codigo: b.Codigo, Departamento: b.Nombre });
       }
     );
-    
+
   }
 
 
   public singleSelection(event: any) {
     if (event.added.length) {
-        event.newSelection = event.added;
+      event.newSelection = event.added;
     }
-}
-
-
-
-public v_Guardar():void{
-  let esError :string="";
-  let mensaje :string="<ol>";
-
-  if(this.val.ValForm.get("txtMunicipio")?.invalid){
-    mensaje += "<li>Ingrese el nombre del Municipio o revise la cantidada de caracteres</li>";
-    esError +="1";
   }
 
-  if(this.val.ValForm.get("txtDepartamento")?.invalid){
-    mensaje += "<li>Seleccione un departamento</li>"
-    esError +="1";
+
+
+  public v_Guardar(): void {
+    let esError: string = "";
+    let mensaje: string = "<ol>";
+
+    if (this.val.ValForm.get("txtMunicipio")?.invalid) {
+      mensaje += "<li>Ingrese el nombre del Municipio o revise la cantidada de caracteres</li>";
+      esError += "1";
+    }
+
+    if (this.val.ValForm.get("txtDepartamento")?.invalid) {
+      mensaje += "<li>Seleccione un departamento</li>"
+      esError += "1";
+    }
+    mensaje += "</ol>";
+
+    if (esError.includes("1")) {
+      let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + mensaje + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+
+      let _json = JSON.parse(s);
+      this._Dialog.open(DialogoComponent, {
+        data: _json["msj"]
+      });
+      return;
+
+
+    }
   }
-  mensaje +="</ol>";
-
-  if(esError.includes("1")){
-    let s : string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\""+ 1 + "\",\"Mensaje\":\""+ mensaje + "\"}"+ ", \"count\":"+ 0 + ", \"esError\":"+ 1 + "}";
-
-    let _json= JSON.parse(s);
-    this._Dialog.open(DialogoComponent,{
-      data: _json["msj"]
-    });
-    return;
 
 
-  }
-}
-
-
-  Cerrar() : void {
+  Cerrar(): void {
 
     this.ServerScv.CerrarFormulario();
 
@@ -88,17 +97,53 @@ public v_Guardar():void{
   ngOnInit(): void {
 
 
-    this._CatalogoService.change.subscribe(s =>{
+    this._CatalogoService.change.subscribe(s => {
 
-      if(s[0] == "Llenar_departamento"){
-        this.LlenarDpto(s[1]);
+      if (s instanceof Array) {
+        if (s[0] == "Llenar_departamento") {
+          this.LlenarDpto(s[1]);
+        }
+
+        if (s[0] == "dato_Municipio_Guardar") {
+
+          this.val.ValForm.enable();
+
+          if (s[1] == undefined) {
+
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "Error al guardar." + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"],
+            });
+
+            return;
+          }
+          this.Limpiar();
+
+
+          
+
+
+          
+
+
+        }
+
       }
+
+
+
+
+
     });
- 
+
+
+
   }
 
 
-  
+
 
 
 }
