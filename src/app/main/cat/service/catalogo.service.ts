@@ -3,6 +3,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
+import { iDepartamento } from '../interface/i-departamento';
 import { iMunicipio } from '../interface/i-municipio';
 
 @Injectable({
@@ -62,6 +63,25 @@ export class CatalogoService {
           this.Msj();
         }
     );
+
+  }
+
+  public GuardarDepartamento(Departamento : iDepartamento) {
+    this.http.post<any>(this._Cnx.Url()+ "Departamento/Guardar", JSON.stringify(Departamento),{headers: {"content-type":"aplication/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Departamento_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Departamento_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Departamento_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
 
   }
 
