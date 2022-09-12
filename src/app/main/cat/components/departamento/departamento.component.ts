@@ -60,6 +60,7 @@ export class DepartamentoComponent implements OnInit {
     }
 
     let D: iDepartamento = {}as iDepartamento;
+    D.IdDepartamento = 0;
     D.Codigo = this.val.ValForm.get("txtcodigo")?.value;
     D.Departamento = this.val.ValForm.get("txtDepartamento")?.value;
     this._CatalogoService.GuardarDepartamento(D);
