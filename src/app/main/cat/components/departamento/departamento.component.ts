@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
+import { iDepartamento } from '../../interface/i-departamento';
+import { CatalogoService } from '../../service/catalogo.service';
 
 @Component({
   selector: 'app-departamento',
@@ -11,6 +13,7 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
 })
 export class DepartamentoComponent implements OnInit {
   public val: Validacion = new Validacion();
+  private _CatalogoService:CatalogoService;
 
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
@@ -19,6 +22,8 @@ export class DepartamentoComponent implements OnInit {
     this.val.add("txtDepartamento", "1", "LEN>", "0");
     this.val.add("txtDepartamento", "2", "LEN<=", "50");
     this.limpiar();
+
+    this._CatalogoService = new CatalogoService(this._Dialog);
 
   }
   private limpiar(){
@@ -53,6 +58,15 @@ export class DepartamentoComponent implements OnInit {
       return;
 
     }
+
+    let D: iDepartamento = {}as iDepartamento;
+    D.Codigo = this.val.ValForm.get("txtcodigo")?.value;
+    D.Departamento = this.val.ValForm.get("txtDepartamento")?.value;
+    this._CatalogoService.GuardarDepartamento(D);
+
+  
+
+
 
   }
 

@@ -49,7 +49,7 @@ export class CatalogoService {
   }
 
   public GuardarMunicipio(Municipio : iMunicipio){
-    this.http.post<any>(this._Cnx.Url() +"cat/Municipio/Guardar", JSON.stringify(Municipio), {headers: {"content-type" :"aplication/json" }}).subscribe(
+    this.http.post<any>(this._Cnx.Url() +"cat/Municipio/Guardar"+"?Municipio=", JSON.stringify(Municipio), {headers: {"content-type" :"aplication/json" }}).subscribe(
       dato =>{
         let _json =  JSON.parse(dato);
         if(_json["esError"] == 1){
@@ -67,7 +67,7 @@ export class CatalogoService {
   }
 
   public GuardarDepartamento(Departamento : iDepartamento) {
-    this.http.post<any>(this._Cnx.Url()+ "cat/Departamento/Guardar", JSON.stringify(Departamento),{headers: {"content-type":"aplication/json"}}).subscribe(
+    this.http.post<any>(this._Cnx.Url()+ "cat/Departamento/Guardar" + "?Departamento=", JSON.stringify(Departamento),{headers: {"content-type":"aplication/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
         if(_json["esError"] == 1){
