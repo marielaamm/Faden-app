@@ -61,7 +61,7 @@ export class DepartamentoComponent implements OnInit {
 
     let D: iDepartamento = {}as iDepartamento;
     D.IdDepartamento = 0;
-    D.Codigo = this.val.ValForm.get("txtcodigo")?.value;
+    D.Codigo = this.val.ValForm.get("txtCodigo")?.value;
     D.Departamento = this.val.ValForm.get("txtDepartamento")?.value;
     this._CatalogoService.GuardarDepartamento(D);
 
@@ -87,23 +87,31 @@ export class DepartamentoComponent implements OnInit {
         }
       }
 
-      if (s[0] == "dato_Departamento_Guardar") {
+     
+    });
 
-        this.val.ValForm.enable();
+    this._CatalogoService.change.subscribe(
 
-        if (s[1] == undefined) {
+      s =>{
+        if (s[0] == "dato_Departamento_Guardar") {
 
-          let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
-          let _json = JSON.parse(s);
-          this._Dialog.open(DialogoComponent, {
-            data: _json["msj"]
-          });
-          return;
-        }
-        this.limpiar();
+          this.val.ValForm.enable();
+  
+          if (s[1] == undefined) {
+  
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+          this.limpiar();
+      } 
+      
 
       }
-    });
+    );
 
   }
 
