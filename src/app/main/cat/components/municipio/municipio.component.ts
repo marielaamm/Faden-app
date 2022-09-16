@@ -87,10 +87,11 @@ export class MunicipioComponent implements OnInit {
 
     }
     
+    let _Fila : any = this.lstDepartamento.find(f => f.IdDepartamento == this.val.ValForm.get("txtDepartamento")?.value);
     let M: iMunicipio = {}as iMunicipio;
     M.IdCiudad = 0;
     M.Nombre  = this.val.ValForm.get("txtMunicipio")?.value;
-    M.IdDepto = this.val.ValForm.get("txtDepartamento")?.value;
+    M.IdDepto = _Fila.IdDepartamento;
     this._CatalogoService.GuardarMunicipio(M);
 
   }
