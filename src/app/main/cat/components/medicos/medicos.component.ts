@@ -40,6 +40,11 @@ export class MedicosComponent implements OnInit {
 }
 
 
+
+
+
+
+
   Cerrar() : void{
     
     this.ServerScv.CerrarFormulario();
