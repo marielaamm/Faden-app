@@ -56,7 +56,7 @@ export class MunicipioComponent implements OnInit {
   }
 
 
-  public f_key_Enter_Cliente(event: any){
+  public f_key_Enter_Departamento(event: any){
 
     if(event.key == "Enter"){
 

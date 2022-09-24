@@ -3,7 +3,7 @@
         <div class="faden-contener">
             <div id="frmMedicos">
 
-                <form class="formulario">
+                <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
                     <div class="row ">
 
                         <div class="row ">
@@ -33,7 +33,8 @@
                                             <div class="col-6 col-sm-3 col-md-2 col-lg-2">
                                                 <mat-form-field>
                                                     <mat-label>Id Médico</mat-label>
-                                                    <input matInput type="text" id="txtNoExpediente">
+                                                    <input matInput type="text" id="txtNoExpediente"
+                                                        formControlName="txtNoExpediente">
                                                 </mat-form-field>
                                             </div>
 
@@ -41,11 +42,16 @@
                                                 class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-lg-8">
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Fecha de ingreso</mat-label>
-                                                    <input matInput [matDatepicker]="picker" id="txtFecha">
+                                                    <input matInput [matDatepicker]="picker" id="txtFecha"
+                                                        formControlName="txtFecha">
                                                     <mat-datepicker-toggle matSuffix [for]="picker">
                                                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                     </mat-datepicker-toggle>
                                                     <mat-datepicker #picker></mat-datepicker>
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtFecha')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Seleccione una<strong> Fecha </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -54,40 +60,60 @@
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Primer Nombre </mat-label>
-                                                    <input matInput type="text" id="txtPrimerNombre">
+                                                    <input matInput type="text" id="txtPrimerNombre"
+                                                        formControlName="txtPrimerNombre">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtPrimerNombre')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el primer <strong> Nombre </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Segundo Nombre </mat-label>
-                                                    <input matInput type="text" id="txtSegundoNombre">
+                                                    <input matInput type="text" id="txtSegundoNombre"
+                                                        formControlName="txtSegundoNombre">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtSegundoNombre')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el segundo <strong> Nombre </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Primer Apellido </mat-label>
-                                                    <input matInput type="text" id="txtPrimerApellido">
+                                                    <input matInput type="text" id="txtPrimerApellido" 
+                                                    formControlName="txtPrimerApellido">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtPrimerApellido')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el primer <strong> Apellido </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Segundo Apellido </mat-label>
-                                                    <input matInput type="text" id="txSegundoApellido">
+                                                    <input matInput type="text" id="txSegundoApellido"
+                                                    formControlName="txtSegundoApellido">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtSegundoApellido')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el segundo <strong> Apellido </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                <igx-combo _ngcontent-pmm-5 #withValueKey [data]="lstMunicipio"
-                                                    valueKey="IdMunicipio" displayKey="Municipio" id="txtMunicipio"
+                                                <igx-combo #withValueKey [data]="lstMunicipio" valueKey="IdMunicipio"
+                                                    displayKey="Municipio" id="txtMunicipio" formControlName="txtMunicipio"
                                                     placeholder="Lugar de Nacimiento"
                                                     searchPlaceholder="Seleccione una Ciudad"
                                                     (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
-                                                    appAutofocus>
+                                                    appAutofocus >                                                    
                                                 </igx-combo>
                                             </div>
 
@@ -104,55 +130,79 @@
                                             </div>
 
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Edad</mat-label>
-                                                    <input matInput type="text" id="txtEdad">
+                                                    <input matInput type="text" id="txtEdad" formControlName="txtEdad">                                                    
                                                 </mat-form-field>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>No de Cédula </mat-label>
-                                                    <input matInput type="text" id="txCedula">
+                                                    <input matInput type="text" id="txtCedula" formControlName="txtCedula">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtCedula')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba su número de <strong> Cedula </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Especialidad </mat-label>
-                                                    <input matInput type="text" id="txtEspecialidad">
+                                                    <input matInput type="text" id="txtEspecialidad" formControlName="txtEspecialidad">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtEspecialidad')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba la <strong> Especialidad Médica </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
-                                           
+
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Dirección</mat-label>
-                                                    <input matInput type="text" id="txtDireccion">
+                                                    <input matInput type="text" id="txtDireccion" formControlName="txtDireccion">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtDireccion')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba su <strong> Dirección </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
-                                            </div>               
+                                            </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Correo electrónico</mat-label>
-                                                    <input matInput type="text" id="txtDireccion">
+                                                    <input matInput type="text" id="txtCorreo" formControlName="txtCorreo">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtCorreo')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba su <strong> Correo Electrónico </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Teléfono</mat-label>
-                                                    <input matInput type="text" id="txtEdad">
+                                                    <input matInput type="text" id="txtTelefono" formControlName="txtTelefono">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtTelefono')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba su <strong> Teléfono </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
-                                            
+
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Celular</mat-label>
-                                                    <input matInput type="text" id="txtEdad">
+                                                    <input matInput type="text" id="txtCelular" formControlName="txtCelular">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtCelular')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba su <strong> Celular </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
                                         </div>
