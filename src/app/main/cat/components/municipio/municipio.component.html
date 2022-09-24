@@ -1,15 +1,17 @@
 <div class="app-municipio">
     <div class="faden-mat-form">
 
-        <div class="faden-contenedor" >
-
+        <div class="centrado">
             <div id="frmMunicipio">
-        
+
                 <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
-        
+    
+    
                     <div class="row">
-        
+    
                         <div class="btnAccion">
+                            
+                        
                             <div class="btn-contenedor">
                                 <button mat-fab class="btn-faden-buscar" (click)="modal1.show();">
                                     <mat-icon>search</mat-icon>
@@ -29,64 +31,83 @@
                             
                         </div>
         
-        
                         <div class="row">
+                           <div class="col-12">
                             <mat-card>
                                 <mat-card-header>
                                     <mat-card-title Class="mat-card-title">Municipio</mat-card-title>
                                 </mat-card-header>
-    
+        
                                 <mat-card-content>
                                     <div class="row">
                                         <mat-form-field>
                                             <mat-label>Municipio</mat-label>
-                                            <input matInput type="text" id="txtMunicipio" formControlName="txtMunicipio">
-                                            <mat-error *ngIf="val.ValForm.get('txtMunicipio')?.errors?.['Regla']=='1'" style="color:black">Escriba el nombre del<strong>Municipio</strong></mat-error>
-                                            <mat-error *ngIf="val.ValForm.get('txtMunicipio')?.errors?.['Regla']=='2'"style="color:black">El código debe tener máximo 50 caracteres</mat-error>
-                                        </mat-form-field>   
-                                        
-                                    
-
+                                            <input matInput type="text" id="txtMunicipio"
+                                                formControlName="txtMunicipio">
+                                            <mat-error *ngIf="val.ValForm.get('txtMunicipio')?.errors?.['Regla']=='1'"
+                                                style="color:black">Escriba el nombre del<strong>Municipio</strong>
+                                            </mat-error>
+                                            <mat-error *ngIf="val.ValForm.get('txtMunicipio')?.errors?.['Regla']=='2'"
+                                                style="color:black">El código debe tener máximo 50 caracteres
+                                            </mat-error>
+                                        </mat-form-field>
+        
+        
+        
                                     </div>
-
+        
                                     <div class="row">
-                                        <igx-combo #withValueKey [data]="lstDepartamento"
-                                        valueKey="IdDepartamento" displayKey="Departamento" id="txtDepartamento" formControlName="txtDepartamento"
-                                        placeholder="Departamento" searchPlaceholder="Seleccione un Departamento"
-                                        (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250" appAutofocus>
-                                    </igx-combo>
-
+                                        <igx-combo #txtDepartamento #withValueKey [data]="lstDepartamento"
+                                            valueKey="Codigo" displayKey="Departamento" id="txtDepartamento"
+                                            formControlName="txtDepartamento" placeholder="Departamento"
+                                            searchPlaceholder="Seleccione un Departamento" [itemsMaxHeight]="250"
+                                            appAutofocus (selectionChanging)="seleccion_Departamento($event)"
+                                            (keyup)="f_key_Enter_Cliente($event)">
+                                        </igx-combo>
+        
                                     </div>
         
                                 </mat-card-content>
         
                             </mat-card>
+                           </div>
                         </div>
         
-        
+    
                     </div>
-        
+    
+    
+                    
+                  
+    
+                    
+                    
+    
                 </form>
             </div>
-        
         </div>
-        
-        <app-modal #modal1 class="container row faden-modal" [maximizable]="true" [backdrop]="true"> 
-        <ng-container class="app-modal-header"> REGISTROS DE MUNICIPIO</ng-container>
-        <ng-container class="app-modal-body">
-        <app-municipio-registro></app-municipio-registro>
-        </ng-container>
-        
-        <ng-container class="app-modal-footer">
-            <div class="row col-12">
-                <div class="col-12 btnAction hide-element">
-                    <button mat-fab class="btn-faden-salir" id="modal-registro-municipio" (click)="modal1.hide();"><mat-icon>exit_to_app</mat-icon>
-                    </button>
+
+      
+
+
+
+        <app-modal #modal1 class="container row faden-modal" [maximizable]="true" [backdrop]="true">
+            <ng-container class="app-modal-header"> REGISTROS DE MUNICIPIO</ng-container>
+            <ng-container class="app-modal-body">
+                <app-municipio-registro></app-municipio-registro>
+            </ng-container>
+
+            <ng-container class="app-modal-footer">
+                <div class="row col-12">
+                    <div class="col-12 btnAction hide-element">
+                        <button mat-fab class="btn-faden-salir" id="modal-registro-municipio" (click)="modal1.hide();">
+                            <mat-icon>exit_to_app</mat-icon>
+                        </button>
+                    </div>
+
                 </div>
-        
-            </div>
-        </ng-container>
-        
+            </ng-container>
+
         </app-modal>
     </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iDepartamento } from '../../interface/i-departamento';
@@ -6,6 +6,7 @@ import { CatalogoService } from '../../service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { iMunicipio } from '../../interface/i-municipio';
+import { IgxComboComponent } from 'igniteui-angular';
 
 @Component({
   selector: 'app-municipio',
@@ -13,10 +14,16 @@ import { iMunicipio } from '../../interface/i-municipio';
   styleUrls: ['./municipio.component.scss']
 })
 export class MunicipioComponent implements OnInit {
+
+
+  @ViewChild('txtDepartamento', {static : true})
+  public igxComboDepartamento: IgxComboComponent;
+
   public val: Validacion = new Validacion();
 
   public lstDepartamento: iDepartamento[] = [];
   private _CatalogoService: CatalogoService;
+
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
     this.val.add("txtMunicipio", "1", "LEN>", "0");
@@ -37,7 +44,35 @@ export class MunicipioComponent implements OnInit {
 
   }
 
+  public seleccion_Departamento(event : any){
 
+    if (event.added.length){
+      event.newSelection = event.added;
+      let _Fila : any = this.lstDepartamento.find(f=> f.Codigo == event.added);
+      this.val.ValForm.get("txtDepartamento")?.setValue([_Fila.Codigo]);
+    }
+      this.igxComboDepartamento.close();
+
+  }
+
+
+  public f_key_Enter_Cliente(event: any){
+
+    if(event.key == "Enter"){
+
+      let _Item : any = this.igxComboDepartamento.dropdown;
+      this.igxComboDepartamento.setSelectedItem([_Item._focusedItem.value.Codigo]);
+      this.val.ValForm.get("txtDepartamento")?.setValue([_Item._focusedItem.value.Codigo]);
+
+    }
+
+
+  }
+
+
+
+
+  
 
   private LlenarDpto(datos: string): void {
 
@@ -45,18 +80,13 @@ export class MunicipioComponent implements OnInit {
 
     _json["d"].forEach(
       (b: any) => {
-        this.lstDepartamento.push({ IdDepartamento: b.IdDpto, Codigo: b.Codigo, Departamento: b.Nombre });
+        this.lstDepartamento.push({ IdDepartamento: b.IdDepto, Codigo: b.Codigo, Departamento: b.Nombre });
       }
     );
 
   }
 
 
-  public singleSelection(event: any) {
-    if (event.added.length) {
-      event.newSelection = event.added;
-    }
-  }
 
 
 
