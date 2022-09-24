@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
 import { iDepartamento } from '../interface/i-departamento';
+import { iEscolaridad } from '../interface/i-escolaridad';
 import { iMunicipio } from '../interface/i-municipio';
 
 @Injectable({
@@ -79,6 +80,25 @@ export class CatalogoService {
       },
         err =>{
           this.change.emit(["dato_Departamento_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+  public GuardarEscolaridad(Escolaridad : iEscolaridad) {
+    this.http.post<any>(this._Cnx.Url()+ "cat/Escolaridad/Guardar", JSON.stringify(Escolaridad),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Escolaridad_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Escolaridad_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Escolaridad_Guardar", undefined]);
           this.Msj();
       }
     );

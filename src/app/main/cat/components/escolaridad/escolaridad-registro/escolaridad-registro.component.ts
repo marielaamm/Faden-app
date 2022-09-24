@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Validacion } from 'src/app/main/shared/class/validacion';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iEscolaridad } from '../../../interface/i-escolaridad';
 
@@ -13,12 +14,17 @@ let ELEMENT_DATA: iEscolaridad[] = [];
 })
 export class EscolaridadRegistroComponent implements OnInit {
 
+ 
+
+
   displayedColumns: string[] = ['IdEscolaridad', 'Escolaridad'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iEscolaridad>();
   private _liveAnnouncer: any;
 
-  constructor(private ServerScv : ServerService) { }
+  constructor(private ServerScv : ServerService) { 
+   
+  }
 
 
   /*************************EVENTOS TABLA************************************/
