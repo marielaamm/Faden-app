@@ -9,8 +9,7 @@
     
                     <div class="row">
     
-                        <div class="btnAccion">
-                            
+                        <div class="btnAccion">                           
                         
                             <div class="btn-contenedor">
                                 <button mat-fab class="btn-faden-buscar" (click)="modal1.show();">
@@ -33,7 +32,7 @@
         
                         <div class="row">
                            <div class="col-12">
-                            <mat-card>
+                            <mat-card >
                                 <mat-card-header>
                                     <mat-card-title Class="mat-card-title">Municipio</mat-card-title>
                                 </mat-card-header>
@@ -51,11 +50,8 @@
                                                 style="color:black">El código debe tener máximo 50 caracteres
                                             </mat-error>
                                         </mat-form-field>
-        
-        
-        
                                     </div>
-        
+                                            
                                     <div class="row">
                                         <igx-combo #txtDepartamento #withValueKey [data]="lstDepartamento"
                                             valueKey="Codigo" displayKey="Departamento" id="txtDepartamento"

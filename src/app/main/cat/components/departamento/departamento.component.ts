@@ -66,9 +66,6 @@ export class DepartamentoComponent implements OnInit {
     this._CatalogoService.GuardarDepartamento(D);
 
   
-
-
-
   }
 
 
