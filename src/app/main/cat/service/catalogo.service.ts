@@ -5,6 +5,7 @@ import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
 import { iDepartamento } from '../interface/i-departamento';
 import { iEscolaridad } from '../interface/i-escolaridad';
+import { iMedicos } from '../interface/i-medicos';
 import { iMunicipio } from '../interface/i-municipio';
 
 @Injectable({
@@ -102,6 +103,10 @@ export class CatalogoService {
           this.Msj();
       }
     );
+  }
+
+  public GuardarMedicos(Medicos : iMedicos){
+    
 
 
   }
