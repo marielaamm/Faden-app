@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
+import { iLugarNac } from 'src/app/main/shared/interface/i-lugarnac';
+import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones-generales.service';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iMedicos } from '../../interface/i-medicos';
 import { CatalogoService } from '../../service/catalogo.service';
@@ -12,9 +14,10 @@ import { CatalogoService } from '../../service/catalogo.service';
   styleUrls: ['./medicos.component.scss']
 })
 export class MedicosComponent implements OnInit {
-  public lstMunicipio: {}[] = [];
+  public lstMunicipio: iLugarNac[] = [];
   public val: Validacion = new Validacion();
   private _CatalogoService: CatalogoService;
+  private _FuncionesGenerales: FuncionesGeneralesService;
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
 
@@ -36,6 +39,8 @@ export class MedicosComponent implements OnInit {
     this.limpiar();
 
     this._CatalogoService = new CatalogoService(this._Dialog);
+    this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
+    this._FuncionesGenerales.BuscarFechaNac();
 
   }
 
@@ -134,6 +139,8 @@ export class MedicosComponent implements OnInit {
       return;
     }
 
+    let _filalugar: any= this.lstMunicipio.find(f => f.IdLugarNac == String(this.val.ValForm.get("txtMunicipio")?.value));
+
     let M: iMedicos = {}as iMedicos;
     M.IdMedico = 0;
     M.NoMedico= this.val.ValForm.get("txtNoMedico")?.value;
@@ -142,8 +149,8 @@ export class MedicosComponent implements OnInit {
     M.SNombre=this.val.ValForm.get("txtSegundoNombre")?.value;
     M.PApellido=this.val.ValForm.get("txtPrimerApellido")?.value;
     M.SApellido=this.val.ValForm.get("txtSegundoApellido")?.value;
-    M.IdCiudad=0;
-    M.IdDepto=0;
+    M.IdCiudad=_filalugar.IdMunicipio;
+    M.IdDepto=_filalugar.IdDepto;
     M.FechaNac=this.val.ValForm.get("txtFechaNacimiento")?.value;
     M.Identificacion=this.val.ValForm.get("txtCedula")?.value;
     M.Especialidad=this.val.ValForm.get("txtEspecialidad")?.value;
@@ -161,6 +168,19 @@ export class MedicosComponent implements OnInit {
   Cerrar(): void {
 
     this.ServerScv.CerrarFormulario();
+  }
+
+
+  private LlenarLugarNac(datos: string): void {
+
+    let _json = JSON.parse(datos);
+
+    _json["d"].forEach(
+      (b: any) => {
+        this.lstMunicipio.push(b);
+      }
+    );
+
   }
 
   ngOnInit(): void {
@@ -194,8 +214,23 @@ export class MedicosComponent implements OnInit {
       }
     );
 
+    this._FuncionesGenerales.change.subscribe(
+
+      s =>{
+        if (s[0] == "Llenar_lugarnacimiento") {
+          this.LlenarLugarNac(s[1]);
+
+          }
+      }
+    );
+
+
+
+
   }
 
 
 
 }
+
+

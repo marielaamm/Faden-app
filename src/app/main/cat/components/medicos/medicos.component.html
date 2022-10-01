@@ -108,13 +108,15 @@
 
                                         <div class="row">
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                <igx-combo #withValueKey [data]="lstMunicipio" valueKey="IdLugar"
+                                                <igx-combo #withValueKey class="combo" [data]="lstMunicipio" valueKey="IdLugarNac"
                                                     displayKey="Municipio" groupKey="Departamento" id="txtMunicipio" formControlName="txtMunicipio"
                                                     placeholder="Lugar de Nacimiento"
                                                     searchPlaceholder="Seleccione una Ciudad"
                                                     (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
-                                                    appAutofocus >                                                    
+                                                     >                                                    
                                                 </igx-combo>
+
+                                                
                                             </div>
 
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
