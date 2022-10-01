@@ -50,6 +50,7 @@ export class CatalogoService {
     );
   }
 
+
   public GuardarMunicipio(d : iMunicipio){
 
     this.http.post<any>(this._Cnx.Url()+ "cat/Municipio/Guardar", JSON.stringify(d) ,{headers: {"content-type":"application/json"}}).subscribe(
@@ -106,7 +107,20 @@ export class CatalogoService {
   }
 
   public GuardarMedicos(Medicos : iMedicos){
-    
+    this.http.post<any>(this._Cnx.Url()+ "cat/Medicos/Guardar", JSON.stringify(Medicos),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Medicos_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Medicos_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Medicos_Guardar", undefined]);
+          this.Msj();
+      }
+    );
 
 
   }

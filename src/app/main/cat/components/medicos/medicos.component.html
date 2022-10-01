@@ -12,7 +12,7 @@
                                     <button mat-fab class="btn-faden-aceptar" (click)="Guardar();">
                                         <mat-icon>save</mat-icon>
                                     </button>
-                                    <button mat-fab class="btn-faden-cancelar">
+                                    <button mat-fab class="btn-faden-cancelar" (click)="limpiar();">
                                         <mat-icon>undo</mat-icon>
                                     </button>
                                     <div class="line-vertical"></div>
@@ -32,9 +32,9 @@
                                         <div class="row">
                                             <div class="col-6 col-sm-3 col-md-2 col-lg-2">
                                                 <mat-form-field>
-                                                    <mat-label>Id Médico</mat-label>
-                                                    <input matInput type="text" id="txtNoExpediente"
-                                                        formControlName="txtNoExpediente">
+                                                    <mat-label>No Medico</mat-label>
+                                                    <input matInput type="text" id="txtNoMedico"
+                                                        formControlName="txtNoMedico">
                                                 </mat-form-field>
                                             </div>
 
@@ -108,8 +108,8 @@
 
                                         <div class="row">
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                <igx-combo #withValueKey [data]="lstMunicipio" valueKey="IdMunicipio"
-                                                    displayKey="Municipio" id="txtMunicipio" formControlName="txtMunicipio"
+                                                <igx-combo #withValueKey [data]="lstMunicipio" valueKey="IdLugar"
+                                                    displayKey="Municipio" groupKey="Departamento" id="txtMunicipio" formControlName="txtMunicipio"
                                                     placeholder="Lugar de Nacimiento"
                                                     searchPlaceholder="Seleccione una Ciudad"
                                                     (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
@@ -121,7 +121,7 @@
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Fecha de Nacimiento</mat-label>
                                                     <input matInput [matDatepicker]="pickerNacimiento"
-                                                        id="txtFechaNacimiento">
+                                                        id="txtFechaNacimiento" formControlName="txtFechaNacimiento">
                                                     <mat-datepicker-toggle matSuffix [for]="pickerNacimiento">
                                                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                     </mat-datepicker-toggle>

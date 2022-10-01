@@ -18,20 +18,20 @@ export class MedicosComponent implements OnInit {
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
 
-    this.val.add("txtNoExpediente", "1", "LEN>=", "0");
-    this.val.add("txtFecha", "1", "LEN>", "0");
+    this.val.add("txtNoMedico", "1", "LEN>=", "0");
+    this.val.add("txtFecha", "1", "LEN>=", "0");
     this.val.add("txtPrimerNombre", "1", "LEN>", "0");
-    this.val.add("txtSegundoNombre", "1", "LEN>", "0");
+    this.val.add("txtSegundoNombre", "1", "LEN>=", "0");
     this.val.add("txtPrimerApellido", "1", "LEN>", "0");
-    this.val.add("txtSegundoApellido", "1", "LEN>", "0");
-    this.val.add("txtMunicipio", "1", "LEN>", "0");
+    this.val.add("txtSegundoApellido", "1", "LEN>=", "0");
+    this.val.add("txtMunicipio", "1", "LEN>=", "0");
     this.val.add("txtFechaNacimiento", "1", "LEN>", "0");
-    this.val.add("txtEdad", "1", "LEN>", "0");
+    this.val.add("txtEdad", "1", "LEN>=", "0");
     this.val.add("txtCedula", "1", "LEN>", "0");
     this.val.add("txtEspecialidad", "1", "LEN>", "0");
     this.val.add("txtDireccion", "1", "LEN>", "0");
-    this.val.add("txtCorreo", "1", "LEN>", "0");
-    this.val.add("txtTelefono", "1", "LEN>", "0");
+    this.val.add("txtCorreo", "1", "LEN>=", "0");
+    this.val.add("txtTelefono", "1", "LEN>=", "0");
     this.val.add("txtCelular", "1", "LEN>", "0");
     this.limpiar();
 
@@ -39,8 +39,8 @@ export class MedicosComponent implements OnInit {
 
   }
 
-  private limpiar() {
-    this.val.ValForm.get("txtNoExpediente")?.setValue("");
+  public limpiar() {
+    this.val.ValForm.get("txtNoMedico")?.setValue("00000");
     this.val.ValForm.get("txtFecha")?.setValue("");
     this.val.ValForm.get("txtPrimerNombre")?.setValue("");
     this.val.ValForm.get("txtSegundoNombre")?.setValue("");
@@ -56,6 +56,8 @@ export class MedicosComponent implements OnInit {
     this.val.ValForm.get("txtTelefono")?.setValue("");
     this.val.ValForm.get("txtCelular")?.setValue("");
 
+    this.val.ValForm.get("txtNoMedico")?.disable();
+
   }
 
 
@@ -69,35 +71,20 @@ export class MedicosComponent implements OnInit {
     let esError: string = " ";
     let mensaje: string = " <ol>";
 
-    if (this.val.ValForm.get("txtNoExpediente")?.invalid) {
-      mensaje += "<li>Ingrese el código del médico o revise la cantidad de caracteres</li>";
-      esError += "1";
-    }
 
-    if (this.val.ValForm.get("txtFecha")?.invalid) {
-      mensaje += "<li>Digite la fecha de ingreso o revise la cantidad de caracteres</li>";
-      esError += "1";
-    }
 
     if (this.val.ValForm.get("txtPrimerNombre")?.invalid) {
       mensaje += "<li>Ingrese el primer nombre o revise la cantidad de caracteres</li>";
       esError += "1";
     }
 
-    if (this.val.ValForm.get("txtSegundoNombre")?.invalid) {
-      mensaje += "<li>Ingrese el segundo nombre o revise la cantidad de caracteres</li>";
-      esError += "1";
-    }
 
     if (this.val.ValForm.get("txtPrimerApellido")?.invalid) {
       mensaje += "<li>Ingrese el primer apellido o revise la cantidad de caracteres</li>";
       esError += "1";
     }
 
-    if (this.val.ValForm.get("txtSegundoApellido")?.invalid) {
-      mensaje += "<li>Ingrese el segundo apellido o revise la cantidad de caracteres</li>";
-      esError += "1";
-    }
+ 
 
     if (this.val.ValForm.get("txtMunicipio")?.invalid) {
       mensaje += "<li>Ingrese el nombre del municipio o revise la cantidad de caracteres</li>";
@@ -109,10 +96,7 @@ export class MedicosComponent implements OnInit {
       esError += "1";
     }
 
-    if (this.val.ValForm.get("txtEdad")?.invalid) {
-      mensaje += "<li>Ingrese la edad o revise la cantidad de caracteres</li>";
-      esError += "1";
-    }
+
 
     if (this.val.ValForm.get("txtCedula")?.invalid) {
       mensaje += "<li>Ingrese el numero de cedulo o revise la cantidad de caracteres</li>";
@@ -129,15 +113,8 @@ export class MedicosComponent implements OnInit {
       esError += "1";
     }
 
-    if (this.val.ValForm.get("txtCorreo")?.invalid) {
-      mensaje += "<li>Ingrese el correo electrónico o revise la cantidad de caracteres</li>";
-      esError += "1";
-    }
 
-    if (this.val.ValForm.get("txtTelefono")?.invalid) {
-      mensaje += "<li>Ingrese el numero telefónico o revise la cantidad de caracteres</li>";
-      esError += "1";
-    }
+
 
     if (this.val.ValForm.get("txtCelular")?.invalid) {
       mensaje += "<li>Ingrese el número de celular o revise la cantidad de caracteres</li>";
@@ -159,9 +136,22 @@ export class MedicosComponent implements OnInit {
 
     let M: iMedicos = {}as iMedicos;
     M.IdMedico = 0;
+    M.NoMedico= this.val.ValForm.get("txtNoMedico")?.value;
     M.FechaIngreso = this.val.ValForm.get("txtFecha")?.value;
     M.PNombre = this.val.ValForm.get("txtPrimerNombre")?.value;
     M.SNombre=this.val.ValForm.get("txtSegundoNombre")?.value;
+    M.PApellido=this.val.ValForm.get("txtPrimerApellido")?.value;
+    M.SApellido=this.val.ValForm.get("txtSegundoApellido")?.value;
+    M.IdCiudad=0;
+    M.IdDepto=0;
+    M.FechaNac=this.val.ValForm.get("txtFechaNacimiento")?.value;
+    M.Identificacion=this.val.ValForm.get("txtCedula")?.value;
+    M.Especialidad=this.val.ValForm.get("txtEspecialidad")?.value;
+    M.Direccion=this.val.ValForm.get("txtDireccion")?.value;
+    M.Correo=this.val.ValForm.get("txtCorreo")?.value;
+    M.Telefono=this.val.ValForm.get("txtTelefono")?.value;
+    M.Celular=this.val.ValForm.get("txtCelular")?.value;
+
     
     this._CatalogoService.GuardarMedicos(M);
 
@@ -175,7 +165,37 @@ export class MedicosComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this._CatalogoService.change.subscribe(
+
+      s =>{
+        if (s[0] == "dato_Medicos_Guardar") {
+
+          this.val.ValForm.enable();
+  
+          if (s[1] == undefined) {
+  
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+
+
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+
+          this.limpiar();
+      } 
+      
+
+      }
+    );
 
   }
+
+
 
 }
