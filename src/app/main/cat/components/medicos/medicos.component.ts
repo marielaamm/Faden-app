@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { IgxComboComponent } from 'igniteui-angular';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { iLugarNac } from 'src/app/main/shared/interface/i-lugarnac';
@@ -18,6 +19,9 @@ export class MedicosComponent implements OnInit {
   public val: Validacion = new Validacion();
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
+
+  @ViewChild('ComboMunicipio', { static: true })
+  public igxComboMunicipio: IgxComboComponent;
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
 
@@ -180,6 +184,8 @@ export class MedicosComponent implements OnInit {
         this.lstMunicipio.push(b);
       }
     );
+
+    this.igxComboMunicipio.data = this.lstMunicipio;
 
   }
 
