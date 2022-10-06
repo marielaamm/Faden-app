@@ -20,7 +20,7 @@ export class MedicosComponent implements OnInit {
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
 
-  @ViewChild('ComboMunicipio', { static: true })
+  @ViewChild('txtMunicipio', { static: true })
   public igxComboMunicipio: IgxComboComponent;
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
