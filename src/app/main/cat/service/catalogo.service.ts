@@ -126,6 +126,21 @@ export class CatalogoService {
   }
 
 
+  public BuscarMedico(NoMedico : string){
+    this.http.get<any>(this._Cnx.Url() + "cat/Medico/Buscar" + "?NoMedico="+ NoMedico).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_medico", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+
+
+    );
+  }
+
+  
+
   private Msj () : void{
 
 

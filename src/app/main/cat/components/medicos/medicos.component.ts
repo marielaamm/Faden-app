@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, ElementRef, Inject, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IgxComboComponent } from 'igniteui-angular';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
@@ -19,10 +19,12 @@ export class MedicosComponent implements OnInit {
   public val: Validacion = new Validacion();
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
+  @Output() change: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('txtMunicipio', { static: true })
   public igxComboMunicipio: IgxComboComponent;
 
+  
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
 
     this.val.add("txtNoMedico", "1", "LEN>=", "0");
@@ -153,6 +155,7 @@ export class MedicosComponent implements OnInit {
     M.SNombre=this.val.ValForm.get("txtSegundoNombre")?.value;
     M.PApellido=this.val.ValForm.get("txtPrimerApellido")?.value;
     M.SApellido=this.val.ValForm.get("txtSegundoApellido")?.value;
+    M.NombreCompleto="";
     M.IdCiudad=_filalugar.IdMunicipio;
     M.IdDepto=_filalugar.IdDepto;
     M.FechaNac=this.val.ValForm.get("txtFechaNacimiento")?.value;
@@ -190,6 +193,25 @@ export class MedicosComponent implements OnInit {
 
     }
 
+
+  }
+
+  public EditarMedico(fila: any){
+    this.val.ValForm.get("txtNoMedico")?.setValue(fila.NoMedico);
+    this.val.ValForm.get("txtFecha")?.setValue(fila.FechaIngreso);
+    this.val.ValForm.get("txtPrimerNombre")?.setValue(fila.PNombre);
+    this.val.ValForm.get("txtSegundoNombre")?.setValue(fila.SNombre);
+    this.val.ValForm.get("txtPrimerApellido")?.setValue(fila.PApellido);
+    this.val.ValForm.get("txtSegundoApellido")?.setValue(fila.SApellido);
+    this.val.ValForm.get("txtMunicipio")?.setValue([fila.IdLugarNac]);
+    this.val.ValForm.get("txtFechaNacimiento")?.setValue(fila.FechaNac);
+    this.val.ValForm.get("txtEdad")?.setValue("");
+    this.val.ValForm.get("txtCedula")?.setValue(fila.Identificacion);
+    this.val.ValForm.get("txtEspecialidad")?.setValue(fila.Especialidad);
+    this.val.ValForm.get("txtDireccion")?.setValue(fila.Direccion);
+    this.val.ValForm.get("txtCorreo")?.setValue(fila.Correo);
+    this.val.ValForm.get("txtTelefono")?.setValue(fila.Telefono);
+    this.val.ValForm.get("txtCelular")?.setValue(fila.Celular);
 
   }
 
