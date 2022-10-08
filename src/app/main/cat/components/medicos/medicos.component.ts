@@ -168,6 +168,33 @@ export class MedicosComponent implements OnInit {
 
   }
 
+  public seleccion_Ciudad(event : any){
+
+    if (event.added.length){
+      event.newSelection = event.added;
+      let _Fila : any = this.lstMunicipio.find(f=> f.IdLugarNac == event.added);
+      this.val.ValForm.get("txtMunicipio")?.setValue([_Fila.IdLugarNac]);
+    }
+      this.igxComboMunicipio.close();
+
+  }
+
+
+  public f_key_Enter_Ciudad(event: any){
+
+    if(event.key == "Enter"){
+
+      let _Item : any = this.igxComboMunicipio.dropdown;
+      this.igxComboMunicipio.setSelectedItem([_Item._focusedItem.value.IdLugarNac]);
+      this.val.ValForm.get("txtMunicipio")?.setValue([_Item._focusedItem.value.IdLugarNac]);
+
+    }
+
+
+  }
+
+
+
 
   Cerrar(): void {
 

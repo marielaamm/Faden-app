@@ -95,6 +95,7 @@ import { AntecedenteQuirurgicoComponent } from './main/inicio/components/histori
 import { SindromepredominanteComponent } from './main/inicio/components/consensomedico/sindromepredominante/sindromepredominante.component';
 import { AcompananteComponent } from './main/inicio/components/expediente/paciente/acompanante/acompanante.component';
 import { MedicosComponent } from './main/cat/components/medicos/medicos.component';
+import { RegistrosMedicosComponent } from './main/cat/components/medicos/registros-medicos/registros-medicos.component';
 
 //FIN
 
@@ -148,6 +149,7 @@ export const DateFormat = {
     SindromepredominanteComponent,
     AcompananteComponent,
     MedicosComponent,
+    RegistrosMedicosComponent,
     
   ],
   imports: [

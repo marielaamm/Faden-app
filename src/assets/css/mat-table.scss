@@ -10,8 +10,8 @@
 
             &-cell {
                 width: 100px;
-                background-color: var(--faden-amarillo);
-                color: var(--faden-fondo);
+                /*background-color: var(--faden-amarillo);
+                color: var(--faden-fondo);*/
                 border: none;
 
                 &-detail {
@@ -39,7 +39,8 @@
 
 
         .mat-sort-header {
-            color: var(--faden-fondo);
+            color: black;
+            font-weight:bold;
 
             &-indicator,
             &-pointer-left,

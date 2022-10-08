@@ -48,8 +48,12 @@ export class NavComponent{
 
     {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navEscolaridad", Link: "Escolaridad", MenuPadre: "", Clase: ""}, 
 
-    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"navMedicos", Link: "Medicos", MenuPadre: "", Clase: ""},
+    {EsMenu: true, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"navMedicos", Link: "Medicos", MenuPadre: "", Clase: ""},
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkNuevoMedico", Link: "Nuevo Medico", MenuPadre: "navMedicos", Clase: ""},
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkRegistrosMedico", Link: "Registros de medicos", MenuPadre: "navMedicos", Clase: ""},
 
+  
+  
   
 
       /**************************************INICIO************************************* */ 

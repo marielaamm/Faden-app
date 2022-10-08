@@ -112,7 +112,9 @@
                                                     displayKey="Municipio" groupKey="Departamento" id="txtMunicipio" formControlName="txtMunicipio"
                                                     placeholder="Lugar de Nacimiento"
                                                     searchPlaceholder="Seleccione una Ciudad"
-                                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
+                                                     [itemsMaxHeight]="250" (selectionChanging)="seleccion_Ciudad($event)"
+                                                     (keyup)="f_key_Enter_Ciudad($event)"
+
                                                      >                                                    
                                                 </igx-combo>
 
