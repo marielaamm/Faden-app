@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { iMunicipio } from 'src/app/main/cat/interface/i-municipio';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
+import { Validacion } from 'src/app/main/shared/class/validacion';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
@@ -13,8 +14,21 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
 export class PacienteComponent implements OnInit {
   public lstMunicipio: iMunicipio[] = [];
   public lstEscolaridad:{}[]=[];
+  public val: Validacion = new Validacion();
 
   constructor(private ServerScv : ServerService) {
+
+    this.val.add("txtNoExpediente", "1", "LEN>=", "0");
+    this.val.add("txtFecha", "1", "LEN>=", "0");
+    this.val.add("txtPrimerNombre", "1", "LEN>=","0");
+    this.val.add("txtSegundoNombre", "1", "LEN>", "0");
+    this.val.add("txtPrimerApellido", "1", "LEN>=","0");
+    this.val.add("txSegundoApellido", "1", "LEN>", "0");
+    
+
+
+
+
    }
 
 
