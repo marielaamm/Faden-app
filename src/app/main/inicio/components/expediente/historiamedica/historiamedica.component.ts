@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
   selector: 'app-historiamedica',
@@ -11,13 +12,18 @@ export class HistoriamedicaComponent implements OnInit {
   public lstPaciente:{}[]=[];
   public isLinear = false;
 
-  constructor() { }
+  constructor(private ServerScv : ServerService) { }
 
 
   public singleSelection(event: any) {
     if (event.added.length) {
         event.newSelection = event.added;
     }
+}
+
+Cerrar() : void{
+    
+  this.ServerScv.CerrarFormulario();
 }
 
   ngOnInit(): void {
