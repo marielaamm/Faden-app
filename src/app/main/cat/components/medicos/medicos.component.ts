@@ -83,19 +83,15 @@ export class MedicosComponent implements OnInit {
     let mensaje: string = " <ol>";
 
 
-
     if (this.val.ValForm.get("txtPrimerNombre")?.invalid) {
       mensaje += "<li>Ingrese el primer nombre o revise la cantidad de caracteres</li>";
       esError += "1";
     }
 
-
     if (this.val.ValForm.get("txtPrimerApellido")?.invalid) {
       mensaje += "<li>Ingrese el primer apellido o revise la cantidad de caracteres</li>";
       esError += "1";
     }
-
- 
 
     if (this.val.ValForm.get("txtMunicipio")?.invalid) {
       mensaje += "<li>Ingrese el nombre del municipio o revise la cantidad de caracteres</li>";
@@ -106,8 +102,6 @@ export class MedicosComponent implements OnInit {
       mensaje += "<li>Ingrese la fecha de nacimiento o revise la cantidad de caracteres</li>";
       esError += "1";
     }
-
-
 
     if (this.val.ValForm.get("txtCedula")?.invalid) {
       mensaje += "<li>Ingrese el numero de cedulo o revise la cantidad de caracteres</li>";
