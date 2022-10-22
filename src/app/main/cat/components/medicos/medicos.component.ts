@@ -1,5 +1,5 @@
-import { Component, ElementRef, Inject, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Output, ViewChild, EventEmitter, ElementRef } from '@angular/core';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { IgxComboComponent } from 'igniteui-angular';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
@@ -23,6 +23,8 @@ export class MedicosComponent implements OnInit {
 
   @ViewChild('txtMunicipio', { static: true })
   public igxComboMunicipio: IgxComboComponent;
+  private esDialog : boolean = false;
+  private _Fila_Medico : any = undefined;
 
   
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
@@ -48,6 +50,7 @@ export class MedicosComponent implements OnInit {
     this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
     this._FuncionesGenerales.BuscarFechaNac();
 
+
   }
 
   public limpiar() {
@@ -68,6 +71,8 @@ export class MedicosComponent implements OnInit {
     this.val.ValForm.get("txtCelular")?.setValue("");
 
     this.val.ValForm.get("txtNoMedico")?.disable();
+
+    this.EditarMedico(this._Fila_Medico);
 
   }
 
@@ -191,6 +196,10 @@ export class MedicosComponent implements OnInit {
   }
 
   public EditarMedico(fila: any){
+    this._Fila_Medico = fila;
+
+    if(this._Fila_Medico == undefined) return;
+
     this.val.ValForm.get("txtNoMedico")?.setValue(fila.NoMedico);
     this.val.ValForm.get("txtFecha")?.setValue(fila.FechaIngreso);
     this.val.ValForm.get("txtPrimerNombre")?.setValue(fila.PNombre);
@@ -207,14 +216,21 @@ export class MedicosComponent implements OnInit {
     this.val.ValForm.get("txtTelefono")?.setValue(fila.Telefono);
     this.val.ValForm.get("txtCelular")?.setValue(fila.Celular);
 
+    this.esDialog = true;
   }
 
 
 
 
   Cerrar(): void {
-
-    this.ServerScv.CerrarFormulario();
+    if(!this.esDialog)
+    {
+      this.ServerScv.CerrarFormulario();
+    }
+    else
+    {
+      this.ServerScv.change.emit(["CerrarDialog","frmMedico", ""])
+    }
   }
 
 
@@ -256,7 +272,7 @@ export class MedicosComponent implements OnInit {
             data: s[1]["msj"]
           });
 
-          this.limpiar();
+          if(!this.esDialog) this.limpiar();
       } 
       
 
