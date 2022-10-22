@@ -1,0 +1,31 @@
+<div class="app-dialogo-confirmar">
+    <div class="head-form">
+        <div class="from-encabezado-titulo">
+            {{titulo}}
+        </div>
+
+    </div>
+
+    
+    <div class="container">
+            
+        <div class="row">
+            
+            <p>¿Está seguro de {{mensaje}}?</p>
+            <p>{{texto}}</p>
+
+        </div>
+
+        
+        <div class="row">
+            
+            <div class="button-row text-end">
+                
+                <button type="button" class="btn-outline-success" (click)="Confirmar();">{{mensaje}}</button>
+                <button type="button" class="btn-outline-secondary" (click)="Cancelar();">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

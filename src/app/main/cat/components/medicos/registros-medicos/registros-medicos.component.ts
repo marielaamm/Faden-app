@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iMedicos } from '../../../interface/i-medicos';
 import { CatalogoService } from '../../../service/catalogo.service';
@@ -80,6 +81,26 @@ export class RegistrosMedicosComponent implements OnInit {
     
   }
 
+  public EliminarMedico(fila: any){
+
+    let dialogo : MatDialogRef<DialogoConfirmarComponent> = this._Dialog.open(DialogoConfirmarComponent, { disableClose: true })
+
+    dialogo.componentInstance.titulo = "Eliminar Registro";
+    dialogo.componentInstance.mensaje = "Eliminar";
+    dialogo.componentInstance.texto = fila.NoMedico + " " + fila.NombreCompleto;
+
+    dialogo.afterClosed().subscribe(s=>{
+
+      if(dialogo.componentInstance.retorno=="1"){
+       this._CatalogoService.EliminarMedicos(fila.NoMedico);
+
+      }
+      
+    });
+
+
+  }
+
 
   private CerrarModalMedico()
   {
@@ -111,6 +132,10 @@ export class RegistrosMedicosComponent implements OnInit {
 
         if (s[0] == "Llenar_medico") {
           this.LlenarMedico(s[1]);
+        }
+
+        if (s[0] == "dato_Medicos_Eliminar") {
+          this._CatalogoService.BuscarMedico("");
         }
 
       }

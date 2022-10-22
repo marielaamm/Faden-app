@@ -96,6 +96,7 @@ import { SindromepredominanteComponent } from './main/inicio/components/consenso
 import { AcompananteComponent } from './main/inicio/components/expediente/paciente/acompanante/acompanante.component';
 import { MedicosComponent } from './main/cat/components/medicos/medicos.component';
 import { RegistrosMedicosComponent } from './main/cat/components/medicos/registros-medicos/registros-medicos.component';
+import { DialogoConfirmarComponent } from './main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
 
 //FIN
 
@@ -150,6 +151,7 @@ export const DateFormat = {
     AcompananteComponent,
     MedicosComponent,
     RegistrosMedicosComponent,
+    DialogoConfirmarComponent,
     
   ],
   imports: [

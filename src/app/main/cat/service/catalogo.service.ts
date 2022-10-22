@@ -126,6 +126,26 @@ export class CatalogoService {
   }
 
 
+  public EliminarMedicos(NoMedico : StringConstructor){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Medicos/Eliminar?NoMedico=" + NoMedico,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Medicos_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Medicos_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Medicos_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+
   public BuscarMedico(NoMedico : string){
     this.http.get<any>(this._Cnx.Url() + "cat/Medico/Buscar" + "?NoMedico="+ NoMedico).subscribe(
       datos =>{
