@@ -1,0 +1,34 @@
+.app-departamento-registro {
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+
+
+    .faden-container-table {
+        table {
+            width: 100%;
+        
+            & .mat-column {
+               
+                &-IdDepartamento{
+                    max-width: 20px;
+                    color: black;
+                }
+
+                &-Departamento{
+                    max-width: 250px;
+                    color: black;
+                }
+
+                &-Accion{
+                    color: black;
+                }
+            }
+        }
+
+
+    }
+
+}

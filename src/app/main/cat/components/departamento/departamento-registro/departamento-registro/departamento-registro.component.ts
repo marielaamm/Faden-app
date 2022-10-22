@@ -13,7 +13,7 @@ let ELEMENT_DATA: iDepartamento[] = [];
 })
 export class DepartamentoRegistroComponent implements OnInit {
 
-  displayedColumns: string[] = ['IdDepartamento', 'Departamento'];
+  displayedColumns: string[] = ['IdDepartamento', 'Departamento', 'Accion'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iDepartamento>();
   private _liveAnnouncer: any;

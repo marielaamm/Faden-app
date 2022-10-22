@@ -4,6 +4,7 @@ import { DepartamentoComponent } from 'src/app/main/cat/components/departamento/
 import { EscolaridadComponent } from 'src/app/main/cat/components/escolaridad/escolaridad.component';
 import { MedicosComponent } from 'src/app/main/cat/components/medicos/medicos.component';
 import { RegistrosMedicosComponent } from 'src/app/main/cat/components/medicos/registros-medicos/registros-medicos.component';
+import { MunicipioRegistroComponent } from 'src/app/main/cat/components/municipio/municipio-registro/municipio-registro.component';
 import { MunicipioComponent } from 'src/app/main/cat/components/municipio/municipio.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
@@ -186,10 +187,7 @@ export class MenuComponent {
 
         break;
     }
-    
-   
-    
-
+          
     
   }
 
@@ -217,16 +215,35 @@ export class MenuComponent {
 
           break;
 
-      case "navMunicipio":
+      case "LinkNuevoMunicipio":
         if(this.str_formulario != f){
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(MunicipioComponent);
           this.str_formulario = f;
         }
       break;
+
+      case "LinkRegistroMunicipio":
+        if(this.str_formulario != f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(MunicipioRegistroComponent);
+          this.str_formulario = f; 
+
+        }
+        break;
       
 
-      case "navEscolaridad":
+      case "LinkNuevaEscolaridad":
+        if(this.str_formulario != f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(EscolaridadComponent);
+          this.str_formulario = f;
+        }
+
+      break;
+
+
+      case "EscolaridadRegistroComponent":
         if(this.str_formulario != f){
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(EscolaridadComponent);
