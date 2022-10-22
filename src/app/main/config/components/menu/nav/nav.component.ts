@@ -42,11 +42,17 @@ export class NavComponent{
     {EsMenu: false, Modulo : "SIS", ModuloNombre : "Configuración", Id: "navRol", Link : "Roles", MenuPadre : "", Clase : "bi bi-key-fill"},
    
 
-    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navDepartamento", Link: "Departamento", MenuPadre: "", Clase: ""},
+    {EsMenu: true, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navDepartamento", Link: "Departamento", MenuPadre: "", Clase: ""},
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkNuevoDepartamento", Link: "Nuevo Departamento", MenuPadre: "navDepartamento", Clase: ""},
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkRegistrosDepartamento", Link: "Registros de Departamento", MenuPadre: "navDepartamento", Clase: ""},
     
-    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navMunicipio", Link: "Municipio", MenuPadre: "", Clase: ""}, 
-
-    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navEscolaridad", Link: "Escolaridad", MenuPadre: "", Clase: ""}, 
+    {EsMenu: true, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navMunicipio", Link: "Municipio", MenuPadre: "", Clase: ""}, 
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkNuevoMunicipio", Link: "Nuevo Municipio", MenuPadre: "navMunicipio", Clase: ""},
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkRegistroMunicipio", Link: "Registros de Municipio", MenuPadre: "navMunicipio", Clase: ""},
+    
+    {EsMenu: true, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navEscolaridad", Link: "Escolaridad", MenuPadre: "", Clase: ""}, 
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkNuevaEscolaridad", Link: "Nueva Escolaridad", MenuPadre: "navEscolaridad", Clase: ""},
+    {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkRegistrosEscolaridad", Link: "Registros de Escolaridad", MenuPadre: "navEscolaridad", Clase: ""},
 
     {EsMenu: true, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"navMedicos", Link: "Medicos", MenuPadre: "", Clase: ""},
     {EsMenu: false, Modulo: "CAT", ModuloNombre: "Catálogo", Id:"LinkNuevoMedico", Link: "Nuevo Medico", MenuPadre: "navMedicos", Clase: ""},

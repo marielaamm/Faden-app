@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
+import { DepartamentoRegistroComponent } from 'src/app/main/cat/components/departamento/departamento-registro/departamento-registro/departamento-registro.component';
 import { DepartamentoComponent } from 'src/app/main/cat/components/departamento/departamento.component';
 import { EscolaridadComponent } from 'src/app/main/cat/components/escolaridad/escolaridad.component';
 import { MedicosComponent } from 'src/app/main/cat/components/medicos/medicos.component';
@@ -195,7 +196,7 @@ export class MenuComponent {
 
   private Modulo_CAT(f : string) : void{
     switch(f){
-      case "navDepartamento":
+      case "LinkNuevoDepartamento":
         
         if(this.str_formulario != f){
           this.dynamicForm.viewContainerRef.clear();
@@ -205,6 +206,16 @@ export class MenuComponent {
 
         
         break;
+
+        case "LinkRegistrosDepartamento":
+          if(this.str_formulario != f){
+            this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(DepartamentoRegistroComponent);
+          this.str_formulario = f;
+
+          }
+
+          break;
 
       case "navMunicipio":
         if(this.str_formulario != f){
