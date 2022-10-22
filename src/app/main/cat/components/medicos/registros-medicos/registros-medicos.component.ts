@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iMedicos } from '../../../interface/i-medicos';
 import { CatalogoService } from '../../../service/catalogo.service';
 import { MedicosComponent } from '../medicos.component';
@@ -21,9 +22,9 @@ export class RegistrosMedicosComponent implements OnInit {
   clickedRows = new Set<iMedicos>();
   private _liveAnnouncer:any;
   private _CatalogoService: CatalogoService;
-
+  private  dialogRef : MatDialogRef<MedicosComponent>;
  
-  constructor(private _Dialog: MatDialog) {
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
 
     this._CatalogoService = new CatalogoService(this._Dialog);
     this._CatalogoService.BuscarMedico("");
@@ -70,27 +71,47 @@ export class RegistrosMedicosComponent implements OnInit {
   public EditarMedico(fila: any){
    
 
-    let dialogRef: MatDialogRef<MedicosComponent>=this._Dialog.open(MedicosComponent)
+    this.dialogRef =this._Dialog.open(MedicosComponent, { disableClose: true })
 
 
-    dialogRef.afterOpened().subscribe(s => {
-      dialogRef.componentInstance.EditarMedico(fila);
-
+    this.dialogRef.afterOpened().subscribe(s => {
+      this.dialogRef.componentInstance.EditarMedico(fila);
     })
     
   }
 
 
+  private CerrarModalMedico()
+  {
+   
+    this.dialogRef.close();
+  }
+  
+
   ngOnInit(): void {
 
-    this._CatalogoService.change.subscribe(s => {
 
+
+    this.ServerScv.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "CerrarDialog" && s[1] == "frmMedico") {
+          this.CerrarModalMedico();
+        }
+
+
+      }
+    });
+
+
+    this._CatalogoService.change.subscribe(s => {
+    
       if (s instanceof Array) {
 
         if (s[0] == "Llenar_medico") {
           this.LlenarMedico(s[1]);
         }
-
 
       }
     });
