@@ -23,17 +23,18 @@
                 <td mat-cell *matCellDef="let element">
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" ><i class="bi bi-pencil-square" style="font-size: 2.5em;"></i></a>
+                            <a href="#" (click)="BuscarDpto(element)"><i class="bi bi-pencil-square" style="font-size: 2.5em;"></i></a>
                                 
                         </div>
                         <div class="col-6">
-                            <a href="#"><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
+                            <a href="#" (click)="EliminarDepartamento(element)"><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
                         </div>
                     </div>
                 
                 
                 </td>
             </ng-container>
+
     
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

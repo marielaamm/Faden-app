@@ -4,6 +4,7 @@ import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { iDepartamento } from 'src/app/main/cat/interface/i-departamento';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
+import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { DepartamentoComponent } from '../../departamento.component';
 
@@ -24,10 +25,13 @@ export class DepartamentoRegistroComponent implements OnInit {
   private  dialogRef : MatDialogRef<DepartamentoRegistroComponent>;
 
 
-  constructor(private ServerScv : ServerService,private _Dialog: MatDialog) { }
+  constructor(private ServerScv : ServerService,private _Dialog: MatDialog) {
+
+    this._CatalogoService = new CatalogoService(this._Dialog);
+    this._CatalogoService.BuscarDpto("");
+   }
 
   
-
   /*************************EVENTOS TABLA************************************/
 
   
@@ -50,8 +54,6 @@ export class DepartamentoRegistroComponent implements OnInit {
   }  
  
 
-
-
   clickRow(evento : string, row : any){
 
   }
@@ -73,31 +75,46 @@ export class DepartamentoRegistroComponent implements OnInit {
 
 
   }
-
-
-  public EditarDepartamento(fila: any){
-   
-
-    this.dialogRef =this._Dialog.open(DepartamentoRegistroComponent, { disableClose: true })
-
-
-    this.dialogRef.afterOpened().subscribe(s => {
-      this.dialogRef.componentInstance.EditarDepartamento(fila);
-    })
-    
-  }
-
-
+  
    /*************************************************************************/
    Editar() : void{
 
     this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", 1]);
   }
 
-
    Cerrar() : void{
     this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", undefined]);
       
+  }
+
+  public BuscarDpto(fila: any){
+   
+    this.dialogRef =this._Dialog.open(DepartamentoRegistroComponent, { disableClose: true })
+
+    this.dialogRef.afterOpened().subscribe(s => {
+      this.dialogRef.componentInstance.BuscarDpto(fila);
+    })
+    
+  }
+
+  public EliminarDepartamento(fila: any){
+
+    let dialogo : MatDialogRef<DialogoConfirmarComponent> = this._Dialog.open(DialogoConfirmarComponent, { disableClose: true })
+
+    dialogo.componentInstance.titulo = "Eliminar Registro";
+    dialogo.componentInstance.mensaje = "Eliminar";
+    dialogo.componentInstance.texto = fila.codigo + " " + fila.Departamento;
+
+    dialogo.afterClosed().subscribe(s=>{
+
+      if(dialogo.componentInstance.retorno=="1"){
+       this._CatalogoService.EliminarDepartamento(fila.NoMedico);
+
+      }
+      
+    });
+
+
   }
 
   private CerrarModalDepartamento()

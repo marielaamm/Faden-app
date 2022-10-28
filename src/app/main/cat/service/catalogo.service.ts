@@ -45,11 +45,8 @@ export class CatalogoService {
       err =>{
         this.Msj();
       }
-
-
     );
   }
-
 
   public GuardarMunicipio(d : iMunicipio){
 
@@ -82,6 +79,25 @@ export class CatalogoService {
       },
         err =>{
           this.change.emit(["dato_Departamento_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+  public EliminarDepartamento(codigo : StringConstructor){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Departamento/Eliminar?codigo=" + codigo,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Departamento_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Departamento_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Departamento_Eliminar", undefined]);
           this.Msj();
       }
     );
@@ -125,7 +141,6 @@ export class CatalogoService {
 
   }
 
-
   public EliminarMedicos(NoMedico : StringConstructor){
     this.http.post<any>(this._Cnx.Url()+ "cat/Medicos/Eliminar?NoMedico=" + NoMedico,{headers: {"content-type":"application/text"}}).subscribe(
       dato=>{
@@ -145,7 +160,6 @@ export class CatalogoService {
 
   }
 
-
   public BuscarMedico(NoMedico : string){
     this.http.get<any>(this._Cnx.Url() + "cat/Medico/Buscar" + "?NoMedico="+ NoMedico).subscribe(
       datos =>{
@@ -159,9 +173,7 @@ export class CatalogoService {
     );
   }
 
-  
-
-  private Msj () : void{
+    private Msj () : void{
 
 
     let s : string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\""+ 1 + "\",\"Mensaje\":\""+ "Error al conectar con el servidor."+ "\"}"+ ", \"count\":"+ 0 + ", \"esError\":"+ 1 + "}";
@@ -173,6 +185,5 @@ export class CatalogoService {
 
 
   }
-
 
 }
