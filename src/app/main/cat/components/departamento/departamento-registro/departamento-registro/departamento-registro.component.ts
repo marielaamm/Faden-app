@@ -67,7 +67,7 @@ export class DepartamentoRegistroComponent implements OnInit {
 
     _json["d"].forEach(
       (b: any) => {
-        ELEMENT_DATA.push(b);
+        ELEMENT_DATA.push({ IdDepartamento: b.IdDepto, Codigo: b.Codigo, Departamento: b.Nombre });
       }
     );
 
@@ -77,9 +77,9 @@ export class DepartamentoRegistroComponent implements OnInit {
   }
   
    /*************************************************************************/
-   Editar() : void{
+   Eitar() : void{
 
-    this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", 1]);
+   this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", 1]);
   }
 
    Cerrar() : void{
@@ -87,16 +87,29 @@ export class DepartamentoRegistroComponent implements OnInit {
       
   }
 
-  public BuscarDpto(fila: any){
+ public BuscarDpto(fila: any){
    
+  this.dialogRef =this._Dialog.open(DepartamentoRegistroComponent, { disableClose: true })
+
+   this.dialogRef.afterOpened().subscribe(s => {
+   this.dialogRef.componentInstance.BuscarDpto(fila);
+   })
+    
+ }
+
+  public EditarDepartamento(fila: any){
+   
+
     this.dialogRef =this._Dialog.open(DepartamentoRegistroComponent, { disableClose: true })
 
+
     this.dialogRef.afterOpened().subscribe(s => {
-      this.dialogRef.componentInstance.BuscarDpto(fila);
+      this.dialogRef.componentInstance.EditarDepartamento(fila);
     })
     
   }
-
+  
+ 
   public EliminarDepartamento(fila: any){
 
     let dialogo : MatDialogRef<DialogoConfirmarComponent> = this._Dialog.open(DialogoConfirmarComponent, { disableClose: true })
@@ -108,7 +121,7 @@ export class DepartamentoRegistroComponent implements OnInit {
     dialogo.afterClosed().subscribe(s=>{
 
       if(dialogo.componentInstance.retorno=="1"){
-       this._CatalogoService.EliminarDepartamento(fila.NoMedico);
+       this._CatalogoService.EliminarDepartamento(fila.codigo);
 
       }
       
@@ -140,7 +153,7 @@ export class DepartamentoRegistroComponent implements OnInit {
     
       if (s instanceof Array) {
 
-        if (s[0] == "Llenar_Departamento") {
+        if (s[0] == "Llenar_departamento") {
           this.LlenarDepartamento(s[1]);
         }
 

@@ -12,9 +12,7 @@
                             <div class="btnAccion">
 
                                 <div class="btn-contenedor">
-                                    <button mat-fab class="btn-faden-buscar" (click)="modal1.show();">
-                                        <mat-icon>search</mat-icon>
-                                    </button>
+                                    
                                     <div class="line-vertical"></div>
                                     <button mat-fab class="btn-faden-aceptar" (click)="v_Guardar();">
                                         <mat-icon>save</mat-icon>
@@ -78,21 +76,6 @@
             </div>
         </div>
 
-        <app-modal #modal1 class="container row faden-modal" [maximizable]="true" [backdrop]="true">
-            <ng-container class="app-modal-header">DEPARTAMENTOS</ng-container>
-            <ng-container class="app-modal-body">
-                <app-departamento-registro></app-departamento-registro>
-            </ng-container>
-
-            <ng-container class="app-modal-footer">
-                <div class="col-12 btnAccion hide-element">
-                    <button mat-fab class="btn-faden-salir" id="modal-registro-departamento" (click)="modal1.hide();">
-                        <mat-icon>exit_to_app</mat-icon>
-                    </button>
-                </div>
-            </ng-container>
-        </app-modal>
-
-
+       
     </div>
 </div>

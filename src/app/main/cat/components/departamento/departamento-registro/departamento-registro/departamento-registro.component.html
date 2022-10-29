@@ -6,14 +6,13 @@
             (matSortChange)="announceSort($event)">
 
             <ng-container matColumnDef="IdDepartamento" >
-                <th mat-header-cell *matHeaderCellDef> No </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by No"> No </th>
                 <td mat-cell *matCellDef="let element; let j=index" 
                     style="color:#1b364c; font-weight: bold;">{{j+1}}</td>
             </ng-container>
 
-            <ng-container matColumnDef="Departamento">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header
-                    sortActionDescription="Sort by Departamento">Departamento</th>
+            <ng-container matColumnDef="Departamento" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Departamento">Departamento</th>
                 <td mat-cell *matCellDef="let element">{{element.Departamento}}</td>
             </ng-container>
 
@@ -23,7 +22,7 @@
                 <td mat-cell *matCellDef="let element">
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" (click)="BuscarDpto(element)"><i class="bi bi-pencil-square" style="font-size: 2.5em;"></i></a>
+                            <a href="#" (click)="EditarDepartamento(element)"><i class="bi bi-pencil-square" style="font-size: 2.5em;"></i></a>
                                 
                         </div>
                         <div class="col-6">

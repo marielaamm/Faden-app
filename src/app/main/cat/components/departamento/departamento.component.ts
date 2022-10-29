@@ -12,6 +12,12 @@ import { CatalogoService } from '../../service/catalogo.service';
   styleUrls: ['./departamento.component.scss']
 })
 export class DepartamentoComponent implements OnInit {
+  EditarDepartamento(fila: any) {
+    throw new Error('Method not implemented.');
+  }
+  BuscarDpto(fila: any) {
+    throw new Error('Method not implemented.');
+  }
   public val: Validacion = new Validacion();
   private _CatalogoService:CatalogoService;
 
