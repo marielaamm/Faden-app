@@ -1,6 +1,7 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
 import { DepartamentoRegistroComponent } from 'src/app/main/cat/components/departamento/departamento-registro/departamento-registro/departamento-registro.component';
 import { DepartamentoComponent } from 'src/app/main/cat/components/departamento/departamento.component';
+import { EscolaridadRegistroComponent } from 'src/app/main/cat/components/escolaridad/escolaridad-registro/escolaridad-registro.component';
 import { EscolaridadComponent } from 'src/app/main/cat/components/escolaridad/escolaridad.component';
 import { MedicosComponent } from 'src/app/main/cat/components/medicos/medicos.component';
 import { RegistrosMedicosComponent } from 'src/app/main/cat/components/medicos/registros-medicos/registros-medicos.component';
@@ -243,10 +244,10 @@ export class MenuComponent {
       break;
 
 
-      case "EscolaridadRegistroComponent":
+      case "LinkRegistrosEscolaridad":
         if(this.str_formulario != f){
           this.dynamicForm.viewContainerRef.clear();
-          this.dynamicForm.viewContainerRef.createComponent(EscolaridadComponent);
+          this.dynamicForm.viewContainerRef.createComponent(EscolaridadRegistroComponent);
           this.str_formulario = f;
         }
 

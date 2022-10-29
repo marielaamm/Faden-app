@@ -135,6 +135,19 @@ export class CatalogoService {
 
   }
 
+
+  public BuscarEscolaridad(){
+    this.http.get<any>(this._Cnx.Url() + "cat/Escolaridad/Buscar").subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Escolaridad", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+
   public GuardarEscolaridad(Escolaridad : iEscolaridad) {
     this.http.post<any>(this._Cnx.Url()+ "cat/Escolaridad/Guardar", JSON.stringify(Escolaridad),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
