@@ -48,8 +48,8 @@ export class CatalogoService {
     );
   }
 
-  public BuscarMunicipio(codigo : string){
-    this.http.get<any>(this._Cnx.Url() + "cat/Municipio/Buscar" + "?Codigo="+ codigo).subscribe(
+  public BuscarMunicipio(){
+    this.http.get<any>(this._Cnx.Url() + "cat/Municipio/Buscar").subscribe(
       datos =>{
         this.change.emit(["Llenar_municipio", datos]);
       },
@@ -78,6 +78,25 @@ export class CatalogoService {
 
   }
 
+  public EliminarCiudad(IdCiudad : Number){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Municipio/Eliminar?IdCiudad=" + IdCiudad,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Municipio_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Municipio_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Municipio_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
   public GuardarDepartamento(Departamento : iDepartamento) {
     this.http.post<any>(this._Cnx.Url()+ "cat/Departamento/Guardar", JSON.stringify(Departamento),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
@@ -97,7 +116,7 @@ export class CatalogoService {
 
   }
 
-  public EliminarDepartamento(codigo : StringConstructor){
+  public EliminarDepartamento(codigo : String){
     this.http.post<any>(this._Cnx.Url()+ "cat/Departamento/Eliminar?codigo=" + codigo,{headers: {"content-type":"application/text"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);

@@ -23,6 +23,8 @@ export class MunicipioComponent implements OnInit {
 
   public lstDepartamento: iDepartamento[] = [];
   private _CatalogoService: CatalogoService;
+  private EsModal:boolean= false;
+  private Id : Number=0;
 
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
@@ -86,6 +88,17 @@ export class MunicipioComponent implements OnInit {
 
   }
 
+  public EditarCiudad(fila: iMunicipio){
+
+    this.EsModal= true;
+    this.Id=fila.IdCiudad;
+    this.val.ValForm.get("txtMunicipio")?.setValue(fila.Nombre);
+    this.igxComboDepartamento.setSelectedItem([fila.CoDepto]);
+    this.val.ValForm.get("txtDepartamento")?.setValue([fila.CoDepto]);
+
+
+  }
+
 
 
 
@@ -117,11 +130,13 @@ export class MunicipioComponent implements OnInit {
 
     }
     
-    let _Fila : any = this.lstDepartamento.find(f => f.IdDepartamento == this.val.ValForm.get("txtDepartamento")?.value);
+    let _Fila : any = this.lstDepartamento.find(f => f.Codigo == this.val.ValForm.get("txtDepartamento")?.value);
     let M: iMunicipio = {}as iMunicipio;
-    M.IdCiudad = 0;
+    M.IdCiudad = this.Id;
     M.Nombre  = this.val.ValForm.get("txtMunicipio")?.value;
     M.IdDepto = _Fila.IdDepartamento;
+    M.CoDepto= "";
+    M.Departamento= "";
     this._CatalogoService.GuardarMunicipio(M);
 
   }
@@ -129,7 +144,15 @@ export class MunicipioComponent implements OnInit {
 
   Cerrar(): void {
 
-    this.ServerScv.CerrarFormulario();
+    if(this.EsModal)
+    {
+      this.ServerScv.change.emit(["CerrarDialog","frmMunicipio", ""]);
+    }
+    else
+    {
+      
+      this.ServerScv.CerrarFormulario();
+    }
 
   }
 
@@ -158,8 +181,14 @@ export class MunicipioComponent implements OnInit {
 
             return;
           }
-          this.Limpiar();
 
+          if(this.EsModal){
+            this.Cerrar();
+          }
+          else
+          {
+            this.Limpiar()
+          }
 
 
         }

@@ -7,18 +7,18 @@
             <table mat-table class="faden-tabla" [dataSource]="dataSource" matSort
                 (matSortChange)="announceSort($event)">
 
-                <ng-container matColumnDef="IdMunicipio">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by IdMunicipio">
+                <ng-container matColumnDef="IdCiudad">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by IdCiudad">
                         Código </th>
-                    <td mat-cell *matCellDef="let element;" style="color:#1b364c; font-weight: bold;">{{element.Codigo}}
+                    <td mat-cell *matCellDef="let element;" style="color:#1b364c; font-weight: bold;">{{element.IdCiudad}}
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="Municipio">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Municipio">
+                <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Nombre">
                         Municipio </th>
                     <td mat-cell *matCellDef="let element;" style="color:#1b364c; font-weight: bold;">
-                        {{element.Municipio}}</td>
+                        {{element.Nombre}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="CoDepto">
@@ -40,11 +40,11 @@
                     <td mat-cell *matCellDef="let element">
                         <div class="row">
                             <div class="col-6">
-                                <a href="#"><i class="bi bi-pencil-square" style="font-size: 2.5em;"></i></a>
+                                <a href="#" (click)="EditarCiudad(element)"><i class="bi bi-pencil-square" style="font-size: 2.5em;"></i></a>
 
                             </div>
                             <div class="col-6">
-                                <a href="#"><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
+                                <a href="#"(click)="EliminarCiudad(element)"><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
                             </div>
                         </div>
 
