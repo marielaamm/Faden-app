@@ -48,6 +48,17 @@ export class CatalogoService {
     );
   }
 
+  public BuscarMunicipio(codigo : string){
+    this.http.get<any>(this._Cnx.Url() + "cat/Municipio/Buscar" + "?Codigo="+ codigo).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_municipio", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
   public GuardarMunicipio(d : iMunicipio){
 
     this.http.post<any>(this._Cnx.Url()+ "cat/Municipio/Guardar", JSON.stringify(d) ,{headers: {"content-type":"application/json"}}).subscribe(

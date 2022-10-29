@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iMunicipio } from '../../../interface/i-municipio';
+import { CatalogoService } from '../../../service/catalogo.service';
 
 
 let ELEMENT_DATA: iMunicipio[] =[];
@@ -14,12 +16,17 @@ let ELEMENT_DATA: iMunicipio[] =[];
 })
 export class MunicipioRegistroComponent implements OnInit {
 
-  displayedColumns: string[] = ['IdMunicipio','Municipio'];
+  displayedColumns: string[] = ['IdMunicipio','Municipio','CoDepto','Departamento', 'Accion'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iMunicipio>();
   private _liveAnnouncer:any;
+  private _CatalogoService: CatalogoService;
 
-  constructor(private ServerScv : ServerService) { }
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+
+    this._CatalogoService = new CatalogoService(this._Dialog);
+    this._CatalogoService.BuscarMunicipio(""); 
+   }
 
 
   announceSort(sortState: Sort) {
@@ -35,17 +42,43 @@ export class MunicipioRegistroComponent implements OnInit {
     this.dataSource.filter = filtro.trim().toLowerCase();
   }
 
-  clickRow(evento : string, row : any){
+  
+  private LlenarMunicipio(datos: string): void {
+
+    let _json = JSON.parse(datos);
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    _json["d"].forEach(
+      (b: any) => {
+        ELEMENT_DATA.push(b);
+      }
+    );
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+
   }
 
-  Editar() : void{
-    this.ServerScv.change.emit(["CerrarModal","modal-registro-municipio", 1]);
-  }
-
-  Cerrar() : void {
-    this.ServerScv.change.emit(["CerrarModal", "modal-registro-municipio", undefined]);
-  }
+    
   ngOnInit(): void {
+
+    
+    this._CatalogoService.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "Llenar_municipio") {
+          this.LlenarMunicipio(s[1]);
+        }
+
+        //if (s[0] == "dato_Departamento_Eliminar") {
+          //this._CatalogoService.GuardarDepartamento(Departamento);
+        //}
+
+      }
+    });
   }
 
 }

@@ -12,9 +12,7 @@
                         <div class="btnAccion">                           
                         
                             <div class="btn-contenedor">
-                                <button mat-fab class="btn-faden-buscar" (click)="modal1.show();">
-                                    <mat-icon>search</mat-icon>
-                                </button>
+                                
                                 <div class="line-vertical"></div>
                                 <button mat-fab class="btn-faden-aceptar" (click)="v_Guardar();">
                                     <mat-icon>save</mat-icon>
@@ -72,39 +70,14 @@
     
                     </div>
     
-    
-                    
                   
-    
-                    
-                    
     
                 </form>
             </div>
         </div>
 
-      
-
-
-
-        <app-modal #modal1 class="container row faden-modal" [maximizable]="true" [backdrop]="true">
-            <ng-container class="app-modal-header"> REGISTROS DE MUNICIPIO</ng-container>
-            <ng-container class="app-modal-body">
-                <app-municipio-registro></app-municipio-registro>
-            </ng-container>
-
-            <ng-container class="app-modal-footer">
-                <div class="row col-12">
-                    <div class="col-12 btnAction hide-element">
-                        <button mat-fab class="btn-faden-salir" id="modal-registro-municipio" (click)="modal1.hide();">
-                            <mat-icon>exit_to_app</mat-icon>
-                        </button>
-                    </div>
-
-                </div>
-            </ng-container>
-
-        </app-modal>
+     
+        
     </div>
 
 </div>

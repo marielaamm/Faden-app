@@ -1,60 +1,65 @@
-<div class="faden-contenedor">
-    <div id="registros-tabla">
-        <div class="formulario">
-
-            <div class="row col-12 no-pading-margin">
-                <div class="col-12 btnAccion">
-                    <button mat-fab class="btn-faden-aceptar" (click)="Editar()"> <mat-icon>edit</mat-icon></button>
-                    <div class="line-vertical"></div>
-                    <button mat-fab class="btn-faden-salir" (click)="Cerrar()"><mat-icon>exit_to_app</mat-icon>
-                    </button>
-                </div>
-            </div>
-
-            <div class="faden-contenedor-tabla">
-                <div class="faden-tabla-franja">REGISTROS</div>
-
-                <div class="faden-tabla-filtro">
-                    <div class="row col-12 no-pading-margin">
-                        <mat-form-field>
-                            <mat-label>Buscar</mat-label>
-                            <input appAutofocus matInput>
-                        </mat-form-field>
-
-                    </div>
-
-                </div>
-
-                <div class="mat-elevation-z8 faden-tabla">
-                    
-
-                    <table mat-table class="faden-tabla" [dataSource]="dataSource" matSort (matSortChange)="announceSort($event)">
-                        <ng-container matColumnDef="IdMunicipio">
-                            <th mat-header-cell *matHeaderCellDef> No </th>
-                            <td mat-cell *matCellDef="let element; let j =index" style="color:#1b364c; font-weight: bold;"> {{j+1}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="Municipio">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Municipio">
-                                Municipio</th>
-                            <td mat-cell *matCellDef="let element"> {{element.Municipio}} </td>
-                        </ng-container>
-
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row [class.demo-row-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
-                        
-                    </table>
-
-                    <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons> </mat-paginator>
-
-                </div>
-
-            </div>
+<div class="app-municipio-registro">
+    <div class="faden-container-table">
 
 
+        <div class="mat-elevation-z8 faden-tabla">
+
+            <table mat-table class="faden-tabla" [dataSource]="dataSource" matSort
+                (matSortChange)="announceSort($event)">
+
+                <ng-container matColumnDef="IdMunicipio">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by IdMunicipio">
+                        Código </th>
+                    <td mat-cell *matCellDef="let element;" style="color:#1b364c; font-weight: bold;">{{element.Codigo}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Municipio">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Municipio">
+                        Municipio </th>
+                    <td mat-cell *matCellDef="let element;" style="color:#1b364c; font-weight: bold;">
+                        {{element.Municipio}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="CoDepto">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Municipio">
+                        Código Depto </th>
+                    <td mat-cell *matCellDef="let element;" style="color:#1b364c; font-weight: bold;">
+                        {{element.CoDepto}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Departamento">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Municipio">
+                        Departamento </th>
+                    <td mat-cell *matCellDef="let element;" style="color:#1b364c; font-weight: bold;">
+                        {{element.Departamento}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Accion">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="#"><i class="bi bi-pencil-square" style="font-size: 2.5em;"></i></a>
+
+                            </div>
+                            <div class="col-6">
+                                <a href="#"><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
+                            </div>
+                        </div>
+
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row [class.demo-row-is-clicked]="clickedRows.has(row)"
+                    *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+            </table>
+            <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
 
         </div>
 
     </div>
-
 </div>
