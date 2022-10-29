@@ -250,6 +250,8 @@ export class MedicosComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
+
     this._CatalogoService.change.subscribe(
 
       s =>{

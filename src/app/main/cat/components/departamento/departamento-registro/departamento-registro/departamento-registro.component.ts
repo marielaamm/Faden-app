@@ -22,7 +22,7 @@ export class DepartamentoRegistroComponent implements OnInit {
   clickedRows = new Set<iDepartamento>();
   private _liveAnnouncer: any;
   private _CatalogoService: CatalogoService;
-  private  dialogRef : MatDialogRef<DepartamentoRegistroComponent>;
+  private  dialogRef : MatDialogRef<DepartamentoComponent>;
 
 
   constructor(private ServerScv : ServerService,private _Dialog: MatDialog) {
@@ -77,30 +77,12 @@ export class DepartamentoRegistroComponent implements OnInit {
   }
   
    /*************************************************************************/
-   Eitar() : void{
 
-   this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", 1]);
-  }
-
-   Cerrar() : void{
-    this.ServerScv.change.emit(["CerrarModal", "modal-registro-departamento", undefined]);
-      
-  }
-
- public BuscarDpto(fila: any){
-   
-  this.dialogRef =this._Dialog.open(DepartamentoRegistroComponent, { disableClose: true })
-
-   this.dialogRef.afterOpened().subscribe(s => {
-   this.dialogRef.componentInstance.BuscarDpto(fila);
-   })
-    
- }
 
   public EditarDepartamento(fila: any){
    
 
-    this.dialogRef =this._Dialog.open(DepartamentoRegistroComponent, { disableClose: true })
+    this.dialogRef =this._Dialog.open(DepartamentoComponent, { disableClose: true })
 
 
     this.dialogRef.afterOpened().subscribe(s => {
@@ -116,12 +98,12 @@ export class DepartamentoRegistroComponent implements OnInit {
 
     dialogo.componentInstance.titulo = "Eliminar Registro";
     dialogo.componentInstance.mensaje = "Eliminar";
-    dialogo.componentInstance.texto = fila.codigo + " " + fila.Departamento;
+    dialogo.componentInstance.texto = fila.Codigo + " " + fila.Departamento;
 
     dialogo.afterClosed().subscribe(s=>{
 
       if(dialogo.componentInstance.retorno=="1"){
-       this._CatalogoService.EliminarDepartamento(fila.codigo);
+       this._CatalogoService.EliminarDepartamento(fila.Codigo);
 
       }
       
@@ -134,6 +116,8 @@ export class DepartamentoRegistroComponent implements OnInit {
   {
    
     this.dialogRef.close();
+    this._CatalogoService.BuscarDpto("");
+
   }
   ngOnInit(): void {
     this.ServerScv.change.subscribe(s => {

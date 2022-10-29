@@ -12,14 +12,11 @@ import { CatalogoService } from '../../service/catalogo.service';
   styleUrls: ['./departamento.component.scss']
 })
 export class DepartamentoComponent implements OnInit {
-  EditarDepartamento(fila: any) {
-    throw new Error('Method not implemented.');
-  }
-  BuscarDpto(fila: any) {
-    throw new Error('Method not implemented.');
-  }
+  
   public val: Validacion = new Validacion();
   private _CatalogoService:CatalogoService;
+  private EsModal:boolean= false;
+  private Id : Number=0;
 
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
@@ -66,7 +63,7 @@ export class DepartamentoComponent implements OnInit {
     }
 
     let D: iDepartamento = {}as iDepartamento;
-    D.IdDepartamento = 0;
+    D.IdDepartamento = this.Id;
     D.Codigo = this.val.ValForm.get("txtCodigo")?.value;
     D.Departamento = this.val.ValForm.get("txtDepartamento")?.value;
     this._CatalogoService.GuardarDepartamento(D);
@@ -74,10 +71,28 @@ export class DepartamentoComponent implements OnInit {
   
   }
 
+  public EditarDepartamento(fila: iDepartamento){
+
+    this.EsModal= true;
+    this.Id=fila.IdDepartamento;
+    this.val.ValForm.get("txtCodigo")?.setValue(fila.Codigo);
+    this.val.ValForm.get("txtDepartamento")?.setValue(fila.Departamento);
+    
+
+  }
+
 
   Cerrar(): void {
 
-    this.ServerScv.CerrarFormulario();
+    if(this.EsModal)
+    {
+      this.ServerScv.change.emit(["CerrarDialog","frmDepartamento", ""]);
+    }
+    else
+    {
+      
+      this.ServerScv.CerrarFormulario();
+    }
 
   }
   ngOnInit(): void {
@@ -109,7 +124,14 @@ export class DepartamentoComponent implements OnInit {
             });
             return;
           }
-          this.limpiar();
+          
+          if(this.EsModal){
+            this.Cerrar();
+          }
+          else
+          {
+            this.limpiar()
+          }
       } 
       
 
