@@ -43,11 +43,15 @@
                                             class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-md-8">
                                             <mat-form-field appearance="legacy">
                                                 <mat-label>Fecha</mat-label>
-                                                <input matInput [matDatepicker]="picker" id="">
+                                                <input matInput [matDatepicker]="picker" id="txtFecha" formControlName="txtFecha">
                                                 <mat-datepicker-toggle matSuffix [for]="picker">
                                                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                 </mat-datepicker-toggle>
                                                 <mat-datepicker #picker></mat-datepicker>
+                                                <mat-error
+                                                        *ngIf="val.ValForm.get('txtFecha')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Seleccione una<strong> Fecha </strong>
+                                                    </mat-error>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -58,28 +62,44 @@
                                         <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                             <mat-form-field>
                                                 <mat-label>Primer Nombre <b style="color: red;">*</b> </mat-label>
-                                                <input matInput type="text" id="txtPrimerNombre">
+                                                <input matInput type="text" id="txtPrimerNombre" formControlName="txtPrimerNombre">
+                                                <mat-error
+                                                        *ngIf="val.ValForm.get('txtPrimerNombre')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el primer <strong> Nombre </strong>
+                                                    </mat-error>
                                             </mat-form-field>
                                         </div>
 
                                         <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                             <mat-form-field>
                                                 <mat-label>Segundo Nombre </mat-label>
-                                                <input matInput type="text" id="txtSegundoNombre">
+                                                <input matInput type="text" id="txtSegundoNombre" formControlName="txtSegundoNombre">
+                                                <mat-error
+                                                        *ngIf="val.ValForm.get('txtSegundoNombre')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el segundo <strong> Nombre </strong>
+                                                    </mat-error>
                                             </mat-form-field>
                                         </div>
 
                                         <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                             <mat-form-field>
                                                 <mat-label>Primer Apellido </mat-label>
-                                                <input matInput type="text" id="txtPrimerApellido">
+                                                <input matInput type="text" id="txtPrimerApellido" formControlName="txtPrimerApellido">
+                                                <mat-error
+                                                        *ngIf="val.ValForm.get('txtPrimerApellido')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el primer <strong> Apellido </strong>
+                                                    </mat-error>
                                             </mat-form-field>
                                         </div>
 
                                         <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                             <mat-form-field>
                                                 <mat-label>Segundo Apellido </mat-label>
-                                                <input matInput type="text" id="txtSegundoApellido">
+                                                <input matInput type="text" id="txtSegundoApellido" formControlName="txtSegundoApellido">
+                                                <mat-error
+                                                        *ngIf="val.ValForm.get('txtSegundoApellido')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el segundo <strong> Apellido </strong>
+                                                    </mat-error>
                                             </mat-form-field>
                                         </div>
                                     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
+import { IgxComboComponent } from 'igniteui-angular';
 import { iMunicipio } from 'src/app/main/cat/interface/i-municipio';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
@@ -8,6 +9,7 @@ import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo
 import { iLugarNac } from 'src/app/main/shared/interface/i-lugarnac';
 import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones-generales.service';
 import { ServerService } from 'src/app/main/shared/service/server.service';
+import { iPaciente } from '../../../interface/i-paciente';
 
 @Component({
   selector: 'app-paciente',
@@ -21,6 +23,7 @@ export class PacienteComponent implements OnInit {
   public val: Validacion = new Validacion();
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
+  public igxComboMunicipio: IgxComboComponent;
 
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
 
@@ -73,16 +76,18 @@ export class PacienteComponent implements OnInit {
    }
 
 
-  private LlenarCiudad(datos:string):void{
+   private LlenarLugarNac(datos: string): void {
 
     let _json = JSON.parse(datos);
 
     _json["d"].forEach(
-      (b:any)=>{
+      (b: any) => {
         this.lstMunicipio.push(b);
       }
     );
-    
+
+    this.igxComboMunicipio.data = this.lstMunicipio;
+
   }
 
   public singleSelection(event: any) {
@@ -185,10 +190,58 @@ public Guardar(){
 
   let _filalugar: any= this.lstMunicipio.find(f => f.IdLugarNac == String(this.val.ValForm.get("txtMunicipio")?.value));
 
-   
+  let P: iPaciente = {}as iPaciente;
 
+  P.IdPaciente = 0;
+  P.NoExpediente= this.val.ValForm.get("txtNoExpediente")?.value;
+  P.FechaIngreso = this.val.ValForm.get("txtFecha")?.value;
+  P.PNombre = this.val.ValForm.get("txtPrimerNombre")?.value;
+  P.SNombre = this.val.ValForm.get("txtSegundoNombre")?.value;
+  P.PApellido = this.val.ValForm.get("txtPrimerApellido")?.value;
+  P.SApellido = this.val.ValForm.get("txtSegundoApellido")?.value;
+  P.IdDepto=_filalugar.IdDepto;
+  P.IdCiudad=_filalugar.IdMunicipio;
+  P.FechaNacim = this.val.ValForm.get("txtFechaNacimiento")?.value;
+  P.Ocupacion = this.val.ValForm.get("txtOcupacion")?.value;
+  P.Identificacion = this.val.ValForm.get("txtCedula")?.value;
+  P.IdEscolaridad = this.val.ValForm.get("txtEscolaridad")?.value;
+  P.ECivil = this.val.ValForm.get("txtEstadoCivil")?.value;
+  P.Direccion = this.val.ValForm.get("txtDireccion")?.value;
+  P.Telefono = this.val.ValForm.get("txtTelefono")?.value;
+  P.Celular = this.val.ValForm.get("txtCelular")?.value;
+  P.Correo = this.val.ValForm.get("txtCorreo")?.value;
+  P.Religion = this.val.ValForm.get("txtReligion")?.value;
+  P.Correo = this.val.ValForm.get("txtCorreo")?.value;
+ 
+
+  this._CatalogoService.GuardarPaciente(P);
+  
 
 }
+
+public seleccion_Ciudad(event : any){
+
+  if (event.added.length){
+    event.newSelection = event.added;
+    let _Fila : any = this.lstMunicipio.find(f=> f.IdLugarNac == event.added);
+    this.val.ValForm.get("txtMunicipio")?.setValue([_Fila.IdLugarNac]);
+  }
+    this.igxComboMunicipio.close();
+
+}
+
+public f_key_Enter_Ciudad(event: any){
+
+  if(event.key == "Enter"){
+
+    let _Item : any = this.igxComboMunicipio.dropdown;
+    this.igxComboMunicipio.setSelectedItem([_Item._focusedItem.value.IdLugarNac]);
+    this.val.ValForm.get("txtMunicipio")?.setValue([_Item._focusedItem.value.IdLugarNac]);
+
+  }
+
+}
+
 
 
 
@@ -199,15 +252,50 @@ public Guardar(){
   
   ngOnInit(): void {
 
-    /*this.ServerScv._PruebaService.change.subscribe(s =>{
+    
 
-      if(s[0] == "Llenar_ciudad"){
-        this.LlenarCiudad(s[1]);
+    this._CatalogoService.change.subscribe(
+
+      s =>{
+        if (s[0] == "dato_Paciente_Guardar") {
+
+          this.val.ValForm.enable();
+  
+          if (s[1] == undefined) {
+  
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+
+
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+
+          if(!this._Dialog) this.limpiar();
+      } 
+      
+
       }
-    });*/
+    );
 
-    
-    
+    this._FuncionesGenerales.change.subscribe(
+
+      s =>{
+        if (s[0] == "Llenar_lugarnacimiento") {
+          this.LlenarLugarNac(s[1]);
+
+          }
+      }
+    );
+
+
+
+
   }
 
 }

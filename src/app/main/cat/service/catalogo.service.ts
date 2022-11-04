@@ -1,6 +1,7 @@
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { iPaciente } from '../../inicio/interface/i-paciente';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
 import { iDepartamento } from '../interface/i-departamento';
@@ -214,6 +215,25 @@ export class CatalogoService {
 
 
     );
+  }
+
+  public GuardarPaciente(Paciente : iPaciente){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Paciente/Guardar", JSON.stringify(Paciente),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Paciente_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Paciente_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Paciente_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
   }
 
     private Msj () : void{
