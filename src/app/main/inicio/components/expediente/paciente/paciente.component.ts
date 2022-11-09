@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectControlValueAccessor } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IgxComboComponent } from 'igniteui-angular';
@@ -24,6 +25,9 @@ export class PacienteComponent implements OnInit {
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
   public igxComboMunicipio: IgxComboComponent;
+  private _Fila_Paciente : any = undefined;
+  private esDialog : boolean = false;
+
 
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
 
@@ -72,6 +76,9 @@ export class PacienteComponent implements OnInit {
     this.val.ValForm.get("txtCelular")?.setValue("");
     this.val.ValForm.get("txtCorreo")?.setValue("");
     this.val.ValForm.get("txtReligion")?.setValue("");
+
+    this.val.ValForm.get("txtNoExpediente")?.disable();
+    this.EditarPaciente(this._Fila_Paciente);
     
    }
 
@@ -242,8 +249,34 @@ public f_key_Enter_Ciudad(event: any){
 
 }
 
+public EditarPaciente(fila: any){
+  this._Fila_Paciente = fila;
+
+  if(this._Fila_Paciente == undefined) return;
+
+  this.val.ValForm.get("txtNoExpediente")?.setValue(fila.NoExpediente);
+  this.val.ValForm.get("txtFecha")?.setValue(fila.FechaIngreso);
+  this.val.ValForm.get("txtPrimerNombre")?.setValue(fila.PNombre);
+  this.val.ValForm.get("txtSegundoNombre")?.setValue(fila.SNombre);
+  this.val.ValForm.get("txtPrimerApellido")?.setValue(fila.PApellido);
+  this.val.ValForm.get("txtSegundoApellido")?.setValue(fila.SApellido);
+  this.val.ValForm.get("txtMunicipio")?.setValue([fila.IdLugarNac]);
+  this.val.ValForm.get("txtFechaNacimiento")?.setValue(fila.FechaNacim);
+  this.val.ValForm.get("txtOcupacion")?.setValue(fila.Ocupacion);
+  this.val.ValForm.get("txtCedula")?.setValue(fila.Identificacion);
+  this.val.ValForm.get("txtEscolaridad")?.setValue(fila.IdEscolaridad);
+  this.val.ValForm.get("txtEstadoCivil")?.setValue(fila.ECivil);
+  this.val.ValForm.get("txtDireccion")?.setValue(fila.Direccion);
+  this.val.ValForm.get("txtTelefono")?.setValue(fila.Telefono);
+  this.val.ValForm.get("txtCelular")?.setValue(fila.Celular);
+  this.val.ValForm.get("txtCorreo")?.setValue(fila.Correo);
+  this.val.ValForm.get("txtReligion")?.setValue(fila.Religion);
+ 
+
+  this.esDialog = true;
 
 
+}
 
   Cerrar() : void{
     
