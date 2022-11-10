@@ -134,19 +134,18 @@
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Fecha de Nacimiento</mat-label>
                                                     <input matInput [matDatepicker]="pickerNacimiento"
-                                                        id="txtFechaNacimiento">
+                                                        id="txtFechaNacimiento" formControlName="txtFechaNacimiento">
                                                     <mat-datepicker-toggle matSuffix [for]="pickerNacimiento">
                                                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                     </mat-datepicker-toggle>
                                                     <mat-datepicker #pickerNacimiento></mat-datepicker>
-                                                </mat-form-field>
-    
+                                                </mat-form-field>    
                                             </div>
     
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Edad</mat-label>
-                                                    <input matInput type="text" id="txtEdad">
+                                                    <input matInput type="text" id="txtEdad" formControlName="txtEdad">
                                                 </mat-form-field>
                                             </div>
                                         </div>

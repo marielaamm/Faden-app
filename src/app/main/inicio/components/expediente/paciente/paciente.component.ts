@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { SelectControlValueAccessor } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -27,16 +27,19 @@ export class PacienteComponent implements OnInit {
   public igxComboMunicipio: IgxComboComponent;
   private _Fila_Paciente : any = undefined;
   private esDialog : boolean = false;
+  @Output() change: EventEmitter<any> = new EventEmitter();
+
+ 
 
 
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
 
     this.val.add("txtNoExpediente", "1", "LEN>=", "0");
     this.val.add("txtFecha", "1", "LEN>=", "0");
-    this.val.add("txtPrimerNombre", "1", "LEN>=","0");
+    this.val.add("txtPrimerNombre", "1", "LEN>","0");
     this.val.add("txtSegundoNombre", "1", "LEN>", "0");
-    this.val.add("txtPrimerApellido", "1", "LEN>=","0");
-    this.val.add("txSegundoApellido", "1", "LEN>", "0");
+    this.val.add("txtPrimerApellido", "1", "LEN>","0");
+    this.val.add("txtSegundoApellido", "1", "LEN>", "0");
     this.val.add("txtMunicipio", "1", "LEN>", "0");
     this.val.add("txtFechaNacimiento", "1", "LEN>", "0");
     this.val.add("txtEdad","1", "LEN>", "0");
@@ -63,7 +66,7 @@ export class PacienteComponent implements OnInit {
     this.val.ValForm.get("txtPrimerNombre")?.setValue("");
     this.val.ValForm.get("txtSegundoNombre")?.setValue("");
     this.val.ValForm.get("txtPrimerApellido")?.setValue("");
-    this.val.ValForm.get("txSegundoApellido")?.setValue("");
+    this.val.ValForm.get("txtSegundoApellido")?.setValue("");
     this.val.ValForm.get("txtMunicipio")?.setValue("");
     this.val.ValForm.get("txtFechaNacimiento")?.setValue("");
     this.val.ValForm.get("txtEdad")?.setValue("");
@@ -105,7 +108,7 @@ export class PacienteComponent implements OnInit {
 
 public Guardar(){
   let esError: string = " ";
-  let mensaje: string = " <ol>";
+  let mensaje: string = "<ol>";
 
   if (this.val.ValForm.get("txtPrimerNombre")?.invalid) {
     mensaje += "<li>Ingrese el primer nombre o revise la cantidad de caracteres</li>";
@@ -122,15 +125,15 @@ public Guardar(){
     esError += "1";
   }
 
-  if (this.val.ValForm.get("txSegundoApellido")?.invalid) {
-    mensaje += "<li>Ingrese el segundo apellido revise la cantidad de caracteres</li>";
+  if (this.val.ValForm.get("txtSegundoApellido")?.invalid) {
+    mensaje += "<li>Ingrese el segundo apellido o revise la cantidad de caracteres</li>";
     esError += "1";
   }
 
-  if (this.val.ValForm.get("txtMunicipio")?.invalid) {
-    mensaje += "<li>Ingrese lugar de nacimiento o revise la cantidad de caracteres</li>";
-    esError += "1";
-  }
+  //if (this.val.ValForm.get("txtMunicipio")?.invalid) {
+    //mensaje += "<li>Ingrese lugar de nacimiento o revise la cantidad de caracteres</li>";
+    //esError += "1";
+  //}
 
   if (this.val.ValForm.get("txtFechaNacimiento")?.invalid) {
     mensaje += "<li>Ingrese fecha de nacimiento o revise la cantidad de caracteres</li>";
@@ -147,10 +150,10 @@ public Guardar(){
     esError += "1";
   }
 
-  if (this.val.ValForm.get("txtEscolaridad")?.invalid) {
-    mensaje += "<li>Digite nivel de escolaridad o revise la cantidad de caracteres</li>";
-    esError += "1";
-  }
+ // if (this.val.ValForm.get("txtEscolaridad")?.invalid) {
+    //mensaje += "<li>Digite nivel de escolaridad o revise la cantidad de caracteres</li>";
+    //esError += "1";
+  //}
 
   if (this.val.ValForm.get("txtEstadoCivil")?.invalid) {
     mensaje += "<li>Digite estado civil o revise la cantidad de caracteres</li>";
@@ -218,8 +221,7 @@ public Guardar(){
   P.Celular = this.val.ValForm.get("txtCelular")?.value;
   P.Correo = this.val.ValForm.get("txtCorreo")?.value;
   P.Religion = this.val.ValForm.get("txtReligion")?.value;
-  P.Correo = this.val.ValForm.get("txtCorreo")?.value;
- 
+   
 
   this._CatalogoService.GuardarPaciente(P);
   
