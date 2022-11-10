@@ -35,7 +35,8 @@
                                             <div class="col-6 col-sm-3 col-md-2 col-lg-2">
                                                 <mat-form-field>
                                                     <mat-label>No de Expediente</mat-label>
-                                                    <input matInput type="text" id="txtNoExpediente" formControlName="txtNoExpediente">
+                                                    <input matInput type="text" id="txtNoExpediente"
+                                                     formControlName="txtNoExpediente">
                                                 </mat-form-field>
     
                                             </div>
@@ -110,9 +111,10 @@
                                             <div class="col-12">
                                                 <label class="col-3 col-sm-1 col-md-1 col-lg-1"><b>Género:</b></label>
                                                 <mat-radio-group aria-label="Seleccione género"
-                                                    class="col-9 col-sm-11 col-md-11 col-lg-11">
-                                                    <mat-radio-button value="1">Masculino</mat-radio-button>
-                                                    <mat-radio-button value="2">Femenino</mat-radio-button>
+                                                    class="col-9 col-sm-11 col-md-11 col-lg-11"
+                                                    formControlName="rdSexo">
+                                                    <mat-radio-button value="M">Masculino</mat-radio-button>
+                                                    <mat-radio-button value="F">Femenino</mat-radio-button>
                                                 </mat-radio-group>
     
                                             </div>
@@ -122,13 +124,16 @@
                                         <div class="row">
     
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                <igx-combo #withValueKey [data]="lstMunicipio" valueKey="IdCiudad"
-                                                    displayKey="Nombre" id="txtMunicipio" placeholder="Lugar de Nacimiento"
+                                                <igx-combo #txtMunicipio  valueKey="IdLugarNac"
+                                                    displayKey="Municipio" groupKey="Departamento" id="txtMunicipio" formControlName="txtMunicipio"
+                                                    placeholder="Lugar de Nacimiento"
                                                     searchPlaceholder="Seleccione una Ciudad"
-                                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
-                                                    appAutofocus>
+                                                     [itemsMaxHeight]="250" (selectionChanging)="seleccion_Ciudad($event)"
+                                                     (keyup)="f_key_Enter_Ciudad($event)">                                                    
                                                 </igx-combo>
                                             </div>
+
+                                            
     
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field appearance="legacy">
@@ -156,7 +161,11 @@
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Ocupación</mat-label>
-                                                    <input matInput type="text" id="txtOcupacion">
+                                                    <input matInput type="text" id="txtOcupacion" formControlName="txtOcupacion">
+                                                    <mat-error
+                                                    *ngIf="val.ValForm.get('txtOcupacion')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Digite su <strong> Ocupación </strong>
+                                                </mat-error>  
                                                 </mat-form-field>
                                             </div>
     
@@ -164,7 +173,11 @@
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>No de Cédula </mat-label>
-                                                    <input matInput type="text" id="txtCedula">
+                                                    <input matInput type="text" id="txtCedula" formControlName="txtCedula">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtCedula')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba su número de <strong> Cedula </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
     
@@ -184,14 +197,22 @@
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                                                 <mat-form-field>
                                                     <mat-label>Estado Civil</mat-label>
-                                                    <input matInput type="text" id="txtEstadoCivil">
+                                                    <input matInput type="text" id="txtEstadoCivil"  formControlName="txtEstadoCivil">
+                                                    <mat-error
+                                                    *ngIf="val.ValForm.get('txtEstadoCivil')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Escriba su <strong> Estado Civil </strong>
+                                                </mat-error>
                                                 </mat-form-field>
                                             </div>
     
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                                                 <mat-form-field>
                                                     <mat-label>Dirección</mat-label>
-                                                    <input matInput type="text" id="txtDireccion">
+                                                    <input matInput type="text" id="txtDireccion" formControlName="txtDireccion">
+                                                    <mat-error
+                                                    *ngIf="val.ValForm.get('txtDireccion')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Escriba su <strong> Dirección </strong>
+                                                </mat-error>
                                                 </mat-form-field>
                                             </div>
     
@@ -201,28 +222,44 @@
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Teléfono </mat-label>
-                                                    <input matInput type="text" id="txtTelefono">
+                                                    <input matInput type="text" id="txtTelefono" formControlName="txtTelefono">
+                                                    <mat-error
+                                                    *ngIf="val.ValForm.get('txtTelefono')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Escriba su <strong> Teléfono </strong>
+                                                </mat-error> 
                                                 </mat-form-field>
                                             </div>
     
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Celular </mat-label>
-                                                    <input matInput type="text" id="txtCelular">
+                                                    <input matInput type="text" id="txtCelular" formControlName="txtCelular">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtCelular')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba su <strong> Celular </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
     
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Correo</mat-label>
-                                                    <input matInput type="text" id="txtCorreo">
+                                                    <input matInput type="text" id="txtCorreo" formControlName="txtCorreo">
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtCorreo')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba su <strong> Correo Electrónico </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
     
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field>
                                                     <mat-label>Religión</mat-label>
-                                                    <input matInput type="text" id="txtReligion">
+                                                    <input matInput type="text" id="txtReligion" formControlName="txtReligion">
+                                                    <mat-error
+                                                    *ngIf="val.ValForm.get('txtReligion')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Indique su <strong> Religión </strong>
+                                                </mat-error>
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -231,17 +268,23 @@
                                             <label><b>¿Con quién vive en su casa?</b> </label>
                                             <div>
                                                 <section>
-                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Sol@
+                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2"
+                                                    formControlName="chkSolo">Sol@
                                                     </mat-checkbox>
-                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Hij@
+                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2"
+                                                    formControlName="chkHijo">Hij@
                                                     </mat-checkbox>
-                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Nietos
+                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2"
+                                                    formControlName="chkNieto">Nietos
                                                     </mat-checkbox>
-                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Espos@
+                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2"
+                                                    formControlName="chkPareja">Espos@
                                                     </mat-checkbox>
-                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Herman@
+                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2"
+                                                    formControlName="chkHermano">Herman@
                                                     </mat-checkbox>
-                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2">Amig@
+                                                    <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2"
+                                                    formControlName="chkAmigo">Amig@
                                                     </mat-checkbox>
                                                 </section>
                                             </div>

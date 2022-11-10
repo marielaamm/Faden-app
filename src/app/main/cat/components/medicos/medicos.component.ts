@@ -195,6 +195,20 @@ export class MedicosComponent implements OnInit {
 
   }
 
+  private LlenarLugarNac(datos: string): void {
+
+    let _json = JSON.parse(datos);
+
+    _json["d"].forEach(
+      (b: any) => {
+        this.lstMunicipio.push(b);
+      }
+    );
+
+    this.igxComboMunicipio.data = this.lstMunicipio;
+
+  }
+
   public EditarMedico(fila: any){
     this._Fila_Medico = fila;
 
@@ -234,19 +248,7 @@ export class MedicosComponent implements OnInit {
   }
 
 
-  private LlenarLugarNac(datos: string): void {
-
-    let _json = JSON.parse(datos);
-
-    _json["d"].forEach(
-      (b: any) => {
-        this.lstMunicipio.push(b);
-      }
-    );
-
-    this.igxComboMunicipio.data = this.lstMunicipio;
-
-  }
+ 
 
   ngOnInit(): void {
 

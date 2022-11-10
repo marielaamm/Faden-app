@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { SelectControlValueAccessor } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IgxComboComponent } from 'igniteui-angular';
@@ -24,11 +23,13 @@ export class PacienteComponent implements OnInit {
   public val: Validacion = new Validacion();
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
-  public igxComboMunicipio: IgxComboComponent;
+ 
   private _Fila_Paciente : any = undefined;
   private esDialog : boolean = false;
   @Output() change: EventEmitter<any> = new EventEmitter();
-
+  
+  @ViewChild('txtMunicipio', { static: true })
+  public igxComboMunicipio: IgxComboComponent;
  
 
 
@@ -40,18 +41,31 @@ export class PacienteComponent implements OnInit {
     this.val.add("txtSegundoNombre", "1", "LEN>", "0");
     this.val.add("txtPrimerApellido", "1", "LEN>","0");
     this.val.add("txtSegundoApellido", "1", "LEN>", "0");
-    this.val.add("txtMunicipio", "1", "LEN>", "0");
-    this.val.add("txtFechaNacimiento", "1", "LEN>", "0");
+    this.val.add("txtMunicipio", "1", "LEN>=", "0");
+    this.val.add("txtFechaNacimiento", "1", "LEN>=", "0");
     this.val.add("txtEdad","1", "LEN>", "0");
     this.val.add("txtOcupacion","1", "LEN>", "0");
     this.val.add("txtCedula","1", "LEN>", "0");
-    this.val.add("txtEscolaridad","1", "LEN>", "0");
+    this.val.add("txtEscolaridad","1", "LEN>=", "0");
     this.val.add("txtEstadoCivil","1", "LEN>", "0");
     this.val.add("txtDireccion","1", "LEN>", "0");
     this.val.add("txtTelefono","1", "LEN>", "0");
     this.val.add("txtCelular","1", "LEN>", "0");
     this.val.add("txtCorreo","1", "LEN>", "0");
     this.val.add("txtReligion","1", "LEN>", "0");
+
+    this.val.add("chkSolo","1", "LEN>=", "0");
+    this.val.add("chkHijo","1", "LEN>=", "0");
+    this.val.add("chkNieto","1", "LEN>=", "0");
+    this.val.add("chkPareja","1", "LEN>=", "0");
+    this.val.add("chkHermano","1", "LEN>=", "0");
+    this.val.add("chkAmigo","1", "LEN>=", "0");
+
+    this.val.add("rdSexo","1", "NUM>", "0");
+
+
+    
+
     this.limpiar();
     
     this._CatalogoService = new CatalogoService(this._Dialog);
@@ -85,28 +99,15 @@ export class PacienteComponent implements OnInit {
     
    }
 
-
-   private LlenarLugarNac(datos: string): void {
-
-    let _json = JSON.parse(datos);
-
-    _json["d"].forEach(
-      (b: any) => {
-        this.lstMunicipio.push(b);
-      }
-    );
-
-    this.igxComboMunicipio.data = this.lstMunicipio;
-
-  }
-
-  public singleSelection(event: any) {
+   public singleSelection(event: any) {
     if (event.added.length) {
         event.newSelection = event.added;
     }
 }
 
 public Guardar(){
+
+
   let esError: string = " ";
   let mensaje: string = "<ol>";
 
@@ -130,10 +131,10 @@ public Guardar(){
     esError += "1";
   }
 
-  //if (this.val.ValForm.get("txtMunicipio")?.invalid) {
-    //mensaje += "<li>Ingrese lugar de nacimiento o revise la cantidad de caracteres</li>";
-    //esError += "1";
-  //}
+  if (this.val.ValForm.get("txtMunicipio")?.invalid) {
+   mensaje += "<li>Ingrese lugar de nacimiento o revise la cantidad de caracteres</li>";
+    esError += "1";
+  }
 
   if (this.val.ValForm.get("txtFechaNacimiento")?.invalid) {
     mensaje += "<li>Ingrese fecha de nacimiento o revise la cantidad de caracteres</li>";
@@ -150,9 +151,9 @@ public Guardar(){
     esError += "1";
   }
 
- // if (this.val.ValForm.get("txtEscolaridad")?.invalid) {
-    //mensaje += "<li>Digite nivel de escolaridad o revise la cantidad de caracteres</li>";
-    //esError += "1";
+ //if (this.val.ValForm.get("txtEscolaridad")?.invalid) {
+   // mensaje += "<li>Digite nivel de escolaridad o revise la cantidad de caracteres</li>";
+   // esError += "1";
   //}
 
   if (this.val.ValForm.get("txtEstadoCivil")?.invalid) {
@@ -200,7 +201,23 @@ public Guardar(){
 
   let _filalugar: any= this.lstMunicipio.find(f => f.IdLugarNac == String(this.val.ValForm.get("txtMunicipio")?.value));
 
+  let Convivencia : string = "";
+
+  Convivencia += Number(this.val.ValForm.get("chkSolo")?.value);
+  Convivencia += Number(this.val.ValForm.get("chkHijo")?.value);
+  Convivencia += Number(this.val.ValForm.get("chkNieto")?.value);
+  Convivencia += Number(this.val.ValForm.get("chkPareja")?.value);
+  Convivencia += Number(this.val.ValForm.get("chkHermano")?.value);
+  Convivencia += Number(this.val.ValForm.get("chkAmigo")?.value);
+  
+
+
+
   let P: iPaciente = {}as iPaciente;
+
+ 
+
+
 
   P.IdPaciente = 0;
   P.NoExpediente= this.val.ValForm.get("txtNoExpediente")?.value;
@@ -209,6 +226,7 @@ public Guardar(){
   P.SNombre = this.val.ValForm.get("txtSegundoNombre")?.value;
   P.PApellido = this.val.ValForm.get("txtPrimerApellido")?.value;
   P.SApellido = this.val.ValForm.get("txtSegundoApellido")?.value;
+  P.Sexo = this.val.ValForm.get("rdSexo")?.value;
   P.IdDepto=_filalugar.IdDepto;
   P.IdCiudad=_filalugar.IdMunicipio;
   P.FechaNacim = this.val.ValForm.get("txtFechaNacimiento")?.value;
@@ -221,11 +239,10 @@ public Guardar(){
   P.Celular = this.val.ValForm.get("txtCelular")?.value;
   P.Correo = this.val.ValForm.get("txtCorreo")?.value;
   P.Religion = this.val.ValForm.get("txtReligion")?.value;
+  P.Convive = Convivencia;
    
-
   this._CatalogoService.GuardarPaciente(P);
   
-
 }
 
 public seleccion_Ciudad(event : any){
@@ -251,6 +268,21 @@ public f_key_Enter_Ciudad(event: any){
 
 }
 
+   private LlenarLugarNac(datos: string): void {
+
+    let _json = JSON.parse(datos);
+
+    _json["d"].forEach(
+      (b: any) => {
+        this.lstMunicipio.push(b);
+      }
+    );
+
+    this.igxComboMunicipio.data = this.lstMunicipio;
+
+  }
+
+  
 public EditarPaciente(fila: any){
   this._Fila_Paciente = fila;
 
@@ -281,8 +313,15 @@ public EditarPaciente(fila: any){
 }
 
   Cerrar() : void{
+    if(!this.esDialog)
+    {
+      this.ServerScv.CerrarFormulario();
+    }
+    else
+    {
+      this.ServerScv.change.emit(["CerrarDialog","frmPaciente",""])
+    }
     
-    this.ServerScv.CerrarFormulario();
   }
   
   ngOnInit(): void {
