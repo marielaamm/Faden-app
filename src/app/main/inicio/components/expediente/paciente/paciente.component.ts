@@ -61,11 +61,24 @@ export class PacienteComponent implements OnInit {
     this.val.add("chkHermano","1", "LEN>=", "0");
     this.val.add("chkAmigo","1", "LEN>=", "0");
 
-    this.val.add("rdSexo","1", "NUM>", "0");
+    this.val.add("chkEsp","1", "LEN>=", "0");
+    this.val.add("chkRef","1", "LEN>=", "0");
+    this.val.add("chkReco","1", "LEN>=", "0");
+    this.val.add("chkMedios","1", "LEN>=", "0");
 
+    this.val.add("chkFB","1", "LEN>=", "0");
+    this.val.add("chkInst","1", "LEN>=", "0");
+    this.val.add("chkTwi","1", "LEN>=", "0");
+    this.val.add("chkTransf","1", "LEN>=", "0");
+    this.val.add("chkOtros","1", "LEN>=", "0");
 
+    this.val.add("chkTrabAct","1", "LEN>=", "0");
+    this.val.add("chkUltTrab","1", "LEN>=", "0");
+    this.val.add("chkjubilado","1", "LEN>=", "0");
+    this.val.add("chkpension","1", "LEN>=", "0");
     
-
+    this.val.add("rdSexo","1", "NUM>", "0");
+ 
     this.limpiar();
     
     this._CatalogoService = new CatalogoService(this._Dialog);
@@ -93,6 +106,31 @@ export class PacienteComponent implements OnInit {
     this.val.ValForm.get("txtCelular")?.setValue("");
     this.val.ValForm.get("txtCorreo")?.setValue("");
     this.val.ValForm.get("txtReligion")?.setValue("");
+
+    this.val.ValForm.get("chkSolo")?.setValue("");
+    this.val.ValForm.get("chkHijo")?.setValue("");
+    this.val.ValForm.get("chkNieto")?.setValue("");
+    this.val.ValForm.get("chkPareja")?.setValue("");
+    this.val.ValForm.get("chkHermano")?.setValue("");
+    this.val.ValForm.get("chkAmigo")?.setValue("");
+
+    this.val.ValForm.get("chkEsp")?.setValue("");
+    this.val.ValForm.get("chkRef")?.setValue("");
+    this.val.ValForm.get("chkReco")?.setValue("");
+    this.val.ValForm.get("chkMedios")?.setValue("");
+
+    this.val.ValForm.get("chkFB")?.setValue("");
+    this.val.ValForm.get("chkInst")?.setValue("");
+    this.val.ValForm.get("chkTwi")?.setValue("");
+    this.val.ValForm.get("chkTransf")?.setValue("");
+
+    this.val.ValForm.get("chkUltTrab")?.setValue("");
+    this.val.ValForm.get("chkTrabAct")?.setValue("");
+    this.val.ValForm.get("chkjubilado")?.setValue("");
+    this.val.ValForm.get("chkpension")?.setValue("");
+
+
+    this.val.ValForm.get("rdSexo")?.setValue("");
 
     this.val.ValForm.get("txtNoExpediente")?.disable();
     this.EditarPaciente(this._Fila_Paciente);
@@ -211,13 +249,29 @@ public Guardar(){
   Convivencia += Number(this.val.ValForm.get("chkAmigo")?.value);
   
 
+  let Visitar : string = "";
+
+  Visitar += Number(this.val.ValForm.get("chkEsp")?.value);
+  Visitar += Number(this.val.ValForm.get("chkRef")?.value);
+  Visitar += Number(this.val.ValForm.get("chkReco")?.value);
+  Visitar += Number(this.val.ValForm.get("chkMedios")?.value);
+
+  let ReferVis : string = "";
+
+  ReferVis += Number(this.val.ValForm.get("chkFB")?.value);
+  ReferVis += Number(this.val.ValForm.get("chkInst")?.value);
+  ReferVis += Number(this.val.ValForm.get("chkTwi")?.value);
+  ReferVis += Number(this.val.ValForm.get("chkTransf")?.value);
+  ReferVis += Number(this.val.ValForm.get("chkOtros")?.value);
+
+  let ReferTrab : string = "";
+  ReferTrab += Number(this.val.ValForm.get("chkTrabAct")?.value);
+  ReferTrab += Number(this.val.ValForm.get("chkUltTrab")?.value);
+  ReferTrab += Number(this.val.ValForm.get("chkjubilado")?.value);
+  ReferTrab += Number(this.val.ValForm.get("chkpension")?.value);
 
 
   let P: iPaciente = {}as iPaciente;
-
- 
-
-
 
   P.IdPaciente = 0;
   P.NoExpediente= this.val.ValForm.get("txtNoExpediente")?.value;
@@ -240,7 +294,10 @@ public Guardar(){
   P.Correo = this.val.ValForm.get("txtCorreo")?.value;
   P.Religion = this.val.ValForm.get("txtReligion")?.value;
   P.Convive = Convivencia;
-   
+  P.Visita = Visitar;
+  P.RefVisita = ReferVis;
+  P.Referencia = ReferTrab;
+  
   this._CatalogoService.GuardarPaciente(P);
   
 }
