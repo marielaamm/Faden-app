@@ -16,6 +16,7 @@ export class EscolaridadComponent implements OnInit {
 
   private _CatalogoService:CatalogoService;
   public val: Validacion = new Validacion();
+  private EsModal:boolean= false;
 
     constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
       this.val.add("txtEscolaridad", "1", "LEN>", "0");
@@ -79,6 +80,37 @@ export class EscolaridadComponent implements OnInit {
       }
 
     });
+    this._CatalogoService.change.subscribe(
+
+      s =>{
+        if (s[0] == "dato_Escolaridad_Guardar") {
+
+          this.val.ValForm.enable();
+  
+          if (s[1] == undefined) {
+  
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+          
+          if(this.EsModal){
+            this.Cerrar();
+          }
+          else
+          {
+            this.Limpiar()
+          }
+      } 
+      
+
+      }
+    );
+
+
 
   }
 
