@@ -50,7 +50,7 @@ export class PacienteComponent implements OnInit {
     this.val.add("txtEdad","1", "LEN>", "0");
     this.val.add("txtOcupacion","1", "LEN>", "0");
     this.val.add("txtCedula","1", "LEN>", "0");
-    //this.val.add("txtEscolaridad","1", "LEN>=", "0");
+    this.val.add("txtEscolaridad","1", "LEN>=", "0");
     this.val.add("txtEstadoCivil","1", "LEN>", "0");
     this.val.add("txtDireccion","1", "LEN>", "0");
     this.val.add("txtTelefono","1", "LEN>", "0");
@@ -113,7 +113,7 @@ export class PacienteComponent implements OnInit {
     this.val.ValForm.get("txtEdad")?.setValue("");
     this.val.ValForm.get("txtOcupacion")?.setValue("");
     this.val.ValForm.get("txtCedula")?.setValue("");
-    //this.val.ValForm.get("txtEscolaridad")?.setValue("");
+    this.val.ValForm.get("txtEscolaridad")?.setValue("");
     this.val.ValForm.get("txtEstadoCivil")?.setValue("");
     this.val.ValForm.get("txtDireccion")?.setValue("");
     this.val.ValForm.get("txtTelefono")?.setValue("");
@@ -261,10 +261,10 @@ public Guardar(){
     esError += "1";
   }
 
- //if (this.val.ValForm.get("txtEscolaridad")?.invalid) {
-   // mensaje += "<li>Digite nivel de escolaridad o revise la cantidad de caracteres</li>";
-   // esError += "1";
-  //}
+ if (this.val.ValForm.get("txtEscolaridad")?.invalid) {
+    mensaje += "<li>Digite nivel de escolaridad o revise la cantidad de caracteres</li>";
+   esError += "1";
+  }
 
   if (this.val.ValForm.get("txtEstadoCivil")?.invalid) {
     mensaje += "<li>Digite estado civil o revise la cantidad de caracteres</li>";
@@ -360,7 +360,7 @@ public Guardar(){
   P.FechaNacim = this.val.ValForm.get("txtFechaNacimiento")?.value;
   P.Ocupacion = this.val.ValForm.get("txtOcupacion")?.value;
   P.Identificacion = this.val.ValForm.get("txtCedula")?.value;
-  P.IdEscolaridad = 1;//this.val.ValForm.get("txtEscolaridad")?.value;
+  P.IdEscolaridad = this.val.ValForm.get("txtEscolaridad")?.value;
   P.ECivil = this.val.ValForm.get("txtEstadoCivil")?.value;
   P.Direccion = this.val.ValForm.get("txtDireccion")?.value;
   P.Telefono = this.val.ValForm.get("txtTelefono")?.value;
@@ -373,13 +373,7 @@ public Guardar(){
   P.Trabaja =  (AntLab.split(";")[0] == "1") ;
   P.RefTrabajo = this.val.ValForm.get("txtRefTrab")?.value;
   P.UltimoTrabajo = (AntLab.split(";")[1] == "1");
-
-
-
-
-
-
-    P.Referencia = "";
+  P.Referencia = "";
   this._CatalogoService.GuardarPaciente(P);
   
 }
@@ -437,7 +431,7 @@ public EditarPaciente(fila: any){
   this.val.ValForm.get("txtFechaNacimiento")?.setValue(fila.FechaNacim);
   this.val.ValForm.get("txtOcupacion")?.setValue(fila.Ocupacion);
   this.val.ValForm.get("txtCedula")?.setValue(fila.Identificacion);
-  //this.val.ValForm.get("txtEscolaridad")?.setValue(fila.IdEscolaridad);
+  this.val.ValForm.get("txtEscolaridad")?.setValue(fila.IdEscolaridad);
   this.val.ValForm.get("txtEstadoCivil")?.setValue(fila.ECivil);
   this.val.ValForm.get("txtDireccion")?.setValue(fila.Direccion);
   this.val.ValForm.get("txtTelefono")?.setValue(fila.Telefono);
