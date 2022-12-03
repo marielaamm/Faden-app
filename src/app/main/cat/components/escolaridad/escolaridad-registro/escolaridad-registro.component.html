@@ -11,10 +11,10 @@
                                     style="color:#1b364c; font-weight: bold;">{{j+1}}</td>
                             </ng-container>
 
-                            <ng-container matColumnDef="Escolaridad">
+                            <ng-container matColumnDef="Nombre">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                    sortActionDescription="Sort by Escolaridad">Escolaridad</th>
-                                <td mat-cell *matCellDef="let element">{{element.Escolaridad}}</td>
+                                    sortActionDescription="Sort by Nombre">Escolaridad</th>
+                                <td mat-cell *matCellDef="let element">{{element.Nombre}}</td>
                             </ng-container>
 
                             <ng-container matColumnDef="Accion">
@@ -26,7 +26,7 @@
                                                 
                                         </div>
                                         <div class="col-6">
-                                            <a href="#" ><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
+                                            <a href="#" (click)="EliminarEscolaridad(element)"><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
                                         </div>
                                     </div>
                                 

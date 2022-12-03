@@ -3,6 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Validacion } from 'src/app/main/shared/class/validacion';
+import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
+import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iEscolaridad } from '../../../interface/i-escolaridad';
 import { CatalogoService } from '../../../service/catalogo.service';
@@ -18,7 +20,7 @@ let ELEMENT_DATA: iEscolaridad[] = [];
 export class EscolaridadRegistroComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['IdEscolaridad', 'Escolaridad','Accion'];
+  displayedColumns: string[] = ['IdEscolaridad', 'Nombre','Accion'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iEscolaridad>();
   private _liveAnnouncer: any;
@@ -56,8 +58,7 @@ export class EscolaridadRegistroComponent implements OnInit {
 
 
    /*************************************************************************/
-  ngOnInit(): void {
-  }
+ 
 
   private LlenarEscolaridad (datos: string): void {
     let _json = JSON.parse(datos);
@@ -84,5 +85,74 @@ export class EscolaridadRegistroComponent implements OnInit {
       //this.dialogRef.componentInstance.EditarEscolaridad(fila);
     })
   }
+ 
+
+  public EliminarEscolaridad (fila: any){
+
+    let dialogo : MatDialogRef<DialogoConfirmarComponent> = this._Dialog.open(DialogoConfirmarComponent, { disableClose: true })
+
+    dialogo.componentInstance.titulo = "Eliminar Registro";
+    dialogo.componentInstance.mensaje = "Eliminar";
+    dialogo.componentInstance.texto = fila.IdEscolaridad + " " + fila.Nombre;
+
+    dialogo.afterClosed().subscribe(s=>{
+
+      if(dialogo.componentInstance.retorno=="1"){
+        fila.Activo = false;
+        this._CatalogoService.GuardarEscolaridad(fila);
+      }
+      
+    });
+
+   
+  }
+
+
+  ngOnInit(): void {
+    /*this.ServerScv.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "CerrarDialog" && s[1] == "frmDepartamento") {
+          this.CerrarModalDepartamento();
+        }
+
+
+      }
+    });*/
+
+
+    this._CatalogoService.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "Llenar_Escolaridad") {
+          this.LlenarEscolaridad(s[1]);
+        }
+
+
+        if (s[0] == "dato_Escolaridad_Guardar") {
+
+         
+          if (s[1] == undefined) {
+  
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+          
+         
+          this._CatalogoService.BuscarEscolaridad();
+
+      }
+
+      }
+    });
+
+  }
+  
 
 }

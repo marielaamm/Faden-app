@@ -55,7 +55,8 @@ export class EscolaridadComponent implements OnInit {
     let E: iEscolaridad = {}as  iEscolaridad;
 
     E.IdEscolaridad = 0;
-    E.Escolaridad = this.val.ValForm.get("txtEscolaridad")?.value;
+    E.Nombre = this.val.ValForm.get("txtEscolaridad")?.value;
+    E.Activo = true;
     this._CatalogoService.GuardarEscolaridad(E);
     
 
@@ -101,7 +102,12 @@ export class EscolaridadComponent implements OnInit {
             this.Cerrar();
           }
           else
-          {
+          { 
+            
+            this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+
             this.Limpiar()
           }
       } 

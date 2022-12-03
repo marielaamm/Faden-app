@@ -1,4 +1,5 @@
 export interface iEscolaridad{
     IdEscolaridad: Number,
-    Escolaridad: String
+    Nombre: String,
+    Activo: Boolean
 }
