@@ -7,18 +7,18 @@
 <div class="mat-elevation-z8 faden-tabla"> 
 
     <table mat-table class="faden-tabla" [dataSource]="dataSource" matSort (matSortChange)="announceSort($event)">
-        <ng-container matColumnDef="IdAcompanante">
+        <ng-container matColumnDef="IdAcpte">
             <th mat-header-cell *matHeaderCellDef> No </th>
             <td mat-cell *matCellDef="let element; let j =index" style="color:#1b364c; font-weight: bold;"> {{j+1}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Nombre">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Nombre">
-                Nombre</th>
+        <ng-container matColumnDef="NombreCompleto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by NombreCompleto">
+                Nombre Completo</th>
             <td mat-cell *matCellDef="let element">
 
                 <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.Nombre">
+                    <input  matInput  [value]="element.NombreCompleto">
                 </mat-form-field>
     
             </td>
@@ -61,27 +61,23 @@
         </ng-container>
 
 
-        <ng-container matColumnDef="EsAcompanante">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Acompanante">
+        <ng-container matColumnDef="EsAcpte">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by EsAcpte">
                 Es Acompañante</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.EsAcompanante">
-                </mat-form-field>
-    
+                <mat-checkbox [value]="element.EsAcpte">
+                 </mat-checkbox>            
             </td>
         </ng-container>
 
         <ng-container matColumnDef="EsCuidador">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Cuidador">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by EsCuidador">
                 Es Cuidador</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.EsCuidador">
-                </mat-form-field>
-    
+                <mat-checkbox [value]="element.EsCuidador">
+                </mat-checkbox>                   
             </td>
         </ng-container>
 
@@ -90,10 +86,8 @@
                 Es Primario</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.Esprimario">
-                </mat-form-field>
-    
+                <mat-checkbox [value]="element.Esprimario">
+                </mat-checkbox> 
             </td>
         </ng-container>
 
@@ -102,10 +96,8 @@
                 Es Secundario</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.EsSecundario">
-                </mat-form-field>
-    
+                <mat-checkbox [value]="element.EsSecundario">
+                </mat-checkbox>    
             </td>
         </ng-container>
 

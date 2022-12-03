@@ -12,7 +12,7 @@ let ELEMENT_DATA: iAcompanante[] =[];
 })
 export class AcompananteComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdAcompanante","Nombre","Telefono","Correo", "Direccion","EsAcompanante", "EsCuidador","EsPrimario", "EsSecundario"];
+  displayedColumns: string[] = ["IdAcpte","NombreCompleto","Telefono","Correo", "Direccion","EsAcpte", "EsCuidador","EsPrimario", "EsSecundario"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iAcompanante>();
   private _liveAnnouncer:any;
@@ -29,6 +29,16 @@ export class AcompananteComponent implements OnInit {
 
   f_Agregar_Fila() : void{
     let _Fila : iAcompanante = {} as iAcompanante;
+
+    _Fila.NombreCompleto = "";
+    _Fila.Telefono = "";   
+    _Fila.Direccion = "" ;
+    _Fila.Correo = "";
+    _Fila.EsAcpte = true;
+    _Fila.EsCuidador = false;
+    _Fila.EsPrimario = false;
+    _Fila.EsSecundario = false;
+    _Fila.IdPaciente = 0;
 
     ELEMENT_DATA.push(_Fila);
    

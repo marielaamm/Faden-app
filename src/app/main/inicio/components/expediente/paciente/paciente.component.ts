@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IgxComboComponent } from 'igniteui-angular';
 import { iMunicipio } from 'src/app/main/cat/interface/i-municipio';
@@ -10,6 +9,7 @@ import { iLugarNac } from 'src/app/main/shared/interface/i-lugarnac';
 import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones-generales.service';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iPaciente } from '../../../interface/i-paciente';
+import { AcompananteComponent } from './acompanante/acompanante.component';
 
 @Component({
   selector: 'app-paciente',
@@ -18,6 +18,10 @@ import { iPaciente } from '../../../interface/i-paciente';
 })
 
 export class PacienteComponent implements OnInit {
+
+  @ViewChild('Acompanante', {static : true})
+  public Acompanante: AcompananteComponent;
+
   public lstMunicipio:  iLugarNac[] = [];
   public lstEscolaridad:{}[]=[];
   public val: Validacion = new Validacion();
@@ -71,9 +75,19 @@ export class PacienteComponent implements OnInit {
     this.val.add("chkTwi","1", "LEN>=", "0");
     this.val.add("chkTransf","1", "LEN>=", "0");
     this.val.add("chkOtros","1", "LEN>=", "0");
+    this.val.add("txtRefOtros","1", "LEN>=", "0");
+
+
+    
 
     this.val.add("chkTrabAct","1", "LEN>=", "0");
+    this.val.add("txtRefTrab","1", "LEN>=","0");
+
+
     this.val.add("chkUltTrab","1", "LEN>=", "0");
+    this.val.add("txtRefUltTrab","1", "LEN>=", "0");
+
+
     this.val.add("chkjubilado","1", "LEN>=", "0");
     this.val.add("chkpension","1", "LEN>=", "0");
     
@@ -124,8 +138,24 @@ export class PacienteComponent implements OnInit {
     this.val.ValForm.get("chkTwi")?.setValue("");
     this.val.ValForm.get("chkTransf")?.setValue("");
 
-    this.val.ValForm.get("chkUltTrab")?.setValue("");
-    this.val.ValForm.get("chkTrabAct")?.setValue("");
+
+    this.val.ValForm.get("chkOtros")?.setValue(false);
+    this.val.ValForm.get("txtRefOtros")?.setValue("");
+    this.val.ValForm.get("txtRefOtros")?.disable();
+
+
+   
+    this.val.ValForm.get("chkTrabAct")?.setValue(false);
+    this.val.ValForm.get("txtRefTrab")?.setValue("");    
+    this.val.ValForm.get("txtRefTrab")?.disable();
+
+
+    this.val.ValForm.get("chkUltTrab")?.setValue(false);
+    this.val.ValForm.get("txtRefUltTrab")?.setValue("");
+    this.val.ValForm.get("txtRefUltTrab")?.disable();
+
+
+
     this.val.ValForm.get("chkjubilado")?.setValue("");
     this.val.ValForm.get("chkpension")?.setValue("");
 
@@ -143,7 +173,49 @@ export class PacienteComponent implements OnInit {
     }
 }
 
+//***************************VISITA********************************/
+
+public f_RefOtros() : void {
+
+  this.val.ValForm.get("txtRefOtros")?.disable();
+
+  if(this.val.ValForm.get("chkOtros")?.value == true)
+  {
+    this.val.ValForm.get("txtRefOtros")?.enable();
+  }
+}
+
+//****************************************************************/
+
+//*****************REFERENCIA TRABAJO *****************/
+
+public f_RefTrab() : void {
+
+  this.val.ValForm.get("txtRefTrab")?.disable();
+
+  if(this.val.ValForm.get("chkTrabAct")?.value == true)
+  {
+    this.val.ValForm.get("txtRefTrab")?.enable();
+  }
+}
+//*************************************************** */
+
+//***************** REF ULTIMO TRABAJO***** */
+
+public f_UltimoTrab() : void {
+  this.val.ValForm.get("txtRefUltTrab")?.disable();
+
+  if(this.val.ValForm.get("chkUltTrab")?.value == true)
+  {
+    this.val.ValForm.get("txtRefUltTrab")?.enable();
+  }
+
+}
+
+//**************************************** */
+
 public Guardar(){
+
 
 
   let esError: string = " ";
@@ -264,11 +336,13 @@ public Guardar(){
   ReferVis += Number(this.val.ValForm.get("chkTransf")?.value);
   ReferVis += Number(this.val.ValForm.get("chkOtros")?.value);
 
-  let ReferTrab : string = "";
-  ReferTrab += Number(this.val.ValForm.get("chkTrabAct")?.value);
-  ReferTrab += Number(this.val.ValForm.get("chkUltTrab")?.value);
-  ReferTrab += Number(this.val.ValForm.get("chkjubilado")?.value);
-  ReferTrab += Number(this.val.ValForm.get("chkpension")?.value);
+  let AntLab : string = "";
+  AntLab += Number(this.val.ValForm.get("chkTrabAct")?.value)+ ";";
+  AntLab += Number(this.val.ValForm.get("chkUltTrab")?.value)+ ";";
+  AntLab += Number(this.val.ValForm.get("chkjubilado")?.value)+";";
+  AntLab += Number(this.val.ValForm.get("chkpension")?.value);
+
+  
 
 
   let P: iPaciente = {}as iPaciente;
@@ -286,7 +360,7 @@ public Guardar(){
   P.FechaNacim = this.val.ValForm.get("txtFechaNacimiento")?.value;
   P.Ocupacion = this.val.ValForm.get("txtOcupacion")?.value;
   P.Identificacion = this.val.ValForm.get("txtCedula")?.value;
-  //P.IdEscolaridad = this.val.ValForm.get("txtEscolaridad")?.value;
+  P.IdEscolaridad = 1;//this.val.ValForm.get("txtEscolaridad")?.value;
   P.ECivil = this.val.ValForm.get("txtEstadoCivil")?.value;
   P.Direccion = this.val.ValForm.get("txtDireccion")?.value;
   P.Telefono = this.val.ValForm.get("txtTelefono")?.value;
@@ -296,8 +370,16 @@ public Guardar(){
   P.Convive = Convivencia;
   P.Visita = Visitar;
   P.RefVisita = ReferVis;
-  P.Referencia = ReferTrab;
-  
+  P.Trabaja =  (AntLab.split(";")[0] == "1") ;
+  P.RefTrabajo = this.val.ValForm.get("txtRefTrab")?.value;
+  P.UltimoTrabajo = (AntLab.split(";")[1] == "1");
+
+
+
+
+
+
+    P.Referencia = "";
   this._CatalogoService.GuardarPaciente(P);
   
 }

@@ -25,7 +25,7 @@ export interface iPaciente{
     Referencia: String,
     Trabaja: Boolean,
     RefTrabajo: String,
-    UltimoTrabajo: String,
+    UltimoTrabajo: Boolean,
     RefUltTrabajo: String,
     Jubilado: Boolean,
     Pensionado: Boolean,

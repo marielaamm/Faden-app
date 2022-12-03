@@ -1,11 +1,12 @@
 export interface iAcompanante{
-    idAcompanante: Number;
-    NombreAcompanante: String;
-    Telefono: Number;
-    Correo: String;
+    IdAcpte: Number;
+    NombreCompleto: String;
+    Telefono: String;
     Direccion: String;
-    EsAcompanante:Boolean;
+    Correo: String;
+    EsAcpte: Boolean;
     EsCuidador: Boolean;
     EsPrimario: Boolean;
     EsSecundario: Boolean;
+    IdPaciente: Number
 }

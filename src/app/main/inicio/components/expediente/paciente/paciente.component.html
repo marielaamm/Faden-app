@@ -327,11 +327,11 @@
                                                     formControlName="chkTransf">Transferido
                                                     </mat-checkbox>
                                                     <mat-checkbox class="col-6 col-sm-4 col-md-2 col-lg-2" 
-                                                    formControlName="chkOtros">Otros,
+                                                    formControlName="chkOtros" (change)="f_RefOtros()">Otros,
                                                         especifíque</mat-checkbox>
                                                     <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
                                                         floatLabel="never">
-                                                        <input matInput type="text">
+                                                        <input matInput type="text" formControlName="txtRefOtros">
                                                     </mat-form-field>
     
                                                 </section>
@@ -345,26 +345,26 @@
     
                                             <div class="row">
                                                 <div class="col-12 col-sm-12 col-md-3 col-lg-2">
-                                                    <mat-checkbox formControlName="chkTrabAct">Trabaja Actualmente</mat-checkbox>
+                                                    <mat-checkbox formControlName="chkTrabAct" (change)="f_RefTrab()">Trabaja Actualmente</mat-checkbox>
                                                 </div>
     
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-9 offset-md-1 offset-lg-1">
                                                     <mat-form-field>
                                                         <mat-label>¿En qué trabaja?</mat-label>
-                                                        <input matInput type="text">
+                                                        <input matInput type="text" formControlName="txtRefTrab">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
     
                                             <div class="row">
                                                 <div class="col-12 col-sm-12 col-md-3 col-lg-2">
-                                                    <mat-checkbox formControlName="chkUltTrab">Último trabajo</mat-checkbox>
+                                                    <mat-checkbox formControlName="chkUltTrab" (change)="f_UltimoTrab()">Último trabajo</mat-checkbox>
                                                 </div>
     
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-9 offset-md-1 offset-lg-1">
                                                     <mat-form-field>
                                                         <mat-label>¿Cúal fue?</mat-label>
-                                                        <input matInput type="text">
+                                                        <input matInput type="text" formControlName="txtRefUltTrab">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
@@ -386,7 +386,7 @@
                                         <div>
                                             <div class="row"><label><b>Sobre el Acompañante</b></label></div>
     
-                                            <app-acompanante></app-acompanante>
+                                            <app-acompanante #Acompanante ></app-acompanante>
                                         </div>
     
                                     </mat-card-content>
