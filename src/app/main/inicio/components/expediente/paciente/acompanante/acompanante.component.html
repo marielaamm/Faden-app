@@ -18,7 +18,7 @@
             <td mat-cell *matCellDef="let element">
 
                 <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.NombreCompleto">
+                    <input  matInput  [(ngModel)]="element.NombreCompleto">
                 </mat-form-field>
     
             </td>
@@ -30,7 +30,7 @@
             <td mat-cell *matCellDef="let element">
 
                 <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.Telefono">
+                    <input  matInput  [(ngModel)]="element.Telefono">
                 </mat-form-field>
     
             </td>
@@ -42,7 +42,7 @@
             <td mat-cell *matCellDef="let element">
 
                 <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.Correo">
+                    <input  matInput  [(ngModel)]="element.Correo">
                 </mat-form-field>
     
             </td>
@@ -54,7 +54,7 @@
             <td mat-cell *matCellDef="let element">
 
                 <mat-form-field  floatLabel="never">
-                    <input  matInput  [value]="element.Direccion">
+                    <input  matInput  [(ngModel)]="element.Direccion">
                 </mat-form-field>
     
             </td>
@@ -66,7 +66,7 @@
                 Es Acompañante</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-checkbox [value]="element.EsAcpte">
+                <mat-checkbox [(ngModel)]="element.EsAcpte">
                  </mat-checkbox>            
             </td>
         </ng-container>
@@ -76,7 +76,7 @@
                 Es Cuidador</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-checkbox [value]="element.EsCuidador">
+                <mat-checkbox [(ngModel)]="element.EsCuidador">
                 </mat-checkbox>                   
             </td>
         </ng-container>
@@ -86,7 +86,7 @@
                 Es Primario</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-checkbox [value]="element.Esprimario">
+                <mat-checkbox [(ngModel)]="element.Esprimario">
                 </mat-checkbox> 
             </td>
         </ng-container>
@@ -96,7 +96,7 @@
                 Es Secundario</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-checkbox [value]="element.EsSecundario">
+                <mat-checkbox [(ngModel)]="element.EsSecundario">
                 </mat-checkbox>    
             </td>
         </ng-container>

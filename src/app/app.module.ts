@@ -56,7 +56,7 @@ import { DialogoComponent } from './main/shared/components/dialogo/dialogo.compo
 
 //I keep the new line
 //JAIR
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './main/config/components/menu/menu.component';
 import { DropDownDirective } from './main/shared/directive/drop-down.directive';
@@ -155,6 +155,7 @@ export const DateFormat = {
     
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
 
@@ -202,7 +203,8 @@ export const DateFormat = {
     ReactiveFormsModule,
     HttpClientModule,
     IgxComboModule,
-    ModalModule
+    ModalModule,
+    
 
   ],
   exports: [
