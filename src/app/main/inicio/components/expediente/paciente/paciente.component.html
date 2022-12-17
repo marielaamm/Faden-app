@@ -183,11 +183,11 @@
     
     
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                <igx-combo #withValueKey [data]="lstEscolaridad" valueKey="IdEscolaridad"
-                                                    displayKey="Escolaridad" id="txtEscolaridad" placeholder="Escolaridad"
+                                                <igx-combo #txtEscolaridad [data]="lstEscolaridad" valueKey="IdEscolaridad"
+                                                    displayKey="Nombre" id="txtEscolaridad" placeholder="Escolaridad"
                                                     searchPlaceholder="Seleccione una Opción"
-                                                    (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
-                                                    appAutofocus>
+                                                    (selectionChanging)="Seleccion_Escolaridad($event)" [itemsMaxHeight]="250"
+                                                    (keyup)="f_key_Enter_Escolaridad($event)">
                                                 </igx-combo>
                                             </div>
     

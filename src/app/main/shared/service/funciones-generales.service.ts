@@ -42,6 +42,18 @@ export class FuncionesGeneralesService {
     );
   }
 
+  public FechaServidor(){
+    this.http.get<any>(this._Cnx.Url()+"fn/BuscarFechaServidor").subscribe(datos=>{
+      this.change.emit(["Llenar_FechaServidor", datos]);
+    },
+    err =>{
+      this.Msj();
+    }
+      
+      )
+
+  }
+
   private Msj () : void{
 
 

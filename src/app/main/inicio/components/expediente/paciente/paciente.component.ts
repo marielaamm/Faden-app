@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IgxComboComponent } from 'igniteui-angular';
+import { iEscolaridad } from 'src/app/main/cat/interface/i-escolaridad';
 import { iMunicipio } from 'src/app/main/cat/interface/i-municipio';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
@@ -23,7 +24,7 @@ export class PacienteComponent implements OnInit {
   public Acompanante: AcompananteComponent;
 
   public lstMunicipio:  iLugarNac[] = [];
-  public lstEscolaridad:{}[]=[];
+  public lstEscolaridad: iEscolaridad[]=[];
   public val: Validacion = new Validacion();
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
@@ -34,6 +35,11 @@ export class PacienteComponent implements OnInit {
   
   @ViewChild('txtMunicipio', { static: true })
   public igxComboMunicipio: IgxComboComponent;
+
+
+   @ViewChild('txtEscolaridad', { static: true })
+  public igxComboEscolaridad: IgxComboComponent;
+
  
 
 
@@ -98,12 +104,16 @@ export class PacienteComponent implements OnInit {
     this._CatalogoService = new CatalogoService(this._Dialog);
     this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
     this._FuncionesGenerales.BuscarFechaNac();
+    this._FuncionesGenerales.FechaServidor();
+    this._CatalogoService.BuscarEscolaridad();
+
 
    }
 
    public limpiar(){
     this.val.ValForm.get("txtNoExpediente")?.setValue("");
     this.val.ValForm.get("txtFecha")?.setValue("");
+    this.val.ValForm.get("txtFecha")?.disable();
     this.val.ValForm.get("txtPrimerNombre")?.setValue("");
     this.val.ValForm.get("txtSegundoNombre")?.setValue("");
     this.val.ValForm.get("txtPrimerApellido")?.setValue("");
@@ -309,7 +319,9 @@ public Guardar(){
   }
 
   let _filalugar: any= this.lstMunicipio.find(f => f.IdLugarNac == String(this.val.ValForm.get("txtMunicipio")?.value));
+  let _filaEscolaridad: any= this.lstEscolaridad.find(f => f.IdEscolaridad == Number(this.val.ValForm.get("txtEscolaridad")?.value));
 
+  
   let Convivencia : string = "";
 
   Convivencia += Number(this.val.ValForm.get("chkSolo")?.value);
@@ -359,7 +371,7 @@ public Guardar(){
   P.FechaNacim = this.val.ValForm.get("txtFechaNacimiento")?.value;
   P.Ocupacion = this.val.ValForm.get("txtOcupacion")?.value;
   P.Identificacion = this.val.ValForm.get("txtCedula")?.value;
-  P.IdEscolaridad = 1;//this.val.ValForm.get("txtEscolaridad")?.value;
+  P.IdEscolaridad = _filaEscolaridad.IdEscolaridad;
   P.ECivil = this.val.ValForm.get("txtEstadoCivil")?.value;
   P.Direccion = this.val.ValForm.get("txtDireccion")?.value;
   P.Telefono = this.val.ValForm.get("txtTelefono")?.value;
@@ -398,8 +410,26 @@ public f_key_Enter_Ciudad(event: any){
     this.val.ValForm.get("txtMunicipio")?.setValue([_Item._focusedItem.value.IdLugarNac]);
 
   }
+}
+
+public Seleccion_Escolaridad(event : any){
+  if (event.added.length){
+    event.newSelection = event.added;
+    let _Fila : any = this.lstEscolaridad.find(f=> f.IdEscolaridad == event.added);
+    this.val.ValForm.get("txtEscolaridad")?.setValue([_Fila.IdEscolaridad]);
+  }
 
 }
+
+public f_key_Enter_Escolaridad(even: any){
+if (even.key == "Enter"){
+  let _Item : any = this.igxComboEscolaridad.dropdown;
+  this.igxComboEscolaridad.setSelectedItem([_Item._focusedItem.value.IdEscolaridad]);
+    this.val.ValForm.get("txtEscolaridad")?.setValue([_Item._focusedItem.value.IdEscolaridad]);
+}
+
+}
+
 
    private LlenarLugarNac(datos: string): void {
 
@@ -412,6 +442,20 @@ public f_key_Enter_Ciudad(event: any){
     );
 
     this.igxComboMunicipio.data = this.lstMunicipio;
+
+  }
+
+  private LlenarEscolaridad(datos: string): void {
+
+    let _json = JSON.parse(datos);
+
+    _json["d"].forEach(
+      (b: any) => {
+        this.lstEscolaridad.push(b);
+      }
+    );
+
+    this.igxComboEscolaridad.data = this.lstEscolaridad;
 
   }
 
@@ -464,6 +508,7 @@ public EditarPaciente(fila: any){
     this._CatalogoService.change.subscribe(
 
       s =>{
+
         if (s[0] == "dato_Paciente_Guardar") {
 
           this.val.ValForm.enable();
@@ -485,6 +530,11 @@ public EditarPaciente(fila: any){
 
           if(!this._Dialog) this.limpiar();
       } 
+
+      if (s[0] == "Llenar_Escolaridad") {
+        this.LlenarEscolaridad(s[1]);
+      }
+
       
 
       }
@@ -497,6 +547,13 @@ public EditarPaciente(fila: any){
           this.LlenarLugarNac(s[1]);
 
           }
+
+          if (s[0] == "Llenar_FechaServidor") {
+            let _json = JSON.parse(s[1]);
+
+            this.val.ValForm.get("txtFecha")?.setValue(_json["d"][0]);
+        
+            }
       }
     );
 
