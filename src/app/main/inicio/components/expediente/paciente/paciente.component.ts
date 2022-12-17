@@ -217,7 +217,6 @@ public f_UltimoTrab() : void {
 public Guardar(){
 
 
-
   let esError: string = " ";
   let mensaje: string = "<ol>";
 
@@ -227,7 +226,7 @@ public Guardar(){
   }
 
   if (this.val.ValForm.get("txtSegundoNombre")?.invalid) {
-    mensaje += "<li>Ingrese el segundo nombre o revise la cantidad de caracteres</li>";
+    mensaje += "<li>Ingrese sel segundo nombre o revise la cantidad de caracteres</li>";
     esError += "1";
   }
 
@@ -360,7 +359,7 @@ public Guardar(){
   P.FechaNacim = this.val.ValForm.get("txtFechaNacimiento")?.value;
   P.Ocupacion = this.val.ValForm.get("txtOcupacion")?.value;
   P.Identificacion = this.val.ValForm.get("txtCedula")?.value;
-  P.IdEscolaridad = this.val.ValForm.get("txtEscolaridad")?.value;
+  P.IdEscolaridad = 1;//this.val.ValForm.get("txtEscolaridad")?.value;
   P.ECivil = this.val.ValForm.get("txtEstadoCivil")?.value;
   P.Direccion = this.val.ValForm.get("txtDireccion")?.value;
   P.Telefono = this.val.ValForm.get("txtTelefono")?.value;
@@ -374,6 +373,7 @@ public Guardar(){
   P.RefTrabajo = this.val.ValForm.get("txtRefTrab")?.value;
   P.UltimoTrabajo = (AntLab.split(";")[1] == "1");
   P.Referencia = "";
+  P.TAcompanante = this.Acompanante.dataSource.data;
   this._CatalogoService.GuardarPaciente(P);
   
 }

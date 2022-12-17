@@ -1,3 +1,5 @@
+import { iAcompanante } from "./i-acompanante";
+
 export interface iPaciente{
     IdPaciente: Number,
     NoExpediente: String,
@@ -29,6 +31,7 @@ export interface iPaciente{
     RefUltTrabajo: String,
     Jubilado: Boolean,
     Pensionado: Boolean,
-    Estado: String   
+    Estado: String,
+    TAcompanante: iAcompanante[]  
     
 }
