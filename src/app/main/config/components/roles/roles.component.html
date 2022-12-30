@@ -15,7 +15,7 @@
                     <mat-icon>search</mat-icon>
                   </button>
                   <div class="line-vertical"></div>
-                  <button mat-fab class="btn-faden-aceptar">
+                  <button mat-fab class="btn-faden-aceptar" (click)="Guardar();" [disabled]="bol_Guardando">
                     <mat-icon>save</mat-icon>
                   </button>
                   <button mat-fab class="btn-faden-cancelar">
@@ -45,7 +45,7 @@
                     <mat-label>Rol.</mat-label>
                     <input matInput type="text" id="txtRol" formControlName="txtRol">
                     <mat-icon matPrefix>person</mat-icon>
-                    <mat-error *ngIf="val.ValForm.get('txtVendedor')?.errors?.['Regla']=='1'">Apellidos es
+                    <mat-error *ngIf="val.ValForm.get('txtRol')?.errors?.['Regla']=='1'">Nombre es 
                       <strong>requerido</strong></mat-error>
                   </mat-form-field>
 
