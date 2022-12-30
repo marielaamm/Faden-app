@@ -39,7 +39,9 @@ export class NavComponent{
 
 
     /**************************************ROLES************************************* */
-    {EsMenu: false, Modulo : "SIS", ModuloNombre : "Configuración", Id: "navRol", Link : "Roles", MenuPadre : "", Clase : "bi bi-key-fill"},
+    {EsMenu: true, Modulo : "SIS", ModuloNombre : "Configuración", Id: "navRol", Link : "Roles", MenuPadre : "", Clase : "bi bi-key-fill"},
+    {EsMenu: false, Modulo : "SIS", ModuloNombre : "Configuración", Id: "LinkRol", Link : "Nuevo Rol", MenuPadre : "navRol", Clase : "bi bi-key-fill"},
+    {EsMenu: false, Modulo : "SIS", ModuloNombre : "Configuración", Id: "LinkRol-Registro", Link : "Registros", MenuPadre : "navRol", Clase : "bi bi-key-fill"},
    
 
     {EsMenu: true, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navDepartamento", Link: "Departamento", MenuPadre: "", Clase: ""},

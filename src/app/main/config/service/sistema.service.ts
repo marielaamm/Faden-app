@@ -51,11 +51,20 @@ export class SistemaService {
     );
   }
 
+  
 
 
 
-
-
+  public BuscarRol(){
+    this.http.get<any>(this._Cnx.Url() + "SIS/Rol/Buscar").subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Rol", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
 
 
 

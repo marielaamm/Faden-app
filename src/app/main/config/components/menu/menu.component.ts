@@ -18,6 +18,7 @@ import { SoapComponent } from 'src/app/main/inicio/components/soap/soap.componen
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { LoginService } from '../../service/login.service';
+import { RolesRegistroComponent } from '../roles/roles-registro/roles-registro.component';
 import { RolesComponent } from '../roles/roles.component';
 import { UsuarioComponent } from '../usuario/usuario.component';
 import { NavComponent } from './nav/nav.component';
@@ -187,11 +188,21 @@ export class MenuComponent {
         
         break;
 
-      case "navRol":
+      case "LinkRol":
 
         if(this.str_formulario != f){
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RolesComponent);
+          this.str_formulario = f;
+        }
+
+        break;
+
+      case "LinkRol-Registro":
+
+        if(this.str_formulario != f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(RolesRegistroComponent);
           this.str_formulario = f;
         }
 

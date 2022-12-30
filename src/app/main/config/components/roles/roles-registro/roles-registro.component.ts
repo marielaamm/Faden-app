@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
+import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
+import { SistemaService } from '../../../service/sistema.service';
+import { RolesComponent } from '../roles.component';
 
 
 export interface I_Rol {
@@ -20,13 +25,18 @@ export interface I_Rol {
 export class RolesRegistroComponent implements OnInit {
 
  
-  displayedColumns: string[] = ['Fila', 'Rol'];
+  displayedColumns: string[] = ['IdRol', 'Rol1','Activo'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<I_Rol>();
   private _liveAnnouncer: any;
+  private _SistemaService: SistemaService;
+  private  dialogRef : MatDialogRef<RolesComponent>;
 
   
-  constructor(private ServerScv : ServerService) { }
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) { 
+    this._SistemaService = new SistemaService(this._Dialog);
+    this._SistemaService.BuscarRol();
+  }
 
 
 
@@ -52,27 +62,99 @@ export class RolesRegistroComponent implements OnInit {
   }  
  
 
+  private LlenarRol (datos: string): void {
+    let _json = JSON.parse(datos);
 
 
-  clickRow(evento : string, row : any){
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    _json["d"].forEach(
+      (b: any) => {
+        ELEMENT_DATA.push(b);
+      }
+    );
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
 
 
   }
 
-   /*************************************************************************/
+  public EditarRol (fila: any){
+    this.dialogRef =this._Dialog.open(RolesComponent, { disableClose: true })
 
-   Editar() : void{
 
-    this.ServerScv.change.emit(["CerrarModal", "modal-registro-roles", 1]);
+    this.dialogRef.afterOpened().subscribe(s => {
+      //this.dialogRef.componentInstance.EditarEscolaridad(fila);
+    })
   }
+ 
 
+  public EliminarRol (fila: any){
 
-   Cerrar() : void{
-    this.ServerScv.change.emit(["CerrarModal", "modal-registro-roles", undefined]);
+    let dialogo : MatDialogRef<DialogoConfirmarComponent> = this._Dialog.open(DialogoConfirmarComponent, { disableClose: true })
+
+    dialogo.componentInstance.titulo = "Eliminar Registro";
+    dialogo.componentInstance.mensaje = "Eliminar";
+    dialogo.componentInstance.texto = fila.IdEscolaridad + " " + fila.Nombre;
+
+    dialogo.afterClosed().subscribe(s=>{
+
+      if(dialogo.componentInstance.retorno=="1"){
+        fila.Activo = false;
+        this._SistemaService.GuardarRol(fila);
+      }
       
+    });
+
+   
   }
+
 
   ngOnInit(): void {
+    /*this.ServerScv.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "CerrarDialog" && s[1] == "frmDepartamento") {
+          this.CerrarModalDepartamento();
+        }
+
+
+      }
+    });*/
+
+
+    this._SistemaService.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "Llenar_Rol") {
+          this.LlenarRol(s[1]);
+        }
+
+
+        if (s[0] == "dato_Rol_Guardar") {
+
+         
+          if (s[1] == undefined) {
+  
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+          
+         
+          this._SistemaService.BuscarRol();
+
+      }
+
+      }
+    });
+
   }
+  
 
 }
