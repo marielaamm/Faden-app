@@ -50,8 +50,8 @@ export class ExpdienteService {
 
   }
 
-  public BuscarPaciente(NoExpediente : string){
-    this.http.get<any>(this._Cnx.Url() + "cat/Paciente/Buscar" + "?NoExpediente="+ NoExpediente).subscribe(
+  public BuscarPaciente(){
+    this.http.get<any>(this._Cnx.Url() + "cat/Paciente/Buscar").subscribe(
       datos =>{
         this.change.emit(["Llenar_paciente", datos]);
       },
