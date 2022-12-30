@@ -138,7 +138,7 @@ export class RegistrosMedicosComponent implements OnInit {
           this._CatalogoService.BuscarMedico("");
         }
 
-      }
+      }s
     });
 
 
