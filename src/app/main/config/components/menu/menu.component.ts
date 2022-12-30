@@ -10,6 +10,7 @@ import { MunicipioComponent } from 'src/app/main/cat/components/municipio/munici
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
 import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
 import { ConsensomedicoComponent } from 'src/app/main/inicio/components/consensomedico/consensomedico.component';
+import { ExpedienteRegistroComponent } from 'src/app/main/inicio/components/expediente/expediente-registro/expediente-registro.component';
 import { ExpedienteComponent } from 'src/app/main/inicio/components/expediente/expediente.component';
 import { HistoriamedicaComponent } from 'src/app/main/inicio/components/expediente/historiamedica/historiamedica.component';
 import { PacienteComponent } from 'src/app/main/inicio/components/expediente/paciente/paciente.component';
@@ -152,6 +153,14 @@ export class MenuComponent {
         if(this.str_formulario !=f){
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(SoapComponent);
+          this.str_formulario=f; 
+        }
+        break;
+
+      case "navtemporal":
+        if(this.str_formulario !=f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(ExpedienteRegistroComponent);
           this.str_formulario=f; 
         }
         break;

@@ -97,6 +97,7 @@ import { AcompananteComponent } from './main/inicio/components/expediente/pacien
 import { MedicosComponent } from './main/cat/components/medicos/medicos.component';
 import { RegistrosMedicosComponent } from './main/cat/components/medicos/registros-medicos/registros-medicos.component';
 import { DialogoConfirmarComponent } from './main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
+import { ExpedienteRegistroComponent } from './main/inicio/components/expediente/expediente-registro/expediente-registro.component';
 
 //FIN
 
@@ -152,6 +153,7 @@ export const DateFormat = {
     MedicosComponent,
     RegistrosMedicosComponent,
     DialogoConfirmarComponent,
+    ExpedienteRegistroComponent,
     
   ],
   imports: [

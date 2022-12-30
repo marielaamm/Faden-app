@@ -10,6 +10,7 @@ import { iLugarNac } from 'src/app/main/shared/interface/i-lugarnac';
 import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones-generales.service';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iPaciente } from '../../../interface/i-paciente';
+import { ExpdienteService } from '../../../service/expediente.service';
 import { AcompananteComponent } from './acompanante/acompanante.component';
 
 @Component({
@@ -28,6 +29,7 @@ export class PacienteComponent implements OnInit {
   public val: Validacion = new Validacion();
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
+  private _ExpdienteService : ExpdienteService;
  
   private _Fila_Paciente : any = undefined;
   private esDialog : boolean = false;
@@ -43,7 +45,7 @@ export class PacienteComponent implements OnInit {
  
 
 
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv : ServerService,  private _Dialog: MatDialog) {
 
     this.val.add("txtNoExpediente", "1", "LEN>=", "0");
     this.val.add("txtFecha", "1", "LEN>=", "0");
@@ -101,13 +103,14 @@ export class PacienteComponent implements OnInit {
  
     this.limpiar();
     
+    this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._CatalogoService = new CatalogoService(this._Dialog);
     this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
     this._FuncionesGenerales.BuscarFechaNac();
     this._FuncionesGenerales.FechaServidor();
     this._CatalogoService.BuscarEscolaridad();
 
-
+    
    }
 
    public limpiar(){
@@ -386,7 +389,7 @@ public Guardar(){
   P.UltimoTrabajo = (AntLab.split(";")[1] == "1");
   P.Referencia = "";
   P.TAcompanante = this.Acompanante.dataSource.data;
-  this._CatalogoService.GuardarPaciente(P);
+  this._ExpdienteService.GuardarPaciente(P);
   
 }
 
@@ -505,7 +508,7 @@ public EditarPaciente(fila: any){
 
     
 
-    this._CatalogoService.change.subscribe(
+    this._ExpdienteService.change.subscribe(
 
       s =>{
 
@@ -531,11 +534,18 @@ public EditarPaciente(fila: any){
           if(!this._Dialog) this.limpiar();
       } 
 
+
+      }
+    );
+
+
+
+    this._CatalogoService.change.subscribe(
+
+      s =>{
       if (s[0] == "Llenar_Escolaridad") {
         this.LlenarEscolaridad(s[1]);
       }
-
-      
 
       }
     );
