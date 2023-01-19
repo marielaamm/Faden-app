@@ -14,7 +14,7 @@ import { iPaciente } from '../../../interface/i-paciente';
 import { ExpdienteService } from '../../../service/expediente.service';
 import { AcompananteComponent } from './acompanante/acompanante.component';
 
-let ELEMENT_DATA: iPaciente[]=[];
+
 
 @Component({
   selector: 'app-paciente',
@@ -33,7 +33,7 @@ export class PacienteComponent implements OnInit {
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
   private _ExpdienteService : ExpdienteService;
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  
  
   private _Fila_Paciente : any = undefined;
   private esDialog : boolean = false;
@@ -231,13 +231,6 @@ public f_UltimoTrab() : void {
 
 //**************************************** */
 
-f_Buscar_Fila() : void{
-  let _Fila : iPaciente = {} as iPaciente;
-
-  ELEMENT_DATA.push(_Fila);
- 
-  this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-}
 
 public Guardar(){
 
