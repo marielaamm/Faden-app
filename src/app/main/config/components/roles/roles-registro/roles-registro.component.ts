@@ -84,7 +84,7 @@ export class RolesRegistroComponent implements OnInit {
 
 
     this.dialogRef.afterOpened().subscribe(s => {
-      //this.dialogRef.componentInstance.EditarEscolaridad(fila);
+      this.dialogRef.componentInstance.EditarRol(fila);
     })
   }
  
@@ -95,7 +95,7 @@ export class RolesRegistroComponent implements OnInit {
 
     dialogo.componentInstance.titulo = "Eliminar Registro";
     dialogo.componentInstance.mensaje = "Eliminar";
-    dialogo.componentInstance.texto = fila.IdEscolaridad + " " + fila.Nombre;
+    dialogo.componentInstance.texto = fila.IdRol + " " + fila.Rol1;
 
     dialogo.afterClosed().subscribe(s=>{
 
@@ -111,17 +111,18 @@ export class RolesRegistroComponent implements OnInit {
 
 
   ngOnInit(): void {
-    /*this.ServerScv.change.subscribe(s => {
+    this.ServerScv.change.subscribe(s => {
     
       if (s instanceof Array) {
 
-        if (s[0] == "CerrarDialog" && s[1] == "frmDepartamento") {
-          this.CerrarModalDepartamento();
+        if (s[0] == "CerrarDialog" && s[1] == "frmRoles") {
+          this.dialogRef.close();
+          this._SistemaService.BuscarRol();
         }
 
 
       }
-    });*/
+    });
 
 
     this._SistemaService.change.subscribe(s => {

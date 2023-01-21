@@ -17,6 +17,7 @@ export class EscolaridadComponent implements OnInit {
   private _CatalogoService:CatalogoService;
   public val: Validacion = new Validacion();
   private EsModal:boolean= false;
+  private Id : Number=0;
 
     constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
       this.val.add("txtEscolaridad", "1", "LEN>", "0");
@@ -54,18 +55,35 @@ export class EscolaridadComponent implements OnInit {
 
     let E: iEscolaridad = {}as  iEscolaridad;
 
-    E.IdEscolaridad = 0;
+    E.IdEscolaridad = this.Id;
     E.Nombre = this.val.ValForm.get("txtEscolaridad")?.value;
     E.Activo = true;
     this._CatalogoService.GuardarEscolaridad(E);
     
 
+     }
+
+     public EditarEscolaridad(fila: iEscolaridad){
+
+      this.EsModal= true;
+      this.Id=fila.IdEscolaridad;
+      this.val.ValForm.get("txtEscolaridad")?.setValue(fila.Nombre);
 
      }
 
+
+
     Cerrar() : void{
     
+      if(this.EsModal)
+      {
+        this.ServerScv.change.emit(["CerrarDialog","frmEscolaridad", ""]);
+      }
+      else
+      {
+        
         this.ServerScv.CerrarFormulario();
+      }
       
   }
 

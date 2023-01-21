@@ -82,7 +82,7 @@ export class EscolaridadRegistroComponent implements OnInit {
 
 
     this.dialogRef.afterOpened().subscribe(s => {
-      //this.dialogRef.componentInstance.EditarEscolaridad(fila);
+      this.dialogRef.componentInstance.EditarEscolaridad(fila);
     })
   }
  
@@ -109,17 +109,18 @@ export class EscolaridadRegistroComponent implements OnInit {
 
 
   ngOnInit(): void {
-    /*this.ServerScv.change.subscribe(s => {
+    this.ServerScv.change.subscribe(s => {
     
       if (s instanceof Array) {
 
-        if (s[0] == "CerrarDialog" && s[1] == "frmDepartamento") {
-          this.CerrarModalDepartamento();
+        if (s[0] == "CerrarDialog" && s[1] == "frmEscolaridad") {
+          this.dialogRef.close();
+          this._CatalogoService.BuscarEscolaridad();
         }
 
 
       }
-    });*/
+    });
 
 
     this._CatalogoService.change.subscribe(s => {
