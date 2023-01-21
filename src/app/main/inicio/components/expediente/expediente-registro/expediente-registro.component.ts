@@ -79,8 +79,25 @@ export class ExpedienteRegistroComponent implements OnInit {
     
   }
 
+  private CerrarModalPaciente()
+  {
+    this.dialogRef.close();
+  }
 
   ngOnInit(): void {
+
+    this.ServerScv.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "CerrarDialog" && s[1] == "frmPaciente") {
+          this.CerrarModalPaciente();
+        }
+
+
+      }
+    });
+
 
     this._ExpdienteService.change.subscribe(s => {
     
