@@ -32,7 +32,7 @@
                                     <mat-card-content>
     
                                         <div class="row">
-                                            <div class="col-6 col-sm-3 col-md-2 col-lg-2">
+                                            <div class="col-3 col-sm-3 col-md-2 col-lg-2">
                                                 <mat-form-field>
                                                     <mat-label>No de Expediente</mat-label>
                                                     <input matInput type="text" id="txtNoExpediente"
@@ -40,9 +40,15 @@
                                                 </mat-form-field>
     
                                             </div>
-    
+
+                                            <div class="col-3 col-sm-1 col-md-1 col-lg-1">
+                                                <div id="contenedor-buscar">
+                                                    <button mat-fab class="btn-faden-buscar" click="BuscarPaciente()">Buscar</button>
+                                                </div>
+                                            </div>
+                                             
                                             <div
-                                                class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-md-8">
+                                                class="col-6 col-sm-3 col-md-3 col-lg-2 offset-sm-6 offset-md-6 offset-md-6">
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Fecha</mat-label>
                                                     <input matInput [matDatepicker]="picker" id="txtFecha" formControlName="txtFecha">

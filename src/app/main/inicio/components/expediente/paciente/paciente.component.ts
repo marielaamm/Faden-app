@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { IgxComboComponent } from 'igniteui-angular';
 import { iEscolaridad } from 'src/app/main/cat/interface/i-escolaridad';
 import { iMunicipio } from 'src/app/main/cat/interface/i-municipio';
@@ -12,6 +13,8 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iPaciente } from '../../../interface/i-paciente';
 import { ExpdienteService } from '../../../service/expediente.service';
 import { AcompananteComponent } from './acompanante/acompanante.component';
+
+
 
 @Component({
   selector: 'app-paciente',
@@ -30,6 +33,7 @@ export class PacienteComponent implements OnInit {
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
   private _ExpdienteService : ExpdienteService;
+  
  
   private _Fila_Paciente : any = undefined;
   private esDialog : boolean = false;
@@ -226,6 +230,7 @@ public f_UltimoTrab() : void {
 }
 
 //**************************************** */
+
 
 public Guardar(){
 
