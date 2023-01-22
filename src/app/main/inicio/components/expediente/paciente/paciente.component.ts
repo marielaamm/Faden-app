@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { IgxComboComponent } from 'igniteui-angular';
 import { iEscolaridad } from 'src/app/main/cat/interface/i-escolaridad';
@@ -12,6 +12,7 @@ import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iPaciente } from '../../../interface/i-paciente';
 import { ExpdienteService } from '../../../service/expediente.service';
+import { ExpedienteRegistroComponent } from '../expediente-registro/expediente-registro.component';
 import { AcompananteComponent } from './acompanante/acompanante.component';
 
 
@@ -33,6 +34,7 @@ export class PacienteComponent implements OnInit {
   private _CatalogoService: CatalogoService;
   private _FuncionesGenerales: FuncionesGeneralesService;
   private _ExpdienteService : ExpdienteService;
+  private  dialogRef : MatDialogRef<ExpedienteRegistroComponent>;
   
  
   private _Fila_Paciente : any = undefined;
@@ -62,7 +64,7 @@ export class PacienteComponent implements OnInit {
     this.val.add("txtEdad","1", "LEN>", "0");
     this.val.add("txtOcupacion","1", "LEN>", "0");
     this.val.add("txtCedula","1", "LEN>", "0");
-    this.val.add("txtEscolaridad","1", "LEN>=", "0");
+    this.val.add("txtEscolaridad","1", "LEN>", "0");
     this.val.add("txtEstadoCivil","1", "LEN>", "0");
     this.val.add("txtDireccion","1", "LEN>", "0");
     this.val.add("txtTelefono","1", "LEN>", "0");
@@ -180,7 +182,7 @@ export class PacienteComponent implements OnInit {
     this.val.ValForm.get("rdSexo")?.setValue("");
 
     this.val.ValForm.get("txtNoExpediente")?.disable();
-    this.EditarPaciente(this._Fila_Paciente);
+    //this.EditarPaciente(this._Fila_Paciente);
     
    }
 
@@ -467,7 +469,7 @@ if (even.key == "Enter"){
 
   }
 
-  
+  /*
 public EditarPaciente(fila: any){
   this._Fila_Paciente = fila;
 
@@ -496,6 +498,55 @@ public EditarPaciente(fila: any){
 
 
 }
+*/
+
+public AbriRegistroPaciente(){
+
+  this.dialogRef =this._Dialog.open(ExpedienteRegistroComponent, 
+    {
+       disableClose: true,
+      panelClass: 'custom-modal'
+      })
+
+
+  
+    
+}
+
+private CargarFichaPaciente(Paciente : any, Acompanante : any){
+
+  this.limpiar();
+  this.val.ValForm.get("txtNoExpediente")?.setValue(Paciente.NoExpediente);
+  this.val.ValForm.get("txtFecha")?.setValue(Paciente.FechaIngreso);
+  this.val.ValForm.get("txtPrimerNombre")?.setValue(Paciente.PNombre);
+  this.val.ValForm.get("txtSegundoNombre")?.setValue(Paciente.SNombre);
+  this.val.ValForm.get("txtPrimerApellido")?.setValue(Paciente.PApellido);
+  this.val.ValForm.get("txtSegundoApellido")?.setValue(Paciente.SApellido);
+  this.val.ValForm.get("rdSexo")?.setValue(Paciente.Sexo);
+  this.val.ValForm.get("txtMunicipio")?.setValue([Paciente.IdLugarNac]);
+  this.val.ValForm.get("txtFechaNacimiento")?.setValue(Paciente.FechaNacim);
+  this.val.ValForm.get("txtOcupacion")?.setValue(Paciente.Ocupacion);
+  this.val.ValForm.get("txtCedula")?.setValue(Paciente.Cedula);
+  this.val.ValForm.get("txtEscolaridad")?.setValue([Paciente.IdEscolaridad]);
+  this.val.ValForm.get("txtEstadoCivil")?.setValue(Paciente.ECivil);
+  this.val.ValForm.get("txtDireccion")?.setValue(Paciente.Direccion);
+  this.val.ValForm.get("txtTelefono")?.setValue(Paciente.Telefono);
+  this.val.ValForm.get("txtCelular")?.setValue(Paciente.Celular);
+  this.val.ValForm.get("txtCorreo")?.setValue(Paciente.Correo);
+  this.val.ValForm.get("txtReligion")?.setValue(Paciente.Religion);
+
+this.Acompanante.dataSource = Acompanante
+
+
+  
+
+  
+  
+  
+
+}
+
+
 
   Cerrar() : void{
     if(!this.esDialog)
@@ -573,56 +624,21 @@ public EditarPaciente(fila: any){
     );
 
 
+    this.ServerScv.change.subscribe(
+
+      s =>{
+      if (s[0] == "CerrarDialog" &&  s[1]== "frmRegistroPaciente") {
+
+        this.CargarFichaPaciente(s[2][0], s[2][1])
+        this.dialogRef.close();
+
+
+      }
+
+      }
+    );
 
 
   }
 
 }
-/** 
-export interface Task {
-  name: string;
-  completed: boolean;
-  color: ThemePalette;
-  subtasks?: Task[];
-}
-
-/** @title Basic checkboxes
- 
-@Component({
-  selector: 'checkbox-overview-example',
-  templateUrl: 'checkbox-overview-example.html',
-  styleUrls: ['checkbox-overview-example.css'],
-})
-export class CheckboxOverviewExample {
-  task: Task = {
-    name: 'Indeterminate',
-    completed: false,
-    color: 'primary',
-    subtasks: [
-      {name: 'Primary', completed: false, color: 'primary'},
-      {name: 'Accent', completed: false, color: 'accent'},
-      {name: 'Warn', completed: false, color: 'warn'},
-    ],
-  };
-
-  allComplete: boolean = false;
-
-  updateAllComplete() {
-    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
-  }
-
-  someComplete(): boolean {
-    if (this.task.subtasks == null) {
-      return false;
-    }
-    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
-  }
-
-  setAll(completed: boolean) {
-    this.allComplete = completed;
-    if (this.task.subtasks == null) {
-      return;
-    }
-    this.task.subtasks.forEach(t => (t.completed = completed));
-  }
-}*/
