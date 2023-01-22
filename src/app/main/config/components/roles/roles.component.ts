@@ -17,6 +17,7 @@ export class RolesComponent implements OnInit {
   private EsModal:boolean= false;
   private serviceSIS : SistemaService
   public bol_Guardando : boolean = false;
+  private Id : Number=0;
   
   constructor(private ServerScv : ServerService,   private _Dialog: MatDialog) {
     this.val.add("txtRol", "1","LEN>", "0");
@@ -53,13 +54,20 @@ export class RolesComponent implements OnInit {
 
   let E: iRol = {}as  iRol;
 
-  E.IdRol = 0;
+  E.IdRol = this.Id;
   E.Rol1 = this.val.ValForm.get("txtRol")?.value;
   E.Activo = true;
   this.serviceSIS.GuardarRol(E);
   
 
+   }
 
+   public EditarRol(fila: iRol){
+
+    this.EsModal= true;
+    this.Id=fila.IdRol;
+    this.val.ValForm.get("txtRol")?.setValue(fila.Rol1);
+  
    }
 
 
@@ -73,7 +81,15 @@ export class RolesComponent implements OnInit {
 
  Cerrar() : void{
 
+  if(this.EsModal)
+  {
+    this.ServerScv.change.emit(["CerrarDialog","frmRoles", ""]);
+  }
+  else
+  {
+    
     this.ServerScv.CerrarFormulario();
+  }
     
 }
 
