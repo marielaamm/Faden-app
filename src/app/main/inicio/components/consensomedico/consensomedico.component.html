@@ -50,7 +50,9 @@
                                     
                                     <div class="col-sm-7 col-md-6 col-lg-7">
                                         <mat-form-field >
-                                            <input matInput type="text">
+                                            <input matInput type="text" formControlName="txtDetNormal">
+                                            <mat-error *ngIf="val.ValForm.get('txtDetNormal')?.errors?.['Regla']=='1'"
+                                            style="color:black">Ingrese una breve <strong> Descripción </strong> </mat-error>
                                         </mat-form-field>
                                     </div>
                             
@@ -66,7 +68,9 @@
                                                 
                                     <div class="col-sm-7 col-md-6 col-lg-7">
                                         <mat-form-field>
-                                            <input matInput type="text">
+                                            <input matInput type="text" formControlName="txtDetLeve">
+                                            <mat-error *ngIf="val.ValForm.get('txtDetLeve')?.errors?.['Regla']=='1'"
+                                            style="color:black">Ingrese una breve <strong> Descripción </strong> </mat-error>
                                         </mat-form-field>
                                     </div>
                             
@@ -82,7 +86,9 @@
                                                 
                                     <div class="col-sm-7 col-md-6 col-lg-7">
                                         <mat-form-field >
-                                            <input matInput type="text">
+                                            <input matInput type="text" formControlName="txtDetMayor">
+                                            <mat-error *ngIf="val.ValForm.get('txtDetMayor')?.errors?.['Regla']=='1'"
+                                            style="color:black">Ingrese una breve <strong> Descripción </strong> </mat-error>
                                         </mat-form-field>
                                     </div>
                             
@@ -104,36 +110,36 @@
                                             <mat-checkbox formControlName="chkDepre">Depresión</mat-checkbox>
                                         </div>  
                                         <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                            <mat-form-field >
-                                                <input matInput type="text">
-                                            </mat-form-field >
+                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                <input matInput type="text" formControlName="txtDepresion">
+                                            </mat-form-field>
                                         </div>     
                                         
                                         <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
                                             <mat-checkbox formControlName="chkBipolar">Trastorno Bipolar</mat-checkbox>
                                         </div>  
                                         <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                            <mat-form-field >
-                                                <input matInput type="text">
-                                            </mat-form-field >
+                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                <input matInput type="text" formControlName="txtBipolar">
+                                            </mat-form-field>
                                         </div>   
                                         
                                         <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
                                             <mat-checkbox formControlName="chkEsquizo">Esquizofrenia</mat-checkbox>
                                         </div>  
                                         <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                            <mat-form-field >
-                                                <input matInput type="text">
-                                            </mat-form-field >
+                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                <input matInput type="text" formControlName="txtEsquizo">
+                                            </mat-form-field>
                                         </div>   
         
                                         <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
                                             <mat-checkbox formControlName="chkOtro">Otro</mat-checkbox>
                                         </div>  
                                         <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                            <mat-form-field >
-                                                <input matInput type="text">
-                                            </mat-form-field >
+                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                <input matInput type="text" formControlName="txtOtro">
+                                            </mat-form-field>
                                         </div>                                      
                                     </section>                          
                                 </div>
@@ -164,8 +170,8 @@
                                 </div>
                                             
                                 <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                    <mat-form-field >
-                                        <input matInput type="text">
+                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                        <input matInput type="text" formControlName="txtDiagProbable">
                                     </mat-form-field>
                                 </div>
         
@@ -176,8 +182,8 @@
                                 </div>
                                             
                                 <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                    <mat-form-field >
-                                        <input matInput type="text">
+                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                        <input matInput type="text" formControlName="txtDiagConfir">
                                     </mat-form-field>
                                 </div>
                             </div>

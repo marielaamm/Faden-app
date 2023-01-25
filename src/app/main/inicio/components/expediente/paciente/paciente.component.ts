@@ -535,6 +535,7 @@ private CargarFichaPaciente(Paciente : any, Acompanante : any){
   this.val.ValForm.get("txtCorreo")?.setValue(Paciente.Correo);
   this.val.ValForm.get("txtReligion")?.setValue(Paciente.Religion);
 
+
 this.Acompanante.dataSource = Acompanante
 
 
