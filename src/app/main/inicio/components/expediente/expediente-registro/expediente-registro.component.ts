@@ -54,7 +54,6 @@ export class ExpedienteRegistroComponent implements OnInit {
 
     let _json = JSON.parse(datos);
 
-
     ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
 
     /*_json["d"].forEach(
