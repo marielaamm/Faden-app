@@ -360,9 +360,6 @@ export class PacienteComponent implements OnInit {
     AntLab += Number(this.val.ValForm.get("chkjubilado")?.value) + ";";
     AntLab += Number(this.val.ValForm.get("chkpension")?.value);
 
-
-
-
     let P: iPaciente = {} as iPaciente;
 
     P.IdPaciente = 0;
@@ -386,7 +383,7 @@ export class PacienteComponent implements OnInit {
     P.Correo = this.val.ValForm.get("txtCorreo")?.value;
     P.Religion = this.val.ValForm.get("txtReligion")?.value;
     P.Convive = Convivencia;
-    P.Visita = Visitar;
+    P.Visita  = Visitar;
     P.RefVisita = ReferVis;
     P.Trabaja = (AntLab.split(";")[0] == "1");
     P.RefTrabajo = this.val.ValForm.get("txtRefTrab")?.value;
@@ -512,6 +509,8 @@ public EditarPaciente(fila: any){
 
   private CargarFichaPaciente(Paciente: any, Acompanante: any) {
     const conviveArray = [...Paciente.Convive]
+    //const visitaArray = [...Paciente.Visita]
+    //const refvisitaArray = [...Paciente.RefVisita]
     //Todo convertir los string de visitas, referencias y antecedentes a array segun la linea de arriba
     this.limpiar();
     this.val.ValForm.get("txtNoExpediente")?.setValue(Paciente.NoExpediente);
@@ -538,15 +537,11 @@ public EditarPaciente(fila: any){
     this.val.ValForm.get("chkPareja")?.setValue(parseInt(conviveArray[3]));
     this.val.ValForm.get("chkHermano")?.setValue(parseInt(conviveArray[4]));
     this.val.ValForm.get("chkAmigo")?.setValue(parseInt(conviveArray[5]));
+    
+    
+
 //TODO Reemplazar con los formControlName el resto de checkboxes, fijarse en el orden, comienzan con cero
     this.Acompanante.dataSource = Acompanante
-
-
-
-
-
-
-
 
   }
 
