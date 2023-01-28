@@ -502,15 +502,12 @@ public EditarPaciente(fila: any){
         panelClass: 'custom-modal'
       })
 
-
-
-
   }
 
   private CargarFichaPaciente(Paciente: any, Acompanante: any) {
     const conviveArray = [...Paciente.Convive]
-    //const visitaArray = [...Paciente.Visita]
-    //const refvisitaArray = [...Paciente.RefVisita]
+    const visitaArray = [...Paciente.Visita]
+    const refvisitaArray = [...Paciente.RefVisita]
     //Todo convertir los string de visitas, referencias y antecedentes a array segun la linea de arriba
     this.limpiar();
     this.val.ValForm.get("txtNoExpediente")?.setValue(Paciente.NoExpediente);
@@ -537,6 +534,15 @@ public EditarPaciente(fila: any){
     this.val.ValForm.get("chkPareja")?.setValue(parseInt(conviveArray[3]));
     this.val.ValForm.get("chkHermano")?.setValue(parseInt(conviveArray[4]));
     this.val.ValForm.get("chkAmigo")?.setValue(parseInt(conviveArray[5]));
+    this.val.ValForm.get("chkEsp")?.setValue(parseInt(visitaArray[0]));
+    this.val.ValForm.get("chkRef")?.setValue(parseInt(visitaArray[1]));
+    this.val.ValForm.get("chkReco")?.setValue(parseInt(visitaArray[2]));
+    this.val.ValForm.get("chkMedios")?.setValue(parseInt(visitaArray[3]));
+    this.val.ValForm.get("chkFB")?.setValue(parseInt(refvisitaArray[0]));
+    this.val.ValForm.get("chkInst")?.setValue(parseInt(refvisitaArray[1]));
+    this.val.ValForm.get("chkTwi")?.setValue(parseInt(refvisitaArray[2]));
+    this.val.ValForm.get("chkTransf")?.setValue(parseInt(refvisitaArray[3]));
+    this.val.ValForm.get("chkOtros")?.setValue(parseInt(refvisitaArray[4]));
     
     
 

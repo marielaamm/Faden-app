@@ -79,7 +79,7 @@ export class ExpedienteRegistroComponent implements OnInit {
       
   );
 
-  console.log(this.LstAcompanante)
+ 
   
   let Acompanante : any[] = this.LstAcompanante.filter((w : any) => w.IdPaciente == e.IdPaciente)
 
