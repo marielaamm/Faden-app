@@ -10,6 +10,7 @@ import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo
 import { iLugarNac } from 'src/app/main/shared/interface/i-lugarnac';
 import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones-generales.service';
 import { ServerService } from 'src/app/main/shared/service/server.service';
+import { iAcompanante } from '../../../interface/i-acompanante';
 import { iPaciente } from '../../../interface/i-paciente';
 import { ExpdienteService } from '../../../service/expediente.service';
 import { ExpedienteRegistroComponent } from '../expediente-registro/expediente-registro.component';
@@ -236,7 +237,7 @@ export class PacienteComponent implements OnInit {
 
     let esError: string = " ";
     let mensaje: string = "<ol>";
-
+//[INICIO - Validaciones]
     if (this.val.ValForm.get("txtPrimerNombre")?.invalid) {
       mensaje += "<li>Ingrese el primer nombre o revise la cantidad de caracteres</li>";
       esError += "1";
@@ -311,7 +312,7 @@ export class PacienteComponent implements OnInit {
       mensaje += "<li>Digite la religión o revise la cantidad de caracteres</li>";
       esError += "1";
     }
-
+//[FIN - Validaciones]
     mensaje += "</ol>";
 
     if (esError.includes("1")) {
@@ -389,7 +390,11 @@ export class PacienteComponent implements OnInit {
     P.RefTrabajo = this.val.ValForm.get("txtRefTrab")?.value;
     P.UltimoTrabajo = (AntLab.split(";")[1] == "1");
     P.Referencia = "";
-    P.TAcompanante = this.Acompanante.dataSource.data;
+    //**TODO REVISAR CON JAIR PORQUE LA PROPIEDAD DATA DE DATASOURCE DEVUELVE UNDEFINED CUANDO SE AGREGA UNA NUEVA FILA, 
+    //ESTE CAMBIO ESTA SUJETO A REVISION Y APROBACION DE JAIR
+    // */
+    const acompananteArray = this.Acompanante.dataSource.data? this.Acompanante.dataSource.data: this.Acompanante.dataSource;
+    P.TAcompanante =acompananteArray as unknown as iAcompanante[];
     this._ExpdienteService.GuardarPaciente(P);
 
   }
