@@ -25,6 +25,7 @@ export class MedicosComponent implements OnInit {
   public igxComboMunicipio: IgxComboComponent;
   private esDialog : boolean = false;
   private _Fila_Medico : any = undefined;
+ 
 
   
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
@@ -210,6 +211,7 @@ export class MedicosComponent implements OnInit {
   }
 
   public EditarMedico(fila: any){
+   
     this._Fila_Medico = fila;
 
     if(this._Fila_Medico == undefined) return;
@@ -276,7 +278,15 @@ export class MedicosComponent implements OnInit {
             data: s[1]["msj"]
           });
 
-          if(!this.esDialog) this.limpiar();
+          if(this.esDialog){
+            this.Cerrar();
+          }
+          else
+          {
+
+            this.limpiar()
+          }
+
       } 
       
 
