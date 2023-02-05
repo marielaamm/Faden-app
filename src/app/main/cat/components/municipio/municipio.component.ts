@@ -187,6 +187,10 @@ export class MunicipioComponent implements OnInit {
           }
           else
           {
+            this._Dialog.open(DialogoComponent, {
+              data: s[1]["msj"],
+            });
+
             this.Limpiar()
           }
 
