@@ -1,4 +1,7 @@
 
+.cdk-overlay-container{
+  z-index: 1060;
+}
 
 
 .modal-dialog {
@@ -13,6 +16,14 @@
   justify-content: center;
   align-items: center;
 }
+
+.center-modal {
+  position: fixed;
+  top: 10%;
+  left: 18.5%;
+  margin-left: -10%;
+}
+
 
 
 .faden-modal-custom{

@@ -23,6 +23,7 @@ export class ExpedienteRegistroComponent implements OnInit {
   private _liveAnnouncer:any;
   private _ExpdienteService: ExpdienteService;
   private  dialogRef : MatDialogRef<PacienteComponent>;
+  private LstAcompanante : any[] ;
 
 
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
@@ -53,7 +54,6 @@ export class ExpedienteRegistroComponent implements OnInit {
 
     let _json = JSON.parse(datos);
 
-
     ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
 
     /*_json["d"].forEach(
@@ -62,7 +62,8 @@ export class ExpedienteRegistroComponent implements OnInit {
       }
     );*/
 
-    ELEMENT_DATA = _json["d"];
+    ELEMENT_DATA = _json["d"][0];
+    this.LstAcompanante = _json["d"][1]
 
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -75,8 +76,16 @@ export class ExpedienteRegistroComponent implements OnInit {
       {
         f.Seleccionar = false;
       }
+      
   );
-    
+
+ 
+  
+  let Acompanante : any[] = this.LstAcompanante.filter((w : any) => w.IdPaciente == e.IdPaciente)
+
+  
+  this.ServerScv.change.emit(["CerrarDialog","frmRegistroPaciente", [e, Acompanante]]);
+
   }
 
   private CerrarModalPaciente()
