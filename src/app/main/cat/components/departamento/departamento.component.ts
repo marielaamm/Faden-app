@@ -124,15 +124,15 @@ export class DepartamentoComponent implements OnInit {
             });
             return;
           }
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"],
+          });
           
           if(this.EsModal){
             this.Cerrar();
           }
           else
           {
-            this._Dialog.open(DialogoComponent, {
-              data: s[1]["msj"],
-            });
             this.limpiar()
           }
       } 
