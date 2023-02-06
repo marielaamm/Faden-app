@@ -40,14 +40,32 @@ export class AcompananteComponent implements OnInit {
     _Fila.EsSecundario = false;
     _Fila.IdPaciente = 0;
 
-    ELEMENT_DATA.push(_Fila);
-    let tempDataSource = this.dataSource as unknown as iAcompanante[]
-    tempDataSource = [...tempDataSource, ...ELEMENT_DATA]
+    this.dataSource.data.push(_Fila);
+    this.dataSource.filter ="";
+    //let tempDataSource = this.dataSource as unknown as iAcompanante[]
+   // tempDataSource = [...tempDataSource, ...ELEMENT_DATA]
     //** TODO, COMO HACER QUE EL DATASOURCE ACTUALICE EL STATE SIN NECESIDAD DE CREAR UN NUEVO MATTABLEDATASOURCE? */
     //** TODO PARA MARIELA, VALIDAR QUE CUANDO SE AGREGO UNA FILA Y NO SE GUARDO, SE ELIMINE LA NUEVA FILA */
-    this.dataSource = new MatTableDataSource(tempDataSource);
+    //this.dataSource = new MatTableDataSource(tempDataSource);
   }
 
+
+  public v_Seleccionar(e: iAcompanante, columna : string): void {
+
+    if (e.EsCuidador && columna == "C") {
+      e.EsAcpte = false;
+      return;
+    }
+
+    if (e.EsAcpte && columna == "A") {
+      e.EsCuidador = false;
+      return;
+    }
+    
+
+  }
+
+  
   ngOnInit(): void {
   }
 

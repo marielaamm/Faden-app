@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -108,19 +109,18 @@ export class PacienteComponent implements OnInit {
 
     this.val.add("rdSexo", "1", "NUM>", "0");
 
-    this.limpiar();
-
     this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._CatalogoService = new CatalogoService(this._Dialog);
     this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
-    this._FuncionesGenerales.BuscarFechaNac();
-    this._FuncionesGenerales.FechaServidor();
-    this._CatalogoService.BuscarEscolaridad();
+
+    this.limpiar();
 
 
+  
   }
 
   public limpiar() {
+    this.val.ValForm.get("txtNoExpediente")?.disable();
     this.val.ValForm.get("txtNoExpediente")?.setValue("");
     this.val.ValForm.get("txtFecha")?.setValue("");
     this.val.ValForm.get("txtFecha")?.disable();
@@ -130,6 +130,7 @@ export class PacienteComponent implements OnInit {
     this.val.ValForm.get("txtSegundoApellido")?.setValue("");
     this.val.ValForm.get("txtMunicipio")?.setValue("");
     this.val.ValForm.get("txtFechaNacimiento")?.setValue("");
+    this.val.ValForm.get("txtEdad")?.disable();
     this.val.ValForm.get("txtEdad")?.setValue("");
     this.val.ValForm.get("txtOcupacion")?.setValue("");
     this.val.ValForm.get("txtCedula")?.setValue("");
@@ -182,8 +183,17 @@ export class PacienteComponent implements OnInit {
 
     this.val.ValForm.get("rdSexo")?.setValue("");
 
-    this.val.ValForm.get("txtNoExpediente")?.disable();
-    //this.EditarPaciente(this._Fila_Paciente);
+    
+    if(this.Acompanante != undefined)
+    {
+      this.Acompanante?.dataSource.data.splice(0, this.Acompanante.dataSource.data.length);
+      this.Acompanante.dataSource.filter = "";
+    }
+   
+
+    this._FuncionesGenerales.BuscarFechaNac();
+    this._FuncionesGenerales.FechaServidor();
+    this._CatalogoService.BuscarEscolaridad();
 
   }
 
@@ -393,8 +403,9 @@ export class PacienteComponent implements OnInit {
     //**TODO REVISAR CON JAIR PORQUE LA PROPIEDAD DATA DE DATASOURCE DEVUELVE UNDEFINED CUANDO SE AGREGA UNA NUEVA FILA, 
     //ESTE CAMBIO ESTA SUJETO A REVISION Y APROBACION DE JAIR
     // */
-    const acompananteArray = this.Acompanante.dataSource.data? this.Acompanante.dataSource.data: this.Acompanante.dataSource;
-    P.TAcompanante =acompananteArray as unknown as iAcompanante[];
+   
+   // const acompananteArray = this.Acompanante.dataSource.data? this.Acompanante.dataSource.data: this.Acompanante.dataSource;
+    P.TAcompanante = this.Acompanante.dataSource.data//acompananteArray as unknown as iAcompanante[];
     this._ExpdienteService.GuardarPaciente(P);
 
   }
@@ -428,6 +439,9 @@ export class PacienteComponent implements OnInit {
       this.val.ValForm.get("txtEscolaridad")?.setValue([_Fila.IdEscolaridad]);
     }
 
+    this.igxComboEscolaridad.close();
+
+
   }
 
   public f_key_Enter_Escolaridad(even: any) {
@@ -436,6 +450,8 @@ export class PacienteComponent implements OnInit {
       this.igxComboEscolaridad.setSelectedItem([_Item._focusedItem.value.IdEscolaridad]);
       this.val.ValForm.get("txtEscolaridad")?.setValue([_Item._focusedItem.value.IdEscolaridad]);
     }
+    this.igxComboEscolaridad.close();
+
 
   }
 
@@ -458,11 +474,9 @@ export class PacienteComponent implements OnInit {
 
     let _json = JSON.parse(datos);
 
-    _json["d"].forEach(
-      (b: any) => {
-        this.lstEscolaridad.push(b);
-      }
-    );
+    this.lstEscolaridad =  _json["d"];
+
+
 
     this.igxComboEscolaridad.data = this.lstEscolaridad;
 
@@ -525,7 +539,7 @@ public EditarPaciente(fila: any){
     this.val.ValForm.get("txtMunicipio")?.setValue([Paciente.IdLugarNac]);
     this.val.ValForm.get("txtFechaNacimiento")?.setValue(Paciente.FechaNacim);
     this.val.ValForm.get("txtOcupacion")?.setValue(Paciente.Ocupacion);
-    this.val.ValForm.get("txtCedula")?.setValue(Paciente.Cedula);
+    this.val.ValForm.get("txtCedula")?.setValue(Paciente.Identificacion);
     this.val.ValForm.get("txtEscolaridad")?.setValue([Paciente.IdEscolaridad]);
     this.val.ValForm.get("txtEstadoCivil")?.setValue(Paciente.ECivil);
     this.val.ValForm.get("txtDireccion")?.setValue(Paciente.Direccion);
@@ -549,10 +563,22 @@ public EditarPaciente(fila: any){
     this.val.ValForm.get("chkTransf")?.setValue(parseInt(refvisitaArray[3]));
     this.val.ValForm.get("chkOtros")?.setValue(parseInt(refvisitaArray[4]));
     
+
+    this.val.ValForm.get("chkTrabAct")?.setValue(Paciente.Trabaja);
+    this.val.ValForm.get("txtRefTrab")?.setValue(Paciente.RefTrabajo);
+    this.f_RefTrab();
+    
+
+    this.val.ValForm.get("chkUltTrab")?.setValue(Paciente.UltimoTrabajo);
+    this.val.ValForm.get("UltimoTrabajo")?.setValue(Paciente.UltimoTrabajo);
+    this.f_UltimoTrab();
+
+    this.val.ValForm.get("chkjubilado")?.setValue(Paciente.Jubilado);
+    this.val.ValForm.get("chkpension")?.setValue(Paciente.Pensionado);
     
 
 //TODO Reemplazar con los formControlName el resto de checkboxes, fijarse en el orden, comienzan con cero
-    this.Acompanante.dataSource = Acompanante
+    this.Acompanante.dataSource.data = Acompanante
 
   }
 
@@ -594,8 +620,9 @@ public EditarPaciente(fila: any){
           this._Dialog.open(DialogoComponent, {
             data: s[1]["msj"]
           });
-
-          if (!this._Dialog) this.limpiar();
+  
+          this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
+          this.val.ValForm.get("txtNoExpediente")?.disable();
         }
 
 
@@ -648,5 +675,38 @@ public EditarPaciente(fila: any){
 
 
   }
+
+ 
+  CalcularEdad(fecha : any)
+  {
+  
+    this.val.ValForm.get("txtEdad")?.setValue(this.calculateDiff(fecha));
+  }
+
+
+  calculateDiff(dateSent : Date){
+    let currentDate = new Date(this.val.ValForm.get("txtFecha")?.value);
+
+    const convertAge = new Date(dateSent);
+    var timeDiff = Math.abs(currentDate.getTime() - convertAge.getTime());
+    return Math.ceil((timeDiff / (1000 * 3600 * 24)) / 365);
+
+
+    /*let currentDate =  new Date(this.val.ValForm.get("txtFecha")?.value);
+
+    dateSent = new Date(dateSent)
+
+    var datePipe = new DatePipe('en-US');
+    dateSent = datePipe.transform(dateSent, 'dd/MM/yyyy');
+
+
+     console.log(dateSent)
+
+
+    return Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) ) /(1000 * 60 * 60 * 24));
+
+    */
+}
+
 
 }
