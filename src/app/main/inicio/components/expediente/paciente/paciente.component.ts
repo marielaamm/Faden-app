@@ -93,9 +93,6 @@ export class PacienteComponent implements OnInit {
     this.val.add("chkOtros", "1", "LEN>=", "0");
     this.val.add("txtRefOtros", "1", "LEN>=", "0");
 
-
-
-
     this.val.add("chkTrabAct", "1", "LEN>=", "0");
     this.val.add("txtRefTrab", "1", "LEN>=", "0");
 

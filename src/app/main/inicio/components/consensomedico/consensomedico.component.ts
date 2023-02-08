@@ -4,6 +4,7 @@ import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { ExpdienteService } from '../../service/expediente.service';
+import { SindromepredominanteComponent } from './sindromepredominante/sindromepredominante.component';
 
 @Component({
   selector: 'app-consensomedico',
@@ -14,12 +15,16 @@ export class ConsensomedicoComponent implements OnInit {
 
   public isLinear = false;
   public val: Validacion = new Validacion();
+  public Sindrome: SindromepredominanteComponent;
+
   private _CatalogoService: CatalogoService;
   private _ExpdienteService: ExpdienteService;
+  
 
   
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) { 
 
+    //[ REGLAS]
     this.val.add("rdNormal","1", "LEN>", "0");
     this.val.add("txtDetNormal","1", "LEN>", "0");
     this.val.add("rdLeve","1", "LEN>", "0");
@@ -33,14 +38,18 @@ export class ConsensomedicoComponent implements OnInit {
     this.val.add("txtBipolar","1", "LEN>", "0");
     this.val.add("chkEsquizo","1", "LEN>", "0");
     this.val.add("txtEsquizo","1", "LEN>", "0");
-    this.val.add("chkOtro","1", "LEN>", "0");
-    this.val.add("txtOtro","1", "LEN>", "0");
+    this.val.add("chkOtroDiag","1", "LEN>", "0");
+    this.val.add("txtOtroDiag","1", "LEN>", "0");
 
     this.val.add("rdProbable","1", "LEN>", "0");
     this.val.add("txtDiagProbable","1", "LEN>", "0");
     this.val.add("rdConfir","1", "LEN>", "0");
     this.val.add("txtDiagConfir","1", "LEN>", "0");
 
+    this.val.add("txtTraFarma","1", "LEN>","0");
+    this.val.add("txtTraNoFarma","1", "LEN>","0");
+    this.val.add("txtRecomendaciones","1", "LEN>","0");
+    this.val.add("txtExamenes","1", "LEN>","0");
 
     this.limpiar();
 
@@ -56,8 +65,28 @@ export class ConsensomedicoComponent implements OnInit {
     this.val.ValForm.get("rdMayor")?.setValue("");
     this.val.ValForm.get("txtDetMayor")?.setValue("");
     this.val.ValForm.get("chkDepre")?.setValue("");
+    this.val.ValForm.get("txtDepresion")?.setValue("");
+    this.val.ValForm.get("chkBipolar")?.setValue("");
+    this.val.ValForm.get("txtBipolar")?.setValue("");
+    this.val.ValForm.get("chkEsquizo")?.setValue("");
+    this.val.ValForm.get("txtEsquizo")?.setValue("");
+    this.val.ValForm.get("chkOtroDiag")?.setValue("");
+    this.val.ValForm.get("txtOtroDiag")?.setValue("");
+    this.val.ValForm.get("rdProbable")?.setValue("");
+    this.val.ValForm.get("txtDiagProbable")?.setValue("");
+    this.val.ValForm.get("rdConfir")?.setValue("");
+    this.val.ValForm.get("txtDiagConfir")?.setValue("");
+    this.val.ValForm.get("txtTraFarma")?.setValue("");
+    this.val.ValForm.get("txtTraNoFarma")?.setValue("");
+    this.val.ValForm.get("txtRecomendaciones")?.setValue("");
+    this.val.ValForm.get("txtExamenes")?.setValue("");
 
-    
+    if(this.Sindrome != undefined)
+    {
+      this.Sindrome?.dataSource.data.splice(0, this.Sindrome.dataSource.data.length);
+      this.Sindrome.dataSource.filter = "";
+    }
+
   }
   
   public singleSelection(event: any) {
@@ -65,6 +94,60 @@ export class ConsensomedicoComponent implements OnInit {
         event.newSelection = event.added;
     }
 }
+
+//***OTRO DIAGNOSTICO */
+
+//***DEPRESION ******/
+
+public f_RefDepre(): void {
+
+  this.val.ValForm.get("txtDepresion")?.disable();
+
+  if (this.val.ValForm.get("chkDepre")?.value == true) {
+    this.val.ValForm.get("txtDepresion")?.enable();
+  }
+}
+//********************* */
+
+//*******BIPOLAR*******/
+
+public f_RefBipolar(): void {
+
+  this.val.ValForm.get("txtBipolar")?.disable();
+
+  if (this.val.ValForm.get("chkBipolar")?.value == true) {
+    this.val.ValForm.get("txtBipolar")?.enable();
+  }
+}
+
+//****************************** */
+
+//********ESQUIZOFRENIA */
+public f_RefEsquizo(): void {
+
+  this.val.ValForm.get("txtEsquizo")?.disable();
+
+  if (this.val.ValForm.get("chkEsquizo")?.value == true) {
+    this.val.ValForm.get("txtEsquizo")?.enable();
+  }
+}
+
+//************************** */
+
+//****** OTRO DIAG*/
+public f_RefOtroDiag(): void {
+
+  this.val.ValForm.get("txtOtroDiag")?.disable();
+
+  if (this.val.ValForm.get("chkOtroDiag")?.value == true) {
+    this.val.ValForm.get("txtOtroDiag")?.enable();
+  }
+}
+
+
+//*************** */
+
+
    Cerrar() : void{
     
    this.ServerScv.CerrarFormulario();
