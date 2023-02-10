@@ -52,6 +52,7 @@ export class ConsensomedicoComponent implements OnInit {
     this.val.add("txtExamenes","1", "LEN>","0");
 
     this._ExpdienteService = new ExpdienteService(this._Dialog);
+    this._CatalogoService = new CatalogoService(this._Dialog);
 
     this.limpiar();
 
@@ -60,15 +61,15 @@ export class ConsensomedicoComponent implements OnInit {
   }
 
   public limpiar(){
-    this.val.ValForm.get("rdNormal")?.setValue(false);
+    this.val.ValForm.get("rdNormal")?.setValue("");
     this.val.ValForm.get("txtDetNormal")?.setValue("");
     this.val.ValForm.get("txtDetNormal")?.disable();
 
-    this.val.ValForm.get("rdLeve")?.setValue(false);
+    this.val.ValForm.get("rdLeve")?.setValue("");
     this.val.ValForm.get("txtDetLeve")?.setValue("");
     this.val.ValForm.get("txtDetLeve")?.disable();
 
-    this.val.ValForm.get("rdMayor")?.setValue(false);
+    this.val.ValForm.get("rdMayor")?.setValue("");
     this.val.ValForm.get("txtDetMayor")?.setValue("");
     this.val.ValForm.get("txtDetMayor")?.disable();
 
@@ -115,6 +116,7 @@ export class ConsensomedicoComponent implements OnInit {
     }
 
     this._ExpdienteService = new ExpdienteService(this._Dialog);
+    this._CatalogoService = new CatalogoService(this._Dialog);
 
   }
   
@@ -174,6 +176,7 @@ public f_RefOtroDiag(): void {
 }
 
 //*************** */
+
 
 public Guardar (){
 
