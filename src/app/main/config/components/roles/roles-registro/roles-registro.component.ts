@@ -10,8 +10,9 @@ import { RolesComponent } from '../roles.component';
 
 
 export interface I_Rol {
-  Fila : Number;
-  Rol : string;
+  IdRol : Number;
+  Rol1 : string;
+  Activo : Boolean;
   }
 
   let ELEMENT_DATA: I_Rol[] = [
@@ -67,12 +68,7 @@ export class RolesRegistroComponent implements OnInit {
 
 
     ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
-
-    _json["d"].forEach(
-      (b: any) => {
-        ELEMENT_DATA.push(b);
-      }
-    );
+    ELEMENT_DATA = _json["d"];
 
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
 
