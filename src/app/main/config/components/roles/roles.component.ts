@@ -124,6 +124,7 @@ export class RolesComponent implements OnInit {
             data: s[1]["msj"]
           });
           
+          
           if(this.EsModal){
             this.Cerrar();
           }
