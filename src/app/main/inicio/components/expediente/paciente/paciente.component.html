@@ -145,8 +145,8 @@
                                             <div class="col-6 col-sm-3 col-md-3 col-lg-3">
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Fecha de Nacimiento</mat-label>
-                                                    <input matInput [matDatepicker]="pickerNacimiento"
-                                                        id="txtFechaNacimiento" formControlName="txtFechaNacimiento">
+                                                    <input matInput #refFecha [matDatepicker]="pickerNacimiento"
+                                                        id="txtFechaNacimiento" formControlName="txtFechaNacimiento"  (dateChange)="CalcularEdad(refFecha.value);">
                                                     <mat-datepicker-toggle matSuffix [for]="pickerNacimiento">
                                                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                     </mat-datepicker-toggle>
@@ -192,6 +192,7 @@
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                                                 <igx-combo #txtEscolaridad [data]="lstEscolaridad" valueKey="IdEscolaridad"
                                                     displayKey="Nombre" id="txtEscolaridad" placeholder="Escolaridad"
+                                                    formControlName="txtEscolaridad"
                                                     searchPlaceholder="Seleccione una Opción"
                                                     (selectionChanging)="Seleccion_Escolaridad($event)" [itemsMaxHeight]="250"
                                                     (keyup)="f_key_Enter_Escolaridad($event)">
