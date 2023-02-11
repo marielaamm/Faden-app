@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
+import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
+import { iConsenso } from '../../interface/i-consenso';
+import { iSindromePredominante } from '../../interface/i-sindromepredominante';
 import { ExpdienteService } from '../../service/expediente.service';
 import { SindromepredominanteComponent } from './sindromepredominante/sindromepredominante.component';
 
@@ -199,6 +202,54 @@ public Guardar (){
     mensaje += "<li>Describa el nivel de deterioro o revise la cantidad de caracteres</li>";
     esError += "1";
   }
+//[ Fin - Validaciones]
+mensaje += "</ol>";
+
+if (esError.includes("1")) {
+  let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + mensaje + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+  let _json = JSON.parse(s);
+  this._Dialog.open(DialogoComponent, {
+
+    data: _json["msj"]
+  });
+
+  return;
+}
+
+let C: iConsenso= {} as iConsenso;
+
+C.Normal = this.val.ValForm.get("rdNormal")?.value;
+C.RefNormal = this.val.ValForm.get("txtDetNormal")?.value;
+C.Leve =this.val.ValForm.get("rdLeve")?.value;
+C.RefLeve =this.val.ValForm.get("txtDetLeve")?.value;
+C.Mayor =this.val.ValForm.get("rdMayor")?.value;
+C.RefMayor = this.val.ValForm.get("txtDetMayor")?.value;
+C.Depresion = this.val.ValForm.get("chkDepre")?.value;
+C.RefDepre = this.val.ValForm.get("txtDepresion")?.value;C
+C.TrastornoBip = this.val.ValForm.get("chkBipolar")?.value;
+C.RefTrasBip = this.val.ValForm.get("txtBipolar")?.value;
+C.Esquizo = this.val.ValForm.get("chkEsquizo")?.value;;
+C.RefEsquizo = this.val.ValForm.get("txtEsquizo")?.value;
+C.OtroDiag = this.val.ValForm.get("chkOtroDiag")?.value;
+C.RefOTroDiag = this.val.ValForm.get("txtOtroDiag")?.value;
+C.Probable = this.val.ValForm.get("rdProbable")?.value;
+C.RefProbable = this.val.ValForm.get("txtDiagProbable")?.value;
+C.Confirmado = this.val.ValForm.get("rdConfir")?.value;
+C.RefConfirmado = this.val.ValForm.get("txtDiagConfir")?.value;
+C.TrataFarma = this.val.ValForm.get("txtTraFarma")?.value;
+C.TrataNoFarma = this.val.ValForm.get("txtTraNoFarma")?.value;
+C.Recomendaciones = this.val.ValForm.get("txtRecomendaciones")?.value;
+C.Examenes = this.val.ValForm.get("txtExamenes")?.value;
+C.TiSindromePredominante = this.Sindrome.dataSource.data;
+
+this._ExpdienteService.GuardarConsenso(C);
+
+
+
+
+
+
+
 }
 
    Cerrar() : void{

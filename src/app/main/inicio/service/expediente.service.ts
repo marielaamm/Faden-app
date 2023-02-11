@@ -3,6 +3,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
+import { iConsenso } from '../interface/i-consenso';
 import { iPaciente } from '../interface/i-paciente';
 
 @Injectable({
@@ -61,6 +62,25 @@ export class ExpdienteService {
     );
   }
 
+
+  public GuardarConsenso(Consenso : iConsenso){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Consenso/Guardar", JSON.stringify(Consenso),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Consenso_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Consenso_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Consenso_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
 
 
 
