@@ -22,17 +22,19 @@ export class ConsensomedicoComponent implements OnInit {
 
   private _CatalogoService: CatalogoService;
   private _ExpdienteService: ExpdienteService;
+
+
+  public rdDetCognitivo : Number = 1;
+  public rdSospechaDiag : Number = 1;
   
 
   
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) { 
 
     //[ REGLAS]
-    this.val.add("rdNormal", "1", "NUM>", "0");
+    this.val.add("rdDetCognitivo","1", "LEN>=", "0");
     this.val.add("txtDetNormal","1", "LEN>", "0");
-    this.val.add("rdLeve", "1", "NUM>", "0");
     this.val.add("txtDetLeve","1", "LEN>", "0");
-    this.val.add("rdMayor", "1", "NUM>", "0");
     this.val.add("txtDetMayor","1", "LEN>", "0");    
 
     this.val.add("chkDepre", "1", "LEN>", "0");
@@ -44,9 +46,8 @@ export class ConsensomedicoComponent implements OnInit {
     this.val.add("chkOtroDiag", "1", "LEN>", "0");
     this.val.add("txtOtroDiag", "1", "LEN>", "0");
 
-    this.val.add("rdProbable","1", "NUM>", "0");
+    this.val.add("rdSospechaDiag","1", "LEN>=", "0");
     this.val.add("txtDiagProbable","1", "LEN>", "0");
-    this.val.add("rdConfir", "1", "NUM>", "0");
     this.val.add("txtDiagConfir","1", "LEN>", "0");
 
     this.val.add("txtTraFarma","1", "LEN>","0");
@@ -64,15 +65,15 @@ export class ConsensomedicoComponent implements OnInit {
   }
 
   public limpiar(){
-    this.val.ValForm.get("rdNormal")?.setValue("");
-    this.val.ValForm.get("txtDetNormal")?.setValue("");
-    this.val.ValForm.get("txtDetNormal")?.disable();
+    this.rdDetCognitivo = 1;
+    this.rdSospechaDiag = 1;
 
-    this.val.ValForm.get("rdLeve")?.setValue("");
+    this.val.ValForm.get("txtDetNormal")?.setValue("");
+    this.val.ValForm.get("txtDetNormal")?.enable();
+
     this.val.ValForm.get("txtDetLeve")?.setValue("");
     this.val.ValForm.get("txtDetLeve")?.disable();
 
-    this.val.ValForm.get("rdMayor")?.setValue("");
     this.val.ValForm.get("txtDetMayor")?.setValue("");
     this.val.ValForm.get("txtDetMayor")?.disable();
 
@@ -96,14 +97,12 @@ export class ConsensomedicoComponent implements OnInit {
     this.val.ValForm.get("txtOtroDiag")?.disable();
 
 
-    this.val.ValForm.get("rdProbable")?.setValue("");
+
     this.val.ValForm.get("txtDiagProbable")?.setValue("");
-    this.val.ValForm.get("txtDiagProbable")?.disable();
-
-
-    this.val.ValForm.get("rdConfir")?.setValue("");
     this.val.ValForm.get("txtDiagConfir")?.setValue("");
     this.val.ValForm.get("txtDiagConfir")?.disable();
+
+
 
     this.val.ValForm.get("txtTraFarma")?.setValue("");
     this.val.ValForm.get("txtTraNoFarma")?.setValue("");
@@ -128,6 +127,47 @@ export class ConsensomedicoComponent implements OnInit {
         event.newSelection = event.added;
     }
 }
+// ****NIVEL DE DETERIORO COGNITIVO*****/
+
+
+public f_DetCognitivo(value : any): void {
+
+  this.val.ValForm.get("txtDetNormal")?.disable();
+  this.val.ValForm.get("txtDetLeve")?.disable();
+  this.val.ValForm.get("txtDetMayor")?.disable();
+
+  if (value == 1) {
+    this.val.ValForm.get("txtDetNormal")?.enable();
+  }
+
+  if (value == 2) {
+    this.val.ValForm.get("txtDetLeve")?.enable();
+  }
+
+  if (value == 3) {
+    this.val.ValForm.get("txtDetMayor")?.enable();
+  }
+}
+
+//********SOSPECHA DIAGNOSTICA******/
+public f_SospechaDiag(value : any): void {
+
+  this.val.ValForm.get("txtDiagProbable")?.disable();
+  this.val.ValForm.get("txtDiagConfir")?.disable();
+  
+
+  if (value == 1) {
+    this.val.ValForm.get("txtDiagProbable")?.enable();
+  }
+
+  if (value == 2) {
+    this.val.ValForm.get("txtDiagConfir")?.enable();
+  }
+ 
+}
+//********************************/
+
+
 
 //***OTRO DIAGNOSTICO */
 
@@ -218,11 +258,9 @@ if (esError.includes("1")) {
 
 let C: iConsenso= {} as iConsenso;
 
-C.Normal = this.val.ValForm.get("rdNormal")?.value;
+C.rdDetCognitivo = this.rdDetCognitivo;
 C.RefNormal = this.val.ValForm.get("txtDetNormal")?.value;
-C.Leve =this.val.ValForm.get("rdLeve")?.value;
 C.RefLeve =this.val.ValForm.get("txtDetLeve")?.value;
-C.Mayor =this.val.ValForm.get("rdMayor")?.value;
 C.RefMayor = this.val.ValForm.get("txtDetMayor")?.value;
 C.Depresion = this.val.ValForm.get("chkDepre")?.value;
 C.RefDepre = this.val.ValForm.get("txtDepresion")?.value;C
@@ -232,15 +270,14 @@ C.Esquizo = this.val.ValForm.get("chkEsquizo")?.value;;
 C.RefEsquizo = this.val.ValForm.get("txtEsquizo")?.value;
 C.OtroDiag = this.val.ValForm.get("chkOtroDiag")?.value;
 C.RefOTroDiag = this.val.ValForm.get("txtOtroDiag")?.value;
-C.Probable = this.val.ValForm.get("rdProbable")?.value;
 C.RefProbable = this.val.ValForm.get("txtDiagProbable")?.value;
-C.Confirmado = this.val.ValForm.get("rdConfir")?.value;
 C.RefConfirmado = this.val.ValForm.get("txtDiagConfir")?.value;
 C.TrataFarma = this.val.ValForm.get("txtTraFarma")?.value;
 C.TrataNoFarma = this.val.ValForm.get("txtTraNoFarma")?.value;
 C.Recomendaciones = this.val.ValForm.get("txtRecomendaciones")?.value;
 C.Examenes = this.val.ValForm.get("txtExamenes")?.value;
 C.TiSindromePredominante = this.Sindrome.dataSource.data;
+C.IdPaciente = 1011;
 
 this._ExpdienteService.GuardarConsenso(C);
 

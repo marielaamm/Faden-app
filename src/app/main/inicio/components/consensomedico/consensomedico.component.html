@@ -35,69 +35,55 @@
 
 
                             <div class="faden-border">
-
                                 <div class="row">
                                     <label><b>Nivel de Deterioro Cognitivo</b></label>
                                 </div>
 
                                 <div class="row">
+                                    <mat-radio-group  formControlName="rdDetCognitivo" [(ngModel)]="rdDetCognitivo">
+                                        <div class="row">
 
-                                    <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                        <mat-radio-group formControlName="rdNormal">
-                                            <mat-radio-button value="1">Normal</mat-radio-button>
-                                        </mat-radio-group>
-                                    </div>
+                                            <div class="col-3 offset-sm-1">
+                                                <mat-radio-button [value]="1" (change)="f_DetCognitivo($event.value)">Normal</mat-radio-button>
+                                            </div>
+                                            <div class="col-8">
+                                                <mat-form-field>
+                                                    <input matInput type="text" formControlName="txtDetNormal" >
+                                                    <mat-error *ngIf="val.ValForm.get('txtDetNormal')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve <strong> Descripción </strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 offset-sm-1">
+                                                <mat-radio-button [value]="2" (change)="f_DetCognitivo($event.value)">Leve</mat-radio-button>
+                                            </div>
+                                            <div class="col-8">
+                                                <mat-form-field>
+                                                    <input matInput type="text" formControlName="txtDetLeve">
+                                                    <mat-error *ngIf="val.ValForm.get('txtDetLeve')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve <strong> Descripción </strong>
+                                                    </mat-error>
+                                                </mat-form-field>
 
-                                    <div class="col-sm-7 col-md-6 col-lg-7">
-                                        <mat-form-field>
-                                            <input matInput type="text" formControlName="txtDetNormal">
-                                            <mat-error *ngIf="val.ValForm.get('txtDetNormal')?.errors?.['Regla']=='1'"
-                                                style="color:black">Ingrese una breve <strong> Descripción </strong>
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-
-                                </div>
-
-                               
-                                <div class="row">
-
-                                    <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                        <mat-radio-group formControlName="rdLeve">
-                                            <mat-radio-button value="2">Leve</mat-radio-button>
-                                        </mat-radio-group>
-                                    </div>
-
-                                    <div class="col-sm-7 col-md-6 col-lg-7">
-                                        <mat-form-field>
-                                            <input matInput type="text" formControlName="txtDetLeve">
-                                            <mat-error *ngIf="val.ValForm.get('txtDetLeve')?.errors?.['Regla']=='1'"
-                                                style="color:black">Ingrese una breve <strong> Descripción </strong>
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                        <mat-radio-group formControlName="rdMayor">
-                                            <mat-radio-button value="3">Mayor/Demencia</mat-radio-button>
-                                        </mat-radio-group>
-                                    </div>
-
-                                    <div class="col-sm-7 col-md-6 col-lg-7">
-                                        <mat-form-field>
-                                            <input matInput type="text" formControlName="txtDetMayor">
-                                            <mat-error *ngIf="val.ValForm.get('txtDetMayor')?.errors?.['Regla']=='1'"
-                                                style="color:black">Ingrese una breve <strong> Descripción </strong>
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-
-
-                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 offset-sm-1">
+                                                <mat-radio-button [value]="3" (change)="f_DetCognitivo($event.value)">Mayor/Demencia</mat-radio-button>
+                                            </div>
+                                            <div class="col-8">
+                                                <mat-form-field>
+                                                    <input matInput type="text" formControlName="txtDetMayor">
+                                                    <mat-error *ngIf="val.ValForm.get('txtDetMayor')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve <strong> Descripción </strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>                                            
+                                        </div>  
+                                    </mat-radio-group>
+                                </div>  
                             </div>
 
                             <div class="faden-border">
@@ -110,54 +96,61 @@
 
                                 <div class="row">
                                     <section>
-                                        <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-checkbox formControlName="chkDepre" (change)="f_RefDepre()">Depresión</mat-checkbox>
-                                        </div>
-                                        <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
-                                                floatLabel="never">
-                                                <input matInput type="text" formControlName="txtDepresion">
-                                            </mat-form-field>
-                                        </div>
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1"> 
+                                                    <mat-checkbox formControlName="chkDepre" (change)="f_RefDepre()">Depresión</mat-checkbox>
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
+                                                    floatLabel="never">
+                                                    <input matInput type="text" formControlName="txtDepresion">
+                                                </mat-form-field> 
+                                                </div>                                                
+                                            </div>
 
-                                        <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-checkbox formControlName="chkBipolar" (change)="f_RefBipolar()">Trastorno Bipolar</mat-checkbox>
-                                        </div>
-                                        <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
-                                                floatLabel="never">
-                                                <input matInput type="text" formControlName="txtBipolar">
-                                            </mat-form-field>
-                                        </div>
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkBipolar" (change)="f_RefBipolar()">Trastorno Bipolar</mat-checkbox>
+                                                </div>
+                                            
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtBipolar">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
 
-                                        <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-checkbox formControlName="chkEsquizo" (change)="f_RefEsquizo()">Esquizofrenia</mat-checkbox>
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkEsquizo" (change)="f_RefEsquizo()">Esquizofrenia</mat-checkbox>                                                
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtEsquizo">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkOtroDiag" (change)="f_RefOtroDiag()">Otro Diagnóstico</mat-checkbox> 
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtOtroDiag">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>      
                                         </div>
-                                        <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
-                                                floatLabel="never">
-                                                <input matInput type="text" formControlName="txtEsquizo">
-                                            </mat-form-field>
-                                        </div>
-
-                                        <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                            <mat-checkbox formControlName="chkOtroDiag" (change)="f_RefOtroDiag()">Otro Diagnóstico</mat-checkbox>
-                                        </div>
-                                        <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
-                                                floatLabel="never">
-                                                <input matInput type="text" formControlName="txtOtroDiag">
-                                            </mat-form-field>
-                                        </div>
+                                           
                                     </section>
                                 </div>
                             </div>
 
                             <div class="faden-border">
                                 <div class="row">
-
                                     <label class="col-12"><b>Síndrome Predominante</b></label>
-
                                 </div>
 
                                 <div>
@@ -166,34 +159,35 @@
                             </div>
 
                             <div class="faden-border">
-
                                 <div class="row">
                                     <label class="col-12"><b>Sospecha Diagnóstica</b></label>
                                 </div>
 
-                                <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                    <mat-radio-group formControlName="rdProbable">
-                                        <mat-radio-button value="1">Probable</mat-radio-button>
-                                    </mat-radio-group>
-                                </div>
+                                <div class="row">
+                                    <mat-radio-group formControlName="rdSospechaDiag" [(ngModel)]="rdSospechaDiag">
+                                    <div class="row">
+                                        <div class="col-3 offset-sm-1">
+                                            <mat-radio-button [value]="1" (change)="f_SospechaDiag($event.value)">Probable</mat-radio-button>
+                                        </div>
+                                        <div class="col-8">
+                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                <input matInput type="text" formControlName="txtDiagProbable">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>  
 
-                                <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
-                                        <input matInput type="text" formControlName="txtDiagProbable">
-                                    </mat-form-field>
-                                </div>
-
-                                <div class="offset-sm-2 offset-md-3 offset-lg-2 col-sm-3 col-md-3 col-lg-3">
-                                    <mat-radio-group formControlName="rdConfir">
-                                        <mat-radio-button value="2">Confirmado</mat-radio-button>
-                                    </mat-radio-group>
-                                </div>
-
-                                <div class="offset-sm-6 offset-md-6 offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
-                                        <input matInput type="text" formControlName="txtDiagConfir">
-                                    </mat-form-field>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-3 offset-sm-1">
+                                            <mat-radio-button [value]="2" (change)="f_SospechaDiag($event.value)">Confirmado</mat-radio-button>
+                                        </div>
+                                        <div class="col-8">
+                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                <input matInput type="text" formControlName="txtDiagConfir">
+                                            </mat-form-field>
+                                        </div>
+                                    </div> 
+                                </mat-radio-group>                                   
+                                </div>  
                             </div>
 
                             <div class="col-12">
