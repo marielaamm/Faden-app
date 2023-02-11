@@ -41,6 +41,8 @@ export class SindromepredominanteComponent implements OnInit {
   f_Agregar_Fila() : void{
     let _Fila : iSindromePredominante = {} as iSindromePredominante;
 
+    _Fila.IdPaciente = 1011;
+    
     ELEMENT_DATA.push(_Fila);
    
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
