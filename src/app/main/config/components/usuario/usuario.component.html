@@ -68,14 +68,14 @@
                                     </div>
 
                                     <mat-form-field _ngcontent-pmm-5 class="col-12">
-                                        <mat-label>Nombres.</mat-label>
+                                        <mat-label>Nombres</mat-label>
                                         <input matInput type="text" id="txtNombre" formControlName="txtNombre">
                                         <mat-error *ngIf="val.ValForm.get('txtNombre')?.errors?.['Regla']=='1'">Nombres
                                             es <strong>requerido</strong></mat-error>
                                     </mat-form-field>
 
                                     <mat-form-field class="col-12">
-                                        <mat-label>Apellidos.</mat-label>
+                                        <mat-label>Apellidos</mat-label>
                                         <input matInput type="text" id="txtApellido" formControlName="txtApellido">
                                         <mat-error *ngIf="val.ValForm.get('txtApellido')?.errors?.['Regla']=='1'">
                                             Apellidos es <strong>requerido</strong></mat-error>

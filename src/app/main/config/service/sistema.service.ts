@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
 import { iRol } from '../Interface/i-Rol';
+import { iUsuario } from '../Interface/i-Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,22 @@ export class SistemaService {
 
 
 
+  public GuardarUsuario(Usuario : iUsuario) {
+    this.http.post<any>(this._Cnx.Url()+ "SIS/Usuario/Guardar", JSON.stringify(Usuario),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Usuario_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Usuario_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Usuario_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+  }
 
 
   private Msj () : void{
