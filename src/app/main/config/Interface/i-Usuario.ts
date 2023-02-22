@@ -7,3 +7,4 @@ export interface iUsuario{
     Contrasena: String,
     Activo: boolean
 }
+
