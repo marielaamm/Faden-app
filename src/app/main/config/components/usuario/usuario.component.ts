@@ -129,7 +129,7 @@ E.IdUsuario = this.IdUsuario;
 E.IdRol = _FilaRol.IdRol; 
 E.Nombre = this.val.ValForm.get("txtNombre")?.value;
 E.Apellido = this.val.ValForm.get("txtApellido")?.value;
-E.Usuario = this.val.ValForm.get("txtLogin")?.value;
+E.Usuario1 = this.val.ValForm.get("txtLogin")?.value;
 E.Contrasena = this.val.ValForm.get("txtPass")?.value;
 E.Activo = true;
 this.serviceSIS.GuardarUsuario(E);
