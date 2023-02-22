@@ -34,7 +34,6 @@ export class UsuarioComponent implements OnInit {
     this.val.add("txtLogin", "2","LEN>=", "3");
     this.val.add("txtPass", "1", "LEN>", "0");
     this.val.add("txtPass", "2", "LEN>=", "3");
-    this.val.add("txtVendedor", "1","LEN>", "0");
     this.val.add("chkInactivo", "1","LEN>=", "0");
     this._SistemaService = new SistemaService(this._Dialog);
     this._SistemaService.BuscarRol();
