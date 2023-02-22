@@ -240,8 +240,41 @@ public Guardar (){
 
   if (this.val.ValForm.get("txtDetMayor")?.invalid) {
     mensaje += "<li>Describa el nivel de deterioro o revise la cantidad de caracteres</li>";
-    esError += "1";
+    esError += "1";    
   }
+
+  if (this.val.ValForm.get("txtDepresion")?.invalid) {
+    mensaje += "<li>Describa el diagnostico o revise la cantidad de caracteres</li>";
+    esError += "1";    
+  }
+
+  if (this.val.ValForm.get("txtBipolar")?.invalid) {
+    mensaje += "<li>Describa el diagnostico o revise la cantidad de caracteres</li>";
+    esError += "1";    
+  }
+
+  if (this.val.ValForm.get("txtEsquizo")?.invalid) {
+    mensaje += "<li>Describa el diagnostico o revise la cantidad de caracteres</li>";
+    esError += "1";    
+  }
+
+  if (this.val.ValForm.get("txtOtroDiag")?.invalid) {
+    mensaje += "<li>Describa el diagnostico o revise la cantidad de caracteres</li>";
+    esError += "1";    
+  }
+
+  if (this.val.ValForm.get("txtDiagProbable")?.invalid) {
+    mensaje += "<li>Describa el diagnostico o revise la cantidad de caracteres</li>";
+    esError += "1";    
+  }
+
+  if (this.val.ValForm.get("txtDiagConfir")?.invalid) {
+    mensaje += "<li>Describa el diagnostico o revise la cantidad de caracteres</li>";
+    esError += "1";    
+  }
+
+
+
 //[ Fin - Validaciones]
 mensaje += "</ol>";
 
@@ -283,10 +316,6 @@ this._ExpdienteService.GuardarConsenso(C);
 
 
 
-
-
-
-
 }
 
    Cerrar() : void{
@@ -295,6 +324,40 @@ this._ExpdienteService.GuardarConsenso(C);
 }
 
   ngOnInit(): void {
+
+    this._ExpdienteService.change.subscribe(
+
+      s => {
+
+        if (s[0] == "dato_Consenso_Guardar") {
+
+          this.val.ValForm.enable();
+
+          if (s[1] == undefined) {
+
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+
+
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+  
+          this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
+          this.val.ValForm.get("txtNoExpediente")?.disable();
+        }
+
+
+      }
+    );
+
+
+
   }
 
 }
