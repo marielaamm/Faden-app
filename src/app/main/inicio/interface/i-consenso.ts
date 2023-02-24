@@ -20,7 +20,7 @@ TrataFarma: String,
 TrataNoFarma: String,
 Recomendaciones: String,
 Examenes: String,
-TiSindromePredominante: iSindromePredominante[],
+TSindromePredominante: iSindromePredominante[],
 IdPaciente: Number
 
 }

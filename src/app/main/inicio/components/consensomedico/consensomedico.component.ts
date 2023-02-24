@@ -219,7 +219,7 @@ public f_RefOtroDiag(): void {
 //*************** */
 
 
-public Guardar (){
+public GuardarConsenso(){
 
   let esError: string = " ";
   let mensaje: string = "<ol>";
@@ -308,7 +308,7 @@ C.TrataFarma = this.val.ValForm.get("txtTraFarma")?.value;
 C.TrataNoFarma = this.val.ValForm.get("txtTraNoFarma")?.value;
 C.Recomendaciones = this.val.ValForm.get("txtRecomendaciones")?.value;
 C.Examenes = this.val.ValForm.get("txtExamenes")?.value;
-C.TiSindromePredominante = this.Sindrome.dataSource.data;
+C.TSindromePredominante = this.Sindrome.dataSource.data;
 C.IdPaciente = 1011;
 
 this._ExpdienteService.GuardarConsenso(C);
