@@ -59,9 +59,7 @@ export class ConsensomedicoComponent implements OnInit {
     this._CatalogoService = new CatalogoService(this._Dialog);
 
     this.limpiar();
-
-   
-
+ 
   }
 
   public limpiar(){
@@ -292,6 +290,7 @@ if (esError.includes("1")) {
 let C: iConsenso= {} as iConsenso;
 
 C.rdDetCognitivo = this.rdDetCognitivo;
+C.rdSospechaDiag = this.rdSospechaDiag;
 C.RefNormal = this.val.ValForm.get("txtDetNormal")?.value;
 C.RefLeve =this.val.ValForm.get("txtDetLeve")?.value;
 C.RefMayor = this.val.ValForm.get("txtDetMayor")?.value;
