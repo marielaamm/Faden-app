@@ -3,7 +3,8 @@ export interface iUsuario{
     IdRol: Number,
     Nombre: String,
     Apellido: String;
-    Usuario: String,
+    Usuario1: String,
     Contrasena: String,
     Activo: boolean
 }
+

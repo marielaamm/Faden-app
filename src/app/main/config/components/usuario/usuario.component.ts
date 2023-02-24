@@ -18,11 +18,13 @@ export class UsuarioComponent implements OnInit {
   public bol_HidePass : boolean = true;
   public bol_Inactivo : boolean = false;
   public lstRoles: I_Rol[] = [];
+  public bol_Guardando : boolean = false;
+  public EsModal : boolean = false;
 
   public val = new Validacion();
   private _SistemaService: SistemaService;
   private IdUsuario : Number;
-  serviceSIS: any;
+
 
 
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
@@ -34,11 +36,11 @@ export class UsuarioComponent implements OnInit {
     this.val.add("txtLogin", "2","LEN>=", "3");
     this.val.add("txtPass", "1", "LEN>", "0");
     this.val.add("txtPass", "2", "LEN>=", "3");
-    this.val.add("txtVendedor", "1","LEN>", "0");
     this.val.add("chkInactivo", "1","LEN>=", "0");
     this._SistemaService = new SistemaService(this._Dialog);
     this._SistemaService.BuscarRol();
    
+    this.Limpiar();
    }
 
    private LlenarRol (datos: string): void {
@@ -49,6 +51,18 @@ export class UsuarioComponent implements OnInit {
 
 
 
+  }
+
+  private Limpiar()
+  {
+    this.bol_Guardando = true;
+    this.val.ValForm.get("txtRol")?.setValue([]);
+    this.val.ValForm.get("txtNombre")?.setValue("");
+    this.val.ValForm.get("txtApellido")?.setValue("");
+    this.val.ValForm.get("txtLogin")?.setValue("");
+    this.val.ValForm.get("txtPass")?.setValue("");
+    this.val.ValForm.get("chkInactivo")?.setValue(false);
+    this.val.ValForm.get("")?.setValue("");
   }
 
 
@@ -75,6 +89,7 @@ Cerrar() : void{
 
 
 public Guardar(): void {
+
   let esError: string = " ";
   let mensaje: string = " <ol>";
 
@@ -115,10 +130,11 @@ if (esError.includes("1")) {
     data: _json["msj"]
   });
 
+  
   return;
 
 }
-
+this.bol_Guardando = true;
 let _FilaRol : any = this.lstRoles.find(f => f.IdRol == this.val.ValForm.get("txtRol")?.value);
 
 let E: iUsuario = {}as  iUsuario;
@@ -129,10 +145,10 @@ E.IdUsuario = this.IdUsuario;
 E.IdRol = _FilaRol.IdRol; 
 E.Nombre = this.val.ValForm.get("txtNombre")?.value;
 E.Apellido = this.val.ValForm.get("txtApellido")?.value;
-E.Usuario = this.val.ValForm.get("txtLogin")?.value;
+E.Usuario1 = this.val.ValForm.get("txtLogin")?.value;
 E.Contrasena = this.val.ValForm.get("txtPass")?.value;
 E.Activo = true;
-this.serviceSIS.GuardarUsuario(E);
+this._SistemaService.GuardarUsuario(E);
 
  }
 
@@ -148,8 +164,41 @@ this.serviceSIS.GuardarUsuario(E);
           this.LlenarRol(s[1]);
         }
 
+
+        if (s[0] == "dato_Usuario_Guardar") {
+
+          this.val.ValForm.enable();
+  
+          if (s[1] == undefined) {
+  
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+          
+          
+          if(this.EsModal){
+            this.Cerrar();
+          }
+          else
+          { 
+          
+
+          this.Limpiar();
+
+ 
+          }
+
       }
-    });
+    }
+  });
   }
 
 }

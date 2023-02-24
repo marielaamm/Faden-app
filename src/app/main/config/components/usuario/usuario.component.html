@@ -8,7 +8,7 @@
                         <div class="row">
                             <div class="col-12 btnAccion">
                                 <div class="btn-contenedor">
-                                    <button mat-fab class="btn-faden-aceptar">
+                                    <button mat-fab class="btn-faden-aceptar" (click)="Guardar();" [disabled]="!bol_Guardando">
                                         <mat-icon>save</mat-icon>
                                     </button>
                                     <button mat-fab class="btn-faden-cancelar">
@@ -122,12 +122,7 @@
                                         </mat-error>
                                     </mat-form-field>
 
-                                    <mat-form-field class="col-12">
-                                        <mat-label>Vendedor.</mat-label>
-                                        <input matInput type="text" id="txtVendedor" formControlName="txtVendedor">
-                                        <mat-error *ngIf="val.ValForm.get('txtVendedor')?.errors?.['Regla']=='1'">
-                                            Apellidos es <strong>requerido</strong></mat-error>
-                                    </mat-form-field>
+                            
 
                                 </mat-card-content>
 
