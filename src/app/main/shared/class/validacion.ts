@@ -55,7 +55,36 @@ export class Validacion {
         
     } 
 
+    public del(id : string)
+    {
+        let i : number = -1;
+
+        this.lstReglas.findIndex(f => f.Id == id)
+
+        if( i != -1) this.lstReglas.splice(i, 1);
+    }
+
+    public Replace(id : string, regla : string, condicion :  string, valor : string)
+    {
+        let i : number = -1;
+
+        this.lstReglas.findIndex(f => f.Id == id)
+
+        if( i != -1)
+        {
+            this.lstReglas.splice(i, 1);
+            const _Regla : ReglasValidacion = new ReglasValidacion();
+            _Regla.Id = id;
+            _Regla.Regla = regla;
+            _Regla.Condicon = condicion;
+            _Regla.valor = valor;
     
+            this.lstReglas.push(_Regla)
+        } 
+       
+        
+    }
+
     public Cls_Validaciones(id : string): ValidatorFn {
         return (control: AbstractControl): { [key: string]: string } | null => {
 

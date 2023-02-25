@@ -13,6 +13,8 @@ let ELEMENT_DATA: iSindromePredominante[]=[];
 })
 export class SindromepredominanteComponent implements OnInit {
 
+  public IdPaciente : Number = 0;
+
   displayedColumns: string[] = ["IdSindrome","TipoSindrome"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iSindromePredominante>();
@@ -41,7 +43,8 @@ export class SindromepredominanteComponent implements OnInit {
   f_Agregar_Fila() : void{
     let _Fila : iSindromePredominante = {} as iSindromePredominante;
 
-    _Fila.IdPaciente = 1011;
+    _Fila.IdPaciente = this.IdPaciente;
+    _Fila.TipoSindrome = "";
     
     ELEMENT_DATA.push(_Fila);
    

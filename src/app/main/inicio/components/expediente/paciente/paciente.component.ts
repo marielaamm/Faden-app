@@ -27,6 +27,7 @@ import { AcompananteComponent } from './acompanante/acompanante.component';
 
 export class PacienteComponent implements OnInit {
 
+
   @ViewChild('Acompanante', { static: true })
   public Acompanante: AcompananteComponent;
 
@@ -49,6 +50,8 @@ export class PacienteComponent implements OnInit {
 
   @ViewChild('txtEscolaridad', { static: true })
   public igxComboEscolaridad: IgxComboComponent;
+
+  
 
 
 
@@ -191,6 +194,8 @@ export class PacienteComponent implements OnInit {
     this._FuncionesGenerales.BuscarFechaNac();
     this._FuncionesGenerales.FechaServidor();
     this._CatalogoService.BuscarEscolaridad();
+
+    this.ServerScv.change.emit(["Cerrar Expediente", "0"]);
 
   }
 
@@ -577,6 +582,9 @@ public EditarPaciente(fila: any){
 
 //TODO Reemplazar con los formControlName el resto de checkboxes, fijarse en el orden, comienzan con cero
     this.Acompanante.dataSource.data = Acompanante
+
+
+    this.ServerScv.change.emit(["Menu Expediente", 3]);
 
   }
 

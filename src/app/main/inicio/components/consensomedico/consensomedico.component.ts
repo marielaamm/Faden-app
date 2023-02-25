@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
@@ -18,10 +18,13 @@ export class ConsensomedicoComponent implements OnInit {
 
   public isLinear = false;
   public val: Validacion = new Validacion();
+
+  @ViewChild('Sindrome', { static: true })
   public Sindrome: SindromepredominanteComponent;
 
   private _CatalogoService: CatalogoService;
   private _ExpdienteService: ExpdienteService;
+  public IdPaciente : Number = 0;
 
 
   public rdDetCognitivo : Number = 1;
@@ -34,17 +37,17 @@ export class ConsensomedicoComponent implements OnInit {
     //[ REGLAS]
     this.val.add("rdDetCognitivo","1", "LEN>=", "0");
     this.val.add("txtDetNormal","1", "LEN>", "0");
-    this.val.add("txtDetLeve","1", "LEN>", "0");
-    this.val.add("txtDetMayor","1", "LEN>", "0");    
+    this.val.add("txtDetLeve","1", "LEN>=", "0");
+    this.val.add("txtDetMayor","1", "LEN>=", "0");    
 
-    this.val.add("chkDepre", "1", "LEN>", "0");
-    this.val.add("txtDepresion", "1", "LEN>", "0");
-    this.val.add("chkBipolar", "1", "LEN>", "0");
-    this.val.add("txtBipolar", "1", "LEN>", "0");
-    this.val.add("chkEsquizo", "1", "LEN>", "0");
-    this.val.add("txtEsquizo", "1", "LEN>", "0");
-    this.val.add("chkOtroDiag", "1", "LEN>", "0");
-    this.val.add("txtOtroDiag", "1", "LEN>", "0");
+    this.val.add("chkDepre", "1", "LEN>=", "0");
+    this.val.add("txtDepresion", "1", "LEN>=", "0");
+    this.val.add("chkBipolar", "1", "LEN>=", "0");
+    this.val.add("txtBipolar", "1", "LEN>=", "0");
+    this.val.add("chkEsquizo", "1", "LEN>=", "0");
+    this.val.add("txtEsquizo", "1", "LEN>=", "0");
+    this.val.add("chkOtroDiag", "1", "LEN>=", "0");
+    this.val.add("txtOtroDiag", "1", "LEN>=", "0");
 
     this.val.add("rdSospechaDiag","1", "LEN>=", "0");
     this.val.add("txtDiagProbable","1", "LEN>", "0");
@@ -130,25 +133,50 @@ export class ConsensomedicoComponent implements OnInit {
 
 public f_DetCognitivo(value : any): void {
 
+  this.val.Replace("txtDetNormal", "1", "LEN>=", "0");
+  this.val.Replace("txtDetLeve", "1", "LEN>=", "0");
+  this.val.Replace("txtDetMayor", "1", "LEN>=", "0");
+  
+
+
   this.val.ValForm.get("txtDetNormal")?.disable();
   this.val.ValForm.get("txtDetLeve")?.disable();
   this.val.ValForm.get("txtDetMayor")?.disable();
 
+  
+    
+
   if (value == 1) {
     this.val.ValForm.get("txtDetNormal")?.enable();
+    
+    this.val.Replace("txtDetNormal","1", "LEN>", "0");
+
+
+    
+    this.val.ValForm.get("txtDetLeve")?.setValue("");
+    this.val.ValForm.get("txtDetMayor")?.setValue("");
   }
 
   if (value == 2) {
     this.val.ValForm.get("txtDetLeve")?.enable();
+    this.val.Replace("txtDetLeve","1", "LEN>", "0");
+    this.val.ValForm.get("txtDetNormal")?.setValue("");
+    this.val.ValForm.get("txtDetMayor")?.setValue("");
   }
 
   if (value == 3) {
     this.val.ValForm.get("txtDetMayor")?.enable();
+    this.val.Replace("txtDetMayor","1", "LEN>", "0");  
+    this.val.ValForm.get("txtDetNormal")?.setValue("");
+    this.val.ValForm.get("txtDetLeve")?.setValue("");  
   }
 }
 
 //********SOSPECHA DIAGNOSTICA******/
 public f_SospechaDiag(value : any): void {
+
+  this.val.Replace("txtDiagProbable", "1", "LEN>=", "0");
+  this.val.Replace("txtDiagConfir", "1", "LEN>=", "0");
 
   this.val.ValForm.get("txtDiagProbable")?.disable();
   this.val.ValForm.get("txtDiagConfir")?.disable();
@@ -156,10 +184,14 @@ public f_SospechaDiag(value : any): void {
 
   if (value == 1) {
     this.val.ValForm.get("txtDiagProbable")?.enable();
+    this.val.ValForm.get("txtDiagConfir")?.setValue("");
+    this.val.Replace("txtDiagProbable", "1", "LEN>=", "0");
   }
 
   if (value == 2) {
     this.val.ValForm.get("txtDiagConfir")?.enable();
+    this.val.ValForm.get("txtDiagProbable")?.setValue("");
+    this.val.Replace("txtDiagConfir", "1", "LEN>=", "0");
   }
  
 }
@@ -173,10 +205,15 @@ public f_SospechaDiag(value : any): void {
 
 public f_RefDepre(): void {
 
+  this.val.Replace("txtEsquizo", "1", "LEN>=", "0");
+
+
   this.val.ValForm.get("txtDepresion")?.disable();
 
   if (this.val.ValForm.get("chkDepre")?.value == true) {
     this.val.ValForm.get("txtDepresion")?.enable();
+    this.val.add("txtEsquizo", "1", "LEN>", "0");
+
   }
 }
 //********************* */
@@ -185,10 +222,13 @@ public f_RefDepre(): void {
 
 public f_RefBipolar(): void {
 
+  this.val.Replace("chkBipolar", "1", "LEN>=", "0");
+
   this.val.ValForm.get("txtBipolar")?.disable();
 
   if (this.val.ValForm.get("chkBipolar")?.value == true) {
     this.val.ValForm.get("txtBipolar")?.enable();
+    this.val.Replace("txtBipolar", "1", "LEN>", "0");
   }
 }
 
@@ -197,10 +237,12 @@ public f_RefBipolar(): void {
 //********ESQUIZOFRENIA */
 public f_RefEsquizo(): void {
 
+  this.val.Replace("txtEsquizo", "1", "LEN>=", "0");
   this.val.ValForm.get("txtEsquizo")?.disable();
 
   if (this.val.ValForm.get("chkEsquizo")?.value == true) {
     this.val.ValForm.get("txtEsquizo")?.enable();
+    this.val.Replace("txtEsquizo", "1", "LEN>", "0");
   }
 }
 
@@ -209,10 +251,12 @@ public f_RefEsquizo(): void {
 //****** OTRO DIAG*/
 public f_RefOtroDiag(): void {
 
+  this.val.Replace("txtOtroDiag", "1", "LEN>=", "0");
   this.val.ValForm.get("txtOtroDiag")?.disable();
 
   if (this.val.ValForm.get("chkOtroDiag")?.value == true) {
     this.val.ValForm.get("txtOtroDiag")?.enable();
+    this.val.Replace("txtOtroDiag", "1", "LEN>", "0");
   }
 }
 
@@ -289,13 +333,13 @@ if (esError.includes("1")) {
 
 let C: iConsenso= {} as iConsenso;
 
-C.rdDetCognitivo = this.rdDetCognitivo;
-C.rdSospechaDiag = this.rdSospechaDiag;
+C.DetCognitivo = this.rdDetCognitivo;
+C.SospechaDiag = this.rdSospechaDiag;
 C.RefNormal = this.val.ValForm.get("txtDetNormal")?.value;
 C.RefLeve =this.val.ValForm.get("txtDetLeve")?.value;
 C.RefMayor = this.val.ValForm.get("txtDetMayor")?.value;
 C.Depresion = this.val.ValForm.get("chkDepre")?.value;
-C.RefDepre = this.val.ValForm.get("txtDepresion")?.value;C
+C.RefDepresion = this.val.ValForm.get("txtDepresion")?.value;
 C.TrastornoBip = this.val.ValForm.get("chkBipolar")?.value;
 C.RefTrasBip = this.val.ValForm.get("txtBipolar")?.value;
 C.Esquizo = this.val.ValForm.get("chkEsquizo")?.value;;
@@ -309,7 +353,8 @@ C.TrataNoFarma = this.val.ValForm.get("txtTraNoFarma")?.value;
 C.Recomendaciones = this.val.ValForm.get("txtRecomendaciones")?.value;
 C.Examenes = this.val.ValForm.get("txtExamenes")?.value;
 C.TSindromePredominante = this.Sindrome.dataSource.data;
-C.IdPaciente = 1011;
+C.IdPaciente = this.IdPaciente;
+alert( this.IdPaciente);
 
 this._ExpdienteService.GuardarConsenso(C);
 
@@ -323,6 +368,8 @@ this._ExpdienteService.GuardarConsenso(C);
 }
 
   ngOnInit(): void {
+
+    this.limpiar();
 
     this._ExpdienteService.change.subscribe(
 

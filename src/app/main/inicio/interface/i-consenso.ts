@@ -1,13 +1,13 @@
 import { iSindromePredominante } from "./i-sindromepredominante";
 
 export interface iConsenso{
-rdDetCognitivo: Number,
-rdSospechaDiag: Number,
+DetCognitivo: Number,
+SospechaDiag: Number,
 RefNormal: String,
 RefLeve: String,
 RefMayor: String,
 Depresion: Boolean,
-RefDepre: String,
+RefDepresion: String,
 TrastornoBip: Boolean,
 RefTrasBip: String,
 Esquizo: Boolean,

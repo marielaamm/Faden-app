@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ServerService } from 'src/app/main/shared/service/server.service';
+import { ConsensomedicoComponent } from '../consensomedico/consensomedico.component';
+import { SindromepredominanteComponent } from '../consensomedico/sindromepredominante/sindromepredominante.component';
+import { HistoriamedicaComponent } from './historiamedica/historiamedica.component';
+import { PacienteComponent } from './paciente/paciente.component';
 
 @Component({
   selector: 'app-expediente',
@@ -7,11 +12,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpedienteComponent implements OnInit {
 
+
+  @ViewChild('ViewHistorial', { static: false })
+  public ViewHistorial: HistoriamedicaComponent;
+
+  @ViewChild('ViewConsenso', { static: true })
+  public ViewConsenso: ConsensomedicoComponent;
+
+
+  public bol_Disable = true;
+  
   public estadoPanel = true;
   
-  constructor() { }
+  constructor(private ServerScv: ServerService) { }
 
   ngOnInit(): void {
+
+    this.ServerScv.change.subscribe(s => {
+
+      if(s[0] == "Menu Expediente")
+      {
+        this.bol_Disable = false
+        
+        this.ViewConsenso.IdPaciente = s[1];
+        this.ViewConsenso.Sindrome.IdPaciente = s[1];
+      }
+
+      if(s[0] == "Cerrar Expediente") this.bol_Disable = true
+
+
+    });
+
   }
 
 }
