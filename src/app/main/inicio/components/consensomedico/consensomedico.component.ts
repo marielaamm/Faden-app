@@ -219,7 +219,7 @@ public f_RefOtroDiag(): void {
 //*************** */
 
 
-public GuardarConsenso(){
+public Guardar(){
 
   let esError: string = " ";
   let mensaje: string = "<ol>";
