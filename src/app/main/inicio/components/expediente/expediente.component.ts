@@ -30,14 +30,7 @@ export class ExpedienteComponent implements OnInit {
 
     this.ServerScv.change.subscribe(s => {
 
-      if(s[0] == "Menu Expediente")
-      {
-        this.bol_Disable = false
-        
-        this.ViewConsenso.IdPaciente = s[1];
-        this.ViewConsenso.Sindrome.IdPaciente = s[1];
-      }
-
+      if(s[0] == "Menu Expediente") this.bol_Disable = false
       if(s[0] == "Cerrar Expediente") this.bol_Disable = true
 
 
