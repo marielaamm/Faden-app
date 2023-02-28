@@ -354,7 +354,7 @@ C.Recomendaciones = this.val.ValForm.get("txtRecomendaciones")?.value;
 C.Examenes = this.val.ValForm.get("txtExamenes")?.value;
 C.TSindromePredominante = this.Sindrome.dataSource.data;
 C.IdPaciente = this.IdPaciente;
-alert( this.IdPaciente);
+
 
 this._ExpdienteService.GuardarConsenso(C);
 
