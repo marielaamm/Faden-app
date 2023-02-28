@@ -403,6 +403,14 @@ this._ExpdienteService.GuardarConsenso(C);
     );
 
 
+    this.ServerScv.change.subscribe(s => {
+
+      if(s[0] == "Menu Expediente") this.IdPaciente =  s[1];
+      if(s[0] == "Cerrar Expediente") this.IdPaciente = 0
+
+    });
+
+
 
   }
 
