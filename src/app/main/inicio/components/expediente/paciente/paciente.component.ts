@@ -584,7 +584,7 @@ public EditarPaciente(fila: any){
     this.Acompanante.dataSource.data = Acompanante
 
 
-    this.ServerScv.change.emit(["Menu Expediente", 3]);
+    this.ServerScv.change.emit(["Menu Expediente", Paciente.IdPaciente]);
 
   }
 
