@@ -19,11 +19,25 @@ export class SoapComponent implements OnInit {
   private _CatalogoService: CatalogoService;
   private _ExpdienteService: ExpdienteService;
 
+  public rdTipoAcompañante : Number = 1;
+  public rdPropositoVisita : Number = 1;
+
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
    // [ REGLAS ] 
 
    this.val.add("txtFecha", "1", "LEN>","0");
-   this.val.add("txtHora", "1", "LEN>", "0");
+   this.val.add("txtHora", "1", "LEN>", "0");   
+   this.val.add("txtPaciente","1","LEN>","0");
+   this.val.add("txtNoExpediente", "1", "LEN>","0");
+   this.val.add("rdTipoAcompañante", "1","LEN>", "0");
+   //revisar el html sobre radio button tipo acomp
+   this.val.add("txtNombrecuidador", "1", "LEN>", "0");
+   this.val.add("txtDireccion", "1", "LEN>","0");
+   this.val.add("txtTelefono", "1", "LEN>","0");
+   this.val.add("rdPropositoVisita","1","LEN>","0");
+   
+
+   
 
    }
 
