@@ -138,23 +138,32 @@
 
 
                                         <div class="row ">
-                                            <mat-form-field>
+                                            <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Subjetivo</mat-label>
-                                                <textarea matInput></textarea>
+                                                <textarea matInput type="text" id="txtSubjetivo" formControlName="txtSubjetivo"></textarea>
+                                                <mat-error *ngIf="val.ValForm.get('txtSubjetivo')?.errors?.['Regla']=='1'" style="color:black">Describa el sistema<strong>
+                                                        Subjetivo </strong>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
 
                                         <div class="row ">
                                             <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Objetivo</mat-label>
-                                                <textarea matInput></textarea>
+                                                <textarea matInput type="text" id="txtObjetivo" formControlName="txtObjetivo"></textarea>
+                                                <mat-error *ngIf="val.ValForm.get('txtObjetivo')?.errors?.['Regla']=='1'" style="color:black">Describa el sistema
+                                                    <strong>Objetivo </strong>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
 
                                         <div class="row">
                                             <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Avalúo</mat-label>
-                                                <textarea matInput></textarea>
+                                                <textarea matInput type="text" id="txtAvaluo" formControlName="txtAvaluo"></textarea>
+                                                <mat-error *ngIf="val.ValForm.get('txtAvaluo')?.errors?.['Regla']=='1'" style="color:black">Describa el sistema
+                                                    <strong>Objetivo </strong>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
 
@@ -162,7 +171,10 @@
                                             <mat-form-field
                                                 class="col-12 col-sm-12  col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Planes</mat-label>
-                                                <textarea matInput></textarea>
+                                                <textarea matInput type="text" id="txtPlanes" formControlName="txtPlanes"></textarea>
+                                                <mat-error *ngIf="val.ValForm.get('txtPlanes')?.errors?.['Regla']=='1'" style="color:black">Describa el sistema
+                                                    <strong>Planes </strong>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
 
