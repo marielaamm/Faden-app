@@ -45,7 +45,10 @@
                                                 class="col-6 col-sm-3 col-md-2 col-lg-2 offset-sm-6 offset-md-8 offset-lg-8">
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Hora</mat-label>
-                                                    <input matInput type="text" id="txtHora">
+                                                    <input matInput type="text" id="txtHora" formControlName="txtHora">
+                                                        <mat-error *ngIf="val.ValForm.get('txtHora')?.errors?.['Regla']=='1'" style="color:black">Ingrese
+                                                            la<strong>Hora</strong>de atención
+                                                        </mat-error>
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -81,7 +84,7 @@
                                         <div class="row">
                                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                                 <label class="col-12"><b>Sobre el acompañante: </b></label>
-                                                <mat-radio-group aria-label="Seleccione tipo" >
+                                                <mat-radio-group aria-label="Seleccione tipo"  formControlName="rdTipoAcompanante">
                                                     <mat-radio-button value="1">Acompañante</mat-radio-button>
                                                     <mat-radio-button value="2">Cuidador</mat-radio-button>
                                                 </mat-radio-group>
@@ -115,7 +118,7 @@
                                         <div class="row border-paciente">
                                             <div class="col-12">
                                                 <label class="col-12"><b>Propósito de la visita:</b></label>
-                                                <mat-radio-group aria-label="Seleccione visita"
+                                                <mat-radio-group aria-label="Seleccione visita" formControlName="rdPropositoVisita"
                                                     class="col-6 col-sm-4 col-md-4 col-lg-4">
                                                     <mat-radio-button value="1"
                                                         class="col-6 col-sm-4 col-md-2 col-lg-2">Cita

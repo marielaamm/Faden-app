@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
+import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { ExpdienteService } from '../../service/expediente.service';
 
@@ -74,6 +75,50 @@ export class SoapComponent implements OnInit {
     if (event.added.length) {
         event.newSelection = event.added;
     }
+  }
+
+
+  public Guardar(){
+
+    let esError: string = " ";
+    let mensaje: string = "<ol>";
+
+    //[Inicio - Validaciones]
+
+    if(this.val.ValForm.get("txtHora")?.invalid){
+      mensaje += "<li>Indique la hora de atención o revise la cantidad de caracteres/li>";
+      esError += "1";
+    }
+
+    if(this.val.ValForm.get("txtPaciente")?.invalid){
+      mensaje += "<li>Indique nombre del paciente o revise la cantidad de caracteres/li>";
+    esError += "1";
+    }
+
+    if(this.val.ValForm.get("txtNoExpediente")?.invalid){
+      mensaje += "<li>Indique No de Expediente o revise la cantidad de caracteres/li>";
+    esError += "1";
+    }
+
+
+    //[Fin - Validaciones]
+    mensaje += "</ol>";
+
+  if (esError.includes("1")) {
+    let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + mensaje + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+    let _json = JSON.parse(s);
+    this._Dialog.open(DialogoComponent, {
+
+     data: _json["msj"]
+    });
+
+  return;
+}
+
+
+
+
+
   }
 
   Cerrar() : void{
