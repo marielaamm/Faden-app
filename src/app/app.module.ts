@@ -98,6 +98,7 @@ import { MedicosComponent } from './main/cat/components/medicos/medicos.componen
 import { RegistrosMedicosComponent } from './main/cat/components/medicos/registros-medicos/registros-medicos.component';
 import { DialogoConfirmarComponent } from './main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
 import { ExpedienteRegistroComponent } from './main/inicio/components/expediente/expediente-registro/expediente-registro.component';
+import { RegistrousuarioComponent } from './main/config/components/usuario/registrousuario/registrousuario.component';
 
 //FIN
 
@@ -154,6 +155,7 @@ export const DateFormat = {
     RegistrosMedicosComponent,
     DialogoConfirmarComponent,
     ExpedienteRegistroComponent,
+    RegistrousuarioComponent,
     
   ],
   imports: [

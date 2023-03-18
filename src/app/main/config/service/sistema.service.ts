@@ -10,6 +10,8 @@ import { iUsuario } from '../Interface/i-Usuario';
   providedIn: 'root'
 })
 export class SistemaService {
+
+ 
   private _Cnx = new Conexion();
   @Output() change: EventEmitter<any> = new EventEmitter();
   
@@ -86,6 +88,17 @@ export class SistemaService {
     );
   }
 
+  public BuscarUsuario(){
+    this.http.get<any>(this._Cnx.Url() + "SIS/Usuario/Buscar").subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Usuario", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+
+  }
 
   private Msj () : void{
 

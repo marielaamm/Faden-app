@@ -4,6 +4,7 @@ import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
+import { iSistemaSoap } from '../../interface/i-sistema-soap';
 import { ExpdienteService } from '../../service/expediente.service';
 
 @Component({
@@ -115,8 +116,23 @@ export class SoapComponent implements OnInit {
   return;
 }
 
+  let S: iSistemaSoap = {} as iSistemaSoap;
 
+  S.TipoAcompanante = this.rdTipoAcompanante;
+  S.PropositoVisita = this.rdPropositoVisita;
+  S.Fecha = this.val.ValForm.get("txtFecha")?.value;
+  S.Hora = this.val.ValForm.get("txtHora")?.value;
+  S.NombrePaciente = this.val.ValForm.get("txtPaciente")?.value;
+  S.NoExpediente = this.val.ValForm.get("txtNoExpediente")?.value;
+  S.NombreAcompañante = this.val.ValForm.get("txtNombrecuidador")?.value;
+  S.Direccion = this.val.ValForm.get("txtDireccion")?.value;
+  S.Telefono = this.val.ValForm.get("txtTelefono")?.value;
+  S.Subjetivo = this.val.ValForm.get("txtSubjetivo")?.value;
+  S.Objetivo = this.val.ValForm.get("txtObjetivo")?.value;
+  S.Avaluo = this.val.ValForm.get("txtAvaluo")?.value;
+  S.Planes = this.val.ValForm.get("txtPlanes")?.value;
 
+  this._ExpdienteService.GuardarSOAP(S);
 
 
   }
@@ -127,6 +143,39 @@ export class SoapComponent implements OnInit {
   }
   
   ngOnInit(): void {
+
+    this.limpiar();
+    this._ExpdienteService.change.subscribe(
+      s => {
+
+        if (s[0] == "dato_SOAP_Guardar") {
+
+          this.val.ValForm.enable();
+
+          if (s[1] == undefined) {
+
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+
+
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+  
+          this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
+          this.val.ValForm.get("txtNoExpediente")?.disable();
+        }
+
+
+      }
+    );
+
+    
   }
 
 }
