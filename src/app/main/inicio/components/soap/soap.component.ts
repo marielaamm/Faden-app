@@ -122,7 +122,7 @@ export class SoapComponent implements OnInit {
   S.PropositoVisita = this.rdPropositoVisita;
   S.Fecha = this.val.ValForm.get("txtFecha")?.value;
   S.Hora = this.val.ValForm.get("txtHora")?.value;
-  S.NombrePaciente = this.val.ValForm.get("txtPaciente")?.value;
+  S.IdPaciente = this.val.ValForm.get("txtPaciente")?.value;
   S.NoExpediente = this.val.ValForm.get("txtNoExpediente")?.value;
   S.NombreAcompañante = this.val.ValForm.get("txtNombrecuidador")?.value;
   S.Direccion = this.val.ValForm.get("txtDireccion")?.value;
