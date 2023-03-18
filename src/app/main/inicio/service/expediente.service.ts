@@ -5,6 +5,7 @@ import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
 import { iConsenso } from '../interface/i-consenso';
 import { iPaciente } from '../interface/i-paciente';
+import { iSistemaSoap } from '../interface/i-sistema-soap';
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +82,26 @@ export class ExpdienteService {
 
 
   }
+
+  public GuardarSOAP(Soap : iSistemaSoap){
+    this.http.post<any>(this._Cnx.Url()+ "cat/SOAP/Guardar", JSON.stringify(Soap),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_SOAP_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_SOAP_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_SOAP_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
 
 
 
