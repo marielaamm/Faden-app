@@ -39,7 +39,6 @@ export class SoapComponent implements OnInit {
    this.val.add("txtPaciente","1","LEN>","0");
    this.val.add("txtNoExpediente", "1", "LEN>","0");
    this.val.add("rdTipoAcompanante", "1","LEN>", "0");
-   //revisar el html sobre radio button tipo acomp
    this.val.add("txtNombrecuidador", "1", "LEN>", "0");
    this.val.add("txtDireccion", "1", "LEN>","0");
    this.val.add("txtTelefono", "1", "LEN>","0");
@@ -190,7 +189,17 @@ export class SoapComponent implements OnInit {
       }
     );
 
-    
+    this._FuncionesGenerales.change.subscribe(
+
+      s => {
+       if (s[0] == "Llenar_FechaServidor") {
+          let _json = JSON.parse(s[1]);
+
+          this.val.ValForm.get("txtFecha")?.setValue(_json["d"][0]);
+
+        }
+      }
+    );
   }
 
 }
