@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { IgxComboComponent } from 'igniteui-angular';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
+import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones-generales.service';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iSistemaSoap } from '../../interface/i-sistema-soap';
 import { ExpdienteService } from '../../service/expediente.service';
@@ -20,6 +22,11 @@ export class SoapComponent implements OnInit {
   
   private _CatalogoService: CatalogoService;
   private _ExpdienteService: ExpdienteService;
+  private _FuncionesGenerales: FuncionesGeneralesService;
+
+  @ViewChild('txtPaciente', { static: true })
+  public igxComboPaciente: IgxComboComponent;
+
 
   public rdTipoAcompanante : Number = 1;
   public rdPropositoVisita : Number = 1;
@@ -44,6 +51,7 @@ export class SoapComponent implements OnInit {
    
    this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._CatalogoService = new CatalogoService(this._Dialog);
+    this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
 
     this.limpiar();
 
@@ -57,6 +65,7 @@ export class SoapComponent implements OnInit {
     this.val.ValForm.get("txtHora")?.setValue("");
     this.val.ValForm.get("txtPaciente")?.setValue("");
     this.val.ValForm.get("txtNoExpediente")?.setValue("");
+    this.val.ValForm.get("txtEdad")?.setValue("");
     this.val.ValForm.get("rdTipoAcompanante")?.setValue("");
     this.val.ValForm.get("txtNombrecuidador")?.setValue("");
     this.val.ValForm.get("txtDireccion")?.setValue("");
@@ -69,6 +78,7 @@ export class SoapComponent implements OnInit {
 
     this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._CatalogoService = new CatalogoService(this._Dialog);
+    this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
     
    }
 
@@ -85,6 +95,11 @@ export class SoapComponent implements OnInit {
     let mensaje: string = "<ol>";
 
     //[Inicio - Validaciones]
+
+    if(this.val.ValForm.get("txtFecha")?.invalid){
+      mensaje += "<li>Indique la Fecha de atención o revise la cantidad de caracteres/li>";
+      esError += "1";
+    }
 
     if(this.val.ValForm.get("txtHora")?.invalid){
       mensaje += "<li>Indique la hora de atención o revise la cantidad de caracteres/li>";

@@ -31,13 +31,17 @@
                                     <mat-card-content>
                                         <div class="row">
                                             <div class="col-6 col-sm-3 col-md-2 col-lg-2">
-                                                <mat-form-field>
-                                                    <mat-label> Fecha </mat-label>
-                                                    <input matInput [matDatepicker]="picker" id="txtFecha">
+                                                <mat-form-field appearance="legacy">
+                                                    <mat-label>Fecha</mat-label>
+                                                    <input matInput [matDatepicker]="picker" id="txtFecha" formControlName="txtFecha">
                                                     <mat-datepicker-toggle matSuffix [for]="picker">
                                                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                     </mat-datepicker-toggle>
                                                     <mat-datepicker #picker></mat-datepicker>
+                                                    <mat-error
+                                                            *ngIf="val.ValForm.get('txtFecha')?.errors?.['Regla']=='1'"
+                                                            style="color:black">Seleccione una<strong> Fecha </strong>
+                                                        </mat-error>
                                                 </mat-form-field>
                                             </div>
 
@@ -56,9 +60,9 @@
                                         <div class="row border-paciente">
 
                                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                <igx-combo _ngcontent-pmm-5 
-                                                    #withValueKey [data]="lstPaciente" valueKey="NoPaciente"
-                                                    displayKey="Paciente" id="txtPaciente" placeholder="Paciente"
+                                                <igx-combo #txtPaciente _ngcontent-pmm-5 
+                                                    #withValueKey [data]="lstPaciente" valueKey="IdPaciente"
+                                                    displayKey="Paciente" id="txtPaciente"   formControlName="txtPaciente" placeholder="Paciente"
                                                     searchPlaceholder="Seleccione un Paciente"
                                                     (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
                                                     appAutofocus>
@@ -68,14 +72,14 @@
                                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 ">
                                                 <mat-form-field >
                                                     <mat-label>No de Expediente </mat-label>
-                                                    <input matInput type="text" id="txtNoExpediente">
+                                                    <input matInput type="text" id="txtNoExpediente" formControlName="txtNoExpediente">
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 ">
                                                 <mat-form-field >
                                                     <mat-label>Edad </mat-label>
-                                                    <input matInput type="text" id="txtEdad">
+                                                    <input matInput type="text" id="txtEdad" formControlName="txtEdad">
                                                 </mat-form-field>
                                             </div>
 
@@ -96,21 +100,21 @@
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                                                 <mat-form-field >
                                                     <mat-label>Nombre</mat-label>
-                                                    <input matInput type="text" id="txtNombrecuidador">
+                                                    <input matInput type="text" id="txtNombrecuidador" formControlName="txtNombrecuidador">
                                                 </mat-form-field>
                                             </div>                                            
 
                                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                                 <mat-form-field >
                                                     <mat-label>Dirección </mat-label>
-                                                    <input matInput type="text" id="txtDireccion">
+                                                    <input matInput type="text" id="txtDireccion" formControlName="txtDireccion">
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                                 <mat-form-field >
                                                     <mat-label>Teléfono</mat-label>
-                                                    <input matInput type="text" id="txtTelefono">
+                                                    <input matInput type="text" id="txtTelefono" formControlName="txtTelefono">
                                                 </mat-form-field>
                                             </div>
                                         </div>
