@@ -62,8 +62,8 @@
 
                                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                 <igx-combo #txtPaciente _ngcontent-pmm-5 
-                                                    #withValueKey [data]="lstPaciente" valueKey="IdPaciente"
-                                                    displayKey="Paciente" id="txtPaciente"   formControlName="txtPaciente" placeholder="Paciente"
+                                                     [data]="lstPaciente" valueKey="IdPaciente"
+                                                    displayKey="NombreCompleto" id="txtPaciente"   formControlName="txtPaciente" placeholder="Paciente"
                                                     searchPlaceholder="Seleccione un Paciente"
                                                     (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
                                                     appAutofocus>
