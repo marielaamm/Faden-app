@@ -17,7 +17,9 @@ import { ExpdienteService } from '../../service/expediente.service';
 export class SoapComponent implements OnInit {
 
   public isLinear = false;
-  public lstPaciente:{}[]=[];
+  
+  public lstPaciente: any []=[]
+
   public val: Validacion = new Validacion ();
   
   private _CatalogoService: CatalogoService;
@@ -75,11 +77,27 @@ export class SoapComponent implements OnInit {
     this.val.ValForm.get("txtAvaluo")?.setValue("");
     this.val.ValForm.get("txtPlanes")?.setValue("");
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
-    this._CatalogoService = new CatalogoService(this._Dialog);
-    this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
+
+    this._ExpdienteService.BuscarPaciente();
     
    }
+
+
+   private LlenarPaciente(datos: string): void {
+
+    let _json = JSON.parse(datos);
+
+    this.lstPaciente.splice(0, this.lstPaciente.length);
+
+    _json["d"][0].forEach(
+      (b: any) => {
+        this.lstPaciente.push(b);
+      }
+    );
+
+    
+  
+  }
 
   public singleSelection(event: any) {
     if (event.added.length) {
@@ -136,7 +154,7 @@ export class SoapComponent implements OnInit {
   S.PropositoVisita = this.rdPropositoVisita;
   S.Fecha = this.val.ValForm.get("txtFecha")?.value;
   S.Hora = this.val.ValForm.get("txtHora")?.value;
-  S.IdPaciente = this.val.ValForm.get("txtPaciente")?.value;
+  S.IdPaciente = this.val.ValForm.get("txtPaciente")?.value; // aqui ya se captura el IDPaciente
   S.NoExpediente = this.val.ValForm.get("txtNoExpediente")?.value;
   S.NombreAcompañante = this.val.ValForm.get("txtNombrecuidador")?.value;
   S.Direccion = this.val.ValForm.get("txtDireccion")?.value;
@@ -150,6 +168,7 @@ export class SoapComponent implements OnInit {
 
 
   }
+
 
   Cerrar() : void{
     
@@ -185,6 +204,11 @@ export class SoapComponent implements OnInit {
           this.val.ValForm.get("txtNoExpediente")?.disable();
         }
 
+        if (s[0] == "Llenar_paciente") {
+          this.LlenarPaciente(s[1]);
+        }
+
+
 
       }
     );
@@ -200,6 +224,9 @@ export class SoapComponent implements OnInit {
         }
       }
     );
+
+
+    
   }
 
 }
