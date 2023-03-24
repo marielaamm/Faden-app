@@ -94,10 +94,33 @@ export class SoapComponent implements OnInit {
         this.lstPaciente.push(b);
       }
     );
-
-    
+        
   
   }
+
+  public Seleccion_Paciente(event: any) {
+    if (event.added.length) {
+      event.newSelection = event.added;
+      let _Fila: any = this.lstPaciente.find(f => f.IdPaciente == event.added);
+      this.val.ValForm.get("txtPaciente")?.setValue([_Fila.IdPaciente]);
+    }
+
+    this.igxComboPaciente.close();
+
+  }
+
+  public f_key_Enter_Paciente(even: any) {
+    if (even.key == "Enter") {
+      let _Item: any = this.igxComboPaciente.dropdown;
+      this.igxComboPaciente.setSelectedItem([_Item._focusedItem.value.IdPaciente]);
+      this.val.ValForm.get("txtPaciente")?.setValue([_Item._focusedItem.value.IdPaciente]);
+    }
+    this.igxComboPaciente.close();
+
+
+  }
+
+
 
   public singleSelection(event: any) {
     if (event.added.length) {
@@ -148,13 +171,16 @@ export class SoapComponent implements OnInit {
   return;
 }
 
+  let _filaPaciente: any = this.lstPaciente.find(f => f.IdPaciente == Number(this.val.ValForm.get("txtPaciente")?.value));
+
   let S: iSistemaSoap = {} as iSistemaSoap;
+
 
   S.TipoAcompanante = this.rdTipoAcompanante;
   S.PropositoVisita = this.rdPropositoVisita;
   S.Fecha = this.val.ValForm.get("txtFecha")?.value;
   S.Hora = this.val.ValForm.get("txtHora")?.value;
-  S.IdPaciente = this.val.ValForm.get("txtPaciente")?.value; // aqui ya se captura el IDPaciente
+  S.IdPaciente = _filaPaciente.IdPaciente; // aqui ya se captura el IDPaciente
   S.NoExpediente = this.val.ValForm.get("txtNoExpediente")?.value;
   S.NombreAcompañante = this.val.ValForm.get("txtNombrecuidador")?.value;
   S.Direccion = this.val.ValForm.get("txtDireccion")?.value;
