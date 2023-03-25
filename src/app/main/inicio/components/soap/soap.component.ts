@@ -40,6 +40,7 @@ export class SoapComponent implements OnInit {
    this.val.add("txtHora", "1", "LEN>", "0");   
    this.val.add("txtPaciente","1","LEN>","0");
    this.val.add("txtNoExpediente", "1", "LEN>","0");
+   this.val.add("txtEdad", "1","LEN>", "0");
    this.val.add("rdTipoAcompanante", "1","LEN>", "0");
    this.val.add("txtNombrecuidador", "1", "LEN>", "0");
    this.val.add("txtDireccion", "1", "LEN>","0");
