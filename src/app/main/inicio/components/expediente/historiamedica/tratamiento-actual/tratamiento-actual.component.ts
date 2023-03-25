@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ExpdienteService } from 'src/app/main/inicio/service/expediente.service';
+import { Validacion } from 'src/app/main/shared/class/validacion';
+import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iTratamientoActual } from '../../../../interface/i-tratamiento-actual';
+import { NuevoTratamientoActualComponent } from './nuevo-tratamiento-actual/nuevo-tratamiento-actual.component';
 
 
 let ELEMENT_DATA: iTratamientoActual[] =[];
@@ -19,8 +24,16 @@ export class TratamientoActualComponent implements OnInit {
   clickedRows = new Set<iTratamientoActual>();
   private _liveAnnouncer:any;
 
-  constructor(private ServerScv : ServerService) { }
+  private dialogRef: MatDialogRef<NuevoTratamientoActualComponent>;
 
+  private _ExpdienteService: ExpdienteService;
+  
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+ 
+    this._ExpdienteService = new ExpdienteService(this._Dialog);
+   }
+
+ 
   
   announceSort(sortState: Sort) {
     if (sortState.direction) {
@@ -40,16 +53,59 @@ export class TratamientoActualComponent implements OnInit {
   
 
   f_Agregar_Fila() : void{
-    let _Fila : iTratamientoActual = {} as iTratamientoActual;
 
-    ELEMENT_DATA.push(_Fila);
-    _Fila.Tratamiento = "";
-    _Fila.Dosis = "";
-    _Fila.TipoTratamiento = "1";
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this.dialogRef = this._Dialog.open(NuevoTratamientoActualComponent,
+      {
+        disableClose: true,
+        panelClass: 'custom-modal'
+      })
+    
   }
 
   ngOnInit(): void {
+
+
+    this.ServerScv.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "CerrarDialog" && s[1] == "frmTratamientoActual") {
+          this.dialogRef.close();
+        }
+      }
+    });
+
+
+
+    this._ExpdienteService.change.subscribe(
+
+      s => {
+
+        if (s[0] == "dato_Tratamiento_Guardar") {
+
+          if (s[1] == undefined) {
+
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+
+
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+  
+          this.dialogRef.close();
+          
+        }
+
+
+      }
+    );
+
     
   }
 

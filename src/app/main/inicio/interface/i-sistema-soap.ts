@@ -1,9 +1,6 @@
 export interface iSistemaSoap{
     IdSoap: Number,
     Fecha: Date,
-    Hora: Date,
-    NombrePaciente: String,
-    NoExpediente: Number,
     TipoAcompanante: Number,
     NombreAcompanante: String,
     Direccion: String,

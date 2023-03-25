@@ -36,8 +36,7 @@ export class SoapComponent implements OnInit {
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
    // [ REGLAS ] 
 
-   this.val.add("txtFecha", "1", "LEN>","0");
-   this.val.add("txtHora", "1", "LEN>", "0");   
+   this.val.add("txtFecha", "1", "LEN>","0");  
    this.val.add("txtPaciente","1","LEN>","0");
    this.val.add("txtNoExpediente", "1", "LEN>","0");
    this.val.add("txtEdad", "1","LEN>", "0");
@@ -78,7 +77,9 @@ export class SoapComponent implements OnInit {
     this.val.ValForm.get("txtAvaluo")?.setValue("");
     this.val.ValForm.get("txtPlanes")?.setValue("");
 
+    this.val.ValForm.get("txtFecha")?.disable();
 
+    this._FuncionesGenerales.FechaServidor();
     this._ExpdienteService.BuscarPaciente();
     
    }
@@ -104,6 +105,7 @@ export class SoapComponent implements OnInit {
       event.newSelection = event.added;
       let _Fila: any = this.lstPaciente.find(f => f.IdPaciente == event.added);
       this.val.ValForm.get("txtPaciente")?.setValue([_Fila.IdPaciente]);
+      this.val.ValForm.get("txtNoExpediente")?.setValue(_Fila.NoExpediente);
     }
 
     this.igxComboPaciente.close();
@@ -142,20 +144,13 @@ export class SoapComponent implements OnInit {
       esError += "1";
     }
 
-    if(this.val.ValForm.get("txtHora")?.invalid){
-      mensaje += "<li>Indique la hora de atención o revise la cantidad de caracteres/li>";
-      esError += "1";
-    }
-
+ 
     if(this.val.ValForm.get("txtPaciente")?.invalid){
       mensaje += "<li>Indique nombre del paciente o revise la cantidad de caracteres/li>";
     esError += "1";
     }
 
-    if(this.val.ValForm.get("txtNoExpediente")?.invalid){
-      mensaje += "<li>Indique No de Expediente o revise la cantidad de caracteres/li>";
-    esError += "1";
-    }
+
 
 
     //[Fin - Validaciones]
@@ -180,9 +175,7 @@ export class SoapComponent implements OnInit {
   S.TipoAcompanante = this.rdTipoAcompanante;
   S.PropositoVisita = this.rdPropositoVisita;
   S.Fecha = this.val.ValForm.get("txtFecha")?.value;
-  S.Hora = this.val.ValForm.get("txtHora")?.value;
   S.IdPaciente = _filaPaciente.IdPaciente; // aqui ya se captura el IDPaciente
-  S.NoExpediente = this.val.ValForm.get("txtNoExpediente")?.value;
   S.NombreAcompanante = this.val.ValForm.get("txtNombrecuidador")?.value;
   S.Direccion = this.val.ValForm.get("txtDireccion")?.value;
   S.Telefono = this.val.ValForm.get("txtTelefono")?.value;

@@ -6,6 +6,7 @@ import { DialogoComponent } from '../../shared/components/dialogo/dialogo.compon
 import { iConsenso } from '../interface/i-consenso';
 import { iPaciente } from '../interface/i-paciente';
 import { iSistemaSoap } from '../interface/i-sistema-soap';
+import { iTratamientoActual } from '../interface/i-tratamiento-actual';
 
 @Injectable({
   providedIn: 'root'
@@ -95,6 +96,28 @@ export class ExpdienteService {
       },
         err =>{
           this.change.emit(["dato_SOAP_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+
+
+
+  public GuardarTratamiento(T : iTratamientoActual){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Tratamiento/Guardar", JSON.stringify(T),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Tratamiento_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Tratamiento_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Tratamiento_Guardar", undefined]);
           this.Msj();
       }
     );

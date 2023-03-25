@@ -3,6 +3,7 @@ export interface iTratamientoActual{
     Tratamiento : String;
     Dosis : String;
     IdMedico : Number;
-    Fecha : Date;
+    FechaRegistro : Date;
     TipoTratamiento : String;
+    IdPaciente : Number;
 }
