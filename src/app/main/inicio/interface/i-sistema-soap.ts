@@ -5,7 +5,7 @@ export interface iSistemaSoap{
     NombrePaciente: String,
     NoExpediente: Number,
     TipoAcompanante: Number,
-    NombreAcompañante: String,
+    NombreAcompanante: String,
     Direccion: String,
     Telefono: String,
     PropositoVisita: Number,

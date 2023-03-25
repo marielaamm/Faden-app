@@ -182,7 +182,7 @@ export class SoapComponent implements OnInit {
   S.Hora = this.val.ValForm.get("txtHora")?.value;
   S.IdPaciente = _filaPaciente.IdPaciente; // aqui ya se captura el IDPaciente
   S.NoExpediente = this.val.ValForm.get("txtNoExpediente")?.value;
-  S.NombreAcompañante = this.val.ValForm.get("txtNombrecuidador")?.value;
+  S.NombreAcompanante = this.val.ValForm.get("txtNombrecuidador")?.value;
   S.Direccion = this.val.ValForm.get("txtDireccion")?.value;
   S.Telefono = this.val.ValForm.get("txtTelefono")?.value;
   S.Subjetivo = this.val.ValForm.get("txtSubjetivo")?.value;
