@@ -16,13 +16,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tratamiento">
                 Tratamiento</th>
 
-                <td mat-cell *matCellDef="let element">
-
-                    <mat-form-field  floatLabel="never">
-                        <input  matInput  [(ngModel)]="element.Tratamiento">
-                    </mat-form-field>
-        
-                </td>
+                <td mat-cell *matCellDef="let element"> {{element.Tratamiento}} </td>
 
                 
         </ng-container>
@@ -31,13 +25,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Dosis">
                 Dosis</th>
 
-                <td mat-cell *matCellDef="let element">
-
-                    <mat-form-field  floatLabel="never">
-                        <input  matInput  [(ngModel)]="element.Dosis">
-                    </mat-form-field>
-        
-                </td>
+                <td mat-cell *matCellDef="let element"> {{element.Dosis}} </td>
 
         </ng-container>
 
@@ -53,12 +41,12 @@
             <td mat-cell *matCellDef="let element"> {{element.Fecha}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="TipoTratamiento">
+        <ng-container matColumnDef="Tipo">
             <th mat-header-cell *matHeaderCellDef>
                 Tipo</th>
             <td mat-cell *matCellDef="let element">
 
-                <mat-radio-group [value]="element.TipoTratamiento" aria-label="">
+                <mat-radio-group value="element.Tipo"  aria-label="">
                     <mat-radio-button value="1">Farmacológico</mat-radio-button>
                     <mat-radio-button value="2">No Farmacológico</mat-radio-button>
                 </mat-radio-group>  

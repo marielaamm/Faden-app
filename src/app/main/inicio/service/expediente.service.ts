@@ -126,6 +126,18 @@ export class ExpdienteService {
   }
 
 
+  public BuscarTratamiento(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/Tratamiento/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Tratamiento", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+
 
 
 

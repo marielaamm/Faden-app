@@ -11,6 +11,7 @@ export class HistoriamedicaComponent implements OnInit {
 
   public lstPaciente:{}[]=[];
   public isLinear = false;
+  private IdPaciente : Number = 0;
 
   constructor(private ServerScv : ServerService) { }
 
@@ -27,6 +28,8 @@ Cerrar() : void{
 }
 
   ngOnInit(): void {
+
+
   }
 
 }

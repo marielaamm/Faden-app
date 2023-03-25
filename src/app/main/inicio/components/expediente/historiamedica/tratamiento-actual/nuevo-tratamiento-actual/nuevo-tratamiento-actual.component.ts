@@ -15,7 +15,7 @@ export class NuevoTratamientoActualComponent implements OnInit {
 
   public val: Validacion = new Validacion ();
   public rdTipoTratammiento : string = "1";
-  private IdPaciente : Number = 0;
+  public IdPaciente : Number = 0;
 
   private _ExpdienteService: ExpdienteService;
   
@@ -28,6 +28,7 @@ export class NuevoTratamientoActualComponent implements OnInit {
     this.val.add("rdTipoTratammiento", "1", "LEN>=", "0");
 
 
+    this.Limpiar();
     
   }
 
@@ -83,19 +84,44 @@ export class NuevoTratamientoActualComponent implements OnInit {
     T.Dosis  = this.val.ValForm.get("txtDosis")?.value;
     T.IdMedico = 14;
     T.IdPaciente = this.IdPaciente;
-    T.TipoTratamiento = this.rdTipoTratammiento;
+    T.Tipo = this.rdTipoTratammiento;
     this._ExpdienteService.GuardarTratamiento(T);
 
   }
 
   ngOnInit(): void {
 
-    this.ServerScv.change.subscribe(s => {
+ 
+    this._ExpdienteService.change.subscribe(
 
-      if(s[0] == "Menu Expediente") this.IdPaciente =  s[1];
-      if(s[0] == "Cerrar Expediente") this.IdPaciente = 0
+      s => {
 
-    });
+        if (s[0] == "dato_Tratamiento_Guardar") {
+
+          if (s[1] == undefined) {
+
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+
+
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+  
+          this.Cerrar();
+          
+        }
+
+
+      }
+    );
+
+
     
   }
 

@@ -19,11 +19,12 @@ let ELEMENT_DATA: iTratamientoActual[] =[];
 })
 export class TratamientoActualComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdTratamiento","Tratamiento", "Dosis", "IdMedico", "Fecha", "TipoTratamiento"];
+  displayedColumns: string[] = ["IdTratamiento","Tratamiento", "Dosis", "IdMedico", "Fecha", "Tipo"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iTratamientoActual>();
   private _liveAnnouncer:any;
 
+  private IdPaciente : Number = 0;
   private dialogRef: MatDialogRef<NuevoTratamientoActualComponent>;
 
   private _ExpdienteService: ExpdienteService;
@@ -59,10 +60,32 @@ export class TratamientoActualComponent implements OnInit {
         disableClose: true,
         panelClass: 'custom-modal'
       })
+
+      this.dialogRef.afterOpened().subscribe(s =>{
+        this.dialogRef.componentInstance.IdPaciente = this.IdPaciente;
+      })
     
   }
 
+  private Llenar(datos : any)
+  {
+    let _json = JSON.parse(datos);
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    _json["d"].forEach(
+      (b: any) => {
+        ELEMENT_DATA.push(b);
+      }
+    );
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+ console.log(ELEMENT_DATA)
+  }
+
   ngOnInit(): void {
+
 
 
     this.ServerScv.change.subscribe(s => {
@@ -71,40 +94,33 @@ export class TratamientoActualComponent implements OnInit {
 
         if (s[0] == "CerrarDialog" && s[1] == "frmTratamientoActual") {
           this.dialogRef.close();
+          this._ExpdienteService.BuscarTratamiento(this.IdPaciente);
         }
+
+        if(s[0] == "Menu Expediente"){
+          this.IdPaciente =  s[1];
+          this._ExpdienteService.BuscarTratamiento(this.IdPaciente);
+        }
+        if(s[0] == "Cerrar Expediente") 
+        {
+          this.IdPaciente = 0
+          this.dataSource.data.splice(0, this.dataSource.data.length);
+        }
+
+       
+        
       }
     });
 
 
+    this._ExpdienteService.change.subscribe(s => {
 
-    this._ExpdienteService.change.subscribe(
-
-      s => {
-
-        if (s[0] == "dato_Tratamiento_Guardar") {
-
-          if (s[1] == undefined) {
-
-            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
-            let _json = JSON.parse(s);
-            this._Dialog.open(DialogoComponent, {
-              data: _json["msj"]
-            });
-            return;
-          }
+      if(s[0] == "Llenar_Tratamiento") this.Llenar(s[1] );
 
 
-          this._Dialog.open(DialogoComponent, {
-            data: s[1]["msj"]
-          });
-  
-          this.dialogRef.close();
-          
-        }
+    });
 
 
-      }
-    );
 
     
   }
