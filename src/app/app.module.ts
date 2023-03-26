@@ -91,7 +91,7 @@ import { AntecedentePatologicoComponent } from './main/inicio/components/expedie
 import { AntecedenteNeuropsiquiatricoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-neuropsiquiatrico/antecedente-neuropsiquiatrico.component';
 import { ConsensomedicoComponent } from './main/inicio/components/consensomedico/consensomedico.component';
 import { ExpedienteComponent } from './main/inicio/components/expediente/expediente.component';
-import { AntecedenteQuirurgicoComponent } from './main/inicio/components/historiamedica/antecedente-quirurgico/antecedente-quirurgico.component';
+import { AntecedenteQuirurgicoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-quirurgico/antecedente-quirurgico.component';
 import { SindromepredominanteComponent } from './main/inicio/components/consensomedico/sindromepredominante/sindromepredominante.component';
 import { AcompananteComponent } from './main/inicio/components/expediente/paciente/acompanante/acompanante.component';
 import { MedicosComponent } from './main/cat/components/medicos/medicos.component';
@@ -100,19 +100,20 @@ import { DialogoConfirmarComponent } from './main/shared/components/dialogo-conf
 import { ExpedienteRegistroComponent } from './main/inicio/components/expediente/expediente-registro/expediente-registro.component';
 import { RegistrousuarioComponent } from './main/config/components/usuario/registrousuario/registrousuario.component';
 import { NuevoTratamientoActualComponent } from './main/inicio/components/expediente/historiamedica/tratamiento-actual/nuevo-tratamiento-actual/nuevo-tratamiento-actual.component';
+import { NuevoAntecedenteQuirurgicoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-quirurgico/nuevo-antecedente-quirurgico/nuevo-antecedente-quirurgico.component';
 
 //FIN
 
 export const DateFormat = {
   parse: {
-    dateInput: 'input',
-    },
-    display: {
-    dateInput: 'DD-MM-YYYY',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'MM/DD/YYYY',
-    monthYearA11yLabel: 'MMMM YYYY',
-    }
+    dateInput: 'LL'
+},
+display: {
+    dateInput: 'YYYY-MM-DD',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY'
+}
   };
 
 
@@ -158,6 +159,7 @@ export const DateFormat = {
     ExpedienteRegistroComponent,
     RegistrousuarioComponent,
     NuevoTratamientoActualComponent,
+    NuevoAntecedenteQuirurgicoComponent,
     
   ],
   imports: [
@@ -254,6 +256,7 @@ export const DateFormat = {
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: DateFormat }
+    
     
   ],
   bootstrap: [AppComponent]

@@ -1,8 +1,8 @@
 
 export interface iAntecedenteQuirurgico{
-    IdAntecedenteQuirurgico : Number;
+    IdAntQ : Number;
     Descripcion : String; 
     Fecha : Date; 
-    LugarRealizacion : String; 
-    
+    Lugar : String; 
+    IdPaciente : Number;
 }

@@ -3,6 +3,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
+import { iAntecedenteQuirurgico } from '../interface/i-antecedente-quirurgico';
 import { iConsenso } from '../interface/i-consenso';
 import { iPaciente } from '../interface/i-paciente';
 import { iSistemaSoap } from '../interface/i-sistema-soap';
@@ -138,9 +139,80 @@ export class ExpdienteService {
   }
 
 
+  public EliminarTratamiento(IdTratamiento : Number){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Tratamiento/Eliminar?IdTratamiento=" + IdTratamiento,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Tratamiento_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Tratamiento_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Tratamiento_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+  }
 
 
 
+
+
+
+
+
+  public GuardarAntecedenteQuirurgico(e : iAntecedenteQuirurgico){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntecedenteQuirurgico/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Antecedente_Quirurgico_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Antecedente_Quirurgico_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Antecedente_Quirurgico_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+
+  public BuscarAntecedenteQuirurgico(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/AntecedenteQuirurgico/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Antecedente_Quirurgico", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+  public EliminarAntecedenteQuirurgico(IdAntQ : Number){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntecedenteQuirurgico/Eliminar?IdAntQ=" + IdAntQ,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Antecedente_Quirurgico_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Antecedente_Quirurgico_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Antecedente_Quirurgico_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+  }
+
+
+  
 
 
   private Msj () : void{

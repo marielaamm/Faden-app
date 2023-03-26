@@ -1,0 +1,107 @@
+<div class="app-nuevo-antecedente-quirurgico">
+    <div class="faden-mat-form">
+
+        <div class="centrado">
+            <div id="frmAntecedenteQuirurgico">
+
+                <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
+    
+    
+                    <div class="row">
+    
+                        <div class="btnAccion">                           
+                        
+                            <div class="btn-contenedor">
+                                
+                                <div class="line-vertical"></div>
+                                <button mat-fab class="btn-faden-aceptar" (click)="v_Guardar();">
+                                    <mat-icon>save</mat-icon>
+                                </button>
+                                <button mat-fab class="btn-faden-cancelar">
+                                    <mat-icon>undo</mat-icon>
+                                </button>
+                                <div class="line-vertical"></div>
+                                <button mat-fab class="btn-faden-salir" (click)="Cerrar();">
+                                    <mat-icon>exit_to_app</mat-icon>
+                                </button>
+                            </div>
+                            
+                        </div>
+        
+                        <div class="row">
+                           <div class="col-12">
+                            <mat-card >
+                                <mat-card-header>
+                                    <mat-card-title Class="mat-card-title">Tratamiento Quirurgico</mat-card-title>
+                                </mat-card-header>
+        
+                                <mat-card-content>
+                                    <div class="row">
+                                        <mat-form-field>
+                                            <mat-label>Descripcion</mat-label>
+                                            <input matInput type="text" id="txtDescripcion"
+                                                formControlName="txtDescripcion">
+                                            <mat-error *ngIf="val.ValForm.get('txtDescripcion')?.errors?.['Regla']=='1'"
+                                                style="color:black">Ingrese una descripcion
+                                            </mat-error>
+                                            <mat-error *ngIf="val.ValForm.get('txtDescripcion')?.errors?.['Regla']=='2'"
+                                                style="color:black">La descripcion debe tener máximo 50 caracteres
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+       
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <mat-form-field>
+                                                <mat-label><b>Lugar de Realización</b></mat-label>
+                                                <input matInput type="text" id="txtLugar"
+                                                formControlName="txtLugar">
+                                                <mat-error *ngIf="val.ValForm.get('txtLugar')?.errors?.['Regla']=='1'" style="color:black">Ingrese un
+                                                    Lugar de Realización
+                                                </mat-error>
+                                                <mat-error *ngIf="val.ValForm.get('txtLugar')?.errors?.['Regla']=='2'" style="color:black">El Lugar de Realización
+                                                    debe tener máximo 50 caracteres
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <mat-form-field appearance="legacy">
+                                                <mat-label>Fecha</mat-label>
+                                                <input matInput [matDatepicker]="picker" id="txtFecha" formControlName="txtFecha">
+                                                <mat-datepicker-toggle matSuffix [for]="picker">
+                                                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                                <mat-error
+                                                        *ngIf="val.ValForm.get('txtFecha')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Seleccione una<strong> Fecha </strong>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                       
+                                    </div>
+                                            
+                                  
+                                </mat-card-content>
+        
+                            </mat-card>
+                           </div>
+                        </div>
+        
+    
+                    </div>
+    
+                  
+    
+                </form>
+            </div>
+        </div>
+
+     
+        
+    </div>
+
+</div>

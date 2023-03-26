@@ -3,33 +3,32 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ExpdienteService } from 'src/app/main/inicio/service/expediente.service';
-import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
-import { iTratamientoActual } from '../../../../interface/i-tratamiento-actual';
-import { NuevoTratamientoActualComponent } from './nuevo-tratamiento-actual/nuevo-tratamiento-actual.component';
+import { iAntecedenteQuirurgico } from '../../../../interface/i-antecedente-quirurgico';
+import { NuevoAntecedenteQuirurgicoComponent } from './nuevo-antecedente-quirurgico/nuevo-antecedente-quirurgico.component';
 
 
-let ELEMENT_DATA: iTratamientoActual[] =[];
+let ELEMENT_DATA: iAntecedenteQuirurgico[] =[];
 
 @Component({
-  selector: 'app-tratamiento-actual',
-  templateUrl: './tratamiento-actual.component.html',
-  styleUrls: ['./tratamiento-actual.component.scss']
+  selector: 'app-antecedente-quirurgico',
+  templateUrl: './antecedente-quirurgico.component.html',
+  styleUrls: ['./antecedente-quirurgico.component.scss']
 })
-export class TratamientoActualComponent implements OnInit {
+export class AntecedenteQuirurgicoComponent implements OnInit {
 
   
 
 
-  displayedColumns: string[] = ["IdTratamiento","Tratamiento", "Dosis", "IdMedico", "FechaRegistro", "Tipo", "Accion"];
+  displayedColumns: string[] = ["IdAntQ","Descripcion", "Lugar",  "Fecha", "Accion"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  clickedRows = new Set<iTratamientoActual>();
+  clickedRows = new Set<iAntecedenteQuirurgico>();
   private _liveAnnouncer:any;
 
   private IdPaciente : Number = 0;
-  private dialogRef: MatDialogRef<NuevoTratamientoActualComponent>;
+  private dialogRef: MatDialogRef<NuevoAntecedenteQuirurgicoComponent>;
 
   private _ExpdienteService: ExpdienteService;
   
@@ -59,7 +58,7 @@ export class TratamientoActualComponent implements OnInit {
 
   f_Agregar_Fila() : void{
 
-    this.dialogRef = this._Dialog.open(NuevoTratamientoActualComponent,
+    this.dialogRef = this._Dialog.open(NuevoAntecedenteQuirurgicoComponent,
       {
         disableClose: true,
         panelClass: 'custom-modal'
@@ -75,34 +74,31 @@ export class TratamientoActualComponent implements OnInit {
   {
     let _json = JSON.parse(datos);
 
-
     ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
-
-    ELEMENT_DATA =  _json["d"];
+    ELEMENT_DATA = _json["d"]
 
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   }
 
-  public v_Eliminar(Fila : iTratamientoActual): void
+  public v_Eliminar(Fila : iAntecedenteQuirurgico): void
   {
 
     let dialogo : MatDialogRef<DialogoConfirmarComponent> = this._Dialog.open(DialogoConfirmarComponent, { disableClose: true })
 
     dialogo.componentInstance.titulo = "Eliminar Registro";
     dialogo.componentInstance.mensaje = "Eliminar";
-    dialogo.componentInstance.texto = Fila.Tratamiento + " " + Fila.Dosis;
+    dialogo.componentInstance.texto = Fila.Descripcion + " " + Fila.Lugar;
 
     dialogo.afterClosed().subscribe(s=>{
 
       if(dialogo.componentInstance.retorno=="1"){
-       this._ExpdienteService.EliminarTratamiento(Fila.IdTratamiento);
+       this._ExpdienteService.EliminarAntecedenteQuirurgico(Fila.IdAntQ);
 
       }
       
     });
   }
-
 
   ngOnInit(): void {
 
@@ -112,14 +108,14 @@ export class TratamientoActualComponent implements OnInit {
     
       if (s instanceof Array) {
 
-        if (s[0] == "CerrarDialog" && s[1] == "frmTratamientoActual") {
+        if (s[0] == "CerrarDialog" && s[1] == "frmAntecedenteQuirurgico") {
           this.dialogRef.close();
-          this._ExpdienteService.BuscarTratamiento(this.IdPaciente);
+          this._ExpdienteService.BuscarAntecedenteQuirurgico(this.IdPaciente);
         }
 
         if(s[0] == "Menu Expediente"){
           this.IdPaciente =  s[1];
-          this._ExpdienteService.BuscarTratamiento(this.IdPaciente);
+          this._ExpdienteService.BuscarAntecedenteQuirurgico(this.IdPaciente);
         }
         if(s[0] == "Cerrar Expediente") 
         {
@@ -135,38 +131,46 @@ export class TratamientoActualComponent implements OnInit {
 
     this._ExpdienteService.change.subscribe(s => {
 
-      if(s[0] == "Llenar_Tratamiento") this.Llenar(s[1] );
-
-
-      if (s[0] == "dato_Tratamiento_Eliminar") {
-
-        if (s[1] == undefined) {
-
-          let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
-          let _json = JSON.parse(s);
-          this._Dialog.open(DialogoComponent, {
-            data: _json["msj"]
-          });
-          return;
-        }
-
-
-        this._Dialog.open(DialogoComponent, {
-          data: s[1]["msj"]
-        });
-
-        this._ExpdienteService.BuscarTratamiento(this.IdPaciente);
-        
-      }
+      if(s[0] == "Llenar_Antecedente_Quirurgico") this.Llenar(s[1] );
 
 
     });
+
+
+    this._ExpdienteService.change.subscribe(
+
+      s => {
+
+        if (s[0] == "dato_Antecedente_Quirurgico_Eliminar") {
+
+          if (s[1] == undefined) {
+
+            let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+            let _json = JSON.parse(s);
+            this._Dialog.open(DialogoComponent, {
+              data: _json["msj"]
+            });
+            return;
+          }
+
+
+          this._Dialog.open(DialogoComponent, {
+            data: s[1]["msj"]
+          });
+  
+          this._ExpdienteService.BuscarAntecedenteQuirurgico(this.IdPaciente);
+          
+        }
+
+
+      }
+    );
+
 
 
     
 
     
   }
-
 
 }

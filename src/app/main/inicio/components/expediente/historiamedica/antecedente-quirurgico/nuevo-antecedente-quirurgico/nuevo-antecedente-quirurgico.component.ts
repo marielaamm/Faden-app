@@ -1,51 +1,57 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { iTratamientoActual } from 'src/app/main/inicio/interface/i-tratamiento-actual';
+import { iAntecedenteQuirurgico } from 'src/app/main/inicio/interface/i-antecedente-quirurgico';
 import { ExpdienteService } from 'src/app/main/inicio/service/expediente.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
+import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones-generales.service';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
-  selector: 'app-nuevo-tratamiento-actual',
-  templateUrl: './nuevo-tratamiento-actual.component.html',
-  styleUrls: ['./nuevo-tratamiento-actual.component.scss']
+  selector: 'app-nuevo-antecedente-quirurgico',
+  templateUrl: './nuevo-antecedente-quirurgico.component.html',
+  styleUrls: ['./nuevo-antecedente-quirurgico.component.scss']
 })
-export class NuevoTratamientoActualComponent implements OnInit {
+export class NuevoAntecedenteQuirurgicoComponent implements OnInit {
 
   public val: Validacion = new Validacion ();
-  public rdTipoTratammiento : Number = 1;
   public IdPaciente : Number = 0;
 
   private _ExpdienteService: ExpdienteService;
+  private _FuncionesGenerales: FuncionesGeneralesService;
+
+ 
   
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) { 
 
-    this.val.add("txtTratamiento", "1", "LEN>", "0");
-    this.val.add("txtTratamiento", "2", "LEN<=", "50");
-    this.val.add("txtDosis", "1", "LEN>", "0");
-    this.val.add("txtDosis", "2", "LEN<=", "50");
-    this.val.add("rdTipoTratammiento", "1", "LEN>=", "0");
+    this.val.add("txtDescripcion", "1", "LEN>", "0");
+    this.val.add("txtDescripcion", "2", "LEN<=", "50");
+    this.val.add("txtLugar", "1", "LEN>", "0");
+    this.val.add("txtLugar", "2", "LEN<=", "50");
+    this.val.add("txtFecha", "1", "LEN>=", "0");
+
 
     this._ExpdienteService = new ExpdienteService(this._Dialog);
-    
+    this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
+
     this.Limpiar();
     
   }
 
   public Limpiar()
   {
-    this.rdTipoTratammiento = 1;
-    this.val.ValForm.get("txtTratamiento")?.setValue("");
-    this.val.ValForm.get("txtDosis")?.setValue("");
 
-   
+    this.val.ValForm.get("txtDescripcion")?.setValue("");
+    this.val.ValForm.get("txtLugar")?.setValue("");
+
+    this._FuncionesGenerales.FechaServidor();
   }
+
 
 
   Cerrar(): void {
 
-    this.ServerScv.change.emit(["CerrarDialog","frmTratamientoActual", ""]);
+    this.ServerScv.change.emit(["CerrarDialog","frmAntecedenteQuirurgico", ""]);
 
   }
 
@@ -80,24 +86,41 @@ export class NuevoTratamientoActualComponent implements OnInit {
     }
     
    
-    let T: iTratamientoActual = {}as iTratamientoActual;
-    T.Tratamiento = this.val.ValForm.get("txtTratamiento")?.value;
-    T.Dosis  = this.val.ValForm.get("txtDosis")?.value;
-    T.IdMedico = 14;
-    T.IdPaciente = this.IdPaciente;
-    T.Tipo = this.rdTipoTratammiento;
-    this._ExpdienteService.GuardarTratamiento(T);
+
+    let E: iAntecedenteQuirurgico = {}as iAntecedenteQuirurgico;
+    E.IdAntQ = 0;
+    E.Descripcion  = this.val.ValForm.get("txtDescripcion")?.value;
+    E.Lugar  = this.val.ValForm.get("txtLugar")?.value;
+    E.Fecha =   new Date((JSON.stringify(this.val.ValForm.get("txtFecha")?.value)).substring(1, 11));
+    E.IdPaciente = this.IdPaciente;
+    this._ExpdienteService.GuardarAntecedenteQuirurgico(E);
 
   }
 
+  
+
   ngOnInit(): void {
 
- 
+
+    this._FuncionesGenerales.change.subscribe(
+
+      s => {
+
+        if (s[0] == "Llenar_FechaServidor") {
+          let _json = JSON.parse(s[1]);
+
+          this.val.ValForm.get("txtFecha")?.setValue(_json["d"][0]);
+
+        }
+      }
+    );
+
+
     this._ExpdienteService.change.subscribe(
 
       s => {
 
-        if (s[0] == "dato_Tratamiento_Guardar") {
+        if (s[0] == "dato_Antecedente_Quirurgico_Guardar") {
 
           if (s[1] == undefined) {
 
@@ -123,7 +146,6 @@ export class NuevoTratamientoActualComponent implements OnInit {
     );
 
 
-    
   }
 
 }
