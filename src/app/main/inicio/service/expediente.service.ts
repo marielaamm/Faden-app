@@ -3,6 +3,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
+import { iAntecedentePatologico } from '../interface/i-antecedente-patologico';
 import { iAntecedenteQuirurgico } from '../interface/i-antecedente-quirurgico';
 import { iConsenso } from '../interface/i-consenso';
 import { iPaciente } from '../interface/i-paciente';
@@ -154,6 +155,25 @@ export class ExpdienteService {
           this.Msj();
       }
     );
+  }
+
+  public GuardarAntecedentePatologico(T : iAntecedentePatologico){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntecedentePatologico/Guardar", JSON.stringify(T),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_AntecedentePatologico_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_AntecedentePatologico_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_AntecedentePatologico_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
   }
 
 
