@@ -3,6 +3,11 @@ import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iAntecedentePatologico } from '../../../../interface/i-antecedente-patologico';
+import { NuevoAntecedentePatologicoComponent } from './nuevo-antecedente-patologico/nuevo-antecedente-patologico.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ExpdienteService } from 'src/app/main/inicio/service/expediente.service';
+import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
+import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 
 let ELEMENT_DATA: iAntecedentePatologico[] =[];
 
@@ -13,13 +18,22 @@ let ELEMENT_DATA: iAntecedentePatologico[] =[];
 })
 export class AntecedentePatologicoComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdAntecedentePatologico","Enfermedad", "Descripcion"];
+  displayedColumns: string[] = ["IdAntecedentePatologico","Enfermedad", "Descripcion", "Accion"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iAntecedentePatologico>();
   private _liveAnnouncer:any;
 
-  constructor(private ServerScv : ServerService) { }
+  private IdPaciente : Number = 0;
+  private dialogRef: MatDialogRef<NuevoAntecedentePatologicoComponent>;
 
+  private _ExpdienteService: ExpdienteService;
+  
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+ 
+    this._ExpdienteService = new ExpdienteService(this._Dialog);
+   }
+
+ 
   
   announceSort(sortState: Sort) {
     if (sortState.direction) {
@@ -39,16 +53,132 @@ export class AntecedentePatologicoComponent implements OnInit {
   
 
   f_Agregar_Fila() : void{
-    let _Fila : iAntecedentePatologico = {} as iAntecedentePatologico;
 
-    ELEMENT_DATA.push(_Fila);
-   
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-  }
+    this.dialogRef = this._Dialog.open(NuevoAntecedentePatologicoComponent,
+      {
+        disableClose: true,
+        panelClass: 'custom-modal'
+      })
 
-  ngOnInit(): void {
+      this.dialogRef.afterOpened().subscribe(s =>{
+        this.dialogRef.componentInstance.IdPaciente = this.IdPaciente;
+      })
     
   }
 
+  private Llenar(datos : any)
+  {
+    let _json = JSON.parse(datos);
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    ELEMENT_DATA =  _json["d"];
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  }
+
+  public v_Editar(Fila : iAntecedentePatologico): void
+  {
+    this.dialogRef = this._Dialog.open(NuevoAntecedentePatologicoComponent,
+      {
+        disableClose: true,
+        panelClass: 'custom-modal'
+      })
+
+      this.dialogRef.afterOpened().subscribe(s =>{
+        this.dialogRef.componentInstance.val.ValForm.get("txtEnfermedad")?.setValue(Fila.Enfermedad);
+        this.dialogRef.componentInstance.val.ValForm.get("txtDescripcion")?.setValue(Fila.Descripcion);
+        this.dialogRef.componentInstance.ID = Fila.IdAntecedentePatologico;
+        this.dialogRef.componentInstance.IdPaciente = this.IdPaciente;
+      })
+  
+  }
+
+  public v_Eliminar(Fila : iAntecedentePatologico): void
+  {
+
+    let dialogo : MatDialogRef<DialogoConfirmarComponent> = this._Dialog.open(DialogoConfirmarComponent, { disableClose: true })
+
+    dialogo.componentInstance.titulo = "Eliminar Registro";
+    dialogo.componentInstance.mensaje = "Eliminar";
+    dialogo.componentInstance.texto =  "<b>" +Fila.Enfermedad + "<br>" + Fila.Descripcion + "<br><br></b>"
+
+
+    dialogo.afterClosed().subscribe(s=>{
+
+      if(dialogo.componentInstance.retorno=="1"){
+       this._ExpdienteService.EliminarAntPatologico(Fila.IdAntecedentePatologico);
+
+      }
+      
+    });
+  }
+
+
+  ngOnInit(): void {
+
+
+
+    this.ServerScv.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "CerrarDialog" && s[1] == "frmAntPatologico") {
+          this.dialogRef.close();
+          this._ExpdienteService.BuscarAntPatologico(this.IdPaciente);
+        }
+
+        if(s[0] == "Menu Expediente"){
+          this.IdPaciente =  s[1];
+          this._ExpdienteService.BuscarAntPatologico(this.IdPaciente);
+        }
+        if(s[0] == "Cerrar Expediente") 
+        {
+          this.IdPaciente = 0
+          this.dataSource.data.splice(0, this.dataSource.data.length);
+        }
+
+       
+        
+      }
+    });
+
+
+    this._ExpdienteService.change.subscribe(s => {
+
+      if(s[0] == "Llenar_Ant_Patologico") this.Llenar(s[1] );
+
+
+      if (s[0] == "dato_Ant_Patologico_Eliminar") {
+
+        if (s[1] == undefined) {
+
+          let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+          let _json = JSON.parse(s);
+          this._Dialog.open(DialogoComponent, {
+            data: _json["msj"]
+          });
+          return;
+        }
+
+
+        this._Dialog.open(DialogoComponent, {
+          data: s[1]["msj"]
+        });
+
+        this._ExpdienteService.BuscarAntPatologico(this.IdPaciente);
+        
+      }
+
+
+    });
+
+
+    
+
+    
+  }
 
 }

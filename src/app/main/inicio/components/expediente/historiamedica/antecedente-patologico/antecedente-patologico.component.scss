@@ -1,6 +1,28 @@
-#contenedor-agregar{
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+.app-antecedente-patologico {
+
+    #contenedor-agregar{
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        
+    }
+    
+
+    table {
+        width: 100%;
+      }
+
+
+      .table-container {
+
+        max-height: 70px;
+        max-width: 100%;
+        overflow: auto;
+      }
+  
+      .mat-header-cell {
+        font-size: 1em;
+      }
 }
+

@@ -8,7 +8,7 @@
     <div class="faden-tabla">
         <div class="mat-elevation-z8">
                         
-            <table mat-table class="faden-tabla" [dataSource]="dataSource" matSort (matSortChange)="announceSort($event)">
+            <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSort($event)">
                 <ng-container matColumnDef="IdExamenClinico">
                     <th mat-header-cell *matHeaderCellDef> No </th>
                     <td mat-cell *matCellDef="let element; let j =index" style="color:#1b364c; font-weight: bold;"> {{j+1}} </td>

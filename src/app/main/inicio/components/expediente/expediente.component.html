@@ -7,6 +7,10 @@
       <app-historiamedica></app-historiamedica>
     </mat-tab>
 
+    <mat-tab label="Valoración Neuropsicológica" [disabled]="bol_Disable" #ViewValoracion>
+      <app-valoracion-neuropsicologica></app-valoracion-neuropsicologica>
+    </mat-tab>
+
     <mat-tab label="Consenso Médico" [disabled]="bol_Disable" #ViewConsenso>
         <app-consensomedico></app-consensomedico>
       </mat-tab>

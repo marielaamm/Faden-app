@@ -15,32 +15,36 @@ export class NuevoAntecedentePatologicoComponent implements OnInit {
 
   public val: Validacion = new Validacion ();
   public IdPaciente : Number = 0;
+  public ID : Number = 0;
+
   private _ExpdienteService: ExpdienteService;
 
-  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
+  
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) { 
 
-    this.val.add("txtAntecedente", "1", "LEN>", "0");
-    this.val.add("txtAntecedente", "2", "LEN<=", "50");
+    this.val.add("txtEnfermedad", "1", "LEN>", "0");
+    this.val.add("txtEnfermedad", "2", "LEN<=", "100");
     this.val.add("txtDescripcion", "1", "LEN>", "0");
-    this.val.add("txtDescripcion", "2", "LEN<=", "50");
+    this.val.add("txtDescripcion", "2", "LEN<=", "4000");
 
     this._ExpdienteService = new ExpdienteService(this._Dialog);
     
     this.Limpiar();
     
-   }
-
-   public Limpiar()
-  {
-    
-    this.val.ValForm.get("txtAntecedente")?.setValue("");
-    this.val.ValForm.get("txtDescripcion")?.setValue("");
-   
   }
+
+  public Limpiar()
+  {
+    this.val.ValForm.get("txtEnfermedad")?.setValue("");
+    this.val.ValForm.get("txtDescripcion")?.setValue("");
+
+    this.ID = 0;
+  }
+
 
   Cerrar(): void {
 
-    this.ServerScv.change.emit(["CerrarDialog","frmAntecedentePatologico", ""]);
+    this.ServerScv.change.emit(["CerrarDialog","frmAntPatologico", ""]);
 
   }
 
@@ -49,13 +53,13 @@ export class NuevoAntecedentePatologicoComponent implements OnInit {
     let esError: string = "";
     let mensaje: string = "<ol>";
 
-    if (this.val.ValForm.get("txtAntecedente")?.invalid) {
-      mensaje += "<li>Ingrese el nombre del tratamiento o revise la cantidada de caracteres</li>";
+    if (this.val.ValForm.get("txtEnfermedad")?.invalid) {
+      mensaje += "<li>Ingrese un antecedente o revise la cantidada de caracteres.</li>";
       esError += "1";
     }
 
     if (this.val.ValForm.get("txtDescripcion")?.invalid) {
-      mensaje += "<li>Ingrese la dosis o revise la cantidada de caracteres</li>";
+      mensaje += "<li>Ingrese una descripcion o revise la cantidada de caracteres.</li>";
       esError += "1";
     }
 
@@ -75,23 +79,24 @@ export class NuevoAntecedentePatologicoComponent implements OnInit {
     }
     
    
-    let A: iAntecedentePatologico = {} as iAntecedentePatologico;
-    A.Enfermedad = this.val.ValForm.get("txtAntecedente")?.value;
-    A.Descripcion  = this.val.ValForm.get("txtDescripcion")?.value;
-    A.IdPaciente = this.IdPaciente;
-    
-    this._ExpdienteService.GuardarAntecedentePatologico(A);
+    let T: iAntecedentePatologico = {}as iAntecedentePatologico;
+    T.Enfermedad = this.val.ValForm.get("txtEnfermedad")?.value;
+    T.Descripcion = this.val.ValForm.get("txtDescripcion")?.value;
+    T.IdPaciente = this.IdPaciente;
+    T.IdAntecedentePatologico = this.ID;
+    this._ExpdienteService.GuardarAntPatologico(T);
 
   }
 
-
   ngOnInit(): void {
 
+ 
+    
     this._ExpdienteService.change.subscribe(
 
       s => {
 
-        if (s[0] == "dato_AntecedentePatologico_Guardar") {
+        if (s[0] == "dato_Ant_Patologico_Guardar") {
 
           if (s[1] == undefined) {
 
@@ -117,6 +122,7 @@ export class NuevoAntecedentePatologicoComponent implements OnInit {
     );
 
 
+    
   }
 
 }

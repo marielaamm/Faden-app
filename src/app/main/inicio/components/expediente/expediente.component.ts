@@ -4,6 +4,7 @@ import { ConsensomedicoComponent } from '../consensomedico/consensomedico.compon
 import { SindromepredominanteComponent } from '../consensomedico/sindromepredominante/sindromepredominante.component';
 import { HistoriamedicaComponent } from './historiamedica/historiamedica.component';
 import { PacienteComponent } from './paciente/paciente.component';
+import { ValoracionNeuropsicologicaComponent } from './valoracion-neuropsicologica/valoracion-neuropsicologica.component';
 
 @Component({
   selector: 'app-expediente',
@@ -15,6 +16,9 @@ export class ExpedienteComponent implements OnInit {
 
   @ViewChild('ViewHistorial', { static: false })
   public ViewHistorial: HistoriamedicaComponent;
+
+  @ViewChild('ViewValoracion', { static: false })
+  public ViewValoracion: ValoracionNeuropsicologicaComponent;
 
   @ViewChild('ViewConsenso', { static: true })
   public ViewConsenso: ConsensomedicoComponent;

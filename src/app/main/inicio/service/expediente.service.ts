@@ -158,25 +158,6 @@ export class ExpdienteService {
     );
   }
 
-  public GuardarAntecedentePatologico(T : iAntecedentePatologico){
-    this.http.post<any>(this._Cnx.Url()+ "cat/AntecedentePatologico/Guardar", JSON.stringify(T),{headers: {"content-type":"application/json"}}).subscribe(
-      dato=>{
-        let _json =  JSON.parse(dato);
-        if(_json["esError"] == 1){
-          this.change.emit(["dato_AntecedentePatologico_Guardar", undefined]);
-          return;
-        }
-        this.change.emit(["dato_AntecedentePatologico_Guardar", _json]);
-      },
-        err =>{
-          this.change.emit(["dato_AntecedentePatologico_Guardar", undefined]);
-          this.Msj();
-      }
-    );
-
-
-  }
-
 
 
 
@@ -287,6 +268,58 @@ export class ExpdienteService {
     );
   }
 
+
+
+
+
+
+  public GuardarAntPatologico(e : iAntecedentePatologico){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntPatologico/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Ant_Patologico_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Ant_Patologico_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Ant_Patologico_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+
+  public BuscarAntPatologico(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/AntPatologico/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Ant_Patologico", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+  public EliminarAntPatologico(IdAntecedentePatologico : Number){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntPatologico/Eliminar?IdAntecedentePatologico=" + IdAntecedentePatologico,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Ant_Patologico_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Ant_Patologico_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Ant_Patologico_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+  }
   
 
 

@@ -25,7 +25,7 @@ export class NuevoExamenClinicoComponent implements OnInit {
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) { 
 
     this.val.add("txtDescripcion", "1", "LEN>", "0");
-    this.val.add("txtDescripcion", "2", "LEN<=", "500");
+    this.val.add("txtDescripcion", "2", "LEN<=", "4000");
     this.val.add("txtFecha", "1", "LEN>", "0");
     this.val.add("rdTipo", "1", "LEN>=", "0");
 
