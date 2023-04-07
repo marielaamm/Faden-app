@@ -1,8 +1,8 @@
-<div class="app-nuevo-antecedente-patologico">
+<div class="app-nuevo-antecedente-familiares">
     <div class="faden-mat-form">
 
         <div class="centrado">
-            <div id="frmAntecedentePatologico">
+            <div id="frmAntFamiliar">
 
                 <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
     
@@ -39,12 +39,12 @@
                                     <div class="row">
                                         <mat-form-field>
                                             <mat-label>Antecedente</mat-label>
-                                            <input matInput type="text" id="txtEnfermedad"
-                                                formControlName="txtEnfermedad">
-                                            <mat-error *ngIf="val.ValForm.get('txtEnfermedad')?.errors?.['Regla']=='1'"
+                                            <input matInput type="text" id="txtTipoAntecedente"
+                                                formControlName="txtTipoAntecedente">
+                                            <mat-error *ngIf="val.ValForm.get('txtTipoAntecedente')?.errors?.['Regla']=='1'"
                                                 style="color:black">Ingrese un Antecedente 
                                             </mat-error>
-                                            <mat-error *ngIf="val.ValForm.get('txtEnfermedad')?.errors?.['Regla']=='2'"
+                                            <mat-error *ngIf="val.ValForm.get('txtTipoAntecedente')?.errors?.['Regla']=='2'"
                                                 style="color:black">El antecedente debe tener máximo 100 caracteres
                                             </mat-error>
                                         </mat-form-field>
@@ -84,3 +84,4 @@
     </div>
 
 </div>
+

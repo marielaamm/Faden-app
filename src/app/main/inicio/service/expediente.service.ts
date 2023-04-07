@@ -10,6 +10,7 @@ import { iPaciente } from '../interface/i-paciente';
 import { iSistemaSoap } from '../interface/i-sistema-soap';
 import { iTratamientoActual } from '../interface/i-tratamiento-actual';
 import { iExamenClinico } from '../interface/i-examen-clinico';
+import { iAntecedentesFamiliares } from '../interface/i-antecedentes-familiares';
 
 @Injectable({
   providedIn: 'root'
@@ -316,6 +317,63 @@ export class ExpdienteService {
       },
         err =>{
           this.change.emit(["dato_Ant_Patologico_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+  public GuardarAntFamiliar(e : iAntecedentesFamiliares){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntFamiliar/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Ant_Familiar_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Ant_Familiar_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Ant_Familiar_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+
+  public BuscarAntFamiliar(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/AntFamiliar/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Ant_Familiar", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+  public EliminarAntFamiliar(IdAntecedente : Number){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntFamiliar/Eliminar?IdAntecedente=" + IdAntecedente,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Ant_Familiar_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Ant_Familiar_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Ant_Familiar_Eliminar", undefined]);
           this.Msj();
       }
     );
