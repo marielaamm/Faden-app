@@ -16,6 +16,7 @@ export class NuevoAntecedenteQuirurgicoComponent implements OnInit {
 
   public val: Validacion = new Validacion ();
   public IdPaciente : Number = 0;
+  public ID : Number = 0;
 
   private _ExpdienteService: ExpdienteService;
   private _FuncionesGenerales: FuncionesGeneralesService;
@@ -41,6 +42,7 @@ export class NuevoAntecedenteQuirurgicoComponent implements OnInit {
   public Limpiar()
   {
 
+    this.ID = 0;
     this.val.ValForm.get("txtDescripcion")?.setValue("");
     this.val.ValForm.get("txtLugar")?.setValue("");
 
@@ -88,7 +90,7 @@ export class NuevoAntecedenteQuirurgicoComponent implements OnInit {
    
 
     let E: iAntecedenteQuirurgico = {}as iAntecedenteQuirurgico;
-    E.IdAntQ = 0;
+    E.IdAntQ = this.ID;
     E.Descripcion  = this.val.ValForm.get("txtDescripcion")?.value;
     E.Lugar  = this.val.ValForm.get("txtLugar")?.value;
     E.Fecha =   new Date((JSON.stringify(this.val.ValForm.get("txtFecha")?.value)).substring(1, 11));

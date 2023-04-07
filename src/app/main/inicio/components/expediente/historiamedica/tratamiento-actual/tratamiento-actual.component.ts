@@ -84,6 +84,25 @@ export class TratamientoActualComponent implements OnInit {
 
   }
 
+  public v_Editar(Fila : iTratamientoActual): void
+  {
+    this.dialogRef = this._Dialog.open(NuevoTratamientoActualComponent,
+      {
+        disableClose: true,
+        panelClass: 'custom-modal'
+      })
+
+
+      this.dialogRef.afterOpened().subscribe(s =>{
+        this.dialogRef.componentInstance.val.ValForm.get("txtTratamiento")?.setValue(Fila.Tratamiento);
+        this.dialogRef.componentInstance.val.ValForm.get("txtDosis")?.setValue(Fila.Dosis);
+        this.dialogRef.componentInstance.rdTipoTratammiento = Fila.Tipo;
+        this.dialogRef.componentInstance.ID = Fila.IdTratamiento;
+        this.dialogRef.componentInstance.IdPaciente = this.IdPaciente;
+      })
+  
+  }
+
   public v_Eliminar(Fila : iTratamientoActual): void
   {
 

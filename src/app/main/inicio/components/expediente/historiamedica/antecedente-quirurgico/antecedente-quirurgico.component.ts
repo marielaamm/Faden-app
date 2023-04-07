@@ -81,6 +81,26 @@ export class AntecedenteQuirurgicoComponent implements OnInit {
 
   }
 
+
+  public v_Editar(Fila : iAntecedenteQuirurgico): void
+  {
+    this.dialogRef = this._Dialog.open(NuevoAntecedenteQuirurgicoComponent,
+      {
+        disableClose: true,
+        panelClass: 'custom-modal'
+      })
+
+      this.dialogRef.afterOpened().subscribe(s =>{
+        this.dialogRef.componentInstance.val.ValForm.get("txtDescripcion")?.setValue(Fila.Descripcion);
+        this.dialogRef.componentInstance.val.ValForm.get("txtLugar")?.setValue(Fila.Lugar);
+        this.dialogRef.componentInstance.val.ValForm.get("txtFecha")?.setValue(Fila.Fecha);
+        this.dialogRef.componentInstance.ID = Fila.IdAntQ;
+        this.dialogRef.componentInstance.IdPaciente = this.IdPaciente;
+      })
+  
+  }
+
+
   public v_Eliminar(Fila : iAntecedenteQuirurgico): void
   {
 

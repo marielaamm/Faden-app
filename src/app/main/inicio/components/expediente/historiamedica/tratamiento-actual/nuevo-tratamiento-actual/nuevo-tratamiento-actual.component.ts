@@ -16,6 +16,7 @@ export class NuevoTratamientoActualComponent implements OnInit {
   public val: Validacion = new Validacion ();
   public rdTipoTratammiento : Number = 1;
   public IdPaciente : Number = 0;
+  public ID : Number = 0;
 
   private _ExpdienteService: ExpdienteService;
   
@@ -35,6 +36,7 @@ export class NuevoTratamientoActualComponent implements OnInit {
 
   public Limpiar()
   {
+    this.ID = 0;
     this.rdTipoTratammiento = 1;
     this.val.ValForm.get("txtTratamiento")?.setValue("");
     this.val.ValForm.get("txtDosis")?.setValue("");
@@ -81,6 +83,7 @@ export class NuevoTratamientoActualComponent implements OnInit {
     
    
     let T: iTratamientoActual = {}as iTratamientoActual;
+    T.IdTratamiento = this.ID;
     T.Tratamiento = this.val.ValForm.get("txtTratamiento")?.value;
     T.Dosis  = this.val.ValForm.get("txtDosis")?.value;
     T.IdMedico = 14;

@@ -88,7 +88,7 @@ export class ExamenClinicoComponent implements OnInit {
       })
 
       this.dialogRef.afterOpened().subscribe(s =>{
-        this.dialogRef.componentInstance.rdTipo = 2;
+        this.dialogRef.componentInstance.rdTipo = Fila.TipoExamen;
         this.dialogRef.componentInstance.val.ValForm.get("txtDescripcion")?.setValue(Fila.Descripcion);
         this.dialogRef.componentInstance.val.ValForm.get("txtFecha")?.setValue(Fila.Fecha);
         this.dialogRef.componentInstance.ID = Fila.IdExamenClinico;
