@@ -79,6 +79,24 @@ export class ExamenClinicoComponent implements OnInit {
 
   }
 
+  public v_Editar(Fila : iExamenClinico): void
+  {
+    this.dialogRef = this._Dialog.open(NuevoExamenClinicoComponent,
+      {
+        disableClose: true,
+        panelClass: 'custom-modal'
+      })
+
+      this.dialogRef.afterOpened().subscribe(s =>{
+        this.dialogRef.componentInstance.rdTipo = 2;
+        this.dialogRef.componentInstance.val.ValForm.get("txtDescripcion")?.setValue(Fila.Descripcion);
+        this.dialogRef.componentInstance.val.ValForm.get("txtFecha")?.setValue(Fila.Fecha);
+        this.dialogRef.componentInstance.ID = Fila.IdExamenClinico;
+        this.dialogRef.componentInstance.IdPaciente = this.IdPaciente;
+      })
+  
+  }
+
   public v_Eliminar(Fila : iExamenClinico): void
   {
 

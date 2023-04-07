@@ -17,6 +17,7 @@ export class NuevoExamenClinicoComponent implements OnInit {
   public val: Validacion = new Validacion ();
   public rdTipo : Number = 1;
   public IdPaciente : Number = 0;
+  public ID : Number = 0;
 
   private _ExpdienteService: ExpdienteService;
   private _FuncionesGenerales: FuncionesGeneralesService;
@@ -42,6 +43,7 @@ export class NuevoExamenClinicoComponent implements OnInit {
     this.val.ValForm.get("txtFecha")?.setValue("");
 
     this._FuncionesGenerales.FechaServidor();
+    this.ID = 0;
   }
 
 
@@ -87,6 +89,7 @@ export class NuevoExamenClinicoComponent implements OnInit {
     T.Fecha  = new Date((JSON.stringify(this.val.ValForm.get("txtFecha")?.value)).substring(1, 11));
     T.IdPaciente = this.IdPaciente;
     T.TipoExamen = this.rdTipo;
+    T.IdExamenClinico = this.ID;
     this._ExpdienteService.GuardarExamenClinico(T);
 
   }
