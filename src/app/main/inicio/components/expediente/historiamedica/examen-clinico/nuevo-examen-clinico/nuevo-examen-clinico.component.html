@@ -1,0 +1,104 @@
+<div class="app-nuevo-examen-clinico">
+    <div class="faden-mat-form">
+
+        <div class="centrado">
+            <div id="frmExamenClinico">
+
+                <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
+    
+    
+                    <div class="row">
+    
+                        <div class="btnAccion">                           
+                        
+                            <div class="btn-contenedor">
+                                
+                                <div class="line-vertical"></div>
+                                <button mat-fab class="btn-faden-aceptar" (click)="v_Guardar();">
+                                    <mat-icon>save</mat-icon>
+                                </button>
+                                <button mat-fab class="btn-faden-cancelar">
+                                    <mat-icon>undo</mat-icon>
+                                </button>
+                                <div class="line-vertical"></div>
+                                <button mat-fab class="btn-faden-salir" (click)="Cerrar();">
+                                    <mat-icon>exit_to_app</mat-icon>
+                                </button>
+                            </div>
+                            
+                        </div>
+        
+                        <div class="row">
+                           <div class="col-12">
+                            <mat-card >
+                                <mat-card-header>
+                                    <mat-card-title Class="mat-card-title">Examen Clinico</mat-card-title>
+                                </mat-card-header>
+        
+                                <mat-card-content>
+                                    <div class="row">
+                                        <div class="col-12  col-md-3 col-lg-3 offset-md-9 offset-lg-9">
+                                            <mat-form-field appearance="legacy">
+                                                <mat-label>Fecha</mat-label>
+                                                <input matInput [matDatepicker]="picker" id="txtFecha" formControlName="txtFecha">
+                                                <mat-datepicker-toggle matSuffix [for]="picker">
+                                                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                                <mat-error
+                                                        *ngIf="val.ValForm.get('txtFecha')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Seleccione una<strong> Fecha </strong>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    
+
+
+                                    <div class="row">
+                                        <div>
+                                            <label><b>Tipo Examen: </b></label>
+                                            <mat-radio-group aria-label="Seleccione tipo"  formControlName="rdTipo" [(ngModel)]="rdTipo">
+                                                <mat-radio-button [value]="1">Marcador</mat-radio-button>
+                                                <mat-radio-button [value]="2">Estudio</mat-radio-button>
+                                                <mat-radio-button [value]="2">Imagen</mat-radio-button>
+                                            </mat-radio-group>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <mat-form-field>
+                                            <mat-label><b>Descripcion</b></mat-label>
+                                            <textarea matInput rows="10" id="txtDescripcion" formControlName="txtDescripcion"></textarea>
+                                            <mat-error *ngIf="val.ValForm.get('txtDescripcion')?.errors?.['Regla']=='1'" style="color:black">Ingrese un
+                                                Descripcion
+                                            </mat-error>
+                                            <mat-error *ngIf="val.ValForm.get('txtDescripcion')?.errors?.['Regla']=='2'" style="color:black">La Dosis
+                                                debe tener máximo 4,000 caracteres
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                            
+                                  
+                                </mat-card-content>
+        
+                            </mat-card>
+                           </div>
+                        </div>
+        
+    
+                    </div>
+    
+                  
+    
+                </form>
+            </div>
+        </div>
+
+     
+        
+    </div>
+
+</div>

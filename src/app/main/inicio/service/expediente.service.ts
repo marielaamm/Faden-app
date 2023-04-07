@@ -9,6 +9,7 @@ import { iConsenso } from '../interface/i-consenso';
 import { iPaciente } from '../interface/i-paciente';
 import { iSistemaSoap } from '../interface/i-sistema-soap';
 import { iTratamientoActual } from '../interface/i-tratamiento-actual';
+import { iExamenClinico } from '../interface/i-examen-clinico';
 
 @Injectable({
   providedIn: 'root'
@@ -231,6 +232,60 @@ export class ExpdienteService {
     );
   }
 
+
+
+
+
+
+
+
+  public GuardarExamenClinico(e : iExamenClinico){
+    this.http.post<any>(this._Cnx.Url()+ "cat/ExamenClinico/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Examen_Clinico_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Examen_Clinico_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Examen_Clinico_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+
+  public BuscarExamenClinico(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/ExamenClinico/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Examen_Clinico", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+  public EliminarExamenClinico(IdExamenClinico : Number){
+    this.http.post<any>(this._Cnx.Url()+ "cat/ExamenClinico/Eliminar?IdExamenClinico=" + IdExamenClinico,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Examen_Clinico_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Examen_Clinico_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Examen_Clinico_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+  }
 
   
 

@@ -102,6 +102,7 @@ import { RegistrousuarioComponent } from './main/config/components/usuario/regis
 import { NuevoTratamientoActualComponent } from './main/inicio/components/expediente/historiamedica/tratamiento-actual/nuevo-tratamiento-actual/nuevo-tratamiento-actual.component';
 import { NuevoAntecedenteQuirurgicoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-quirurgico/nuevo-antecedente-quirurgico/nuevo-antecedente-quirurgico.component';
 import { NuevoAntecedentePatologicoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-patologico/nuevo-antecedente-patologico/nuevo-antecedente-patologico.component';
+import { NuevoExamenClinicoComponent } from './main/inicio/components/expediente/historiamedica/examen-clinico/nuevo-examen-clinico/nuevo-examen-clinico.component';
 
 //FIN
 
@@ -162,6 +163,7 @@ display: {
     NuevoTratamientoActualComponent,
     NuevoAntecedenteQuirurgicoComponent,
     NuevoAntecedentePatologicoComponent,
+    NuevoExamenClinicoComponent,
     
   ],
   imports: [
