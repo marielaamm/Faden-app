@@ -61,7 +61,7 @@ export class NuevoExamenClinicoComponent implements OnInit {
       esError += "1";
     }
 
-    if (this.val.ValForm.get("txtF<echa")?.invalid) {
+    if (this.val.ValForm.get("txtFecha")?.invalid) {
       mensaje += "<li>Seleccione una frecha.</li>";
       esError += "1";
     }
@@ -83,7 +83,7 @@ export class NuevoExamenClinicoComponent implements OnInit {
     
    
     let T: iExamenClinico = {}as iExamenClinico;
-    T.Descripción = this.val.ValForm.get("txtDescripcion")?.value;
+    T.Descripcion = this.val.ValForm.get("txtDescripcion")?.value;
     T.Fecha  = new Date((JSON.stringify(this.val.ValForm.get("txtFecha")?.value)).substring(1, 11));
     T.IdPaciente = this.IdPaciente;
     T.TipoExamen = this.rdTipo;

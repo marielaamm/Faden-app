@@ -70,10 +70,10 @@
 
                                     <div class="row">
                                         <mat-form-field>
-                                            <mat-label><b>Descripcion</b></mat-label>
+                                            <mat-label><b>Descripción</b></mat-label>
                                             <textarea matInput rows="10" id="txtDescripcion" formControlName="txtDescripcion"></textarea>
                                             <mat-error *ngIf="val.ValForm.get('txtDescripcion')?.errors?.['Regla']=='1'" style="color:black">Ingrese un
-                                                Descripcion
+                                                Descripción
                                             </mat-error>
                                             <mat-error *ngIf="val.ValForm.get('txtDescripcion')?.errors?.['Regla']=='2'" style="color:black">La Dosis
                                                 debe tener máximo 4,000 caracteres

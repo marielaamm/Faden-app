@@ -11,8 +11,16 @@
             
         <div class="row">
             
-            <p>¿Está seguro de {{mensaje}}?</p>
-            <p>{{texto}}</p>
+            
+            <div>
+                <p>¿Está seguro de {{mensaje}}?</p>
+            </div>
+            
+            <div>
+                <div [innerHTML]="texto"></div>
+            </div>
+
+            
 
         </div>
 

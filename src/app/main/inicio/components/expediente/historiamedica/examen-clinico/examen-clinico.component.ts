@@ -86,7 +86,12 @@ export class ExamenClinicoComponent implements OnInit {
 
     dialogo.componentInstance.titulo = "Eliminar Registro";
     dialogo.componentInstance.mensaje = "Eliminar";
-    dialogo.componentInstance.texto = Fila.TipoExamen + " " + Fila.Fecha;
+
+   if(Fila.TipoExamen  == 1) dialogo.componentInstance.texto =  "<b>" +  Fila.Descripcion + "<br>Marcador<br><br></b>";
+   if(Fila.TipoExamen  == 2) dialogo.componentInstance.texto =  "<b>" +Fila.Descripcion + "<br>Esdudio<br><br></b>";
+   if(Fila.TipoExamen  == 3) dialogo.componentInstance.texto =  "<b>" +Fila.Descripcion + "<br>Imagen<br><br></b>" ;
+
+
 
     dialogo.afterClosed().subscribe(s=>{
 
