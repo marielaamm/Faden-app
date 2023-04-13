@@ -1,1 +1,174 @@
-<p>valoracion-neuropsicologica works!</p>
+<div class="app-valoracion-neuropsicologica">
+    <div class="faden-mat-form">
+        <div class="faden-contener">
+
+            <div id="frmValoracionNeuroPsicologica">
+
+                <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
+                    <div class="row">
+
+                        <div class="row">
+                            <div class="col-12 btnAccion">
+                                <div class="btn-contenedor">
+                                    <button mat-fab class="btn-faden-aceptar">
+                                        <mat-icon>save</mat-icon>
+                                    </button>
+                                    <button mat-fab class="btn-faden-cancelar">
+                                        <mat-icon>undo</mat-icon>
+                                    </button>
+                                    <div class="line-vertical"></div>
+                                    <button mat-fab class="btn-faden-salir" (click)="Cerrar();">
+                                        <mat-icon>exit_to_app</mat-icon>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <mat-card class="mat-card">
+                                    <mat-card-header>
+                                        <mat-card-title class="mat-card-title">Valoración Neuropsicológica</mat-card-title>
+                                    </mat-card-header>
+                                </mat-card>
+                            </div>
+
+                          
+
+                            <div class="faden-border">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label ><b>Dominios Cognitivos</b></label>
+                                    </div>
+                                    <div class="col-6">
+                                        <label ><b>Observación</b></label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <section>
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1"> 
+                                                    <mat-checkbox formControlName="chkMemoria" (change)="f_RefMemo()">Memoria</mat-checkbox>
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
+                                                    floatLabel="never">
+                                                    <input matInput type="text" formControlName="txtMemoria">
+                                                    <mat-error *ngIf="val.ValForm.get('txtMemoria')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve descripción del <strong> Dominio</strong>
+                                                    </mat-error>
+                                                </mat-form-field> 
+                                                </div>                                                
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkFuncionEjec" (change)="f_RefFuncionEjec()">Funciones Ejecutivas</mat-checkbox>
+                                                </div>
+                                            
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtFuncionEjec">
+                                                        <mat-error *ngIf="val.ValForm.get('txtFuncionEjec')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve descripción del <strong> Dominio</strong>
+                                                    </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkLenguaje" (change)="f_RefLenguaje()">Lenguaje</mat-checkbox>                                                
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtLenguaje">
+                                                        <mat-error *ngIf="val.ValForm.get('txtLenguaje')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve descripción del <strong> Dominio</strong>
+                                                    </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkFuncVisoEspaciales" (change)="f_RefFuncVisoEsp()">Función Viso Espacial</mat-checkbox> 
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtFuncVisoEsp">
+                                                        <mat-error *ngIf="val.ValForm.get('txtFuncVisoEsp')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve descripción del <strong> Dominio</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>    
+                                            
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkFuncMotoras" (change)="f_RefFuncMotora()">Funciones Motoras</mat-checkbox> 
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtFuncMotoras">
+                                                        <mat-error *ngIf="val.ValForm.get('txtFuncMotoras')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve descripción del <strong> Dominio</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div> 
+
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkEmociones" (change)="f_RefEmociones()">Comportamiento/Emociones</mat-checkbox> 
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtEmociones">
+                                                        <mat-error *ngIf="val.ValForm.get('txtEmociones')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve descripción del <strong> Dominio</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div> 
+
+                                            <div class="row">
+                                                <div class="col-3 offset-sm-1">
+                                                    <mat-checkbox formControlName="chkSueno" (change)="f_RefSueno()">Sueño y Función Autonómica</mat-checkbox> 
+                                                </div>
+                                                <div class="col-8">
+                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                        <input matInput type="text" formControlName="txtSueno">
+                                                        <mat-error *ngIf="val.ValForm.get('txtSueno')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Ingrese una breve descripción del <strong> Dominio</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div> 
+
+                                        </div>
+                                           
+                                    </section>
+                                </div>
+                            </div>
+
+                            <div class="faden-border">
+                                                               
+                            </div>
+                                                   
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>

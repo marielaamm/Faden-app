@@ -205,14 +205,14 @@ public f_SospechaDiag(value : any): void {
 
 public f_RefDepre(): void {
 
-  this.val.Replace("txtEsquizo", "1", "LEN>=", "0");
+  this.val.Replace("txtDepresion", "1", "LEN>=", "0");
 
 
   this.val.ValForm.get("txtDepresion")?.disable();
 
   if (this.val.ValForm.get("chkDepre")?.value == true) {
     this.val.ValForm.get("txtDepresion")?.enable();
-    this.val.add("txtEsquizo", "1", "LEN>", "0");
+    this.val.add("txtDepresion", "1", "LEN>", "0");
 
   }
 }
