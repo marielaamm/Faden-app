@@ -11,6 +11,7 @@ import { iSistemaSoap } from '../interface/i-sistema-soap';
 import { iTratamientoActual } from '../interface/i-tratamiento-actual';
 import { iExamenClinico } from '../interface/i-examen-clinico';
 import { iAntecedentesFamiliares } from '../interface/i-antecedentes-familiares';
+import { iValoracionNeuroPsicologica } from '../interface/i-valoracion-neuropsicologica';
 
 @Injectable({
   providedIn: 'root'
@@ -100,6 +101,24 @@ export class ExpdienteService {
       },
         err =>{
           this.change.emit(["dato_SOAP_Guardar", undefined]);
+          this.Msj();
+      }
+    );    
+  }
+
+
+  public GuardarValoracion(Valoracion : iValoracionNeuroPsicologica){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Valoracion/Guardar", JSON.stringify(Valoracion),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Valoracion_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Valoracion_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Valoracion_Guardar", undefined]);
           this.Msj();
       }
     );
