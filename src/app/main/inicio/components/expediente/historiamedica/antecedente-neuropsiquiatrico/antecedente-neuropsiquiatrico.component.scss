@@ -24,5 +24,17 @@
       .mat-header-cell {
         font-size: 1em;
       }
+
+      .mat-column-Nombre
+      {
+        max-width: 100px;
+        overflow: hidden;
+      }
+
+      .mat-column-Enfermedad
+      {
+        max-width: 100px;
+        overflow: hidden;
+      }
 }
 
