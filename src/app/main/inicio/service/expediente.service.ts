@@ -12,6 +12,7 @@ import { iTratamientoActual } from '../interface/i-tratamiento-actual';
 import { iExamenClinico } from '../interface/i-examen-clinico';
 import { iAntecedentesFamiliares } from '../interface/i-antecedentes-familiares';
 import { iValoracionNeuroPsicologica } from '../interface/i-valoracion-neuropsicologica';
+import { iAntecedenteNeuroPsiquiatrico } from '../interface/i-antecedente-neuro-psiquiatrico';
 
 @Injectable({
   providedIn: 'root'
@@ -398,6 +399,64 @@ export class ExpdienteService {
     );
   }
   
+
+  
+
+
+
+
+
+
+
+
+  public GuardarAntNeuroPsiquiatrico(e : iAntecedenteNeuroPsiquiatrico){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntNeuroPsiquiatrico/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Ant_NeuroPsiquiatrico_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Ant_NeuroPsiquiatrico_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Ant_NeuroPsiquiatrico_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+
+  public BuscarAntNeuroPsiquiatrico(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/AntNeuroPsiquiatrico/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Ant_NeuroPsiquiatrico", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+  public EliminarAntNeuroPsiquiatrico(IdAntNeuroPsiq : Number){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntNeuroPsiquiatrico/Eliminar?IdAntNeuroPsiq=" + IdAntNeuroPsiq,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Ant_NeuroPsiquiatrico_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Ant_NeuroPsiquiatrico_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Ant_NeuroPsiquiatrico_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+  }
+
 
 
   private Msj () : void{

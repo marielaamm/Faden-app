@@ -1,52 +1,84 @@
-<div>
-    <mat-card-content>
-        <div class="row">
-            <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <mat-label> Nombre del Familiar </mat-label>
-                <input matInput type="text" id="txtNombre">
-            </mat-form-field>
-        </div>
-
-        <div class="row">
-            <div class="col-3 col-sm-3 col-md-2 col-lg-1">
-                <label>¿Vive?</label>
-            </div>
-            <mat-radio-group class="col-9 col-sm-9 col-md-10 col-lg-4">
-                <mat-radio-button value="1">Si</mat-radio-button>
-                <mat-radio-button value="2">No</mat-radio-button>
-            </mat-radio-group>
-
-    
-        </div>
-
+<div class="app-antecedente-neuropsiquiatrico">
+    <div id="contenedor-agregar">
         <div>
-            <mat-form-field  class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-descripcion">
-                <mat-label>Descripción de la enfermedad</mat-label>                                         
-                <textarea matInput></textarea>                
-            </mat-form-field >
+            <button (click)="f_Agregar_Fila();">Agregar</button>
         </div>
-
-        <div class="row">
-            <mat-radio-group >
-                <mat-radio-button value="1">Padece</mat-radio-button>
-                <mat-radio-button value="2">Padeció</mat-radio-button>
-            </mat-radio-group>
+    </div>
     
-        </div>
+    <div class="faden-tabla">
+        <div class="mat-elevation-z8">
+                        
+            <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSort($event)">
+                <ng-container matColumnDef="IdAntNeuroPsiq">
+                    <th mat-header-cell *matHeaderCellDef> No </th>
+                    <td mat-cell *matCellDef="let element; let j =index" style="color:#1b364c; font-weight: bold;"> {{j+1}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Nombre">
+                        Nombre</th>
+            
+                    <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+            
+          
+                </ng-container>
+        
+                <ng-container matColumnDef="Vive">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vive">
+                        Vive?</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Vive}} </td>
+                </ng-container>
 
-        <div class="row">
-            <div class="col-12">
-                <label class="col-12">Parentesco</label>
-                <mat-radio-group aria-label="Seleccione Parentesco" class="col-6 col-sm-4 col-md-4 col-lg-4">
-                    <mat-radio-button value="1" class="col-6 col-sm-4 col-md-3 col-lg-3">Padre</mat-radio-button>
-                    <mat-radio-button value="2" class="col-6 col-sm-4 col-md-3 col-lg-3">Madre</mat-radio-button>
-                    <mat-radio-button value="3" class="col-6 col-sm-4 col-md-3 col-lg-3">Herman@s</mat-radio-button>
-                    <mat-radio-button value="5" class="col-6 col-sm-4 col-md-3 col-lg-3">Hij@s</mat-radio-button>
-                    <mat-radio-button value="4" class="col-6 col-sm-4 col-md-3 col-lg-3">Abuel@s</mat-radio-button>
-                    <mat-radio-button value="5" class="col-6 col-sm-4 col-md-3 col-lg-3">Ti@s</mat-radio-button>
-                    <mat-radio-button value="5" class="col-6 col-sm-4 col-md-3 col-lg-3">Prim@s</mat-radio-button>
-                </mat-radio-group> 
-            </div>    
+
+                <ng-container matColumnDef="Enfermedad">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Enfermedad">
+                        Enfermedad</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Enfermedad}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Padece">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Padece">
+                        Padece?</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Padece}} </td>
+                </ng-container>
+
+             
+        
+
+                <ng-container matColumnDef="Parentesco">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Parentesco">
+                        Parentesco</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Parentesco}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Accion">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="row">
+                            
+                            <div class="col-6">
+                                <a href="#" (click)="v_Editar(element)"><i class="bi bi-pencil-square" style="font-size: 2.5em;"></i></a>
+                                    
+                            </div>
+                            
+                            <div class="col-6">
+                                <a href="#"(click)="v_Eliminar(element)"><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
+                            </div>
+                        </div>
+        
+                    </td>
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row [class.demo-row-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+            </table>
+        
+            <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons> </mat-paginator>
+        
         </div>
-    </mat-card-content>
+        
+    </div>
+
 </div>

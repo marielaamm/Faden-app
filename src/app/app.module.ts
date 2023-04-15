@@ -105,6 +105,7 @@ import { NuevoAntecedentePatologicoComponent } from './main/inicio/components/ex
 import { NuevoExamenClinicoComponent } from './main/inicio/components/expediente/historiamedica/examen-clinico/nuevo-examen-clinico/nuevo-examen-clinico.component';
 import { ValoracionNeuropsicologicaComponent } from './main/inicio/components/expediente/valoracion-neuropsicologica/valoracion-neuropsicologica.component';
 import { NuevoAntecedenteFamiliaresComponent } from './main/inicio/components/expediente/historiamedica/antecedentes-familiares/nuevo-antecedente-familiares/nuevo-antecedente-familiares.component';
+import { NuevoAntecedenteNeurosiquiatricoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-neuropsiquiatrico/nuevo-antecedente-neurosiquiatrico/nuevo-antecedente-neurosiquiatrico.component';
 
 //FIN
 
@@ -168,6 +169,7 @@ display: {
     NuevoExamenClinicoComponent,
     ValoracionNeuropsicologicaComponent,
     NuevoAntecedenteFamiliaresComponent,
+    NuevoAntecedenteNeurosiquiatricoComponent,
     
   ],
   imports: [

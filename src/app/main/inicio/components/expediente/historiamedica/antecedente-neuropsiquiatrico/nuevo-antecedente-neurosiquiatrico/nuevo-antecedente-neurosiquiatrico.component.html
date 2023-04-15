@@ -1,0 +1,180 @@
+
+<div class="app-nuevo-antecedente-neurosiquiatrico">
+    <div class="faden-mat-form">
+
+        <div class="centrado">
+            <div id="frmAntNeuroPsiquiatrico">
+
+                
+
+                <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
+    
+    
+                    <div class="row">
+    
+                        <div class="btnAccion">                           
+                        
+                            <div class="btn-contenedor">
+                                
+                                <div class="line-vertical"></div>
+                                <button mat-fab class="btn-faden-aceptar" (click)="v_Guardar();">
+                                    <mat-icon>save</mat-icon>
+                                </button>
+                                <button mat-fab class="btn-faden-cancelar">
+                                    <mat-icon>undo</mat-icon>
+                                </button>
+                                <div class="line-vertical"></div>
+                                <button mat-fab class="btn-faden-salir" (click)="Cerrar();">
+                                    <mat-icon>exit_to_app</mat-icon>
+                                </button>
+                            </div>
+                            
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12">
+                             <mat-card >
+                                 <mat-card-header>
+                                     <mat-card-title Class="mat-card-title">7.	Antecedentes familiares Neurológicos y Psiquiátricos</mat-card-title>
+                                 </mat-card-header>
+         
+                                 <mat-card-content>
+                                    <div class="row">
+                                        <mat-form-field>
+                                            <mat-label> Nombre del Familiar </mat-label>
+                                            <input matInput type="text" formControlName="txtNombre" id="txtNombre">
+                                            <mat-error *ngIf="val.ValForm.get('txtNombre')?.errors?.['Regla']=='1'" style="color:black">Ingrese un
+                                                Nombre
+                                            </mat-error>
+                                            <mat-error *ngIf="val.ValForm.get('txtNombre')?.errors?.['Regla']=='2'" style="color:black">El nombre debe
+                                                tener máximo 100 caracteres
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                            
+                                    <div class="row">
+                   
+                                        <div class="col-6">
+                                            <label>¿Vive?</label>
+                                            <mat-radio-group  aria-label="Selecciona una opcion"  formControlName="rdVive" [(ngModel)]="rdVive">
+                                                <mat-radio-button [value]="'Si'">Si</mat-radio-button>
+                                                <mat-radio-button [value]="'No'">No</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                       
+                            
+                                
+                                    </div>
+                            
+                            
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <mat-form-field>
+                                                <mat-label>Descripción de la enfermedad</mat-label>                                         
+                                                <textarea matInput rows="5" formControlName="txtEnfermedad" id="txtEnfermedad"></textarea> 
+                                                <mat-error *ngIf="val.ValForm.get('txtEnfermedad')?.errors?.['Regla']=='1'" style="color:black">Ingrese una
+                                                    descripcion
+                                                </mat-error>
+                                                <mat-error *ngIf="val.ValForm.get('txtEnfermedad')?.errors?.['Regla']=='2'" style="color:black">La descripcion debe
+                                                    tener máximo 100 caracteres
+                                                </mat-error>               
+                                            </mat-form-field >
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <mat-radio-group aria-label="Selecciona una opcion"  formControlName="rdPadece" [(ngModel)]="rdPadece">
+                                                    <div class="row" >
+                                                        <mat-radio-button [value]="'Si'">Padece</mat-radio-button>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <mat-radio-button [value]="'No'">Padeció</mat-radio-button>
+                                                    </div>
+                                                   
+                                                </mat-radio-group>
+                                            </div>
+                                           
+                                    
+                                        </div>
+                                    </div>
+                            
+                                    
+                            
+                                    <div class="row">
+                                        <div class="row">
+                                            <label>Parentesco</label>
+                                        </div>
+                                        <div class="row">
+                                            <mat-radio-group aria-label="Selecciona una opcion"  formControlName="rdParentesco" [(ngModel)]="rdParentesco">
+                            
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                        <mat-radio-button [value]="'Padre'">Padre</mat-radio-button>
+                                                    </div>
+                            
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                        <mat-radio-button [value]="'Madre'">Madre</mat-radio-button>
+                                                    </div>
+                                                    
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                        <mat-radio-button [value]="'Herman@s'">Herman@s</mat-radio-button>
+                                                    </div>
+                            
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                        <mat-radio-button [value]="'Hij@s'">Hij@s</mat-radio-button>
+                                                    </div>
+                            
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                        <mat-radio-button [value]="'Abuel@s'" >Abuel@s</mat-radio-button>
+                                                    </div>
+                            
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                        <mat-radio-button [value]="'Ti@s'">Ti@s</mat-radio-button>
+                                                    </div>
+                            
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                        <mat-radio-button [value]="'Prim@s'">Prim@s</mat-radio-button>
+                                                    </div>
+                            
+                                                </div>
+                            
+                                         
+                                       
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                            </mat-radio-group>   
+                                        </div>  
+                                        
+                                    </div>
+                                   
+                                 </mat-card-content>
+         
+                             </mat-card>
+                            </div>
+                         </div>
+
+
+                      
+                      
+                       
+                    </div>
+
+               
+    
+                </form>
+            </div>
+        </div>
+
+     
+        
+    </div>
+
+</div>
+
