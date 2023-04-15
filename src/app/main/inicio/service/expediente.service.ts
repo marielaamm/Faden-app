@@ -13,6 +13,7 @@ import { iExamenClinico } from '../interface/i-examen-clinico';
 import { iAntecedentesFamiliares } from '../interface/i-antecedentes-familiares';
 import { iValoracionNeuroPsicologica } from '../interface/i-valoracion-neuropsicologica';
 import { iAntecedenteNeuroPsiquiatrico } from '../interface/i-antecedente-neuro-psiquiatrico';
+import { iPresuncion } from '../interface/i-presuncion';
 
 @Injectable({
   providedIn: 'root'
@@ -458,6 +459,56 @@ export class ExpdienteService {
   }
 
 
+
+
+  
+  public GuardarAntPresuncion(e : iPresuncion){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntPresuncion/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Ant_Presuncion_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Ant_Presuncion_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Ant_Presuncion_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+
+  public BuscarAntPresuncion(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/AntPresuncion/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Ant_Presuncion", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+  public EliminarAntPresuncion(IdAnalisiPresuncion : Number){
+    this.http.post<any>(this._Cnx.Url()+ "cat/AntPresuncion/Eliminar?IdAnalisiPresuncion=" + IdAnalisiPresuncion,{headers: {"content-type":"application/text"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Ant_Presuncion_Eliminar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Ant_Presuncion_Eliminar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Ant_Presuncion_Eliminar", undefined]);
+          this.Msj();
+      }
+    );
+  }
 
   private Msj () : void{
 

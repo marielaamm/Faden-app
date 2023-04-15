@@ -106,6 +106,8 @@ import { NuevoExamenClinicoComponent } from './main/inicio/components/expediente
 import { ValoracionNeuropsicologicaComponent } from './main/inicio/components/expediente/valoracion-neuropsicologica/valoracion-neuropsicologica.component';
 import { NuevoAntecedenteFamiliaresComponent } from './main/inicio/components/expediente/historiamedica/antecedentes-familiares/nuevo-antecedente-familiares/nuevo-antecedente-familiares.component';
 import { NuevoAntecedenteNeurosiquiatricoComponent } from './main/inicio/components/expediente/historiamedica/antecedente-neuropsiquiatrico/nuevo-antecedente-neurosiquiatrico/nuevo-antecedente-neurosiquiatrico.component';
+import { AnalisisPresuncionComponent } from './main/inicio/components/expediente/historiamedica/analisis-presuncion/analisis-presuncion.component';
+import { NuevoAnalisisPresuncionComponent } from './main/inicio/components/expediente/historiamedica/analisis-presuncion/nuevo-analisis-presuncion/nuevo-analisis-presuncion.component';
 
 //FIN
 
@@ -170,6 +172,8 @@ display: {
     ValoracionNeuropsicologicaComponent,
     NuevoAntecedenteFamiliaresComponent,
     NuevoAntecedenteNeurosiquiatricoComponent,
+    AnalisisPresuncionComponent,
+    NuevoAnalisisPresuncionComponent,
     
   ],
   imports: [

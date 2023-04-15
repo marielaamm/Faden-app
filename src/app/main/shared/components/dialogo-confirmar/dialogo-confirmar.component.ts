@@ -9,9 +9,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class DialogoConfirmarComponent implements OnInit {
 
   public retorno: string="0";
-  public titulo: string="";
+  public titulo: String="";
   public mensaje: string="Continuar";
-  public texto: string="";
+  public texto: String="";
 
   constructor(public hostElement: ElementRef, public dialogRef: MatDialogRef<DialogoConfirmarComponent>) { }
 
