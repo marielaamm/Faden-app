@@ -82,18 +82,21 @@ export class AntecedenteNeuropsiquiatricoComponent implements OnInit {
 
   public v_Editar(Fila : iAntecedenteNeuroPsiquiatrico): void
   {
-    /*this.dialogRef = this._Dialog.open(NuevoAntecedenteNeurosiquiatricoComponent,
+    this.dialogRef = this._Dialog.open(NuevoAntecedenteNeurosiquiatricoComponent,
       {
         disableClose: true,
         panelClass: 'custom-modal'
       })
 
       this.dialogRef.afterOpened().subscribe(s =>{
+        this.dialogRef.componentInstance.val.ValForm.get("txtNombre")?.setValue(Fila.Nombre);
         this.dialogRef.componentInstance.val.ValForm.get("txtEnfermedad")?.setValue(Fila.Enfermedad);
-        this.dialogRef.componentInstance.val.ValForm.get("txtDescripcion")?.setValue(Fila.Descripcion);
-        this.dialogRef.componentInstance.ID = Fila.IdAntecedentePatologico;
+        this.dialogRef.componentInstance.rdVive = Fila.Vive;
+        this.dialogRef.componentInstance.rdPadece = Fila.Padece;
+        this.dialogRef.componentInstance.rdParentesco = Fila.Parentesco;
+        this.dialogRef.componentInstance.ID = Fila.IdAntNeuroPsiq;
         this.dialogRef.componentInstance.IdPaciente = this.IdPaciente;
-      })*/
+      })
   
   }
 
