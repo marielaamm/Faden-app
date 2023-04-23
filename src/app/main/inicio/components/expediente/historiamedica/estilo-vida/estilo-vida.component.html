@@ -1,0 +1,221 @@
+<div class="app-estilo-vida">
+    <form  [formGroup]="val.ValForm" novalidate autocomplete="off">
+
+        <div class="row">
+            <div class="col-6">
+                <label>¿Senderismo?</label>
+                <mat-radio-group  aria-label="Selecciona una opcion"  formControlName="rdSenderismo" [(ngModel)]="rdSenderismo">
+                    <mat-radio-button [value]="'Si'">Si</mat-radio-button>
+                    <mat-radio-button [value]="'No'">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <table id="tbl">
+                    <tr class="row">
+                        <th class="col-2">*</th>
+                        <th class="col-7">Tipo de Ejercicio</th>
+                        <th class="col-3">Frecuencia en min por sem.</th>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="col-2"><mat-checkbox formControlName="chkCaminar"></mat-checkbox></td>
+                        <td class="col-7">Caminar</td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtCaminar" formControlName="txtCaminar">
+                        </td>
+                    </tr>
+
+
+                    <tr class="row">
+                        <td class="col-2"><mat-checkbox formControlName="chkTrotar"></mat-checkbox></td>
+                        <td class="col-7">Trotar</td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtTrotar" formControlName="txtTrotar">
+                        </td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="col-2"><mat-checkbox formControlName="chkCorrer"></mat-checkbox></td>
+                        <td class="col-7">Correr</td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtCorrer" formControlName="txtCorrer">
+                        </td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="col-2"><mat-checkbox formControlName="chkNadar"></mat-checkbox></td>
+                        <td class="col-7">Nadar</td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtNadar" formControlName="txtNadar">
+                        </td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="col-2"><mat-checkbox formControlName="chkCiclismo"></mat-checkbox></td>
+                        <td class="col-7">Ciclismo</td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtCiclismo" formControlName="txtCiclismo">
+                        </td>
+                    </tr>
+
+                    
+                    <tr class="row">
+                        <td class="col-2"><mat-checkbox formControlName="chkJardin"></mat-checkbox></td>
+                        <td class="col-7">Cuido Jardin</td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtJardin" formControlName="txtJardin">
+                        </td>
+                    </tr>
+
+
+                    <tr class="row">
+                        <td class="col-2"><mat-checkbox formControlName="chkBailar"></mat-checkbox></td>
+                        <td class="col-7">Bailar</td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtBailar" formControlName="txtBailar">
+                        </td>
+                    </tr>
+
+
+                    <tr class="row">
+                        <td class="col-2"><mat-checkbox formControlName="chkTrabaja"></mat-checkbox></td>
+                        <td class="col-7">Trabaja dentro o fuera de casa</td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtTrabaja" formControlName="txtTrabaja">
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <table id="tbl2">
+                    <tr class="row">
+                        <th class="col-3">Alimentación</th>
+                        <th class="col-6">Porción</th>
+                        <th class="col-3">Frecuencia por semana.</th>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="col-3">Frutas</td>
+                        <td class="col-6">
+                            <input matInput type="text" floatLabel='never' id="txtPFruta" formControlName="txtPFruta" class="txt">
+                        </td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtFFruta" formControlName="txtFFruta">
+                        </td>
+                    </tr>
+
+
+                    <tr class="row">
+                        <td class="col-3">Vegetales</td>
+                        <td class="col-6">
+                            <input matInput type="text" floatLabel='never' id="txtPVegetales" formControlName="txtPVegetales" class="txt">
+                        </td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtFVegetales" formControlName="txtFVegetales">
+                        </td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="col-3">Ensalada</td>
+                        <td class="col-6">
+                            <input matInput type="text" floatLabel='never' id="txtPEnsalada" formControlName="txtPEnsalada" class="txt">
+                        </td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtFEnsalada" formControlName="txtFEnsalada">
+                        </td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="col-3">Carne</td>
+                        <td class="col-6">
+                            <input matInput type="text" floatLabel='never' id="txtPCarne" formControlName="txtPCarne" class="txt">
+                        </td>
+                        <td class="col-3">
+                            <input matInput type="text" floatLabel='never' id="txtFCarne" formControlName="txtFCarne">
+                        </td>
+                    </tr>
+                    
+                    
+
+                </table>
+            </div>
+
+            
+        </div>
+       
+
+        <div class="border-linea">
+            <div class="row">
+                <label>¿Alcoholismo?</label>
+                <mat-radio-group  aria-label="Selecciona una opcion"  formControlName="rdAlcoholismo" [(ngModel)]="rdAlcoholismo" class="col-6">
+                    <mat-radio-button class="col-12 col-lg-4"  [value]="'Tomó'">Tomó</mat-radio-button>
+                    <mat-radio-button class="col-12 col-lg-4" [value]="'Toma Actualmente'">Toma Actualmente</mat-radio-button>
+                    <mat-radio-button class="col-12 col-lg-4" [value]="'No Toma'">No Toma</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <div class="border-linea">
+            <div class="row">
+                <label>¿Tabaquismo?</label>
+                <mat-radio-group  aria-label="Selecciona una opcion"  formControlName="rdTabaquismo" [(ngModel)]="rdTabaquismo" class="col-6">
+                    <mat-radio-button class="col-12 col-lg-4" [value]="'Fumó'">Fumó</mat-radio-button>
+                    <mat-radio-button class="col-12 col-lg-4"  [value]="'Fuma Actualmente'">Fuma Actualmente</mat-radio-button>
+                    <mat-radio-button class="col-12 col-lg-4" [value]="'No Fuma'">No Fuma</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+
+        <div class="border-linea">
+            <div class="row">
+                <label>¿Toma Café?</label>
+                <mat-radio-group  aria-label="Selecciona una opcion"  formControlName="rdCafe" [(ngModel)]="rdCafe" class="col-6">
+                    <mat-radio-button class="col-6 col-md-3 col-lg-2"  [value]="'Si'">Si</mat-radio-button>
+                    <mat-radio-button class="col-6 col-md-3 col-lg-2"  [value]="'No'">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <div class="border-linea">
+            <div class="row">
+                <label>¿Exposición a ruido excesivo?</label>
+                <mat-radio-group  aria-label="Selecciona una opcion"  formControlName="rdRuido" [(ngModel)]="rdRuido" class="col-6">
+                    <mat-radio-button class="col-6 col-md-3 col-lg-2" [value]="'Si'">Si</mat-radio-button>
+                    <mat-radio-button class="col-6 col-md-3 col-lg-2" [value]="'No'">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+
+        <div class="border-linea">
+            <div class="row">
+                <div><label><b>Calidad de sueño y descanso.</b></label></div>
+
+                <div class="row">
+                    
+                    <div class="col-6 col-md-6 col-lg-6">
+                        <label>Horas diarias de sueño</label>
+                        <input matInput type="text" floatLabel='never' id="txtHoras" formControlName="txtHoras">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label>Despertares nocturnos frecuente</label>
+                <mat-radio-group  aria-label="Selecciona una opcion"  formControlName="rdRuido" [(ngModel)]="rdDespertar" class="col-6">
+                    <mat-radio-button class="col-6 col-md-3 col-lg-2" [value]="'Si'">Si</mat-radio-button>
+                    <mat-radio-button class="col-6 col-md-3 col-lg-2" [value]="'No'">No</mat-radio-button>
+                </mat-radio-group>
+                </div>
+               
+               
+            </div>
+        </div>
+
+    </form>
+</div>

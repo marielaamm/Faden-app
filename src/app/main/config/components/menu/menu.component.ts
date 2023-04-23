@@ -22,6 +22,7 @@ import { RolesRegistroComponent } from '../roles/roles-registro/roles-registro.c
 import { RolesComponent } from '../roles/roles.component';
 import { UsuarioComponent } from '../usuario/usuario.component';
 import { NavComponent } from './nav/nav.component';
+import { EstiloVidaComponent } from 'src/app/main/inicio/components/expediente/historiamedica/estilo-vida/estilo-vida.component';
 
 @Component({
   selector: 'app-menu',
@@ -161,7 +162,7 @@ export class MenuComponent {
       case "navtemporal":
         if(this.str_formulario !=f){
           this.dynamicForm.viewContainerRef.clear();
-          this.dynamicForm.viewContainerRef.createComponent(ExpedienteRegistroComponent);
+          this.dynamicForm.viewContainerRef.createComponent(EstiloVidaComponent);
           this.str_formulario=f; 
         }
         break;

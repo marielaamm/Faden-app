@@ -1,0 +1,79 @@
+.app-estilo-vida{
+
+
+
+    .border-linea{
+        border: 2px solid var(--faden-morado);
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        padding-top: 10px;
+        padding-bottom: 10px; 
+        }
+    
+
+
+    #txtHoras{
+        margin-left: 5px;
+    }
+
+
+    #tbl, #tbl2{
+
+        margin-top: 10px;
+        padding: 5px;
+
+        tr{
+            
+            padding-right: 0;
+        }
+
+        th
+        {
+            border: 1px solid black;
+        }
+   
+        tr td:last-child, th:last-child
+        {
+           padding: 0;
+           border-left: 1px;
+           border-color: black;
+           border-style: solid;
+        }
+
+
+
+        td, th{
+            color: black;
+           font-weight: bold;
+           border: 1px solid black;
+        }
+
+
+
+
+
+        input{
+            width: 100%;
+            text-align: center; 
+        }
+
+        
+    }
+
+
+    #tbl2{
+        tr td:nth-child(2)
+        {
+           padding: 0;
+          
+        }
+        
+
+        .txt
+        {
+            text-align: left; 
+          
+        }
+    }
+}
