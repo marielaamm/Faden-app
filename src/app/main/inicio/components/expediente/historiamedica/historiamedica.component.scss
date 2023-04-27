@@ -1,11 +1,28 @@
-#historia-medica{
-    .mat-form-field{
-        padding: 10px;
-        textarea{
-            background-color: #f0f0f0;
-        }
+.app-historiamedica {
+
+    #contenedor-guardar{
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
         
     }
+
+    #historia-medica{
+        .mat-form-field{
+            padding: 10px;
+            textarea{
+                background-color: #f0f0f0;
+            }
+            
+        }
+
+
+}
+
+
+
+
 }
 
 

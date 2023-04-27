@@ -25,14 +25,23 @@
                           </mat-card-header>
 
                           <mat-card-content >
-                      
+
+                                       
                               <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
                                   <mat-step>
                                     <div id="historia-medica">
                                       <ng-template matStepLabel>Historia Médica y Clínica</ng-template>
                                       <div class="col-12">
+
+                                        <div id="contenedor-guardar">
+                                          <div>
+                                              <button >Guardar</button>
+                                          </div>
+                                      </div>
+                                        
                                           <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6 text-area-medica-clinica" >
-                                              <mat-label><b>Familiar</b></mat-label>
+                                                                                     
+                                            <mat-label><b>Familiar</b></mat-label>
                                               <textarea matInput rows="10" type="text" id="txtFamiliar" formControlName="txtFamiliar"></textarea>
                                               <mat-error *ngIf="val.ValForm.get('txtFamiliar')?.errors?.['Regla']=='1'" style="color:black">Describa la <strong>
                                                   Historia Familiar
@@ -41,7 +50,8 @@
                                           </mat-form-field>
               
                                           <mat-form-field class="col-12 col-sm-6 col-md-6 col-lg-6 text-area-medica-clinica">
-                                              <mat-label><b>Social</b></mat-label>
+                                                                                       
+                                            <mat-label><b>Social</b></mat-label>
                                               <textarea matInput rows="10" type="text" id="txtSocial" formControlName="txtSocial"></textarea>
                                               <mat-error *ngIf="val.ValForm.get('txtSocial')?.errors?.['Regla']=='1'" style="color:black">Describa la <strong>
                                                 Historia Social
