@@ -14,6 +14,7 @@ import { iAntecedentesFamiliares } from '../interface/i-antecedentes-familiares'
 import { iValoracionNeuroPsicologica } from '../interface/i-valoracion-neuropsicologica';
 import { iAntecedenteNeuroPsiquiatrico } from '../interface/i-antecedente-neuro-psiquiatrico';
 import { iPresuncion } from '../interface/i-presuncion';
+import { iHistoriaFamiSoc } from '../interface/i-historia-familiar-social';
 
 @Injectable({
   providedIn: 'root'
@@ -508,6 +509,26 @@ export class ExpdienteService {
           this.Msj();
       }
     );
+  }
+
+
+  public GuardarHistoriaMedSoc(Historia : iHistoriaFamiSoc){
+    this.http.post<any>(this._Cnx.Url()+ "cat/Historia/Guardar", JSON.stringify(Historia),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Historia_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Historia_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Historia_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
   }
 
   private Msj () : void{
