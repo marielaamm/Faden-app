@@ -1,4 +1,4 @@
-export interface iHistoriaFamiSoc{
+export interface iHistoriaFamSoc{
     IdHistoriaFamSoc: Number,
     HistoriaFamiliar: String,
     HistoriaSocial: String,

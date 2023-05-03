@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
-import { iHistoriaFamiSoc } from '../../../interface/i-historia-familiar-social';
+import { iHistoriaFamSoc } from '../../../interface/i-historia-familiar-social';
 
 @Component({
   selector: 'app-historiamedica',
@@ -81,9 +81,9 @@ if (esError.includes("1")) {
   return;
 }
 
-let H: iHistoriaFamiSoc = {} as iHistoriaFamiSoc;
+let H: iHistoriaFamSoc = {} as iHistoriaFamSoc;
 
-H.IdPaciente = 0;
+H.IdPaciente = 7;
 H.HistoriaFamiliar = this.val.ValForm.get("txtFamiliar")?.value;
 H.HistoriaSocial = this.val.ValForm.get("txtSocial")?.value;
 
