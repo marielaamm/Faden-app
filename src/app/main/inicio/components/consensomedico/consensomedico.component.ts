@@ -8,12 +8,16 @@ import { iConsenso } from '../../interface/i-consenso';
 import { iSindromePredominante } from '../../interface/i-sindromepredominante';
 import { ExpdienteService } from '../../service/expediente.service';
 import { SindromepredominanteComponent } from './sindromepredominante/sindromepredominante.component';
+import { MatTableDataSource } from '@angular/material/table';
+
+let ELEMENT_DATA: iConsenso[] =[];
 
 @Component({
   selector: 'app-consensomedico',
   templateUrl: './consensomedico.component.html',
   styleUrls: ['./consensomedico.component.scss']
 })
+
 export class ConsensomedicoComponent implements OnInit {
 
   public isLinear = false;
@@ -25,7 +29,7 @@ export class ConsensomedicoComponent implements OnInit {
   private _CatalogoService: CatalogoService;
   private _ExpdienteService: ExpdienteService;
   public IdPaciente : Number = 0;
-
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   public rdDetCognitivo : Number = 1;
   public rdSospechaDiag : Number = 1;
@@ -63,6 +67,19 @@ export class ConsensomedicoComponent implements OnInit {
 
     this.limpiar();
  
+  }
+
+  private Llenar(datos : any)
+  {
+    let _json = JSON.parse(datos);
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    ELEMENT_DATA =  _json["d"];
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+
   }
 
   public limpiar(){
@@ -371,6 +388,13 @@ this._ExpdienteService.GuardarConsenso(C);
 
     this.limpiar();
 
+    this.ServerScv.change.subscribe(s => {
+      if(s[0] == "Menu Expediente"){
+        this.IdPaciente =  s[1];
+        this._ExpdienteService.BuscarConcenso(this.IdPaciente);
+      }
+    });
+
     this._ExpdienteService.change.subscribe(
 
       s => {
@@ -397,7 +421,7 @@ this._ExpdienteService.GuardarConsenso(C);
           this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
           this.val.ValForm.get("txtNoExpediente")?.disable();
         }
-
+        if(s[0] == "Llenar_Tratamiento") this.Llenar(s[1] );
 
       }
     );

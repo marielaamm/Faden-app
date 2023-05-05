@@ -130,7 +130,6 @@ export class TratamientoActualComponent implements OnInit {
     this.ServerScv.change.subscribe(s => {
     
       if (s instanceof Array) {
-
         if (s[0] == "CerrarDialog" && s[1] == "frmTratamientoActual") {
           this.dialogRef.close();
           this._ExpdienteService.BuscarTratamiento(this.IdPaciente);
