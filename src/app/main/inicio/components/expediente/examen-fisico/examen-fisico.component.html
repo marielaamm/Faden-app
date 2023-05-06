@@ -1,10 +1,16 @@
 <div class="app-examen-fisico">
     <form  [formGroup]="val.ValForm" novalidate autocomplete="off">
 
+        <div class="row">
+            <div class="btn-guardar">
+                <button type="button" class="btn btn-faden-guardar" (click)="v_Guardar();">GUARDAR</button>
+            </div>
+        </div>
  
        
         <div class="row">
             <table id="tbl">
+                
                 <tr class="row">
                     <th class="col-2 col-sm-2 col-md-1 col-lg-1">*</th>
                     <th class="col-4 col-sm-4 col-md-3 col-lg-2">Nombre del sistema</th>
@@ -15,7 +21,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkCardioVascular" (change)="fn_Enable('chkCardioVascular', 'txtCardioVascular', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Cardiovascular</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtCardioVascular" formControlName="txtCardioVascular">
+                        <textarea matInput rows="1" type="text" floatLabel='never' id="txtCardioVascular" formControlName="txtCardioVascular"></textarea>
                     </td>
                 </tr>
 
@@ -24,7 +30,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkEndocrinologico" (change)="fn_Enable('chkEndocrinologico', 'txtEndocrinologico', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Endocrinológico</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtEndocrinologico" formControlName="txtEndocrinologico">
+                        <textarea matInput rows="1" floatLabel='never' id="txtEndocrinologico" formControlName="txtEndocrinologico"></textarea>
                     </td>
                 </tr>
 
@@ -32,7 +38,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkFaneras" (change)="fn_Enable('chkFaneras', 'txtFaneras', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Faneras</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtFaneras" formControlName="txtFaneras">
+                        <textarea matInput rows="1" floatLabel='never' id="txtFaneras" formControlName="txtFaneras"></textarea>
                     </td>
                 </tr>
 
@@ -40,7 +46,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkGastroinstestinal" (change)="fn_Enable('chkGastroinstestinal', 'txtGastroinstestinal', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Gastrointestinal</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtGastroinstestinal" formControlName="txtGastroinstestinal">
+                        <textarea matInput rows="1" floatLabel='never' id="txtGastroinstestinal" formControlName="txtGastroinstestinal"></textarea>
                     </td>
                 </tr>
 
@@ -48,7 +54,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkGenitourinario" (change)="fn_Enable('chkGenitourinario', 'txtGenitourinario', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Genitourinario</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtGenitourinario" formControlName="txtGenitourinario">
+                        <textarea matInput rows="1" floatLabel='never' id="txtGenitourinario" formControlName="txtGenitourinario"></textarea>
                     </td>
                 </tr>
 
@@ -57,7 +63,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkGeneral" (change)="fn_Enable('chkGeneral', 'txtGeneral', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">General</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtGeneral" formControlName="txtGeneral">
+                        <textarea matInput rows="1" floatLabel='never' id="txtGeneral" formControlName="txtGeneral"></textarea>
                     </td>
                 </tr>
 
@@ -66,7 +72,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkLinfatico" (change)="fn_Enable('chkLinfatico', 'txtLinfatico', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Linfático</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtLinfatico" formControlName="txtLinfatico">
+                        <textarea matInput rows="1" floatLabel='never' id="txtLinfatico" formControlName="txtLinfatico"></textarea>
                     </td>
                 </tr>
 
@@ -75,7 +81,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkMucosas" (change)="fn_Enable('chkMucosas', 'txtMucosas', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Mucosas</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtMucosas" formControlName="txtMucosas">
+                        <textarea matInput rows="1" floatLabel='never' id="txtMucosas" formControlName="txtMucosas"></textarea>
                     </td>
                 </tr>
 
@@ -84,7 +90,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkNeurologico" (change)="fn_Enable('chkNeurologico', 'txtNeurologico', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Neurológico</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtNeurologico" formControlName="txtNeurologico">
+                        <textarea matInput rows="1" floatLabel='never' id="txtNeurologico" formControlName="txtNeurologico"></textarea>
                     </td>
                 </tr>
 
@@ -92,7 +98,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkOsteomuscular" (change)="fn_Enable('chkOsteomuscular', 'txtOsteomuscular', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Osteomuscular</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtOsteomuscular" formControlName="txtOsteomuscular">
+                        <textarea matInput rows="1" floatLabel='never' id="txtOsteomuscular" formControlName="txtOsteomuscular"></textarea>
                     </td>
                 </tr>
 
@@ -100,7 +106,7 @@
                     <td class="col-2 col-sm-2 col-md-1 col-lg-1"><mat-checkbox formControlName="chkMuscular" (change)="fn_Enable('chkMuscular', 'txtMuscular', $event.checked)"></mat-checkbox></td>
                     <td class="col-4 col-sm-4 col-md-3 col-lg-2">Piel</td>
                     <td class="col-6 col-sm-6 col-md-8 col-lg-9">
-                        <input matInput type="text" floatLabel='never' id="txtMuscular" formControlName="txtMuscular">
+                        <textarea matInput rows="1" floatLabel='never' id="txtMuscular" formControlName="txtMuscular"></textarea>
                     </td>
                 </tr>
 

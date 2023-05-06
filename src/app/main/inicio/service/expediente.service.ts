@@ -15,6 +15,7 @@ import { iValoracionNeuroPsicologica } from '../interface/i-valoracion-neuropsic
 import { iAntecedenteNeuroPsiquiatrico } from '../interface/i-antecedente-neuro-psiquiatrico';
 import { iPresuncion } from '../interface/i-presuncion';
 import { iHistoriaFamSoc } from '../interface/i-historia-familiar-social';
+import { iExamenFisicoSistema } from '../interface/i-examen-fisico-sistema';
 
 @Injectable({
   providedIn: 'root'
@@ -541,6 +542,48 @@ export class ExpdienteService {
 
 
   }
+
+
+
+
+
+
+
+
+
+
+
+
+  public GuardarExamenFisicoSistema(e : iExamenFisicoSistema[]){
+    this.http.post<any>(this._Cnx.Url()+ "cat/ExamenFisicoSistema/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Examen_Fisico_Sistema_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Examen_Fisico_Sistema_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Examen_Fisico_Sistema_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+  public BuscarExamenFisicoSistema(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/ExamenFisicoSistema/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Examen_Fisico_Sistema", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
 
   private Msj () : void{
 
