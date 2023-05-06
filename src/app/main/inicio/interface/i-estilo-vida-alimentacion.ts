@@ -1,5 +1,5 @@
 export interface iEstiloVidaAlimentacion{
-    idAlimentacion: Number;
+    IdAlimentacion: Number;
     IdElemento: String;
     Porcion: String;
     Frecuencia: String;

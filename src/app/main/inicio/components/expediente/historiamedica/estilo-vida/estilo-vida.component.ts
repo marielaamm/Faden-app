@@ -177,10 +177,10 @@ export class EstiloVidaComponent implements OnInit {
 
     
     this.lstTablaAlimentacion = [
-      {idAlimentacion : 0, IdElemento : "Fruta",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
-      {idAlimentacion : 0, IdElemento : "Vegetales",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
-      {idAlimentacion : 0, IdElemento : "Ensalada",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
-      {idAlimentacion : 0, IdElemento : "Carne",  Porcion : "",  Frecuencia : "", IdPaciente : 0 }
+      {IdAlimentacion : 0, IdElemento : "Fruta",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+      {IdAlimentacion : 0, IdElemento : "Vegetales",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+      {IdAlimentacion : 0, IdElemento : "Ensalada",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+      {IdAlimentacion : 0, IdElemento : "Carne",  Porcion : "",  Frecuencia : "", IdPaciente : 0 }
     ];
 
    }
