@@ -16,6 +16,7 @@ import { iAntecedenteNeuroPsiquiatrico } from '../interface/i-antecedente-neuro-
 import { iPresuncion } from '../interface/i-presuncion';
 import { iHistoriaFamSoc } from '../interface/i-historia-familiar-social';
 import { iExamenFisicoSistema } from '../interface/i-examen-fisico-sistema';
+import { iEstiloVidaDatos } from '../interface/i-estilo-vida-datos';
 
 @Injectable({
   providedIn: 'root'
@@ -577,6 +578,40 @@ export class ExpdienteService {
     this.http.get<any>(this._Cnx.Url() + "cat/ExamenFisicoSistema/Buscar?IdPaciente="  + IdPaciente).subscribe(
       datos =>{
         this.change.emit(["Llenar_Examen_Fisico_Sistema", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
+
+
+
+
+  public GuardarEstiloVida(e : iEstiloVidaDatos){
+    this.http.post<any>(this._Cnx.Url()+ "cat/EstiloVida/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
+      dato=>{
+        let _json =  JSON.parse(dato);
+        if(_json["esError"] == 1){
+          this.change.emit(["dato_Estilo_Vida_Guardar", undefined]);
+          return;
+        }
+        this.change.emit(["dato_Estilo_Vida_Guardar", _json]);
+      },
+        err =>{
+          this.change.emit(["dato_Estilo_Vida_Guardar", undefined]);
+          this.Msj();
+      }
+    );
+
+
+  }
+
+  public BuscarEstiloVida(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/EstiloVida/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Estilo_Vida", datos]);
       },
       err =>{
         this.Msj();

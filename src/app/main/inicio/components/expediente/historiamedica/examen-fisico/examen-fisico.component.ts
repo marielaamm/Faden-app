@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Validacion } from 'src/app/main/shared/class/validacion';
-import { ExpdienteService } from '../../../service/expediente.service';
+import { ExpdienteService } from '../../../../service/expediente.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ServerService } from 'src/app/main/shared/service/server.service';
-import { iExamenFisicoSistema } from '../../../interface/i-examen-fisico-sistema';
+import { iExamenFisicoSistema } from '../../../../interface/i-examen-fisico-sistema';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 
 
@@ -183,7 +183,7 @@ export class ExamenFisicoComponent implements OnInit {
 
     this.lstTabla = _json["d"];
 
-    console.log(this.lstTabla)
+   
 
     this.lstTabla.forEach(f =>{
       this.val.ValForm.get("chk" + f.IdElemento.toString())?.setValue(f.Activo);

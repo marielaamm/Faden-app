@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { iEstiloVida } from 'src/app/main/inicio/interface/i-estilo-vida';
+import { iEstiloVidaAlimentacion } from 'src/app/main/inicio/interface/i-estilo-vida-alimentacion';
+import { iEstiloVidaDatos } from 'src/app/main/inicio/interface/i-estilo-vida-datos';
+import { iEstiloVidaEjercicio } from 'src/app/main/inicio/interface/i-estilo-vida-ejercicio';
+import { ExpdienteService } from 'src/app/main/inicio/service/expediente.service';
 import { Validacion } from 'src/app/main/shared/class/validacion';
+import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
+import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
   selector: 'app-estilo-vida',
@@ -12,14 +20,22 @@ export class EstiloVidaComponent implements OnInit {
   public IdPaciente : Number = 0;
   public ID : Number = 0;
 
-  public rdSenderismo : string = "";
-  public rdAlcoholismo : string = "";
-  public rdTabaquismo : string = "";
-  public rdCafe : string = "";
-  public rdRuido : string = "";
-  public rdDespertar : string = "";
+  public rdSenderismo : String = "";
+  public rdAlcoholismo : String = "";
+  public rdTabaquismo : String = "";
+  public rdCafe : String = "";
+  public rdRuido : String = "";
+  public rdDespertar : String = "";
+
+  private lstTablaEjercicio : iEstiloVidaEjercicio[];
+  private lstTablaAlimentacion : iEstiloVidaAlimentacion[]
+
+  private Guardando : Boolean = false;
+
+
+  private _ExpdienteService: ExpdienteService;
   
-  constructor() {
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
 
     
 
@@ -79,6 +95,7 @@ export class EstiloVidaComponent implements OnInit {
    Limpiar()
    {
 
+    this.Guardando = false;
     this.rdSenderismo = "No";
     this.rdAlcoholismo = "No Toma";
     this.rdTabaquismo = "No Fuma";
@@ -146,6 +163,26 @@ export class EstiloVidaComponent implements OnInit {
 
 
     this.val.ValForm.get("txtHoras")?.setValue("");
+
+    this.lstTablaEjercicio = [
+      {IdEjercicio : 0, IdElemento : "Caminar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Trotar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Correr",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Nadar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Ciclismo",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Jardin",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Bailar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Trabaja",  Frecuencia : "",  Activo : false, IdPaciente : 0 }
+    ];
+
+    
+    this.lstTablaAlimentacion = [
+      {idAlimentacion : 0, IdElemento : "Fruta",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+      {idAlimentacion : 0, IdElemento : "Vegetales",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+      {idAlimentacion : 0, IdElemento : "Ensalada",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+      {idAlimentacion : 0, IdElemento : "Carne",  Porcion : "",  Frecuencia : "", IdPaciente : 0 }
+    ];
+
    }
 
 
@@ -167,9 +204,140 @@ export class EstiloVidaComponent implements OnInit {
    }
 
 
+   public v_Guardar(){
+
+ 
+    this.Guardando = true;
+
+    let Datos : iEstiloVidaDatos  = {} as iEstiloVidaDatos;
+    let EstiloVida : iEstiloVida = {} as iEstiloVida;
+
+    EstiloVida.Alcoholismo = this.rdSenderismo;
+    EstiloVida.Alcoholismo = this.rdAlcoholismo;
+    EstiloVida.Tabaquismo = this.rdTabaquismo;
+    EstiloVida.Cafe = this.rdCafe;
+    EstiloVida.Ruido = this.rdRuido;
+    EstiloVida.Despertar = this.rdDespertar;
+
+
+
+    this.lstTablaEjercicio.forEach(f =>{
+     f.IdPaciente = this.IdPaciente;
+     f.Activo = this.val.ValForm.get("chk" + f.IdElemento.toString())?.value;
+     f.Frecuencia = this.val.ValForm.get("txt" + f.IdElemento.toString())?.value;
+    });
+
+    this.lstTablaAlimentacion.forEach(f =>{
+      f.IdPaciente = this.IdPaciente;
+      f.Porcion = this.val.ValForm.get("txtP" + f.IdElemento.toString())?.value;
+      f.Frecuencia = this.val.ValForm.get("txtF" + f.IdElemento.toString())?.value;
+     });
+
+     Datos.Ejercicios = this.lstTablaEjercicio;
+     Datos.Alimentacion = this.lstTablaAlimentacion;
+
+     this._ExpdienteService.GuardarEstiloVida(Datos);
+
+  }
+
+
+  private Llenar(datos : any)
+   {
+    let _json = JSON.parse(datos);
+
+    if(_json["d"].length == 0) return;
+
+    let EstiloVida : iEstiloVida = _json["d"][0];
+    this.lstTablaEjercicio = _json["d"][1];
+    this.lstTablaAlimentacion = _json["d"][2];
+
+    this.rdSenderismo = EstiloVida.Senderismo;
+    this.rdAlcoholismo = EstiloVida.Alcoholismo
+    this.rdTabaquismo = EstiloVida.Tabaquismo
+    this.rdCafe =  EstiloVida.Cafe
+    this.rdRuido =  EstiloVida.Ruido
+    this.rdDespertar =  EstiloVida.Despertar
+
+
+    this.val.ValForm.get("rdSenderismo")?.setValue(this.rdSenderismo );
+    this.val.ValForm.get("rdAlcoholismo")?.setValue(this.rdAlcoholismo);
+    this.val.ValForm.get("rdTabaquismo")?.setValue(this.rdTabaquismo);
+    this.val.ValForm.get("rdCafe")?.setValue(this.rdCafe);
+    this.val.ValForm.get("rdRuido")?.setValue(this.rdRuido);
+    this.val.ValForm.get("rdDespertar")?.setValue(this.rdDespertar);
+
+
+    this.lstTablaEjercicio.forEach(f =>{
+      this.val.ValForm.get("chk" + f.IdElemento.toString())?.setValue(f.Activo);
+      this.val.ValForm.get("txt" + f.IdElemento.toString())?.setValue(f.Frecuencia);
+      this.fn_Enable("chk" + f.IdElemento.toString(), "txt" + f.IdElemento.toString(), Boolean(f.Activo));
+    });
+
+    this.lstTablaAlimentacion.forEach(f =>{
+      this.val.ValForm.get("txtP" + f.IdElemento.toString())?.setValue(f.Porcion);
+      this.val.ValForm.get("txtF" + f.IdElemento.toString())?.setValue(f.Frecuencia);
+    });
+   
+   }
+
 
 
   ngOnInit(): void {
+
+    
+    this.ServerScv.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+
+        if(s[0] == "Menu Expediente"){
+          this.IdPaciente =  s[1];
+          this._ExpdienteService.BuscarExamenFisicoSistema(this.IdPaciente);
+        }
+        if(s[0] == "Cerrar Expediente") 
+        {
+          this.IdPaciente = 0
+          this.Limpiar();
+        }
+
+       
+        
+      }
+    });
+
+    this._ExpdienteService.change.subscribe(s => {
+
+      if(s[0] == "Llenar_Estilo_Vida") this.Llenar(s[1] );
+
+
+
+      if (s[0] == "dato_Estilo_Vida_Guardar") {
+
+        this.Guardando = false; 
+
+        if (s[1] == undefined) {
+
+
+          let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
+          let _json = JSON.parse(s);
+          this._Dialog.open(DialogoComponent, {
+            data: _json["msj"]
+          });
+          return;
+        }
+
+
+        this._Dialog.open(DialogoComponent, {
+          data: s[1]["msj"]
+        });
+
+        
+      }
+
+
+    });
+
   }
 
 }
+
