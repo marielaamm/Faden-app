@@ -109,6 +109,7 @@ import { NuevoAntecedenteNeurosiquiatricoComponent } from './main/inicio/compone
 import { AnalisisPresuncionComponent } from './main/inicio/components/expediente/historiamedica/analisis-presuncion/analisis-presuncion.component';
 import { NuevoAnalisisPresuncionComponent } from './main/inicio/components/expediente/historiamedica/analisis-presuncion/nuevo-analisis-presuncion/nuevo-analisis-presuncion.component';
 import { EstiloVidaComponent } from './main/inicio/components/expediente/historiamedica/estilo-vida/estilo-vida.component';
+import { ExamenFisicoComponent } from './main/inicio/components/expediente/examen-fisico/examen-fisico.component';
 
 //FIN
 
@@ -176,6 +177,7 @@ display: {
     AnalisisPresuncionComponent,
     NuevoAnalisisPresuncionComponent,
     EstiloVidaComponent,
+    ExamenFisicoComponent,
     
   ],
   imports: [
