@@ -16,7 +16,6 @@ export class ExamenFisicoComponent implements OnInit {
 
   public val: Validacion = new Validacion ();
   public IdPaciente : Number = 0;
-  public ID : Number = 0;
   public Guardando : boolean = false;
 
   private lstTabla: iExamenFisicoSistema[];

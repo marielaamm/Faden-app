@@ -18,7 +18,7 @@ export class EstiloVidaComponent implements OnInit {
 
   public val: Validacion = new Validacion ();
   public IdPaciente : Number = 0;
-  public ID : Number = 0;
+ 
 
   public rdSenderismo : String = "";
   public rdAlcoholismo : String = "";
@@ -218,6 +218,7 @@ export class EstiloVidaComponent implements OnInit {
     EstiloVida.Cafe = this.rdCafe;
     EstiloVida.Ruido = this.rdRuido;
     EstiloVida.Despertar = this.rdDespertar;
+    EstiloVida.IdPaciente = this.IdPaciente;
 
 
 
