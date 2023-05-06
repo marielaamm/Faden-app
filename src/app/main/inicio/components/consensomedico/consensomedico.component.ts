@@ -10,8 +10,6 @@ import { ExpdienteService } from '../../service/expediente.service';
 import { SindromepredominanteComponent } from './sindromepredominante/sindromepredominante.component';
 import { MatTableDataSource } from '@angular/material/table';
 
-let ELEMENT_DATA: iConsenso[] =[];
-
 @Component({
   selector: 'app-consensomedico',
   templateUrl: './consensomedico.component.html',
@@ -29,7 +27,7 @@ export class ConsensomedicoComponent implements OnInit {
   private _CatalogoService: CatalogoService;
   private _ExpdienteService: ExpdienteService;
   public IdPaciente : Number = 0;
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
 
   public rdDetCognitivo : Number = 1;
   public rdSospechaDiag : Number = 1;
@@ -69,18 +67,7 @@ export class ConsensomedicoComponent implements OnInit {
  
   }
 
-  private Llenar(datos : any)
-  {
-    let _json = JSON.parse(datos);
-
-
-    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
-
-    ELEMENT_DATA =  _json["d"];
-
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-
-  }
+ 
 
   public limpiar(){
     this.rdDetCognitivo = 1;
@@ -379,6 +366,47 @@ this._ExpdienteService.GuardarConsenso(C);
 
 }
 
+private LlenarConsenso(datos : any)
+{
+  let _json = JSON.parse(datos);
+
+  let C: iConsenso  =  _json["d"][0];
+
+   this.rdDetCognitivo = C.DetCognitivo;
+   this.rdSospechaDiag = C.SospechaDiag;
+   this.val.ValForm.get("txtDetNormal")?.setValue(C.RefNormal);
+   this.val.ValForm.get("txtDetLeve")?.setValue(C.RefLeve);
+   this.val.ValForm.get("txtDetMayor")?.setValue(C.RefMayor);
+   this.val.ValForm.get("chkDepre")?.setValue(C.Depresion);
+   this.val.ValForm.get("txtDepresion")?.setValue(C.RefDepresion);
+   this.val.ValForm.get("chkBipolar")?.setValue(C.TrastornoBip);
+   this.val.ValForm.get("txtBipolar")?.setValue(C.RefTrasBip);
+   this.val.ValForm.get("chkEsquizo")?.setValue(C.Esquizo);
+   this.val.ValForm.get("txtEsquizo")?.setValue(C.RefEsquizo);
+   this.val.ValForm.get("chkOtroDiag")?.setValue(C.OtroDiag);
+   this.val.ValForm.get("txtOtroDiag")?.setValue(C.RefOTroDiag);
+   this.val.ValForm.get("txtDiagProbable")?.setValue(C.RefProbable);
+   this.val.ValForm.get("txtDiagConfir")?.setValue(C.RefConfirmado);
+   this.val.ValForm.get("txtTraFarma")?.setValue(C.TrataFarma);
+   this.val.ValForm.get("txtTraNoFarma")?.setValue(C.TrataNoFarma);
+   this.val.ValForm.get("txtRecomendaciones")?.setValue(C.Recomendaciones);
+   this.val.ValForm.get("txtExamenes")?.setValue(C.Examenes);
+
+
+}
+
+
+private LlenarSindrome(datos : any)
+{
+  let _json = JSON.parse(datos);
+
+
+  this.Sindrome.dataSource.data.splice(0, this.Sindrome.dataSource.data.length);
+
+  this.Sindrome.dataSource.data =  _json["d"];
+
+}
+
    Cerrar() : void{
     
    this.ServerScv.CerrarFormulario();
@@ -392,6 +420,7 @@ this._ExpdienteService.GuardarConsenso(C);
       if(s[0] == "Menu Expediente"){
         this.IdPaciente =  s[1];
         this._ExpdienteService.BuscarConcenso(this.IdPaciente);
+        this._ExpdienteService.BuscarSindrome(this.IdPaciente);
       }
     });
 
@@ -421,7 +450,8 @@ this._ExpdienteService.GuardarConsenso(C);
           this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
           this.val.ValForm.get("txtNoExpediente")?.disable();
         }
-        if(s[0] == "Llenar_Tratamiento") this.Llenar(s[1] );
+        if(s[0] == "Llenar_Concenso") this.LlenarConsenso(s[1] );
+        if(s[0] == "Llenar_Sindrome") this.LlenarSindrome(s[1] );
 
       }
     );

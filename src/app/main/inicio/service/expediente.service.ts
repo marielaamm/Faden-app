@@ -167,7 +167,7 @@ export class ExpdienteService {
 
 
   public BuscarConcenso(IdPaciente : Number){
-    this.http.get<any>(this._Cnx.Url() + "cat/Consenso/Buscar?IdPaciente="  + IdPaciente).subscribe(
+    this.http.get<any>(this._Cnx.Url() + "cat/Consenso/BuscarConsenso?IdPaciente="  + IdPaciente).subscribe(
       datos =>{
         this.change.emit(["Llenar_Concenso", datos]);
       },
@@ -176,6 +176,18 @@ export class ExpdienteService {
       }
     );
   }
+
+  public BuscarSindrome(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/Consenso/BuscarSindrome?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Sindrome", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
 
   public EliminarTratamiento(IdTratamiento : Number){
     this.http.post<any>(this._Cnx.Url()+ "cat/Tratamiento/Eliminar?IdTratamiento=" + IdTratamiento,{headers: {"content-type":"application/text"}}).subscribe(
