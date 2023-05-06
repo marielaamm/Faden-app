@@ -83,7 +83,7 @@ if (esError.includes("1")) {
 
 let H: iHistoriaFamSoc = {} as iHistoriaFamSoc;
 
-H.IdPaciente = 7;
+H.IdPaciente = this.IdPaciente;
 H.HistoriaFamiliar = this.val.ValForm.get("txtFamiliar")?.value;
 H.HistoriaSocial = this.val.ValForm.get("txtSocial")?.value;
 

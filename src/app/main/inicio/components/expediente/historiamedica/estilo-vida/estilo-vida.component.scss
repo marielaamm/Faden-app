@@ -2,6 +2,9 @@
 
 
 
+   
+
+
     .border-linea{
         border: 2px solid var(--faden-morado);
         border-top: 0;
@@ -19,13 +22,13 @@
 
 
     #tbl, #tbl2{
-
         margin-top: 10px;
-        padding: 5px;
+        padding: 10px;
+   
 
-        tr{
-            
-            padding-right: 0;
+        tr, td{
+            padding: 0;
+            overflow: hidden;
         }
 
         th
@@ -47,17 +50,21 @@
             color: black;
            font-weight: bold;
            border: 1px solid black;
+           padding-left: 10px;
         }
 
-
-
-
+  
 
         input{
             width: 100%;
+            padding: 0;
+            margin: 0;
             text-align: center; 
         }
 
+        input:disabled{
+            background-color: gray;
+        }
         
     }
 

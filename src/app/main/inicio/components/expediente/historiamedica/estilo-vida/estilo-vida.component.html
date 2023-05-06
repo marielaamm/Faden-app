@@ -21,7 +21,7 @@
                     </tr>
 
                     <tr class="row">
-                        <td class="col-2"><mat-checkbox formControlName="chkCaminar"></mat-checkbox></td>
+                        <td class="col-2"><mat-checkbox formControlName="chkCaminar" (change)="fn_Enable('chkCaminar', 'txtCaminar', $event.checked)"></mat-checkbox></td>
                         <td class="col-7">Caminar</td>
                         <td class="col-3">
                             <input matInput type="text" floatLabel='never' id="txtCaminar" formControlName="txtCaminar">
@@ -30,7 +30,7 @@
 
 
                     <tr class="row">
-                        <td class="col-2"><mat-checkbox formControlName="chkTrotar"></mat-checkbox></td>
+                        <td class="col-2"><mat-checkbox formControlName="chkTrotar" (change)="fn_Enable('chkTrotar', 'txtTrotar', $event.checked)"></mat-checkbox></td>
                         <td class="col-7">Trotar</td>
                         <td class="col-3">
                             <input matInput type="text" floatLabel='never' id="txtTrotar" formControlName="txtTrotar">
@@ -38,7 +38,7 @@
                     </tr>
 
                     <tr class="row">
-                        <td class="col-2"><mat-checkbox formControlName="chkCorrer"></mat-checkbox></td>
+                        <td class="col-2"><mat-checkbox formControlName="chkCorrer" (change)="fn_Enable('chkCorrer', 'txtCorrer', $event.checked)"></mat-checkbox></td>
                         <td class="col-7">Correr</td>
                         <td class="col-3">
                             <input matInput type="text" floatLabel='never' id="txtCorrer" formControlName="txtCorrer">
@@ -46,7 +46,7 @@
                     </tr>
 
                     <tr class="row">
-                        <td class="col-2"><mat-checkbox formControlName="chkNadar"></mat-checkbox></td>
+                        <td class="col-2"><mat-checkbox formControlName="chkNadar" (change)="fn_Enable('chkNadar', 'txtNadar', $event.checked)"></mat-checkbox></td>
                         <td class="col-7">Nadar</td>
                         <td class="col-3">
                             <input matInput type="text" floatLabel='never' id="txtNadar" formControlName="txtNadar">
@@ -54,7 +54,7 @@
                     </tr>
 
                     <tr class="row">
-                        <td class="col-2"><mat-checkbox formControlName="chkCiclismo"></mat-checkbox></td>
+                        <td class="col-2"><mat-checkbox formControlName="chkCiclismo" (change)="fn_Enable('chkCiclismo', 'txtCiclismo', $event.checked)"></mat-checkbox></td>
                         <td class="col-7">Ciclismo</td>
                         <td class="col-3">
                             <input matInput type="text" floatLabel='never' id="txtCiclismo" formControlName="txtCiclismo">
@@ -63,7 +63,7 @@
 
                     
                     <tr class="row">
-                        <td class="col-2"><mat-checkbox formControlName="chkJardin"></mat-checkbox></td>
+                        <td class="col-2"><mat-checkbox formControlName="chkJardin" (change)="fn_Enable('chkJardin', 'txtJardin', $event.checked)"></mat-checkbox></td>
                         <td class="col-7">Cuido Jardin</td>
                         <td class="col-3">
                             <input matInput type="text" floatLabel='never' id="txtJardin" formControlName="txtJardin">
@@ -72,7 +72,7 @@
 
 
                     <tr class="row">
-                        <td class="col-2"><mat-checkbox formControlName="chkBailar"></mat-checkbox></td>
+                        <td class="col-2"><mat-checkbox formControlName="chkBailar" (change)="fn_Enable('chkBailar', 'txtBailar', $event.checked)"></mat-checkbox></td>
                         <td class="col-7">Bailar</td>
                         <td class="col-3">
                             <input matInput type="text" floatLabel='never' id="txtBailar" formControlName="txtBailar">
@@ -81,7 +81,7 @@
 
 
                     <tr class="row">
-                        <td class="col-2"><mat-checkbox formControlName="chkTrabaja"></mat-checkbox></td>
+                        <td class="col-2"><mat-checkbox formControlName="chkTrabaja" (change)="fn_Enable('chkTrabaja', 'txtTrabaja', $event.checked)"></mat-checkbox></td>
                         <td class="col-7">Trabaja dentro o fuera de casa</td>
                         <td class="col-3">
                             <input matInput type="text" floatLabel='never' id="txtTrabaja" formControlName="txtTrabaja">

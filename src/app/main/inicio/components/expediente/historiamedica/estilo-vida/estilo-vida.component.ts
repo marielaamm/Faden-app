@@ -96,36 +96,79 @@ export class EstiloVidaComponent implements OnInit {
 
     this.val.ValForm.get("chkCaminar")?.setValue(false);
     this.val.ValForm.get("txtCaminar")?.setValue("");
+    this.val.ValForm.get("txtCaminar")?.disable();
+
+    this.val.ValForm.get("chkTrotar")?.setValue(false);
+    this.val.ValForm.get("txtTrotar")?.setValue("");
+    this.val.ValForm.get("txtTrotar")?.disable();
     
     this.val.ValForm.get("chkCorrer")?.setValue(false);
     this.val.ValForm.get("txtCorrer")?.setValue("");
+    this.val.ValForm.get("txtCorrer")?.disable();
 
     this.val.ValForm.get("chkNadar")?.setValue(false);
     this.val.ValForm.get("txtNadar")?.setValue("");
+    this.val.ValForm.get("txtNadar")?.disable();
+
 
     this.val.ValForm.get("chkCiclismo")?.setValue(false);
     this.val.ValForm.get("txtCiclismo")?.setValue("");
+    this.val.ValForm.get("txtCiclismo")?.disable();
 
     this.val.ValForm.get("chkJardin")?.setValue(false);
     this.val.ValForm.get("txtJardin")?.setValue("");
+    this.val.ValForm.get("txtJardin")?.disable();
+
+    this.val.ValForm.get("chkBailar")?.setValue(false);
+    this.val.ValForm.get("txtBailar")?.setValue("");
+    this.val.ValForm.get("txtBailar")?.disable();
 
     this.val.ValForm.get("chkTrabaja")?.setValue(false);
     this.val.ValForm.get("txtTrabaja")?.setValue("");
+    this.val.ValForm.get("txtTrabaja")?.disable();
 
     this.val.ValForm.get("txtPFruta")?.setValue("");
     this.val.ValForm.get("txtFFruta")?.setValue("");
 
+
     this.val.ValForm.get("txtPVegetales")?.setValue("");
     this.val.ValForm.get("txtFVegetales")?.setValue("");
+
+
 
     this.val.ValForm.get("txtPEnsalada")?.setValue("");
     this.val.ValForm.get("txtFEnsalada")?.setValue("");
 
+    
+
     this.val.ValForm.get("txtPCarne")?.setValue("");
     this.val.ValForm.get("txtFCarne")?.setValue("");
 
+
     this.val.ValForm.get("txtHoras")?.setValue("");
    }
+
+
+   public fn_Enable(id_chk: string, id_txt : string, estado : boolean){
+
+    this.val.ValForm.get(id_chk)?.setValue(estado);
+
+    
+    if(estado)
+    {
+      this.val.ValForm.get(id_txt)?.enable();
+    }
+    else
+    {
+      this.val.ValForm.get(id_txt)?.setValue("");
+      this.val.ValForm.get(id_txt)?.disable();
+    }
+
+   }
+
+
+
+
   ngOnInit(): void {
   }
 
