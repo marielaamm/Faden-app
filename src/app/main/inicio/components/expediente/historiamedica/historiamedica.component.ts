@@ -89,7 +89,17 @@ H.HistoriaSocial = this.val.ValForm.get("txtSocial")?.value;
 
 this._ExpdienteService.GuardarHistoriaMedSoc(H);
 
+}
 
+private LlenarHistoriaFamSoc(datos : any)
+{
+  let _json = JSON.parse(datos);
+
+  let H: iHistoriaFamSoc  =  _json["d"][0];
+     
+   this.val.ValForm.get("txtFamiliar")?.setValue(H.HistoriaFamiliar);
+   this.val.ValForm.get("txtSocial")?.setValue(H.HistoriaSocial);
+   
 }
 
 Cerrar() : void{
@@ -101,6 +111,14 @@ Cerrar() : void{
 
     
     this.limpiar();
+
+    this.ServerScv.change.subscribe(s => {
+      if(s[0] == "Menu Expediente"){
+        this.IdPaciente =  s[1];
+        this._ExpdienteService.BuscarHistoriaFamSoc(this.IdPaciente);
+       
+      }
+    });
 
     this._ExpdienteService.change.subscribe(
 
@@ -128,6 +146,9 @@ Cerrar() : void{
           this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
           this.val.ValForm.get("txtNoExpediente")?.disable();
         }
+        
+        if(s[0] == "Llenar_Historia") this.LlenarHistoriaFamSoc(s[1] );
+
 
 
       }

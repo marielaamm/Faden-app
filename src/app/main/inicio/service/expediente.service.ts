@@ -188,6 +188,17 @@ export class ExpdienteService {
     );
   }
 
+  public BuscarHistoriaFamSoc(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/Historia/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Historia", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
 
   public EliminarTratamiento(IdTratamiento : Number){
     this.http.post<any>(this._Cnx.Url()+ "cat/Tratamiento/Eliminar?IdTratamiento=" + IdTratamiento,{headers: {"content-type":"application/text"}}).subscribe(

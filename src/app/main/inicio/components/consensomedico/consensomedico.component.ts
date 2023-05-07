@@ -335,6 +335,8 @@ if (esError.includes("1")) {
   return;
 }
 
+
+
 let C: iConsenso= {} as iConsenso;
 
 C.DetCognitivo = this.rdDetCognitivo;
