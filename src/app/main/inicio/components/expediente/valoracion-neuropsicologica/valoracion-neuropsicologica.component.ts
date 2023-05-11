@@ -258,9 +258,25 @@ public Guardar(){
   V.IdPaciente = this.IdPaciente;
 
   this._ExpdienteService.GuardarValoracion(V);
-
-
 }
+
+private LlenarValoracion(datos : any)
+{
+  let _json = JSON.parse(datos);
+
+  let V: iValoracionNeuroPsicologica =  _json["d"][0];
+
+   
+   this.val.ValForm.get("txtMemoria")?.setValue(V.Memoria);
+   this.val.ValForm.get("txtFuncionEjec")?.setValue(V.FuncionesEjecutivas);
+   this.val.ValForm.get("txtLenguaje")?.setValue(V.Lenguaje);
+   this.val.ValForm.get("txtFuncVisoEsp")?.setValue(V.FuncionesVisoEspaciales);
+   this.val.ValForm.get("txtFuncMotoras")?.setValue(V.FuncionesMotoras);
+   this.val.ValForm.get("txtEmociones")?.setValue(V.Comportamiento);
+   this.val.ValForm.get("txtSueno")?.setValue(V.FuncionAutonomica);
+    
+}
+
   Cerrar() : void{
     
     this.ServerScv.CerrarFormulario();
@@ -270,6 +286,14 @@ public Guardar(){
   ngOnInit(): void {
 
     this.limpiar();
+
+    this.ServerScv.change.subscribe(s => {
+      if(s[0] == "Menu Expediente"){
+        this.IdPaciente =  s[1];
+        this._ExpdienteService.BuscarValoracionNeuro(this.IdPaciente);
+       
+      }
+    });
 
     this._ExpdienteService.change.subscribe(
 
@@ -298,6 +322,7 @@ public Guardar(){
           this.val.ValForm.get("txtNoExpediente")?.disable();
         }
 
+        if(s[0] == "Llenar_Valoracion") this.LlenarValoracion(s[1] );
 
       }
     );

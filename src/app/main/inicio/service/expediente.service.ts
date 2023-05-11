@@ -131,6 +131,17 @@ export class ExpdienteService {
 
   }
 
+  public BuscarValoracionNeuro(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/Valoracion/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+        this.change.emit(["Llenar_Valoracion", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
 
 
 
@@ -199,6 +210,7 @@ export class ExpdienteService {
     );
   }
 
+ 
 
   public EliminarTratamiento(IdTratamiento : Number){
     this.http.post<any>(this._Cnx.Url()+ "cat/Tratamiento/Eliminar?IdTratamiento=" + IdTratamiento,{headers: {"content-type":"application/text"}}).subscribe(
