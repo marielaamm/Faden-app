@@ -8,6 +8,7 @@ import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iAntecedenteQuirurgico } from '../../../../interface/i-antecedente-quirurgico';
 import { NuevoAntecedenteQuirurgicoComponent } from './nuevo-antecedente-quirurgico/nuevo-antecedente-quirurgico.component';
+import { iDatosExpediente } from 'src/app/main/inicio/interface/i-datos-expediente';
 
 
 let ELEMENT_DATA: iAntecedenteQuirurgico[] =[];
@@ -30,11 +31,10 @@ export class AntecedenteQuirurgicoComponent implements OnInit {
   private IdPaciente : Number = 0;
   private dialogRef: MatDialogRef<NuevoAntecedenteQuirurgicoComponent>;
 
-  private _ExpdienteService: ExpdienteService;
-  
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
  
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
+  
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog,  private _ExpdienteService: ExpdienteService) {
+ 
    }
 
  
@@ -69,8 +69,27 @@ export class AntecedenteQuirurgicoComponent implements OnInit {
       })
     
   }
-
+  
   private Llenar(datos : any)
+  {
+
+   
+    let _json = JSON.parse(datos);
+
+  
+    let d : iDatosExpediente =  _json["d"];
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    ELEMENT_DATA =  JSON.parse(d.AntQuirurgico);
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  }
+
+  
+  private LlenarDetalle(datos : any)
   {
     let _json = JSON.parse(datos);
 
@@ -151,7 +170,8 @@ export class AntecedenteQuirurgicoComponent implements OnInit {
 
     this._ExpdienteService.change.subscribe(s => {
 
-      if(s[0] == "Llenar_Antecedente_Quirurgico") this.Llenar(s[1] );
+      if(s[0] == "Llenar_Antecedente_Quirurgico") this.LlenarDetalle(s[1] );
+      if(s[0] == "Llenar_Datos_Paciente") this.Llenar(s[1] );
 
 
     });

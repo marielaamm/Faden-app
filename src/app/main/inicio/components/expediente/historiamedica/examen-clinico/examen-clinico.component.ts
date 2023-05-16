@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ExpdienteService } from 'src/app/main/inicio/service/expediente.service';
 import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
+import { iDatosExpediente } from 'src/app/main/inicio/interface/i-datos-expediente';
 
 let ELEMENT_DATA: iExamenClinico[]=[];
 
@@ -26,11 +27,9 @@ export class ExamenClinicoComponent implements OnInit {
   private IdPaciente : Number = 0;
   private dialogRef: MatDialogRef<NuevoExamenClinicoComponent>;
 
-  private _ExpdienteService: ExpdienteService;
-  
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
  
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
+  
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog,  private _ExpdienteService: ExpdienteService) {;
    }
 
  
@@ -66,7 +65,26 @@ export class ExamenClinicoComponent implements OnInit {
     
   }
 
+
   private Llenar(datos : any)
+  {
+
+   
+    let _json = JSON.parse(datos);
+
+  
+    let d : iDatosExpediente =  _json["d"];
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    ELEMENT_DATA =  JSON.parse(d.ExamenClinico);
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  }
+
+  private LlenarDetalle(datos : any)
   {
     let _json = JSON.parse(datos);
 
@@ -153,7 +171,7 @@ export class ExamenClinicoComponent implements OnInit {
 
     this._ExpdienteService.change.subscribe(s => {
 
-      if(s[0] == "Llenar_Examen_Clinico") this.Llenar(s[1] );
+      if(s[0] == "Llenar_Examen_Clinico") this.LlenarDetalle(s[1] );
 
 
       if (s[0] == "dato_Examen_Clinico_Eliminar") {

@@ -8,6 +8,7 @@ import { NuevoAntecedenteFamiliaresComponent } from './nuevo-antecedente-familia
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
+import { iDatosExpediente } from 'src/app/main/inicio/interface/i-datos-expediente';
 
 
 let ELEMENT_DATA: iAntecedentesFamiliares[]=[];
@@ -27,11 +28,10 @@ private _liveAnnouncer:any;
 private IdPaciente : Number = 0;
 private dialogRef: MatDialogRef<NuevoAntecedenteFamiliaresComponent>;
 
-private _ExpdienteService: ExpdienteService;
 
-constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
 
-  this._ExpdienteService = new ExpdienteService(this._Dialog);
+constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) {
+
  }
 
 
@@ -68,6 +68,24 @@ f_Agregar_Fila() : void{
 }
 
 private Llenar(datos : any)
+  {
+
+   
+    let _json = JSON.parse(datos);
+
+  
+    let d : iDatosExpediente =  _json["d"];
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    ELEMENT_DATA =  JSON.parse(d.AntFamiliares);
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  }
+
+private LlenarDetalle(datos : any)
 {
   let _json = JSON.parse(datos);
 
@@ -150,7 +168,8 @@ ngOnInit(): void {
 
   this._ExpdienteService.change.subscribe(s => {
 
-    if(s[0] == "Llenar_Ant_Familiar") this.Llenar(s[1] );
+    if(s[0] == "Llenar_Ant_Familiar") this.LlenarDetalle(s[1] );
+    if(s[0] == "Llenar_Datos_Paciente") this.Llenar(s[1] );
 
 
     if (s[0] == "dato_Ant_Familiar_Eliminar") {

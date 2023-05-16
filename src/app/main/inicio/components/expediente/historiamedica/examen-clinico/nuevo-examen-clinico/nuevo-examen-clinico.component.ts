@@ -19,17 +19,16 @@ export class NuevoExamenClinicoComponent implements OnInit {
   public IdPaciente : Number = 0;
   public ID : Number = 0;
 
-  private _ExpdienteService: ExpdienteService;
+  
   private _FuncionesGenerales: FuncionesGeneralesService;
   
-  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) { 
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) { 
 
     this.val.add("txtDescripcion", "1", "LEN>", "0");
     this.val.add("txtDescripcion", "2", "LEN<=", "4000");
     this.val.add("txtFecha", "1", "LEN>", "0");
     this.val.add("rdTipo", "1", "LEN>=", "0");
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
     
     this.Limpiar();

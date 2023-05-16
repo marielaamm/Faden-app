@@ -18,9 +18,9 @@ export class NuevoTratamientoActualComponent implements OnInit {
   public IdPaciente : Number = 0;
   public ID : Number = 0;
 
-  private _ExpdienteService: ExpdienteService;
   
-  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) { 
+  
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) { 
 
     this.val.add("txtTratamiento", "1", "LEN>", "0");
     this.val.add("txtTratamiento", "2", "LEN<=", "50");
@@ -28,7 +28,6 @@ export class NuevoTratamientoActualComponent implements OnInit {
     this.val.add("txtDosis", "2", "LEN<=", "50");
     this.val.add("rdTipoTratammiento", "1", "LEN>=", "0");
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
     
     this.Limpiar();
     

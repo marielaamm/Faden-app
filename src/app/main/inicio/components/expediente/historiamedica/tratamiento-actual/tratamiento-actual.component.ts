@@ -9,6 +9,7 @@ import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iTratamientoActual } from '../../../../interface/i-tratamiento-actual';
 import { NuevoTratamientoActualComponent } from './nuevo-tratamiento-actual/nuevo-tratamiento-actual.component';
+import { iDatosExpediente } from 'src/app/main/inicio/interface/i-datos-expediente';
 
 
 let ELEMENT_DATA: iTratamientoActual[] =[];
@@ -31,11 +32,9 @@ export class TratamientoActualComponent implements OnInit {
   private IdPaciente : Number = 0;
   private dialogRef: MatDialogRef<NuevoTratamientoActualComponent>;
 
-  private _ExpdienteService: ExpdienteService;
-  
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) {
  
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
    }
 
  
@@ -73,6 +72,24 @@ export class TratamientoActualComponent implements OnInit {
 
   private Llenar(datos : any)
   {
+
+   
+    let _json = JSON.parse(datos);
+
+  
+    let d : iDatosExpediente =  _json["d"];
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    ELEMENT_DATA =  JSON.parse(d.TratHisto);
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  }
+
+  private LlenarDetalle(datos : any)
+  {
     let _json = JSON.parse(datos);
 
 
@@ -83,6 +100,7 @@ export class TratamientoActualComponent implements OnInit {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   }
+
 
   public v_Editar(Fila : iTratamientoActual): void
   {
@@ -144,7 +162,6 @@ export class TratamientoActualComponent implements OnInit {
           this.IdPaciente = 0
           this.dataSource.data.splice(0, this.dataSource.data.length);
         }
-
        
         
       }
@@ -152,8 +169,10 @@ export class TratamientoActualComponent implements OnInit {
 
 
     this._ExpdienteService.change.subscribe(s => {
-
-      if(s[0] == "Llenar_Tratamiento") this.Llenar(s[1] );
+     
+      if(s[0] == "Llenar_Tratamiento") this.LlenarDetalle(s[1] );
+      if(s[0] == "Llenar_Datos_Paciente") this.Llenar(s[1] );
+    
 
 
       if (s[0] == "dato_Tratamiento_Eliminar") {

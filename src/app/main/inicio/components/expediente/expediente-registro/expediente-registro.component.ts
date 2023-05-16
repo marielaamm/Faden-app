@@ -21,14 +21,13 @@ export class ExpedienteRegistroComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<any>();
   private _liveAnnouncer:any;
-  private _ExpdienteService: ExpdienteService;
+  
   private  dialogRef : MatDialogRef<PacienteComponent>;
   private LstAcompanante : any[] ;
 
 
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) {
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._ExpdienteService.BuscarPaciente();
 
     
@@ -85,6 +84,7 @@ export class ExpedienteRegistroComponent implements OnInit {
 
   
   this.ServerScv.change.emit(["CerrarDialog","frmRegistroPaciente", [e, Acompanante]]);
+  this._ExpdienteService.BuscarDatosPaciente(e.IdPaciente);
 
   }
 

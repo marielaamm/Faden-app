@@ -74,6 +74,18 @@ export class ExpdienteService {
     );
   }
 
+  public BuscarDatosPaciente(IdPaciente : Number){
+    this.http.get<any>(this._Cnx.Url() + "cat/Expediente/Buscar?IdPaciente="  + IdPaciente).subscribe(
+      datos =>{
+
+        this.change.emit(["Llenar_Datos_Paciente", datos]);
+      },
+      err =>{
+        this.Msj();
+      }
+    );
+  }
+
 
   public GuardarConsenso(Consenso : iConsenso){
     this.http.post<any>(this._Cnx.Url()+ "cat/Consenso/Guardar", JSON.stringify(Consenso),{headers: {"content-type":"application/json"}}).subscribe(
