@@ -17,13 +17,13 @@ export class NuevoAntecedenteNeurosiquiatricoComponent implements OnInit {
   public IdPaciente : Number = 0;
   public ID : Number = 0;
 
-  private _ExpdienteService: ExpdienteService;
+  
 
   public rdVive : String = "";
   public rdPadece : String = "";
   public rdParentesco : String = "";
   
-  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) { 
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) { 
 
     this.val.add("txtNombre", "1", "LEN>", "0");
     this.val.add("txtNombre", "2", "LEN<=", "100");
@@ -33,7 +33,7 @@ export class NuevoAntecedenteNeurosiquiatricoComponent implements OnInit {
     this.val.add("rdPadece", "1", "LEN>=", "0");
     this.val.add("rdParentesco", "1", "LEN>=", "0");
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
+    
     
     this.Limpiar();
     
