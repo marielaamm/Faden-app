@@ -20,7 +20,7 @@ export class ValoracionNeuropsicologicaComponent implements OnInit {
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
 
    
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
+
 
     this.val.add("chkMemoria", "1", "LEN>=", "0");
     this.val.add("txtMemoria", "1", "LEN>=", "0");

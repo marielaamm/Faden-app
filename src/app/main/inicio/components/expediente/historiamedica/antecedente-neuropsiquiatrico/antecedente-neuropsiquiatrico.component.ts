@@ -156,7 +156,7 @@ export class AntecedenteNeuropsiquiatricoComponent implements OnInit {
 
         if(s[0] == "Menu Expediente"){
           this.IdPaciente =  s[1];
-          this._ExpdienteService.BuscarAntNeuroPsiquiatrico(this.IdPaciente);
+          
         }
         if(s[0] == "Cerrar Expediente") 
         {

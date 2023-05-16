@@ -152,7 +152,7 @@ ngOnInit(): void {
 
       if(s[0] == "Menu Expediente"){
         this.IdPaciente =  s[1];
-        this._ExpdienteService.BuscarAntFamiliar(this.IdPaciente);
+
       }
       if(s[0] == "Cerrar Expediente") 
       {

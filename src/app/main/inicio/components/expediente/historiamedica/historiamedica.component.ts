@@ -119,8 +119,7 @@ Cerrar() : void{
     this.ServerScv.change.subscribe(s => {
       if(s[0] == "Menu Expediente"){
         this.IdPaciente =  s[1];
-        this._ExpdienteService.BuscarHistoriaFamSoc(this.IdPaciente);
-       
+    
       }
     });
 

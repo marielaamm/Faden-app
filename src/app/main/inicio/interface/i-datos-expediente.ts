@@ -8,4 +8,5 @@ export interface iDatosExpediente{
     HistoriaFamSoc : string;
     ExamenFisicoSistema : string;
     AnalisiPresuncion : string;
+    ValoracionNeuro  : string;
 }
