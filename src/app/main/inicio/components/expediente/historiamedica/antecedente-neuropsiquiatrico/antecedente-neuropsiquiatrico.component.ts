@@ -81,7 +81,7 @@ export class AntecedenteNeuropsiquiatricoComponent implements OnInit {
 
     ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
 
-    ELEMENT_DATA =  JSON.parse(d.HistoriaFamSoc);
+    ELEMENT_DATA =  JSON.parse(d.AntNeuroPsi);
 
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -172,7 +172,7 @@ export class AntecedenteNeuropsiquiatricoComponent implements OnInit {
 
     this._ExpdienteService.change.subscribe(s => {
 
-      if(s[0] == "Llenar_Ant_NeuroPsiquiatrico") this.Llenar(s[1] );
+      if(s[0] == "Llenar_Ant_NeuroPsiquiatrico") this.LlenarDetalle(s[1] );
       if(s[0] == "Llenar_Datos_Paciente") this.Llenar(s[1] );
 
 

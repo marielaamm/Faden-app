@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iExamenFisicoSistema } from '../../../../interface/i-examen-fisico-sistema';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
+import { iDatosExpediente } from 'src/app/main/inicio/interface/i-datos-expediente';
 
 
 @Component({
@@ -21,10 +22,10 @@ export class ExamenFisicoComponent implements OnInit {
   private lstTabla: iExamenFisicoSistema[];
 
 
-  private _ExpdienteService: ExpdienteService;
+ 
 
   
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog,  private _ExpdienteService: ExpdienteService) {
 
     
     this.val.add("chkCardioVascular", "1", "LEN>=", "0");
@@ -67,7 +68,6 @@ export class ExamenFisicoComponent implements OnInit {
 
     this.Limpiar();
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
    }
 
 
@@ -175,12 +175,13 @@ export class ExamenFisicoComponent implements OnInit {
 
    private Llenar(datos : any)
    {
+
     let _json = JSON.parse(datos);
 
     if(_json["d"].length == 0) return;
 
-
-    this.lstTabla = _json["d"];
+    let d : iDatosExpediente =  _json["d"];
+    this.lstTabla = JSON.parse(d.ExamenFisicoSistema);
 
    
 
@@ -205,7 +206,6 @@ export class ExamenFisicoComponent implements OnInit {
 
         if(s[0] == "Menu Expediente"){
           this.IdPaciente =  s[1];
-          this._ExpdienteService.BuscarExamenFisicoSistema(this.IdPaciente);
         }
         if(s[0] == "Cerrar Expediente") 
         {
@@ -220,7 +220,7 @@ export class ExamenFisicoComponent implements OnInit {
 
     this._ExpdienteService.change.subscribe(s => {
 
-      if(s[0] == "Llenar_Examen_Fisico_Sistema") this.Llenar(s[1] );
+      if(s[0] == "Llenar_Datos_Paciente") this.Llenar(s[1] );
 
 
 

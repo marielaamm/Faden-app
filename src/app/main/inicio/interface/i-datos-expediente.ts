@@ -4,5 +4,8 @@ export interface iDatosExpediente{
     AntPatologico : string;
     AntQuirurgico : string;
     AntFamiliares : string;
+    AntNeuroPsi : string;
     HistoriaFamSoc : string;
+    ExamenFisicoSistema : string;
+    AnalisiPresuncion : string;
 }

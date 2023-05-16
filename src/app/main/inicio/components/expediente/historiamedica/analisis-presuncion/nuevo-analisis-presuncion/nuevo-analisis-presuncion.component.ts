@@ -18,12 +18,12 @@ export class NuevoAnalisisPresuncionComponent implements OnInit {
   public IdPaciente : Number = 0;
   public ID : Number = 0;
 
-  private _ExpdienteService: ExpdienteService;
+ 
   private _FuncionesGenerales: FuncionesGeneralesService;
 
  
   
-  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) { 
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog,  private _ExpdienteService: ExpdienteService) { 
 
     this.val.add("txtDescripcion", "1", "LEN>", "0");
     this.val.add("txtDescripcion", "2", "LEN<=", "500");

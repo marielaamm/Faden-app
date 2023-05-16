@@ -6,6 +6,7 @@ import { Validacion } from 'src/app/main/shared/class/validacion';
 import { CatalogoService } from 'src/app/main/cat/service/catalogo.service';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { iHistoriaFamSoc } from '../../../interface/i-historia-familiar-social';
+import { iDatosExpediente } from '../../../interface/i-datos-expediente';
 
 @Component({
   selector: 'app-historiamedica',
@@ -18,18 +19,17 @@ export class HistoriamedicaComponent implements OnInit {
   public lstPaciente:{}[]=[];
   public isLinear = false;
   public val: Validacion = new Validacion();
-  private _ExpdienteService: ExpdienteService;
+  
   private _CatalogoService: CatalogoService;  
   public IdPaciente : Number = 0;
 
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) { 
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) { 
 
     //***REGLAS*** */
   this.val.add("txtFamiliar","1", "LEN>","0");
   this.val.add("txtSocial","1", "LEN>","0");
 
-  this._ExpdienteService = new ExpdienteService(this._Dialog);
-  this._CatalogoService = new CatalogoService(this._Dialog);
+
 
   this.limpiar();
 
@@ -40,7 +40,7 @@ export class HistoriamedicaComponent implements OnInit {
     this.val.ValForm.get("txtFamiliar")?.setValue("");
     this.val.ValForm.get("txtSocial")?.setValue("");
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
+
     this._CatalogoService = new CatalogoService(this._Dialog);
   }
 
@@ -95,7 +95,11 @@ private LlenarHistoriaFamSoc(datos : any)
 {
   let _json = JSON.parse(datos);
 
-  let H: iHistoriaFamSoc  =  _json["d"][0];
+  
+    let d : iDatosExpediente =  _json["d"];
+
+
+  let H: iHistoriaFamSoc  =   JSON.parse(d.HistoriaFamSoc)[0];
      
    this.val.ValForm.get("txtFamiliar")?.setValue(H.HistoriaFamiliar);
    this.val.ValForm.get("txtSocial")?.setValue(H.HistoriaSocial);
@@ -147,7 +151,7 @@ Cerrar() : void{
           this.val.ValForm.get("txtNoExpediente")?.disable();
         }
         
-        if(s[0] == "Llenar_Historia") this.LlenarHistoriaFamSoc(s[1] );
+        if(s[0] == "Llenar_Datos_Paciente") this.LlenarHistoriaFamSoc(s[1] );
 
 
 

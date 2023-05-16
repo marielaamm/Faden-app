@@ -8,6 +8,7 @@ import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialog
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { NuevoAnalisisPresuncionComponent } from './nuevo-analisis-presuncion/nuevo-analisis-presuncion.component';
+import { iDatosExpediente } from 'src/app/main/inicio/interface/i-datos-expediente';
 
 let ELEMENT_DATA: iPresuncion[] =[];
 
@@ -28,11 +29,10 @@ export class AnalisisPresuncionComponent implements OnInit {
   private IdPaciente : Number = 0;
   private dialogRef: MatDialogRef<NuevoAnalisisPresuncionComponent>;
 
-  private _ExpdienteService: ExpdienteService;
   
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+  
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog,private _ExpdienteService: ExpdienteService) {
  
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
    }
 
  
@@ -68,7 +68,26 @@ export class AnalisisPresuncionComponent implements OnInit {
     
   }
 
+
   private Llenar(datos : any)
+  {
+
+   
+    let _json = JSON.parse(datos);
+
+  
+    let d : iDatosExpediente =  _json["d"];
+
+
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+
+    ELEMENT_DATA =  JSON.parse(d.AnalisiPresuncion);
+
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  }
+  
+  private LlenarDetalle(datos : any)
   {
     let _json = JSON.parse(datos);
 
@@ -148,7 +167,8 @@ export class AnalisisPresuncionComponent implements OnInit {
 
     this._ExpdienteService.change.subscribe(s => {
 
-      if(s[0] == "Llenar_Ant_Presuncion") this.Llenar(s[1] );
+      if(s[0] == "Llenar_Ant_Presuncion") this.LlenarDetalle(s[1] );
+      if(s[0] == "Llenar_Datos_Paciente") this.Llenar(s[1] );
 
 
     });
