@@ -33,9 +33,9 @@ export class EstiloVidaComponent implements OnInit {
   private Guardando : Boolean = false;
 
 
-  private _ExpdienteService: ExpdienteService;
+
   
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) {
 
     
 
