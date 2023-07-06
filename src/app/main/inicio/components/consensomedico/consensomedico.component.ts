@@ -209,7 +209,7 @@ public f_SospechaDiag(value : any): void {
 
 public f_RefDepre(): void {
 
-  this.val.Replace("txtDepresion", "1", "LEN>=", "0");
+  this.val.Replace("chkDepre", "1", "LEN>=", "0");
 
 
   this.val.ValForm.get("txtDepresion")?.disable();
@@ -241,7 +241,7 @@ public f_RefBipolar(): void {
 //********ESQUIZOFRENIA */
 public f_RefEsquizo(): void {
 
-  this.val.Replace("txtEsquizo", "1", "LEN>=", "0");
+  this.val.Replace("chkEsquizo", "1", "LEN>=", "0");
   this.val.ValForm.get("txtEsquizo")?.disable();
 
   if (this.val.ValForm.get("chkEsquizo")?.value == true) {
@@ -255,7 +255,7 @@ public f_RefEsquizo(): void {
 //****** OTRO DIAG*/
 public f_RefOtroDiag(): void {
 
-  this.val.Replace("txtOtroDiag", "1", "LEN>=", "0");
+  this.val.Replace("chkOtroDiag", "1", "LEN>=", "0");
   this.val.ValForm.get("txtOtroDiag")?.disable();
 
   if (this.val.ValForm.get("chkOtroDiag")?.value == true) {
