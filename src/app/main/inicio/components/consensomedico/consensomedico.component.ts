@@ -451,10 +451,12 @@ private LlenarSindrome(datos : any)
   
           this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
           this.val.ValForm.get("txtNoExpediente")?.disable();
-        }
-        if(s[0] == "Llenar_Consenso") this.LlenarConsenso(s[1] );
-        if(s[0] == "Llenar_Sindrome") this.LlenarSindrome(s[1] );
 
+          if(s[0] == "Llenar_Consenso") this.LlenarConsenso(s[1] );
+          if(s[0] == "Llenar_Sindrome") this.LlenarSindrome(s[1] );
+  
+        }
+       
       }
     );
 
