@@ -101,9 +101,13 @@ private LlenarHistoriaFamSoc(datos : any)
 
   let H: iHistoriaFamSoc  =   JSON.parse(d.HistoriaFamSoc)[0];
      
-   this.val.ValForm.get("txtFamiliar")?.setValue(H.HistoriaFamiliar);
-   this.val.ValForm.get("txtSocial")?.setValue(H.HistoriaSocial);
-   
+  if(H != undefined)
+  {
+    this.val.ValForm.get("txtFamiliar")?.setValue(H.HistoriaFamiliar);
+    this.val.ValForm.get("txtSocial")?.setValue(H.HistoriaSocial);
+    
+  }
+  
 }
 
 Cerrar() : void{
