@@ -1,0 +1,30 @@
+.linea {
+    border-bottom: 1px solid var(--faden-morado);
+}
+
+.dir {
+    min-width: 100%;
+    min-height: 100%;
+    display: block;
+
+    textarea {
+
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 85%;
+        width: 95%;
+        -webkit-box-sizing: border-box;
+        /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;
+        /* Firefox, other Gecko */
+        box-sizing: border-box;
+        /* Opera/IE 8+ */
+    }
+
+}
+
+
+
+input[type=checkbox]{
+    margin-right: 10px;
+}

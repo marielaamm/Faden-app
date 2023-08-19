@@ -1,4 +1,170 @@
-.app-expediente-registro{
-    background-color: white;
 
+
+@mixin Tamano_Menor($points) {
+  
+    @media screen and  (max-width: calc(map-get($breakpoints, $points) - 1px) ) {
+      @content;
+    }
+  }
+  
+  @mixin Tamano($points) {
+    @media screen and (min-width: map-get($breakpoints, $points)) {
+      @content;
+    }
+  }
+  
+  $breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+  );
+
+
+  .faden-dialog{
+    position: relative;
+  }
+  .fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--faden-fondo);
+    z-index: 1;
+  }
+
+  .contenido-tabla{
+    position: relative;
+    z-index: 0;
+    top: 100px;
+  }
+
+.contenedor-pag{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: var(--faden-fondo);
+
+    a{
+        color: var(--faden-amarillo);
+        font-weight: bold;
+    }
 }
+
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.linea-top{
+    border-top: 1px solid var(--faden-amarillo);
+}
+
+
+thead{
+    tr{
+        position: relative;
+        th{
+            position:fixed;
+            top: 0;
+            height: 120px;
+            text-align: center;
+            z-index: 1;
+
+            .titulo{
+                font-size: 1.5em;
+            }
+
+            
+            @include Tamano_Menor(lg) {
+                height: 170px;
+            }
+
+            @include Tamano_Menor(lg) {
+                height: 170px;
+            }
+        }
+
+        .linea{
+            border-bottom: 1px solid var(--faden-morado);
+        }
+
+        .contenedor-buscar{
+            margin-top: 20px;
+        }
+    }
+}
+
+.btn-refescar{
+    padding: 0;
+}
+
+.contenido-2{
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.aling-block.center{
+    text-align: center;
+}
+
+
+.aling-block{
+
+    span{
+    display: block;
+    width: 100%;
+    }
+}
+
+
+
+.aling-right{
+    text-align: right;
+
+    span{
+        display: inline-block;
+        width: 50%;
+    }
+}
+
+.right{
+    text-align: right;
+}
+
+.header-table-doc{
+    background-color: var(--faden-morado);
+    color: var(--faden-fondo);
+}
+
+tbody tr:first-child {
+    margin-top: 120px;
+
+    @include Tamano_Menor(lg) {
+        margin-top: 170px;
+    }
+  }
+
+  
+.linea {
+    border-bottom: 2px dashed var(--faden-amarillo);
+  }
+
+.btn-contenedor{
+    display: flex;
+    justify-content: right;
+    
+    button:first-child{
+        margin-right: 50px;
+
+        i{
+            color: var(--faden-morado);
+        }
+    }
+  }  

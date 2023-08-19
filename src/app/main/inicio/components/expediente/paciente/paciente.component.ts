@@ -186,8 +186,7 @@ export class PacienteComponent implements OnInit {
     
     if(this.Acompanante != undefined)
     {
-      this.Acompanante?.dataSource.data.splice(0, this.Acompanante.dataSource.data.length);
-      this.Acompanante.dataSource.filter = "";
+      this.Acompanante?.dataSource.splice(0, this.Acompanante.dataSource.length);
     }
    
 
@@ -408,7 +407,7 @@ export class PacienteComponent implements OnInit {
     // */
    
    // const acompananteArray = this.Acompanante.dataSource.data? this.Acompanante.dataSource.data: this.Acompanante.dataSource;
-    P.TAcompanante = this.Acompanante.dataSource.data//acompananteArray as unknown as iAcompanante[];
+    P.TAcompanante = this.Acompanante.dataSource//acompananteArray as unknown as iAcompanante[];
     this._ExpdienteService.GuardarPaciente(P);
 
   }
@@ -521,7 +520,7 @@ public EditarPaciente(fila: any){
     this.dialogRef = this._Dialog.open(ExpedienteRegistroComponent,
       {
         disableClose: true,
-        panelClass: 'custom-modal'
+        panelClass: "faden-dialog-full"
       })
 
   }
@@ -581,7 +580,7 @@ public EditarPaciente(fila: any){
     
 
 //TODO Reemplazar con los formControlName el resto de checkboxes, fijarse en el orden, comienzan con cero
-    this.Acompanante.dataSource.data = Acompanante
+    this.Acompanante.dataSource = Acompanante
 
 
     this.ServerScv.change.emit(["Menu Expediente", Paciente.IdPaciente]);

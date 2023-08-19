@@ -8,8 +8,6 @@ import { iPaciente } from '../../../interface/i-paciente';
 import { ExpdienteService } from '../../../service/expediente.service';
 import { PacienteComponent } from '../paciente/paciente.component';
 
-let ELEMENT_DATA: any []=[];
-
 @Component({
   selector: 'app-expediente-registro',
   templateUrl: './expediente-registro.component.html',
@@ -17,81 +15,67 @@ let ELEMENT_DATA: any []=[];
 })
 export class ExpedienteRegistroComponent implements OnInit {
 
-  displayedColumns: string[] = ["Seleccionar", "NoExpediente", "NombreCompleto", "Identificacion", "Celular" ];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  clickedRows = new Set<any>();
-  private _liveAnnouncer:any;
+  lstPaciente : any[] = [];
+  public lstFilter: any[] = [];
+
   
-  private  dialogRef : MatDialogRef<PacienteComponent>;
   private LstAcompanante : any[] ;
 
 
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) {
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService,
+    public dialogRef: MatDialogRef<PacienteComponent>,) {
 
     this._ExpdienteService.BuscarPaciente();
 
     
    }
 
-   announceSort(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
 
-  filtrar(event: Event) {
-    const filtro = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filtro.trim().toLowerCase();
-  }
 
-  clickRow(evento : string, row : any){
-  }
 
   private LlenarPaciente(datos: string): void {
 
     let _json = JSON.parse(datos);
 
-    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
 
-    /*_json["d"].forEach(
-      (b: any) => {
-        ELEMENT_DATA.push(b);
-      }
-    );*/
 
-    ELEMENT_DATA = _json["d"][0];
-    this.LstAcompanante = _json["d"][1]
+    this.lstPaciente = _json["d"][0];
+    this.LstAcompanante = _json["d"][1];
 
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-
+    this.lstFilter = this.lstPaciente.map((obj : any) => ({...obj}));
 
   }
 
   public v_Seleccionar(e : any) : void{
 
-    this.dataSource.data.filter(f => f.NoExpediente != e.NoExpediente).forEach(f =>
-      {
-        f.Seleccionar = false;
-      }
-      
-  );
+    
+    let Acompanante : any[] = this.LstAcompanante.filter((w : any) => w.IdPaciente == e.IdPaciente)
 
- 
-  
-  let Acompanante : any[] = this.LstAcompanante.filter((w : any) => w.IdPaciente == e.IdPaciente)
-
-  
-  this.ServerScv.change.emit(["CerrarDialog","frmRegistroPaciente", [e, Acompanante]]);
+  this.ServerScv.change.emit(["CerrarDialog","frmRegistroPaciente", [e , Acompanante]]);
   this._ExpdienteService.BuscarDatosPaciente(e.IdPaciente);
 
+
   }
 
-  private CerrarModalPaciente()
-  {
+
+  public v_Filtrar(event : any){
+
+    this.lstFilter.splice(0, this.lstFilter.length);
+    let value : string = event.target.value.toLowerCase();
+ 
+ 
+    this.lstPaciente.filter(f => (f.Filtro).toLowerCase().includes(value)).forEach(f =>{
+      this.lstFilter.push(f);
+    });
+
+  }
+
+
+
+  public v_Cancelar() :void{
     this.dialogRef.close();
   }
+  
 
   ngOnInit(): void {
 
@@ -100,7 +84,7 @@ export class ExpedienteRegistroComponent implements OnInit {
       if (s instanceof Array) {
 
         if (s[0] == "CerrarDialog" && s[1] == "frmPaciente") {
-          this.CerrarModalPaciente();
+          this.v_Cancelar();
         }
 
 

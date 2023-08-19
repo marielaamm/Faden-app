@@ -4,9 +4,9 @@ export interface iAcompanante{
     Telefono: String;
     Direccion: String;
     Correo: String;
-    EsAcpte: Boolean;
-    EsCuidador: Boolean;
-    EsPrimario: Boolean;
-    EsSecundario: Boolean;
+    EsAcpte: boolean;
+    EsCuidador: boolean;
+    EsPrimario: boolean;
+    EsSecundario: boolean;
     IdPaciente: Number
 }

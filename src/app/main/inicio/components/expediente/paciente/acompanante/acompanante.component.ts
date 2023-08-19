@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { iAcompanante } from 'src/app/main/inicio/interface/i-acompanante';
-
-let ELEMENT_DATA: iAcompanante[] = [];
+import { Component, OnInit } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { iAcompanante } from "src/app/main/inicio/interface/i-acompanante";
 
 @Component({
   selector: 'app-acompanante',
@@ -12,24 +9,17 @@ let ELEMENT_DATA: iAcompanante[] = [];
 })
 export class AcompananteComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdAcpte", "NombreCompleto", "Telefono", "Correo", "Direccion", "EsAcpte", "EsCuidador", "EsPrimario", "EsSecundario"];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  clickedRows = new Set<iAcompanante>();
-  private _liveAnnouncer: any;
+  myCheckbox: FormControl = new FormControl();
+  dataSource: iAcompanante[] = [];
 
   constructor() { }
 
-  announceSort(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
+
 
   f_Agregar_Fila(): void {
     let _Fila: iAcompanante = {} as iAcompanante;
 
+    _Fila.IdAcpte = -1;
     _Fila.NombreCompleto = "";
     _Fila.Telefono = "";
     _Fila.Direccion = "";
@@ -40,32 +30,38 @@ export class AcompananteComponent implements OnInit {
     _Fila.EsSecundario = false;
     _Fila.IdPaciente = 0;
 
-    this.dataSource.data.push(_Fila);
-    this.dataSource.filter ="";
-    //let tempDataSource = this.dataSource as unknown as iAcompanante[]
-   // tempDataSource = [...tempDataSource, ...ELEMENT_DATA]
-    //** TODO, COMO HACER QUE EL DATASOURCE ACTUALICE EL STATE SIN NECESIDAD DE CREAR UN NUEVO MATTABLEDATASOURCE? */
-    //** TODO PARA MARIELA, VALIDAR QUE CUANDO SE AGREGO UNA FILA Y NO SE GUARDO, SE ELIMINE LA NUEVA FILA */
-    //this.dataSource = new MatTableDataSource(tempDataSource);
-  }
-
-
-  public v_Seleccionar(e: iAcompanante, columna : string): void {
-
-    if (e.EsCuidador && columna == "C") {
-      e.EsAcpte = false;
-      return;
-    }
-
-    if (e.EsAcpte && columna == "A") {
-      e.EsCuidador = false;
-      return;
-    }
-    
+    this.dataSource.unshift(_Fila);
 
   }
 
-  
+
+
+  public v_Seleccionar(event : any, iAcompanante: Number, columna: string): void {
+
+
+    let Fila = this.dataSource.find(f => f.IdAcpte == iAcompanante);
+
+    switch (columna) {
+      case "A":
+        Fila!.EsAcpte = !Fila!.EsAcpte;
+        break;
+      case "C":
+        Fila!.EsCuidador = !Fila!.EsCuidador;
+        break;
+
+      case "P":
+        Fila!.EsPrimario = !Fila!.EsPrimario;
+        break;
+
+      case "S":
+        Fila!.EsSecundario = !Fila!.EsSecundario;
+        break;
+    }
+
+
+  }
+
+
   ngOnInit(): void {
   }
 
