@@ -2,6 +2,12 @@
     <form  [formGroup]="val.ValForm" novalidate autocomplete="off">
 
         <div class="row">
+            <div class="btn-guardar">
+                <button type="button" class="btn btn-faden-guardar" (click)="v_Guardar();">GUARDAR</button>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-6">
                 <label>¿Senderismo?</label>
                 <mat-radio-group  aria-label="Selecciona una opcion"  formControlName="rdSenderismo" [(ngModel)]="rdSenderismo">
