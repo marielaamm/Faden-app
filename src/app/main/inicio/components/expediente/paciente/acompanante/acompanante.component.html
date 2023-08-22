@@ -1,111 +1,145 @@
-<div id="contenedor-agregar">
-    <div>
-        <button (click)="f_Agregar_Fila();">Agregar</button>
-    </div>
+<div class="row" id="contenedor-agregar">
+    <button class="btn btn-primario" (click)="f_Agregar_Fila();">Agregar</button>
 </div>
 
-<div class="mat-elevation-z8 faden-tabla"> 
+<div class="row">
 
-    <table mat-table class="faden-tabla" [dataSource]="dataSource" matSort (matSortChange)="announceSort($event)">
-        <ng-container matColumnDef="IdAcpte">
-            <th mat-header-cell *matHeaderCellDef> No </th>
-            <td mat-cell *matCellDef="let element; let j =index" style="color:#1b364c; font-weight: bold;"> {{j+1}} </td>
-        </ng-container>
 
-        <ng-container matColumnDef="NombreCompleto">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by NombreCompleto">
-                Nombre Completo</th>
-            <td mat-cell *matCellDef="let element">
+    <table class="table table-hover table-bordered table-sm">
 
-                <mat-form-field  floatLabel="never">
-                    <input  matInput  [(ngModel)]="element.NombreCompleto">
-                </mat-form-field>
+
+
+        <tbody>
+            <tr *ngFor="let det of dataSource" class="row mb-3">
+
+                <div class="linea">
+
+                    <div class="row">
+                        <td class="col-md-12 col-lg-6 mb-1">
+                            <div class="input-group">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre"
+                                        [(ngModel)]="det.NombreCompleto">
+                                    <label>Nombre</label>
+                                </div>
     
-            </td>
-        </ng-container>
+                            </div>
+                        </td>
+                        <td class="col-md-12 col-lg-6 mb-1">
 
-        <ng-container matColumnDef="Telefono">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Telefono">
-                Teléfono</th>
-            <td mat-cell *matCellDef="let element">
+                            <div class="row">
 
-                <mat-form-field  floatLabel="never">
-                    <input  matInput  [(ngModel)]="element.Telefono">
-                </mat-form-field>
+                                <span class="col-6 col-md-6 col-lg-3">
+
+                
+
+                                    <mat-checkbox [ngModel]="det.EsAcpte"
+                                    (click)="v_Seleccionar($event, det.IdAcpte, 'A')">Acompañante?
+                                    </mat-checkbox>
+
+                                </span>
     
-            </td>
-        </ng-container>
+                                <span class="col-6 col-md-6 col-lg-3">
+                                    <mat-checkbox [ngModel]="det.EsCuidador"
+                                    (click)="v_Seleccionar($event, det.IdAcpte, 'C')">Cuidador?
+                                    </mat-checkbox>
 
-        <ng-container matColumnDef="Correo">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Correo">
-                Correo</th>
-            <td mat-cell *matCellDef="let element">
+                        
+                                </span>
+                               
+                                <span class="col-6 col-md-6 col-lg-3">
 
-                <mat-form-field  floatLabel="never">
-                    <input  matInput  [(ngModel)]="element.Correo">
-                </mat-form-field>
-    
-            </td>
-        </ng-container>
+                                    <mat-checkbox [ngModel]="det.EsPrimario"
+                                    (click)="v_Seleccionar($event, det.IdAcpte, 'P')">Primario?
+                                    </mat-checkbox>
+                                </span>
+                               
+                                <span class="col-6 col-md-6 col-lg-3">
 
-        <ng-container matColumnDef="Direccion">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Direccion">
-                Dirección</th>
-            <td mat-cell *matCellDef="let element">
+                                    <mat-checkbox [ngModel]="det.EsSecundario"
+                                    (click)="v_Seleccionar($event, det.IdAcpte, 'S')">Secundario?
+                                    </mat-checkbox>
 
-                <mat-form-field  floatLabel="never">
-                    <input  matInput  [(ngModel)]="element.Direccion">
-                </mat-form-field>
-    
-            </td>
-        </ng-container>
+                
+                                </span>
+                          
+                            </div>
 
 
-        <ng-container matColumnDef="EsAcpte">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by EsAcpte">
-                Es Acompañante</th>
-            <td mat-cell *matCellDef="let element">
+                           
+                               
+                        </td>
 
-                <mat-checkbox [(ngModel)]="element.EsAcpte" (change)="v_Seleccionar(element, 'A')">
-                 </mat-checkbox>            
-            </td>
-        </ng-container>
+            
+                    </div>
+                    <div class="row">
+                        
+                     
+                    </div>
+                   
+                    <div class="row">
 
-        <ng-container matColumnDef="EsCuidador">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by EsCuidador">
-                Es Cuidador</th>
-            <td mat-cell *matCellDef="let element">
+                      
+                        <div class="col-md-12 col-lg-6">
 
-                <mat-checkbox [(ngModel)]="element.EsCuidador" (change)="v_Seleccionar(element, 'C')">
-                </mat-checkbox>                   
-            </td>
-        </ng-container>
+                            <div class="row">
+                                <td>
+                                    <div class="input-group mb-1">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" placeholder="Telefono" aria-label="Telefono"
+                                                [(ngModel)]="det.Telefono">
+                                            <label>Telefono</label>
+                                        </div>
+                                    </div>
+                                </td>
 
-        <ng-container matColumnDef="EsPrimario">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by EsPrimario">
-                Es Primario</th>
-            <td mat-cell *matCellDef="let element">
+                                <td>
+                                    <div class="input-group mb-1">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                                                [(ngModel)]="det.Correo">
+                                            <label>Correo</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </div>
 
-                <mat-checkbox [(ngModel)]="element.EsPrimario" (change)="v_Seleccionar(element, '')">
-                </mat-checkbox> 
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="EsSecundario">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by EsSecundario">
-                Es Secundario</th>
-            <td mat-cell *matCellDef="let element">
-
-                <mat-checkbox [(ngModel)]="element.EsSecundario" (change)="v_Seleccionar(element, '')">
-                </mat-checkbox>    
-            </td>
-        </ng-container>
-
+                          
         
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row [class.demo-row-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+                      
+                        </div>
+                        
+                        <div class="col-md-12 col-lg-6 mb-1">
+                            <td class="dir">
+                                <div class="input-group">
+                                    <div class="form-floating">
+                                        <textarea type="text" class="form-control" placeholder="Direccion"
+                                            aria-label="Direccion" rows="5" cols="17"  [(ngModel)]="det.Direccion"></textarea>
+                                        <label>Direccion</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </div>
+                        
 
+                    </div>
+    
+    
+                  
+
+                </div>
+
+              
+
+
+           
+
+            </tr>
+
+           
+
+        </tbody>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons> </mat-paginator>
+
 </div>

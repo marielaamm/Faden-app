@@ -69,11 +69,9 @@ import { IgxComboModule } from 'igniteui-angular';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ModalModule } from 'ng-modal-lib';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { RolesComponent } from './main/config/components/roles/roles.component';
 import { RolesRegistroComponent } from './main/config/components/roles/roles-registro/roles-registro.component';
-import { ProformaComponent } from './main/fac/components/proforma/proforma.component';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import { DepartamentoComponent } from './main/cat/components/departamento/departamento.component';
 import { MunicipioComponent } from './main/cat/components/municipio/municipio.component';
@@ -142,7 +140,6 @@ display: {
     DynamicFormDirective,
     RolesComponent,
     RolesRegistroComponent,
-    ProformaComponent,
     DepartamentoComponent,
     MunicipioComponent,
     MunicipioRegistroComponent,
@@ -282,6 +279,6 @@ display: {
 export class AppModule {
 
   constructor() {
-    library.add(faUser);
+ 
   }
 }

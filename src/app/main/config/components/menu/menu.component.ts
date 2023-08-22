@@ -8,7 +8,6 @@ import { RegistrosMedicosComponent } from 'src/app/main/cat/components/medicos/r
 import { MunicipioRegistroComponent } from 'src/app/main/cat/components/municipio/municipio-registro/municipio-registro.component';
 import { MunicipioComponent } from 'src/app/main/cat/components/municipio/municipio.component';
 import { DynamicNavDirective } from 'src/app/main/config/components/menu/nav/dynamic-nav.directive';
-import { ProformaComponent } from 'src/app/main/fac/components/proforma/proforma.component';
 import { ConsensomedicoComponent } from 'src/app/main/inicio/components/consensomedico/consensomedico.component';
 import { ExpedienteRegistroComponent } from 'src/app/main/inicio/components/expediente/expediente-registro/expediente-registro.component';
 import { ExpedienteComponent } from 'src/app/main/inicio/components/expediente/expediente.component';

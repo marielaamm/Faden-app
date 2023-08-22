@@ -32,6 +32,6 @@ export interface iPaciente{
     Jubilado: Boolean,
     Pensionado: Boolean,
     Estado: String,
-    TAcompanante: iAcompanante[]  
+    TAcompanante: iAcompanante[],
     
 }
