@@ -23,7 +23,7 @@ export class AntecedenteQuirurgicoComponent implements OnInit {
   
 
 
-  displayedColumns: string[] = ["IdAntQ","Descripcion", "Lugar",  "Fecha", "Accion"];
+  displayedColumns: string[] = ["col1"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iAntecedenteQuirurgico>();
   private _liveAnnouncer:any;

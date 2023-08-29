@@ -20,7 +20,7 @@ let ELEMENT_DATA: iAntecedentesFamiliares[]=[];
 })
 export class AntecedentesFamiliaresComponent implements OnInit {
 
-displayedColumns: string[] = ["IdAntecedente","TipoAntecedente", "Descripcion", "Accion"];
+displayedColumns: string[] = ["col1"];
 dataSource = new MatTableDataSource(ELEMENT_DATA);
 clickedRows = new Set<iAntecedentesFamiliares>();
 private _liveAnnouncer:any;

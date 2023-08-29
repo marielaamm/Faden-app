@@ -19,7 +19,7 @@ let ELEMENT_DATA: iAntecedenteNeuroPsiquiatrico[] =[];
 })
 export class AntecedenteNeuropsiquiatricoComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdAntNeuroPsiq","Nombre", "Vive",  "Enfermedad", "Padece", "Parentesco", "Accion"];
+  displayedColumns: string[] = ["col1"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iAntecedenteNeuroPsiquiatrico>();
   private _liveAnnouncer:any;

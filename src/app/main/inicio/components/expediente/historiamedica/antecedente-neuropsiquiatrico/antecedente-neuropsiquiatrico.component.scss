@@ -1,40 +1,27 @@
-.app-antecedente-neuropsiquiatrico {
+tr {
 
-    #contenedor-agregar{
-        width: 100%;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-        
-    }
-    
+  .Nombre, .Enfermedad {
 
-    table {
-        width: 100%;
-      }
+    margin-left: 30px;
+  }
 
+  .vive{
+    text-align: right;
+  }
 
-      .table-container {
+  b{
+    margin-right: 5px;
+  }
 
-        max-height: 70px;
-        max-width: 100%;
-        overflow: auto;
-      }
-  
-      .mat-header-cell {
-        font-size: 1em;
-      }
-
-      .mat-column-Nombre
-      {
-        max-width: 100px;
-        overflow: hidden;
-      }
-
-      .mat-column-Enfermedad
-      {
-        max-width: 100px;
-        overflow: hidden;
-      }
 }
 
+
+
+table, .tabla-layout{
+  table-layout: fixed;
+  width: 100%;
+}
+
+.contenedor-edicion{
+  text-align: right;
+}
