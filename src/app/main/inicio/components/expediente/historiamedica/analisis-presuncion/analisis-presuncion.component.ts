@@ -21,7 +21,7 @@ export class AnalisisPresuncionComponent implements OnInit {
 
   
 
-  displayedColumns: string[] = ["IdAnalisiPresuncion","Descripcion", "Fecha", "Accion"];
+  displayedColumns: string[] = ["col1"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iPresuncion>();
   private _liveAnnouncer:any;

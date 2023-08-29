@@ -1,34 +1,25 @@
-.app-analisis-presuncion {
 
-    #contenedor-agregar{
-        width: 100%;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-        
-    }
-    
+tr {
 
-    table {
-        width: 100%;
-      }
+  .fecha{
+    text-align: right;
+  }
 
+  b{
+    margin-right: 5px;
+  }
 
-      .table-container {
-
-        max-height: 70px;
-        max-width: 100%;
-        overflow: auto;
-      }
-  
-      .mat-header-cell {
-        font-size: 1em;
-      }
 }
 
 
 
+table, .tabla-layout{
+  table-layout: fixed;
+  width: 100%;
+}
 
-
+.contenedor-edicion{
+  text-align: right;
+}
 
 
