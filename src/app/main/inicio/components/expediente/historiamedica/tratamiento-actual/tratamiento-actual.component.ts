@@ -24,7 +24,7 @@ export class TratamientoActualComponent implements OnInit {
   
 
 
-  displayedColumns: string[] = ["IdTratamiento","Tratamiento", "Dosis", "IdMedico", "FechaRegistro", "Tipo", "Accion"];
+  displayedColumns: string[] = ["col1"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iTratamientoActual>();
   private _liveAnnouncer:any;

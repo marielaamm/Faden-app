@@ -1,32 +1,25 @@
-.app-tratamiento-actual {
-
-    #contenedor-agregar{
-        width: 100%;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-        
-    }
-    
-
-    table {
-        width: 100%;
-      }
 
 
-      .table-container {
+tr {
 
-        max-height: 70px;
-        max-width: 100%;
-        overflow: auto;
-      }
-  
-      .mat-header-cell {
-        font-size: 1em;
-      }
+  .Dosis {
+
+    margin-left: 30px;
+  }
+
+  b{
+    margin-right: 5px;
+  }
+
 }
 
 
 
+table, .tabla-layout{
+  table-layout: fixed;
+  width: 100%;
+}
 
-
+.contenedor-edicion{
+  text-align: right;
+}
