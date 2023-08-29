@@ -19,7 +19,7 @@ let ELEMENT_DATA: iExamenClinico[]=[];
 })
 export class ExamenClinicoComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdExamenClinico","Descripcion", "Fecha", "TipoExamen", "Accion"];
+  displayedColumns: string[] = ["col1"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iExamenClinico>();
   private _liveAnnouncer:any;
@@ -172,7 +172,8 @@ export class ExamenClinicoComponent implements OnInit {
     this._ExpdienteService.change.subscribe(s => {
 
       if(s[0] == "Llenar_Examen_Clinico") this.LlenarDetalle(s[1] );
-
+      if(s[0] == "Llenar_Datos_Paciente") this.Llenar(s[1] );
+      
 
       if (s[0] == "dato_Examen_Clinico_Eliminar") {
 
@@ -190,7 +191,7 @@ export class ExamenClinicoComponent implements OnInit {
         this._Dialog.open(DialogoComponent, {
           data: s[1]["msj"]
         });
-
+ 
         this._ExpdienteService.BuscarExamenClinico(this.IdPaciente);
         
       }

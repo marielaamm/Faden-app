@@ -1,34 +1,28 @@
-.app-examen-clinico {
 
-    #contenedor-agregar{
-        width: 100%;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-        
-    }
-    
+tr {
 
-    table {
-        width: 100%;
-      }
+  .Descripcion {
+    margin-left: 30px;
+  }
 
+  .fecha{
+    text-align: right;
+  }
 
-      .table-container {
+  b{
+    margin-right: 5px;
+  }
 
-        max-height: 70px;
-        max-width: 100%;
-        overflow: auto;
-      }
-  
-      .mat-header-cell {
-        font-size: 1em;
-      }
 }
 
 
 
+table, .tabla-layout{
+  table-layout: fixed;
+  width: 100%;
+}
 
-
-
+.contenedor-edicion{
+  text-align: right;
+}
 

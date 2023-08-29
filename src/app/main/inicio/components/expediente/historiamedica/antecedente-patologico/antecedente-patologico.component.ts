@@ -19,7 +19,7 @@ let ELEMENT_DATA: iAntecedentePatologico[] =[];
 })
 export class AntecedentePatologicoComponent implements OnInit {
 
-  displayedColumns: string[] = ["IdAntecedentePatologico","Enfermedad", "Descripcion", "Accion"];
+  displayedColumns: string[] = ["col1"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iAntecedentePatologico>();
   private _liveAnnouncer:any;
