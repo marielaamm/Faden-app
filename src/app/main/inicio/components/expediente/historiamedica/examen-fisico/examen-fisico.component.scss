@@ -1,5 +1,9 @@
 .app-examen-fisico{
 
+    margin-left: 20px;
+    margin-right: 40px;
+
+
     .btn-guardar{
         display:flex;
         justify-content: flex-end;
@@ -56,5 +60,9 @@
     }
 
 
+    .contenedor{
+        margin-top: 20px;
+        text-align: right;
+    }
 
 }
