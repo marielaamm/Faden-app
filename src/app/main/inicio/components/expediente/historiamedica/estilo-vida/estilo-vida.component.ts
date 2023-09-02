@@ -164,24 +164,7 @@ export class EstiloVidaComponent implements OnInit {
 
     this.val.ValForm.get("txtHoras")?.setValue("");
 
-    this.lstTablaEjercicio = [
-      {IdEjercicio : 0, IdElemento : "Caminar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Trotar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Correr",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Nadar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Ciclismo",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Jardin",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Bailar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Trabaja",  Frecuencia : "",  Activo : false, IdPaciente : 0 }
-    ];
-
-    
-    this.lstTablaAlimentacion = [
-      {IdAlimentacion : 0, IdElemento : "Fruta",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
-      {IdAlimentacion : 0, IdElemento : "Vegetales",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
-      {IdAlimentacion : 0, IdElemento : "Ensalada",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
-      {IdAlimentacion : 0, IdElemento : "Carne",  Porcion : "",  Frecuencia : "", IdPaciente : 0 }
-    ];
+   
 
    }
 
@@ -234,6 +217,7 @@ export class EstiloVidaComponent implements OnInit {
       f.Frecuencia = this.val.ValForm.get("txtF" + f.IdElemento.toString())?.value;
      });
 
+     Datos.EstiloVida = EstiloVida;
      Datos.Ejercicios = this.lstTablaEjercicio;
      Datos.Alimentacion = this.lstTablaAlimentacion;
 
@@ -248,9 +232,39 @@ export class EstiloVidaComponent implements OnInit {
 
     if(_json["d"].length == 0) return;
 
-    let EstiloVida : iEstiloVida = _json["d"][0];
-    this.lstTablaEjercicio = _json["d"][1];
-    this.lstTablaAlimentacion = _json["d"][2];
+    let EstiloVida : iEstiloVida = JSON.parse(_json["d"].EstiloVida)[0];
+    this.lstTablaEjercicio = JSON.parse(_json["d"].EstiloVidaEjercicio);
+    this.lstTablaAlimentacion =  JSON.parse(_json["d"].EstiloVidaAlimentacion);
+
+    if(this.lstTablaEjercicio.length == 0)
+    {
+
+      this.lstTablaEjercicio  = [
+      {IdEjercicio : 0, IdElemento : "Caminar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Trotar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Correr",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Nadar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Ciclismo",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Jardin",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Bailar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Trabaja",  Frecuencia : "",  Activo : false, IdPaciente : 0 }
+    ];
+    }
+
+
+    if(this.lstTablaAlimentacion.length == 0)
+    {
+      this.lstTablaAlimentacion = [
+        {IdAlimentacion : 0, IdElemento : "Fruta",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+        {IdAlimentacion : 0, IdElemento : "Vegetales",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+        {IdAlimentacion : 0, IdElemento : "Ensalada",  Porcion : "",  Frecuencia : "", IdPaciente : 0 },
+        {IdAlimentacion : 0, IdElemento : "Carne",  Porcion : "",  Frecuencia : "", IdPaciente : 0 }
+      ];
+    }
+
+
+
+ 
 
     this.rdSenderismo = EstiloVida.Senderismo;
     this.rdAlcoholismo = EstiloVida.Alcoholismo
@@ -309,6 +323,7 @@ export class EstiloVidaComponent implements OnInit {
     this._ExpdienteService.change.subscribe(s => {
 
       if(s[0] == "Llenar_Estilo_Vida") this.Llenar(s[1] );
+      if(s[0] == "Llenar_Datos_Paciente") this.Llenar(s[1] );
 
 
 
