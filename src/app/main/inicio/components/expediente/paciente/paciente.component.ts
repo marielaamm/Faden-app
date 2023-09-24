@@ -16,6 +16,8 @@ import { iPaciente } from '../../../interface/i-paciente';
 import { ExpdienteService } from '../../../service/expediente.service';
 import { ExpedienteRegistroComponent } from '../expediente-registro/expediente-registro.component';
 import { AcompananteComponent } from './acompanante/acompanante.component';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
+import { zip } from 'rxjs';
 
 
 
@@ -35,9 +37,10 @@ export class PacienteComponent implements OnInit {
   public lstEscolaridad: iEscolaridad[] = [];
   public val: Validacion = new Validacion();
   private _CatalogoService: CatalogoService;
-  private _FuncionesGenerales: FuncionesGeneralesService;
+  public _FuncionesGenerales: FuncionesGeneralesService;
   private _ExpdienteService: ExpdienteService;
   private dialogRef: MatDialogRef<ExpedienteRegistroComponent>;
+  private FechaServidor : Date;
 
 
   private _Fila_Paciente: any = undefined;
@@ -56,7 +59,7 @@ export class PacienteComponent implements OnInit {
 
 
 
-  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog, private cFunciones : Funciones) {
 
     this.val.add("txtNoExpediente", "1", "LEN>=", "0");
     this.val.add("txtFecha", "1", "LEN>=", "0");
@@ -114,7 +117,7 @@ export class PacienteComponent implements OnInit {
     this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
 
     this.limpiar();
-
+    this._FuncionesGenerales.FechaServidor();
 
   
   }
@@ -191,7 +194,7 @@ export class PacienteComponent implements OnInit {
    
 
     this._FuncionesGenerales.BuscarFechaNac();
-    this._FuncionesGenerales.FechaServidor();
+    
     this._CatalogoService.BuscarEscolaridad();
 
     this.ServerScv.change.emit(["Cerrar Expediente", "0"]);
@@ -532,7 +535,7 @@ public EditarPaciente(fila: any){
     //Todo convertir los string de visitas, referencias y antecedentes a array segun la linea de arriba
     this.limpiar();
     this.val.ValForm.get("txtNoExpediente")?.setValue(Paciente.NoExpediente);
-    this.val.ValForm.get("txtFecha")?.setValue(Paciente.FechaIngreso);
+    this.val.ValForm.get("txtFecha")?.setValue(this.cFunciones.DateFormat(Paciente.FechaIngreso, "yyyy-MM-dd"));
     this.val.ValForm.get("txtPrimerNombre")?.setValue(Paciente.PNombre);
     this.val.ValForm.get("txtSegundoNombre")?.setValue(Paciente.SNombre);
     this.val.ValForm.get("txtPrimerApellido")?.setValue(Paciente.PApellido);
@@ -540,6 +543,7 @@ public EditarPaciente(fila: any){
     this.val.ValForm.get("rdSexo")?.setValue(Paciente.Sexo);
     this.val.ValForm.get("txtMunicipio")?.setValue([Paciente.IdLugarNac]);
     this.val.ValForm.get("txtFechaNacimiento")?.setValue(Paciente.FechaNacim);
+    this.val.ValForm.get("txtEdad")?.setValue(this.FechaServidor.getFullYear() - (new Date(Paciente.FechaNacim)).getFullYear());
     this.val.ValForm.get("txtOcupacion")?.setValue(Paciente.Ocupacion);
     this.val.ValForm.get("txtCedula")?.setValue(Paciente.Identificacion);
     this.val.ValForm.get("txtEscolaridad")?.setValue([Paciente.IdEscolaridad]);
@@ -657,7 +661,8 @@ public EditarPaciente(fila: any){
         if (s[0] == "Llenar_FechaServidor") {
           let _json = JSON.parse(s[1]);
 
-          this.val.ValForm.get("txtFecha")?.setValue(_json["d"][0]);
+          this.FechaServidor = new Date(_json["d"][0])
+          this.val.ValForm.get("txtFecha")?.setValue(this.cFunciones.DateFormat(this.FechaServidor, "yyyy-MM-dd"));
 
         }
       }
@@ -682,36 +687,14 @@ public EditarPaciente(fila: any){
   }
 
  
-  CalcularEdad(fecha : any)
+  CalcularEdad(f : any)
   {
-  
-    this.val.ValForm.get("txtEdad")?.setValue(this.calculateDiff(fecha));
+   let Fecha = new Date(f)
+ 
+    this.val.ValForm.get("txtEdad")?.setValue(this.FechaServidor.getFullYear() - Fecha.getFullYear());
   }
 
 
-  calculateDiff(dateSent : Date){
-    let currentDate = new Date(this.val.ValForm.get("txtFecha")?.value);
-
-    const convertAge = new Date(dateSent);
-    var timeDiff = Math.abs(currentDate.getTime() - convertAge.getTime());
-    return Math.ceil((timeDiff / (1000 * 3600 * 24)) / 365);
-
-
-    /*let currentDate =  new Date(this.val.ValForm.get("txtFecha")?.value);
-
-    dateSent = new Date(dateSent)
-
-    var datePipe = new DatePipe('en-US');
-    dateSent = datePipe.transform(dateSent, 'dd/MM/yyyy');
-
-
-     console.log(dateSent)
-
-
-    return Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) ) /(1000 * 60 * 60 * 24));
-
-    */
-}
 
 
 }

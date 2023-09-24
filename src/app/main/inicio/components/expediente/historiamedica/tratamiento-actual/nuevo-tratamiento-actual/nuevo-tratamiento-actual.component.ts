@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { iTratamientoActual } from 'src/app/main/inicio/interface/i-tratamiento-actual';
 import { ExpdienteService } from 'src/app/main/inicio/service/expediente.service';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
 import { ServerService } from 'src/app/main/shared/service/server.service';
@@ -20,7 +21,7 @@ export class NuevoTratamientoActualComponent implements OnInit {
 
   
   
-  constructor(private ServerScv: ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) { 
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService, private cFunciones : Funciones) { 
 
     this.val.add("txtTratamiento", "1", "LEN>", "0");
     this.val.add("txtTratamiento", "2", "LEN<=", "50");
@@ -85,7 +86,7 @@ export class NuevoTratamientoActualComponent implements OnInit {
     T.IdTratamiento = this.ID;
     T.Tratamiento = this.val.ValForm.get("txtTratamiento")?.value;
     T.Dosis  = this.val.ValForm.get("txtDosis")?.value;
-    T.IdMedico = 14;
+    T.IdMedico = this.cFunciones.IdMedico;
     T.IdPaciente = this.IdPaciente;
     T.Tipo = this.rdTipoTratammiento;
     this._ExpdienteService.GuardarTratamiento(T);

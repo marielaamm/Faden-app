@@ -43,6 +43,7 @@ export class Validacion {
       }
       
     public add(id : string, regla : string, condicion :  string, valor : string){
+        this.ValForm.removeControl(id)
         this.ValForm.addControl(id, new FormControl('', this.Cls_Validaciones(id)))
 
         const _Regla : ReglasValidacion = new ReglasValidacion();

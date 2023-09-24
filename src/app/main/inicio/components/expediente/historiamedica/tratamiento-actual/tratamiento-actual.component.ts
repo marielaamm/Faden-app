@@ -12,7 +12,7 @@ import { NuevoTratamientoActualComponent } from './nuevo-tratamiento-actual/nuev
 import { iDatosExpediente } from 'src/app/main/inicio/interface/i-datos-expediente';
 
 
-let ELEMENT_DATA: iTratamientoActual[] =[];
+let ELEMENT_DATA: any[] =[];
 
 @Component({
   selector: 'app-tratamiento-actual',

@@ -108,6 +108,7 @@ import { AnalisisPresuncionComponent } from './main/inicio/components/expediente
 import { NuevoAnalisisPresuncionComponent } from './main/inicio/components/expediente/historiamedica/analisis-presuncion/nuevo-analisis-presuncion/nuevo-analisis-presuncion.component';
 import { EstiloVidaComponent } from './main/inicio/components/expediente/historiamedica/estilo-vida/estilo-vida.component';
 import { ExamenFisicoComponent } from './main/inicio/components/expediente/historiamedica/examen-fisico/examen-fisico.component';
+import { AgendaCitaComponent } from './main/inicio/components/agenda-cita/agenda-cita.component';
 
 //FIN
 
@@ -175,6 +176,7 @@ display: {
     NuevoAnalisisPresuncionComponent,
     EstiloVidaComponent,
     ExamenFisicoComponent,
+    AgendaCitaComponent
     
   ],
   imports: [
@@ -265,7 +267,8 @@ display: {
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    AgendaCitaComponent
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

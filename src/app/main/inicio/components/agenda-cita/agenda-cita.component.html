@@ -1,0 +1,108 @@
+<div class="container-sm">
+
+
+    <form autocomplete="off" [formGroup]="val.ValForm">
+
+        <div class="row mb-3">
+
+            <div class="col-6 col-md-6 col-lg-6 mb-1">
+    
+                <igx-combo #cmbBodega [data]="lstMedico" valueKey="NoMedico" displayKey="NombreCompleto" id="cmbMedico"
+                    formControlName="cmbMedico" placeholder="Medico" searchPlaceholder="Seleccione una bodega..."
+                    [autoFocusSearch]="true" [overlaySettings]="overlaySettings"
+                    (selectionChanging)="v_Select_Medico($event)" (keyup)="v_Enter_Medico($event);">
+                    <label igxLabel>Medico</label>
+                    <igx-prefix><i class="fa-solid fa-list fa-lg"></i></igx-prefix>
+                </igx-combo>
+            </div>
+
+
+            <div class="col-6 col-md-6 col-lg-3 offset-lg-3 mb-1">
+
+                
+                <mat-form-field appearance="legacy">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="dp" id="txtFecha" formControlName="txtFecha">
+                    <mat-datepicker-toggle matSuffix [for]="dp">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #dp
+                    startView="multi-year"
+                    (monthSelected)="setMonthAndYear($event, dp)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+
+                </mat-form-field>
+            </div>
+        
+    
+        </div>
+    
+        <div class="row mb-1">
+    
+            <table class="table">
+    
+                <thead>
+                    <tr>
+                        <th class="table-header">D</th>
+                        <th class="table-header">L</th>
+                        <th class="table-header">Ma</th>
+                        <th class="table-header">Mi</th>
+                        <th class="table-header">J</th>
+                        <th class="table-header">V</th>
+                        <th class="table-header">S</th>
+                    </tr>
+    
+                </thead>
+                <tbody *ngFor="let c of Calendario">
+                    <tr>
+                        <td>
+                            <mat-checkbox  color="primary" formControlName="chk{{c.D_dia}}"   [(ngModel)]="c.D" *ngIf="c.D != undefined">
+                                <b>{{c.D_dia}}</b>
+                            </mat-checkbox>
+
+
+                        </td>
+                        <td>
+                            <mat-checkbox  color="primary" formControlName="chk{{c.L_dia}}"   [(ngModel)]="c.L" *ngIf="c.L != undefined">
+                                <b>{{c.L_dia}}</b>
+                            </mat-checkbox>
+                        </td>
+                        <td>
+                            <mat-checkbox  color="primary" formControlName="chk{{c.Ma_dia}}"   [(ngModel)]="c.ma" *ngIf="c.Ma != undefined">
+                                <b>{{c.Ma_dia}}</b>
+                            </mat-checkbox>
+                        </td>
+                        <td>
+                            <mat-checkbox  color="primary" formControlName="chk{{c.Mi_dia}}"   [(ngModel)]="c.Mi" *ngIf="c.Mi != undefined">
+                                <b>{{c.Mi_dia}}</b>
+                            </mat-checkbox>
+                        </td>
+                        <td>
+                            <mat-checkbox  color="primary" formControlName="chk{{c.J_dia}}"   [(ngModel)]="c.J" *ngIf="c.J != undefined">
+                                <b>{{c.J_dia}}</b>
+                            </mat-checkbox>
+                        </td>
+                        <td>
+                            <mat-checkbox  color="primary" formControlName="chk{{c.V_dia}}"   [(ngModel)]="c.V" *ngIf="c.V != undefined">
+                                <b>{{c.V_dia}}</b>
+                            </mat-checkbox>
+                        </td>
+                        <td>
+                            <mat-checkbox  color="primary" formControlName="chk{{c.S_dia}}"   [(ngModel)]="c.S" *ngIf="c.S != undefined">
+                                <b>{{c.S_dia}}</b>
+                            </mat-checkbox>
+                        </td>
+                    </tr>
+    
+                </tbody>
+    
+            </table>
+    
+        </div>
+
+    </form>
+
+ 
+
+</div>
