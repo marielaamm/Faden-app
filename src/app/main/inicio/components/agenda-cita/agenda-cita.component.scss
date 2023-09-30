@@ -1,13 +1,17 @@
 
 
-thead{
-    border-bottom: 1px solid black;
+.observaciones {
+
+  textarea {
+      height: 120px;
+
+  }
+
+
 }
 
-.example-month-picker .mat-calendar-period-button {
-    pointer-events: none;
-  }
-  
-  .example-month-picker .mat-calendar-arrow {
-    display: none;
-  }
+
+.botones-edicion{
+
+  text-align: right;
+}

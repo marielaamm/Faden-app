@@ -8,6 +8,7 @@ export interface iPaciente{
     SNombre: String,
     PApellido: String,
     SApellido: String,
+    NombreCompleto : string,
     Sexo: String,
     IdDepto: Number,
     IdCiudad: Number,

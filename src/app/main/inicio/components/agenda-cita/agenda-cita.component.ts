@@ -8,52 +8,16 @@ import * as moment from 'moment';
 import { Moment } from 'moment';
 import { iMedicos } from 'src/app/main/cat/interface/i-medicos';
 import { Validacion } from 'src/app/main/shared/class/validacion';
+import { iPaciente } from '../../interface/i-paciente';
 
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'MM/YYYY',
-  },
-  display: {
-    dateInput: 'MM/YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 
-interface ICalendar {
-  D: boolean
-  D_dia: number,
-  L: boolean;
-  L_dia: number,
-  Ma: boolean,
-  Ma_dia: number,
-  Mi: boolean,
-  Mi_dia: number,
-  J: boolean,
-  J_dia: number,
-  V: boolean,
-  V_dia: number,
-  S: boolean
-  S_dia: number,
-}
+
 
 
 @Component({
   selector: 'app-agenda-cita',
   templateUrl: './agenda-cita.component.html',
-  styleUrls: ['./agenda-cita.component.scss'],
-  providers: [
-    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
-    // application's root module. We provide it at the component level here, due to limitations of
-    // our example generation script.
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    },
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-  ],
+  styleUrls: ['./agenda-cita.component.scss']
 })
 
 
@@ -61,6 +25,7 @@ export class AgendaCitaComponent implements OnInit {
 
   public val = new Validacion();
   public lstMedico: iMedicos[] = [];
+  public lstPaciente: iPaciente[] = [];
 
   public overlaySettings: OverlaySettings = {};
 
@@ -69,85 +34,43 @@ export class AgendaCitaComponent implements OnInit {
 
 
   constructor() {
+    this.val.add("cmbPaciente", "1", "LEN>", "0");
     this.val.add("cmbMedico", "1", "LEN>", "0");
+    this.val.add("txtEspecialidad", "1", "LEN>", "0");
     this.val.add("txtFecha", "1", "LEN>", "0");
+    this.val.add("txtHora1", "1", "LEN>", "0");
+    this.val.add("txtHora2", "1", "LEN>", "0");
+    this.val.add("txtObservaciones", "1", "LEN>=", "0");
   }
 
 
-  public LlenarCalendario()
-  {
-
-    
-    this.Calendario.splice(0, this.Calendario.length);
-   
-    let Fecha : Date = new Date(this.val.ValForm.get("txtFecha")?.value) ;
-    let anio = Fecha.getFullYear();
-    let mes = Fecha.getMonth() - 1;
-    let FinLinea : boolean = false;
 
 
-    var diasMes = new Date(anio, mes, 0).getDate();
-
-    let c: ICalendar = {} as ICalendar;
 
 
-    for (var dia = 1; dia <= diasMes; dia++) {
 
-      this.val.add("chk" + dia, "1", "LEN>=", "0");
+  @ViewChild("cmbPaciente", { static: false })
+  public cmbPaciente: IgxComboComponent;
 
-      var indice = new Date(anio, mes - 1, dia).getDay();
+  public v_Select_Paciente(event: any) {
+    if (event.added.length) {
+      event.newSelection = event.added;
+      this.val.ValForm.get("cmbPaciente")?.setValue([event.added]);
+    }
+  }
 
-      switch (indice) {
-
-        case 0:
-          c.D = false;
-          c.D_dia = dia;
-          
-          break;
-        case 1:
-          c.L = false;
-          c.L_dia = dia;
-          break;
-        case 2:
-          c.Ma = false;
-          c.Ma_dia = dia;
-          break;
-        case 3:
-          c.Mi = false;
-          c.Mi_dia = dia;
-          break;
-        case 4:
-          c.J = false;
-          c.J_dia = dia;
-          break;
-        case 5:
-          c.V = false;
-          c.V_dia = dia;
-          break;
-        case 6:
-          c.S = false;
-          c.S_dia = dia;
-          FinLinea = true;
-          break;
-
-
-      }
- 
-      if(FinLinea){
-        FinLinea = false;
-       
-        this.Calendario.push(c);
-        c = {} as ICalendar;
-      }
-
+  public v_Enter_Paciente(event: any) {
+    if (event.key == "Enter") {
+      let _Item: iPaciente = this.cmbPaciente.dropdown.focusedItem.value;
+      this.cmbPaciente.setSelectedItem(_Item.NoExpediente);
+      this.val.ValForm.get("cmbPaciente")?.setValue([_Item.NombreCompleto]);
 
     }
   }
 
 
 
-
-
+  
   @ViewChild("cmbMedico", { static: false })
   public cmbMedico: IgxComboComponent;
 
@@ -160,23 +83,16 @@ export class AgendaCitaComponent implements OnInit {
 
   public v_Enter_Medico(event: any) {
     if (event.key == "Enter") {
-      let _Item: iMedicos = this.cmbMedico.dropdown.focusedItem.value;
-      this.cmbMedico.setSelectedItem(_Item.NoMedico);
-      this.val.ValForm.get("cmbMedico")?.setValue([_Item.NoMedico]);
+      let _Item: iMedicos = this.cmbPaciente.dropdown.focusedItem.value;
+      this.cmbPaciente.setSelectedItem(_Item.NoMedico);
+      this.val.ValForm.get("cmbMedico")?.setValue([_Item.NombreCompleto]);
 
     }
   }
 
 
+  public v_Guardar() : void{
 
-  setMonthAndYear(normalizedMonthAndYear: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.date.value!;
-    ctrlValue.month(normalizedMonthAndYear.month());
-    ctrlValue.year(normalizedMonthAndYear.year());
-    this.val.ValForm.get("txtFecha")?.setValue(ctrlValue);
-    datepicker.close();
-
-    this.LlenarCalendario()
   }
 
 

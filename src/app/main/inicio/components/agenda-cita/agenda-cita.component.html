@@ -3,106 +3,121 @@
 
     <form autocomplete="off" [formGroup]="val.ValForm">
 
-        <div class="row mb-3">
+
+        <div class="row mb-1">
+            <igx-combo #cmbPaciente [data]="lstPaciente" valueKey="NoExpediente" displayKey="NombreCompleto"
+                id="cmbPaciente" formControlName="cmbPaciente" placeholder="Paciente"
+                searchPlaceholder="Seleccione un paciente" [autoFocusSearch]="true" [overlaySettings]="overlaySettings"
+                (selectionChanging)="v_Select_Paciente($event)" (keyup)="v_Enter_Paciente($event);">
+                <label igxLabel>Paciente</label>
+                <igx-prefix><i class="fa-solid fa-list fa-lg"></i></igx-prefix>
+            </igx-combo>
+        </div>
+
+        <div class="row">
 
             <div class="col-6 col-md-6 col-lg-6 mb-1">
-    
-                <igx-combo #cmbBodega [data]="lstMedico" valueKey="NoMedico" displayKey="NombreCompleto" id="cmbMedico"
-                    formControlName="cmbMedico" placeholder="Medico" searchPlaceholder="Seleccione una bodega..."
-                    [autoFocusSearch]="true" [overlaySettings]="overlaySettings"
-                    (selectionChanging)="v_Select_Medico($event)" (keyup)="v_Enter_Medico($event);">
+                <igx-combo #cmbMedico [data]="lstMedico" valueKey="NoMedico" displayKey="NombreCompleto"
+                    id="cmbPaciente" formControlName="cmbMedico" placeholder="Medico"
+                    searchPlaceholder="Seleccione un medico" [autoFocusSearch]="true"
+                    [overlaySettings]="overlaySettings" (selectionChanging)="v_Select_Medico($event)"
+                    (keyup)="v_Enter_Medico($event);">
                     <label igxLabel>Medico</label>
                     <igx-prefix><i class="fa-solid fa-list fa-lg"></i></igx-prefix>
                 </igx-combo>
             </div>
 
+            <div class="col-6 col-md-6 col-lg-6 mb-1">
+                <div class="input-group">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" placeholder="Especialidad" id="txtEspecialidad"
+                            formControlName="txtEspecialidad">
+                        <label for="txtEspecialidad">Especialidad</label>
+                    </div>
+                </div>
+            </div>
 
-            <div class="col-6 col-md-6 col-lg-3 offset-lg-3 mb-1">
 
-                
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3 mb-1">
                 <mat-form-field appearance="legacy">
                     <mat-label>Fecha</mat-label>
                     <input matInput [matDatepicker]="dp" id="txtFecha" formControlName="txtFecha">
                     <mat-datepicker-toggle matSuffix [for]="dp">
                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                     </mat-datepicker-toggle>
-                    <mat-datepicker #dp
-                    startView="multi-year"
-                    (monthSelected)="setMonthAndYear($event, dp)"
-                    panelClass="example-month-picker">
-    </mat-datepicker>
+                    <mat-datepicker #dp>
+                    </mat-datepicker>
 
                 </mat-form-field>
             </div>
-        
-    
+
+
+            <div class="col-6 col-md-6 col-lg-3  mb-1">
+                          
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-clock fa-xl"></i></span>
+                    <div class="form-floating">
+                        <select class="form-select form-select-lg" aria-label="Hora Inicio" id="txtHora1"
+                            formControlName="txtHora1">
+                            <option  value="8">8 am</option>
+                            <option  value="9">9 am</option>
+                            <option  value="10">10 am</option>
+                            <option  value="11">11 am</option>
+                            <option  value="12">12 am</option>
+                        </select>
+                        <label for="txtHora1">Hora Inicio</label>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-6 col-md-6 col-lg-3  mb-1">
+                          
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-clock fa-xl"></i></span>
+                    <div class="form-floating">
+                        <select class="form-select form-select-lg" aria-label="Hora Inicio" id="txtHora2"
+                            formControlName="txtHora2">
+                            <option  value="8">8 am</option>
+                            <option  value="9">9 am</option>
+                            <option  value="10">10 am</option>
+                            <option  value="11">11 am</option>
+                            <option  value="12">12 am</option>
+                        </select>
+                        <label for="txtHora2">Hora Fin</label>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-    
+
+
         <div class="row mb-1">
-    
-            <table class="table">
-    
-                <thead>
-                    <tr>
-                        <th class="table-header">D</th>
-                        <th class="table-header">L</th>
-                        <th class="table-header">Ma</th>
-                        <th class="table-header">Mi</th>
-                        <th class="table-header">J</th>
-                        <th class="table-header">V</th>
-                        <th class="table-header">S</th>
-                    </tr>
-    
-                </thead>
-                <tbody *ngFor="let c of Calendario">
-                    <tr>
-                        <td>
-                            <mat-checkbox  color="primary" formControlName="chk{{c.D_dia}}"   [(ngModel)]="c.D" *ngIf="c.D != undefined">
-                                <b>{{c.D_dia}}</b>
-                            </mat-checkbox>
 
+            <div class="observaciones">
+                <div class="form-floating">
+                    <textarea type="textarea" class="form-control" placeholder="Observaciones"
+                        id="txtObservaciones" formControlName="txtObservaciones"></textarea>
+                    <label for="txtObservaciones">Observaciones</label>
+                </div>
+            </div>
+        </div>
 
-                        </td>
-                        <td>
-                            <mat-checkbox  color="primary" formControlName="chk{{c.L_dia}}"   [(ngModel)]="c.L" *ngIf="c.L != undefined">
-                                <b>{{c.L_dia}}</b>
-                            </mat-checkbox>
-                        </td>
-                        <td>
-                            <mat-checkbox  color="primary" formControlName="chk{{c.Ma_dia}}"   [(ngModel)]="c.ma" *ngIf="c.Ma != undefined">
-                                <b>{{c.Ma_dia}}</b>
-                            </mat-checkbox>
-                        </td>
-                        <td>
-                            <mat-checkbox  color="primary" formControlName="chk{{c.Mi_dia}}"   [(ngModel)]="c.Mi" *ngIf="c.Mi != undefined">
-                                <b>{{c.Mi_dia}}</b>
-                            </mat-checkbox>
-                        </td>
-                        <td>
-                            <mat-checkbox  color="primary" formControlName="chk{{c.J_dia}}"   [(ngModel)]="c.J" *ngIf="c.J != undefined">
-                                <b>{{c.J_dia}}</b>
-                            </mat-checkbox>
-                        </td>
-                        <td>
-                            <mat-checkbox  color="primary" formControlName="chk{{c.V_dia}}"   [(ngModel)]="c.V" *ngIf="c.V != undefined">
-                                <b>{{c.V_dia}}</b>
-                            </mat-checkbox>
-                        </td>
-                        <td>
-                            <mat-checkbox  color="primary" formControlName="chk{{c.S_dia}}"   [(ngModel)]="c.S" *ngIf="c.S != undefined">
-                                <b>{{c.S_dia}}</b>
-                            </mat-checkbox>
-                        </td>
-                    </tr>
-    
-                </tbody>
-    
-            </table>
-    
+        
+        <div class="botones-edicion">
+            <button type="button"  class="btn btn-primario" id="btnGuardar-Cita" (click)="v_Guardar();"><i
+                    class="fa-solid fa-floppy-disk fa-beat-fade fa-lg"></i>
+                Guardar</button>
         </div>
 
     </form>
 
- 
+
 
 </div>
