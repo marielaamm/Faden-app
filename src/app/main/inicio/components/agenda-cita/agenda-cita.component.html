@@ -5,13 +5,16 @@
 
 
         <div class="row mb-1">
-            <igx-combo #cmbPaciente [data]="lstPaciente" valueKey="NoExpediente" displayKey="NombreCompleto"
+            <div class="col-12">
+                <igx-combo #cmbPaciente [data]="lstPaciente" valueKey="NoExpediente" displayKey="NombreCompleto"
                 id="cmbPaciente" formControlName="cmbPaciente" placeholder="Paciente"
                 searchPlaceholder="Seleccione un paciente" [autoFocusSearch]="true" [overlaySettings]="overlaySettings"
                 (selectionChanging)="v_Select_Paciente($event)" (keyup)="v_Enter_Paciente($event);">
                 <label igxLabel>Paciente</label>
                 <igx-prefix><i class="fa-solid fa-list fa-lg"></i></igx-prefix>
             </igx-combo>
+            </div>
+           
         </div>
 
         <div class="row">

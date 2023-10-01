@@ -1,49 +1,35 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { GlobalPositionStrategy, IgxComboComponent, OverlaySettings, scaleInCenter, scaleOutCenter } from 'igniteui-angular';
-import * as moment from 'moment';
-import { Moment } from 'moment';
-import { iMedicos } from 'src/app/main/cat/interface/i-medicos';
-import { Validacion } from 'src/app/main/shared/class/validacion';
-import { iPaciente } from '../../interface/i-paciente';
-import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
-import { getAgendaCita } from '../../service/agenda.service';
-import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
-
-
-
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { iMedicos } from "src/app/main/cat/interface/i-medicos";
+import { Validacionv2 } from "src/app/main/shared/class/validacionV2";
+import { iPaciente } from "../../interface/i-paciente";
+import { GlobalPositionStrategy, IgxComboComponent, OverlaySettings, scaleInCenter, scaleOutCenter } from "igniteui-angular";
+import { getAgendaCita } from "../../service/agenda.service";
+import { Funciones } from "src/app/main/shared/class/cls_Funciones";
+import { DialogoComponent } from "src/app/main/shared/components/dialogo/dialogo.component";
 
 @Component({
   selector: 'app-agenda-cita',
   templateUrl: './agenda-cita.component.html',
   styleUrls: ['./agenda-cita.component.scss']
 })
-
-
 export class AgendaCitaComponent implements OnInit {
 
-  public val = new Validacion();
+  public val = new Validacionv2();
   public lstMedico: iMedicos[] = [];
   public lstPaciente: iPaciente[] = [];
 
   public overlaySettings: OverlaySettings = {};
 
-  date = new FormControl(moment());
-  public Calendario: any[] = [];
 
 
   constructor(private cFunciones : Funciones, private GET : getAgendaCita) {
-    this.val.add("cmbPaciente", "1", "LEN>", "0");
-    this.val.add("cmbMedico", "1", "LEN>", "0");
-    this.val.add("txtEspecialidad", "1", "LEN>", "0");
-    this.val.add("txtFecha", "1", "LEN>", "0");
-    this.val.add("txtHora1", "1", "LEN>", "0");
-    this.val.add("txtHora2", "1", "LEN>", "0");
-    this.val.add("txtObservaciones", "1", "LEN>=", "0");
+    this.val.add("cmbPaciente", "1", "LEN>", "0", "Paciente", "Seleccione un paciente.");
+    this.val.add("cmbMedico", "1", "LEN>", "0", "Medico", "Seleccione un medico.");
+    this.val.add("txtEspecialidad", "1", "LEN>", "0", "Especialidad", "El medico no tiene definida una especialidad");
+    this.val.add("txtFecha", "1", "LEN>", "0", "", "Seleccione una fecha.");
+    this.val.add("txtHora1", "1", "LEN>", "0", "Hora Inicio", "Seleccione una opción.");
+    this.val.add("txtHora2", "1", "LEN>", "0", "Hora Fin", "eleccione una opción.");
+    this.val.add("txtObservaciones", "1", "LEN>=", "0", "", "");
 
     this.v_CargarDatos();
     this.v_Evento("Iniciar");
@@ -188,48 +174,17 @@ export class AgendaCitaComponent implements OnInit {
 
   public v_Guardar() : void{
     this.val.EsValido();
-    this.valTabla.EsValido();
 
 
+    
     if (this.val.Errores != "") {
-      this.cFunciones.DIALOG.open(DialogErrorComponent, {
+      this.cFunciones.DIALOG.open(DialogoComponent, {
         data: this.val.Errores,
       });
 
       return;
     }
-
-
-
-    if (this.valTabla.Errores != "") {
-      this.cFunciones.DIALOG.open(DialogErrorComponent, {
-        data: this.valTabla.Errores,
-      });
-
-      return;
-    }
-
-    if (this.dec_Dif != 0) {
-      let DilogConfirmar = this.cFunciones.DIALOG.open(DialogoConfirmarComponent, {});
-
-      DilogConfirmar.afterOpened().subscribe(s => {
-        DilogConfirmar.componentInstance.mensaje = "<span>Tiene una diferencia de: <b>" + this.cFunciones.NumFormat(this.dec_Dif, "2") + "</b><br>Desea Guardar el documento?</span>"
-        DilogConfirmar.componentInstance.textBoton1 = "Si";
-        DilogConfirmar.componentInstance.textBoton2 = "No";
-      });
-
-
-      DilogConfirmar.afterClosed().subscribe(s => {
-
-        if (DilogConfirmar.componentInstance.retorno == "1") {
-          this.V_POST();
-        }
-
-      });
-
-      return;
-
-    }
+ 
 
   }
 

@@ -10,12 +10,12 @@ import {
   
   import { formatDate } from "@angular/common";
   import { EventEmitter, Injectable, Output } from "@angular/core";
-  import { event } from "jquery";
+
   
   /** Error when invalid control is dirty, touched, or submitted. */
   export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(
-      control: UntypedFormControl | null,
+      control: FormControl | null,
       form: FormGroupDirective | NgForm | null
     ): boolean {
       const isSubmitted = form && form.submitted;
@@ -52,7 +52,7 @@ import {
   const lstFocus: iFocus[] = [];
   
   
-  export class Validacion {
+  export class Validacionv2 {
     
     private fb = new FormBuilder();
     public Iniciar: boolean = false;
@@ -105,48 +105,8 @@ import {
         this.lstFrm.push({ Id: id, Frm: _frm, Etiqueta: etiqueta });
     }
   
-    public addFocus(id : string, idNext : string, evento : any){
-      let i : number = lstFocus.findIndex(f => f.Id == id);
-  
-      if(i != -1){
-        lstFocus[i].IdNext == idNext;
-      }
-      else{
-        lstFocus.push({Id: id, IdNext : idNext, Evento : evento});
-      }
-  
-  
-      document.querySelector('#' + id)?.addEventListener('keypress', this.onKeyEnter);
-     
-    }
-  
-     onKeyEnter(event: any){
-  
-      if(event.key !== "Enter") return;
-  
-      
-      let id : string = event.target.id;
-      let _element_next  = lstFocus.find(f => f.Id == id);
-  
-      if(_element_next == undefined) return;
-  
-  
-      document?.getElementById(_element_next.IdNext)?.focus();
-  
-      if(_element_next.Evento != undefined) document.getElementById("#" + _element_next.IdNext)?.trigger(_element_next.Evento);
-  
-      /*
-      if(String(event.target.value) == "") {
-        document?.getElementById(_input)?.focus();
-        event.preventDefault();
-        return;
-      }*/
-  
-  
-      event.preventDefault();
-  
-    }
-  
+
+
     public del(id: string): void {
       let i: number = this.lstReglas.findIndex((f) => f.Id == id);
   

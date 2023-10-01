@@ -271,11 +271,52 @@ button:active{
 
 
 
+
+
+
+//████████████████████████████████████████████DIALOG ERROR██████████████████████████████████████████████████████████████████████
+
+.error-etiqueta{
+  font-weight: bold;
+  color: black;
+}
+
+.error-mensaje{
+  font-weight: normal;
+
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.error{
+  font-weight: normal;
+
+  text-align: justify;
+  text-justify: inter-word;
+  font-weight: bold;
+  color: black;
+}
+
+
+
+//████████████████████████████████████████████SIMBOLO VALIDACION██████████████████████████████████████████████████████████████████████
+
+
+.contenedor-info-validacion{
+  position: relative;
+}
+
+.info-validacion{
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+}
+
+
+
 //████████████████████████████████████████████DIALOG██████████████████████████████████████████████████████████████████████
 
-.faden-dialog{
-  background-color: var(--faden-fondo);
-}
 .faden-dialog-full,
 .faden-dialog-full-blur {
   max-width: 100% !important;
@@ -283,6 +324,8 @@ button:active{
   min-width: var(--min-width);
   width: 100%;
   height: 100%;
+
+ 
 }
 
 
@@ -294,6 +337,7 @@ button:active{
 
 
 .faden-dialog {
+  
   h1 {
     text-align: center;
   }
@@ -301,6 +345,7 @@ button:active{
   .custom-cerrar {
     border: 0;
     background-color: transparent;
+    z-index: 3;
 
     .close-icon {
       font-size: 1.8em;
@@ -320,9 +365,7 @@ button:active{
     text-align: center;
   }
 
-  .mat-dialog-content {
-    flex-grow: 1;
-    max-height: unset;
+  .aling-number {
+    text-align: right;
   }
 }
-

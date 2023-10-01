@@ -1,0 +1,21 @@
+<div class="faden-dialog" id="frmError">
+    <div class="btn-contenedor">
+      <button  class="close-button custom-cerrar" (click)="dialogRef.close();">
+        <i class="fa-solid fa-xmark fa-beat-fade fa-lg"></i>
+      </button>
+    </div>
+
+    <div class="logo">
+      <img   src="../assets/images/logo-header.png">
+    </div>
+  
+      <div mat-dialog-content>
+   
+        <div class="msj" [innerHTML]="str_Error"></div>
+
+      </div>
+      <div mat-dialog-actions class="btn-contenedor">
+        <button type="button" class="btn btn-secundario" (click)="dialogRef.close();">Cerrar</button>
+      </div>
+  </div>
+  
