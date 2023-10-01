@@ -160,7 +160,7 @@ export class MenuComponent {
         }
         break;
 
-      case "navtemporal":
+      case "navAgenda":
         if(this.str_formulario !=f){
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(AgendaCitaRegComponent);
