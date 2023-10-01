@@ -23,6 +23,7 @@ import { UsuarioComponent } from '../usuario/usuario.component';
 import { NavComponent } from './nav/nav.component';
 import { EstiloVidaComponent } from 'src/app/main/inicio/components/expediente/historiamedica/estilo-vida/estilo-vida.component';
 import { AgendaCitaComponent } from 'src/app/main/inicio/components/agenda-cita/agenda-cita.component';
+import { AgendaCitaRegComponent } from 'src/app/main/inicio/components/agenda-cita-reg/agenda-cita-reg.component';
 
 @Component({
   selector: 'app-menu',
@@ -162,7 +163,7 @@ export class MenuComponent {
       case "navtemporal":
         if(this.str_formulario !=f){
           this.dynamicForm.viewContainerRef.clear();
-          this.dynamicForm.viewContainerRef.createComponent(AgendaCitaComponent);
+          this.dynamicForm.viewContainerRef.createComponent(AgendaCitaRegComponent);
           this.str_formulario=f; 
         }
         break;

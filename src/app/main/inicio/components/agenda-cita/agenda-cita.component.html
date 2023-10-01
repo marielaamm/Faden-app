@@ -1,12 +1,20 @@
 <div class="container-sm">
 
+    <div class="faden-dialog">
+        <div class="btn-contenedor-custom">
+            <button class="close-button custom-cerrar" [mat-dialog-close]="true">
+                <mat-icon class="close-icon" color="warn">close</mat-icon>
+            </button>
+        </div>
+    </div>
+
 
     <form autocomplete="off" [formGroup]="val.ValForm">
 
 
         <div class="row mb-1">
             <div class="col-12">
-                <igx-combo #cmbPaciente [data]="lstPaciente" valueKey="NoExpediente" displayKey="NombreCompleto"
+                <igx-combo #cmbPaciente [data]="lstPaciente" valueKey="IdPaciente" displayKey="NombreCompleto"
                 id="cmbPaciente" formControlName="cmbPaciente" placeholder="Paciente"
                 searchPlaceholder="Seleccione un paciente" [autoFocusSearch]="true" [overlaySettings]="overlaySettings"
                 (selectionChanging)="v_Select_Paciente($event)" (keyup)="v_Enter_Paciente($event);">
@@ -19,8 +27,8 @@
 
         <div class="row">
 
-            <div class="col-6 col-md-6 col-lg-6 mb-1">
-                <igx-combo #cmbMedico [data]="lstMedico" valueKey="NoMedico" displayKey="NombreCompleto"
+            <div class="col-12 mb-1">
+                <igx-combo #cmbMedico [data]="lstMedico" valueKey="IdMedico" displayKey="NombreCompleto"
                     id="cmbPaciente" formControlName="cmbMedico" placeholder="Medico"
                     searchPlaceholder="Seleccione un medico" [autoFocusSearch]="true"
                     [overlaySettings]="overlaySettings" (selectionChanging)="v_Select_Medico($event)"
@@ -30,7 +38,12 @@
                 </igx-combo>
             </div>
 
-            <div class="col-6 col-md-6 col-lg-6 mb-1">
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-12 mb-1">
                 <div class="input-group">
                     <div class="form-floating">
                         <input type="text" class="form-control" placeholder="Especialidad" id="txtEspecialidad"
@@ -46,7 +59,7 @@
 
         <div class="row">
 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 mb-1">
+            <div class="col-12  mb-1">
                 <mat-form-field appearance="legacy">
                     <mat-label>Fecha</mat-label>
                     <input matInput [matDatepicker]="picker" id="txtFecha" formControlName="txtFecha">
@@ -58,18 +71,24 @@
             </div>
 
 
-            <div class="col-6 col-md-6 col-lg-4  mb-1">
+        </div>
+
+        <div class="row">
+
+   
+
+            <div class="col-6  mb-1">
                           
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-regular fa-clock fa-xl"></i></span>
                     <div class="form-floating">
                         <select class="form-select form-select-lg" aria-label="Hora Inicio" id="txtHora1"
                             formControlName="txtHora1">
-                            <option  value="8">8 am</option>
-                            <option  value="9">9 am</option>
-                            <option  value="10">10 am</option>
-                            <option  value="11">11 am</option>
-                            <option  value="12">12 am</option>
+                            <option  value="8 am">8 am</option>
+                            <option  value="9 am">9 am</option>
+                            <option  value="10 am">10 am</option>
+                            <option  value="11 am">11 am</option>
+                            <option  value="12 md">12 md</option>
                         </select>
                         <label for="txtHora1">Hora Inicio</label>
                     </div>
@@ -77,18 +96,18 @@
             </div>
 
             
-            <div class="col-6 col-md-6 col-lg-4  mb-1">
+            <div class="col-6   mb-1">
                           
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-regular fa-clock fa-xl"></i></span>
                     <div class="form-floating">
                         <select class="form-select form-select-lg" aria-label="Hora Inicio" id="txtHora2"
                             formControlName="txtHora2">
-                            <option  value="8">8 am</option>
-                            <option  value="9">9 am</option>
-                            <option  value="10">10 am</option>
-                            <option  value="11">11 am</option>
-                            <option  value="12">12 am</option>
+                            <option  value="8 am">8 am</option>
+                            <option  value="9 am">9 am</option>
+                            <option  value="10 am">10 am</option>
+                            <option  value="11 am">11 am</option>
+                            <option  value="12 md">12 md</option>
                         </select>
                         <label for="txtHora2">Hora Fin</label>
                     </div>

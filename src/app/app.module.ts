@@ -109,6 +109,7 @@ import { NuevoAnalisisPresuncionComponent } from './main/inicio/components/exped
 import { EstiloVidaComponent } from './main/inicio/components/expediente/historiamedica/estilo-vida/estilo-vida.component';
 import { ExamenFisicoComponent } from './main/inicio/components/expediente/historiamedica/examen-fisico/examen-fisico.component';
 import { AgendaCitaComponent } from './main/inicio/components/agenda-cita/agenda-cita.component';
+import { AgendaCitaRegComponent } from './main/inicio/components/agenda-cita-reg/agenda-cita-reg.component';
 
 //FIN
 
@@ -176,7 +177,8 @@ display: {
     NuevoAnalisisPresuncionComponent,
     EstiloVidaComponent,
     ExamenFisicoComponent,
-    AgendaCitaComponent
+    AgendaCitaComponent,
+    AgendaCitaRegComponent
     
   ],
   imports: [

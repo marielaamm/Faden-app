@@ -10,7 +10,7 @@ export class Funciones {
   private _TiempoDesconexion : number = 0;
   public IdMedico : number = 15;
 
-  public FechaServer: Date;
+  public FechaServer: Date = new Date();
 
   public TiempoDesconexion() : number{
     return this._TiempoDesconexion;
