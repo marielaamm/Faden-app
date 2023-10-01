@@ -14,4 +14,8 @@
 .botones-edicion{
 
   text-align: right;
+
+  button:last-child{
+    margin-left: 10px;
+  }
 }

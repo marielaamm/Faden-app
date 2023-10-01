@@ -6,7 +6,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"Escasan-App": {
+		"Faden-App": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:application": {
@@ -23,7 +23,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": "dist/escasan-app",
+						"outputPath": "dist/Faden-app",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
@@ -91,10 +91,10 @@
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"browserTarget": "Escasan-App:build:production"
+							"browserTarget": "Faden-App:build:production"
 						},
 						"development": {
-							"browserTarget": "Escasan-App:build:development"
+							"browserTarget": "Faden-App:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
@@ -102,7 +102,7 @@
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
-						"browserTarget": "Escasan-App:build"
+						"browserTarget": "Faden-App:build"
 					}
 				},
 				"test": {
@@ -129,5 +129,5 @@
 			}
 		}
 	},
-	"defaultProject": "Escasan-App"
+	"defaultProject": "Faden-App"
 }
