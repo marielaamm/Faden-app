@@ -22,6 +22,7 @@ export class AgendaCitaComponent implements OnInit {
   public FILA : iAgendaMedica = {} as iAgendaMedica;
 
   public overlaySettings: OverlaySettings = {};
+  private isLoad : boolean = false;
 
 
 
@@ -77,6 +78,7 @@ export class AgendaCitaComponent implements OnInit {
   public cmbPaciente: IgxComboComponent;
 
   public v_Select_Paciente(event: any) {
+    if(this.isLoad) return;
     if (event.added.length) {
       event.newSelection = event.added;
       this.val.ValForm.get("cmbPaciente")?.setValue([event.added]);
@@ -99,7 +101,7 @@ export class AgendaCitaComponent implements OnInit {
   public cmbMedico: IgxComboComponent;
 
   public v_Select_Medico(event: any) {
-
+    if(this.isLoad) return;
     this.val.ValForm.get("txtEspecialidad")?.setValue("");
 
     if (event.added.length) {
@@ -149,6 +151,8 @@ export class AgendaCitaComponent implements OnInit {
 
             this.lstPaciente = _json.d[0];
             this.lstMedico = _json.d[1];
+
+            if(this.FILA.IdAgenda != -1) this.V_Editar();
           }
 
         },
@@ -193,6 +197,23 @@ export class AgendaCitaComponent implements OnInit {
     this.V_POST();
   }
 
+  private V_Editar(): void{
+    this.isLoad = true;
+    let i_Medico: iMedicos = this.lstMedico.find(f => f.IdMedico == this.FILA.IdMedico)!;
+
+
+    this.cmbPaciente.setSelectedItem(this.FILA.IdPaciente)
+    this.cmbMedico.setSelectedItem(this.FILA.IdMedico)
+
+    this.val.ValForm.get("txtFecha")?.setValue(this.FILA.Fecha);
+    this.val.ValForm.get("txtFecha")?.setValue(this.FILA.Fecha);
+    this.val.ValForm.get("txtHora1")?.setValue(this.FILA.HoraInicio);
+    this.val.ValForm.get("txtHora2")?.setValue(this.FILA.HoraFin);
+    this.val.ValForm.get("txtObservaciones")?.setValue(this.FILA.Observaciones);
+    this.val.ValForm.get("txtEspecialidad")?.setValue(i_Medico?.Especialidad);
+    this.isLoad = false;
+
+  }
 
   
   private V_POST(): void {

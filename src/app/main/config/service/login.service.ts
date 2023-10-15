@@ -3,181 +3,158 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
+import { Funciones } from '../../shared/class/cls_Funciones';
+import { getServidor } from '../../shared/service/get-servidor';
+import { DialogErrorComponent } from '../../shared/components/dialog-error/dialog-error.component';
+import { iDatos } from '../../shared/interface/i-Datos';
+import { iLogin } from '../../shared/interface/i-login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private _Cnx = new Conexion();
-  @Output() change: EventEmitter<any> = new EventEmitter();
 
-  private isCancel : boolean = false;
-  public isOpen : boolean = false;
-  public isLogin : boolean = false;
-
-  private Nombre : string = "";
-  private str_Form : string = "";
-  private str_user : string = "";
-  private str_pass : string = "";
-  private str_Fecha : string = "";
+  constructor(private _Router: Router, private cFunciones : Funciones,
+    private DIALOG: MatDialog, private GET: getServidor) { }
 
 
-  constructor(private _Router: Router, private http : HttpClient, private _Dialog: MatDialog) { }
+  public Session(user : string, pwd : string) : void{
 
+    document.getElementById("btnLogin")?.setAttribute("disabled", "disabled");
 
-  public VerificarSession() : void {
-
-
-    if(localStorage.getItem("User") != null)
-    {
-      this.str_user = <string>localStorage.getItem("User");
-      this.str_pass = <string>localStorage.getItem("Pwd");
-      this.Nombre = <string>localStorage.getItem("Nombre");
-    }
-
-    if(this.str_user == "") {
-      this.CerrarSession();
-      return;
-    }
-    if(this.str_pass == "") {
-      this.CerrarSession();
-      return;
-    }
-
-    this.http.get<any>(this._Cnx.Url() + "Usuario" + "?usr="+this.str_user+"&pwd="+ this.str_pass).subscribe(
-      datos => {
-        this.ProcesarAcceso(JSON.parse(datos));
-      },
-      err =>{
-
-        let s : string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\""+ 1 + "\",\"Mensaje\":\""+ "Error al conectar con el servidor."+ "\"}"+ ", \"count\":"+ 0 + ", \"esError\":"+ 1 + "}";
-        this.ProcesarAcceso(JSON.parse(s));
-      }
-    );
-
-  }
-
-  private GuardarSession(bol_recordar : boolean, str_user : string, str_pass : string, str_Nombre : string, str_Fecha : string ) : void
-  {
-    this.Nombre = str_Nombre;
-    this.str_user = str_user;
-    this.str_pass = str_pass;
-    this.str_Fecha = str_Fecha;
-
-    if(bol_recordar)
-    {
-      localStorage.setItem('Nombre', str_Nombre);
-      localStorage.setItem('User', str_user);
-      localStorage.setItem('Pwd', str_pass);
-      localStorage.setItem('Fecha', str_Fecha);
-    }
-
-    sessionStorage.setItem('Nombre', str_Nombre);
-    sessionStorage.setItem('User', str_user);
-    sessionStorage.setItem('Pwd', str_pass);
-    sessionStorage.setItem('Fecha', str_Fecha);
-
-    this.isLogin = true;
-
-  }
-
-
-  
-  public CerrarSession() : void{
     
-    this.str_user = "";
-    this.str_pass = "";
-    this.str_Fecha = "";
-
-    localStorage.removeItem("User");
-    localStorage.removeItem("Pwd");
-    localStorage.removeItem("Fecha");
-    localStorage.removeItem("Nombre");
-
-    sessionStorage.removeItem("User");
-    sessionStorage.removeItem("Pwd");
-    sessionStorage.removeItem("Fecha");
-    sessionStorage.removeItem("Nombre");
-
-    this.isLogin = false;
-    this.ProcesarAcceso("");
-  }
+    this.GET.Login(user, pwd).subscribe(
+      {
+        next: (data) => {
 
 
+          let _json: any =  JSON.parse(data);
+
+          if (_json["esError"] == 1) {
+            this.DIALOG.open(DialogErrorComponent, {
+              data: _json["msj"].Mensaje,
+            });
+          } else {
+
+            let datos : iDatos[] =  _json["d"];
+
+            let l : iLogin = datos[0].d[0];
+            this.cFunciones.User = l.User;
+            this.cFunciones.Nombre = l.Nombre;
+            this.cFunciones.Rol = l.Rol;
+            this.cFunciones.IdMedico = l.IdMedico;
+            this.cFunciones.FechaServidor(datos[1].d);
+            this.cFunciones.SetTiempoDesconexion(Number(datos[2].d));
+            l.FechaServer = datos[1].d;
+            l.TimeOut = Number(datos[2].d);
+    
+              localStorage.removeItem("login");
+
+              if(datos[0].d != undefined)
+              {
+                localStorage.setItem("login", JSON.stringify(l));
+
+              this.isLogin();
+              }
+
+              
+          }
+
+        },
+        error: (err) => {
+
+          document.getElementById("btnLogin")?.removeAttribute("disabled");
 
 
+          if(this.DIALOG.getDialogById("error-servidor") == undefined) 
+          {
+            this.DIALOG.open(DialogErrorComponent, {
+              id: "error-servidor",
+              data: "<b class='error'>" + err.message + "</b>",
+            });
+          }
 
-
-  InicioSesion(str_user : string, str_pass : string, bol_recordar : boolean) : void {
-
-     this.http.get<any>(this._Cnx.Url() + "Usuario" + "?usr="+str_user+"&pwd="+ str_pass).subscribe(
-      datos => {
-
-        
-        let _json = (JSON.parse(datos));
-
-        if(Object.keys(_json["d"]).length > 0)
-        {
-
-          this.GuardarSession(bol_recordar,  str_user, str_pass, _json["d"][0]["Nombre"], _json["d"][0]["Fecha"]);
-          this.ProcesarAcceso(_json);
-        }
-        else
-        {
-          this.CerrarSession();
-        }
-
-        
-      },
-      err =>{
-
-        let s : string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\""+ 1 + "\",\"Mensaje\":\""+ "Error al conectar con el servidor."+ "\"}"+ ", \"count\":"+ 0 + ", \"esError\":"+ 1 + "}";
-        this.ProcesarAcceso(JSON.parse(s));
+        },
+        complete: () => { 
+        document.getElementById("btnLogin")?.removeAttribute("disabled");
+ 
+      }
       }
     );
 
-  }
-  
 
-  private Msj (s : any) : void{
-    this.isLogin = false;
-
-    let _json = s
-
-    this._Dialog.open(DialogoComponent, {
-      data: _json["msj"],
-    });
-
-    this.change.emit("");
   }
 
-  private ProcesarAcceso(s : any) : void{
-
-    this._Router.navigate(['/Menu'], { skipLocationChange: false });
-    return;
-        let _json = s
   
-        if(s == ""){
-          this._Router.navigate(['/Login'], { skipLocationChange: false });
-          return;
-        }
+  public isLogin(){
+
+    let s : string = localStorage.getItem("login")!;
+
+    if(s != undefined){
+
+      let l : iLogin = JSON.parse(s);
+
+      
+    if(this.cFunciones.User == "")
+    {
+      this.cFunciones.User = l.User;
+      this.cFunciones.Nombre = l.Nombre;
+      this.cFunciones.Rol = l.Rol;
+      this.cFunciones.FechaServidor(new Date(l.FechaServer));
+      this.cFunciones.SetTiempoDesconexion(l.TimeOut);
+    }
 
 
-        if( _json["msj"]["Mensaje"] != ""){
-          this.Msj(_json);
-        }
+      if(this.Diff(new Date(l.FechaLogin)) <= this.cFunciones.TiempoDesconexion())
+      {
 
-  
-        if(_json["count"] > 0){
+        if(this._Router.url !== '/Menu')
+        {
           this._Router.navigate(['/Menu'], { skipLocationChange: false });
         }
-        else{
-          this._Router.navigate(['/Login'], { skipLocationChange: false });
-        }
+       
+        return;
+      }
+ 
+    }
+
+    localStorage.removeItem("login");
+    this._Router.navigate(['/Login'], { skipLocationChange: false });
+  }
+
+
+  Diff(FechaLogin : Date){
+
+    let FechaServidor : Date = new Date(this.cFunciones.FechaServer);
+
+    var Segundos = Math.abs((FechaLogin.getTime() - FechaServidor.getTime()) / 1000);
+    return Segundos;
+  }
+
+
+  public UpdFecha(f : string){
+
+    let s : string = localStorage.getItem("login")!;
+   
+   if(s != undefined){
+
+      let l : iLogin = JSON.parse(s);
+      l.FechaLogin = f;
+      localStorage.removeItem("login");
+      localStorage.setItem("login", JSON.stringify(l));
+
+      this.isLogin();
+    }
 
   }
+
+  public CerrarSession(){
+    localStorage.removeItem("login");
+    this._Router.navigate(['/Login'], { skipLocationChange: false });
+  }
+
+  
 
 }

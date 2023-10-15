@@ -127,6 +127,18 @@
                                 </mat-card-content>
 
 
+                                <div class="row">
+                                    <div class="col-12 mb-1">
+                                        <igx-combo #cmbMedico [data]="lstMedico" valueKey="IdMedico" displayKey="NombreCompleto"
+                                            id="cmbPaciente" formControlName="cmbMedico" placeholder="Medico"
+                                            searchPlaceholder="Seleccione un medico" [autoFocusSearch]="true"
+                                            [overlaySettings]="overlaySettings" (selectionChanging)="v_Select_Medico($event)"
+                                            (keyup)="v_Enter_Medico($event);">
+                                            <label igxLabel>Medico</label>
+                                            <igx-prefix><i class="fa-solid fa-list fa-lg"></i></igx-prefix>
+                                        </igx-combo>
+                                    </div>
+                                </div>
                             </mat-card>
 
                         </div>

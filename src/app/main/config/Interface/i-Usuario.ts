@@ -5,6 +5,7 @@ export interface iUsuario{
     Apellido: String;
     Usuario1: String,
     Contrasena: String,
+    IdMedico : number;
     Activo: boolean
 }
 

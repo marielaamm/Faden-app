@@ -316,7 +316,10 @@ button:active{
 
 
 //████████████████████████████████████████████DIALOG██████████████████████████████████████████████████████████████████████
-
+.mat-dialog-container
+{
+  padding: 2px !important;
+}
 .faden-dialog-full,
 .faden-dialog-full-blur {
   max-width: 100% !important;

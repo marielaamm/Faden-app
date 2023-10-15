@@ -9,9 +9,9 @@ import { LoginService } from './main/config/service/login.service';
 export class AppComponent implements OnInit {
   public title = 'Escalante Sanchez S.A.';
 
-  constructor(private _loginserv : LoginService){
+  constructor(private _SrvLogin : LoginService){
     
-    _loginserv.VerificarSession();
+    this._SrvLogin.isLogin();
 
   }
 

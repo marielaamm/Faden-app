@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, HostListener, Inject, Input, Renderer2, ViewChild } from '@angular/core';
 import { DepartamentoRegistroComponent } from 'src/app/main/cat/components/departamento/departamento-registro/departamento-registro/departamento-registro.component';
 import { DepartamentoComponent } from 'src/app/main/cat/components/departamento/departamento.component';
 import { EscolaridadRegistroComponent } from 'src/app/main/cat/components/escolaridad/escolaridad-registro/escolaridad-registro.component';
@@ -24,6 +24,12 @@ import { NavComponent } from './nav/nav.component';
 import { EstiloVidaComponent } from 'src/app/main/inicio/components/expediente/historiamedica/estilo-vida/estilo-vida.component';
 import { AgendaCitaComponent } from 'src/app/main/inicio/components/agenda-cita/agenda-cita.component';
 import { AgendaCitaRegComponent } from 'src/app/main/inicio/components/agenda-cita-reg/agenda-cita-reg.component';
+import { DOCUMENT } from '@angular/common';
+import { getServidor } from 'src/app/main/shared/service/get-servidor';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
+import { Subscription, interval } from 'rxjs';
+import { DialogErrorComponent } from 'src/app/main/shared/components/dialog-error/dialog-error.component';
+import { iDatos } from 'src/app/main/shared/interface/i-Datos';
 
 @Component({
   selector: 'app-menu',
@@ -39,6 +45,13 @@ export class MenuComponent {
   private str_NomModulo : string = "Inicio";
   private str_Modulo : string = "HOME";
   private str_formulario : string = "";
+
+
+  @ViewChild(DynamicFormDirective, { static: true }) DynamicFrom!: DynamicFormDirective;
+  public ErrorServidor : boolean = false;
+  
+  subscription: Subscription = {} as Subscription;
+
 
 
   @Input() public href: string | undefined;
@@ -65,11 +78,17 @@ export class MenuComponent {
   }
 
   
-
-  constructor(private _loginserv : LoginService, private ServerScv : ServerService) {
-    //this.ServerScv._loginserv.VerificarSession();
-    
-  }
+  
+  constructor(
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: HTMLDocument,
+    private _SrvLogin: LoginService,
+    private Conexion: getServidor,
+    private cFunciones : Funciones,
+    private ServerScv: ServerService
+  ) {
+}
+  
 
 
   public AbrirModulo(m : string) : void{
@@ -116,7 +135,7 @@ export class MenuComponent {
   }
 
   public CerrarSession() : void{
-    this._loginserv.CerrarSession();
+    this._SrvLogin.CerrarSession();
   }
 
 
@@ -300,8 +319,71 @@ export class MenuComponent {
   }
 
 
+
+  private ActualizarDatosServidor() : void{
+    this.ErrorServidor = false;
+
+
+    this.Conexion.FechaServidor(this.cFunciones.User).subscribe(
+      {
+        next : (data) => {
+          
+          let _json : any = JSON.parse(data) ;
+
+        if (_json["esError"] == 1) {
+
+          if(this.cFunciones.DIALOG.getDialogById("error-servidor-msj") == undefined){
+            this.cFunciones.DIALOG.open(DialogErrorComponent, {
+              id: "error-servidor-msj",
+              data: _json["msj"].Mensaje,
+            });
+          }
+         
+        } else {
+          let Datos: iDatos[] = _json["d"];
+
+          this.cFunciones.FechaServidor(Datos[0].d);
+          this.cFunciones.SetTiempoDesconexion(Number(Datos[1].d));
+          this._SrvLogin.UpdFecha(String(Datos[0].d));
+        }
+
+          if(this.cFunciones.DIALOG.getDialogById("error-servidor") != undefined) 
+          {
+            this.cFunciones.DIALOG.getDialogById("error-servidor")?.close();
+          }
+
+
+        },
+        error: (err) => {
+         
+          this.ErrorServidor = true;
+        
+          
+          if(this.cFunciones.DIALOG.getDialogById("error-servidor") == undefined) 
+          {
+            this.cFunciones.DIALOG.open(DialogErrorComponent, {
+              id : "error-servidor",
+              data: "<b class='error'>" + err.message + "</b>",
+            });
+          }
+       
+
+        },
+        complete : ( ) => { 
+
+        }
+      }
+    );
+    
+  }
+
+
+
   ngOnInit(): void {
 
+    this.subscription = interval(10000).subscribe(val => this.ActualizarDatosServidor())
+
+    
     this.ServerScv.change.subscribe(s =>{
       if(s == "CerrarForm"){
         this.dynamicForm.viewContainerRef.clear();
@@ -319,14 +401,17 @@ export class MenuComponent {
       }
 
     });
+
   }
 
   ngAfterContentInit(): void {
     this.AbrirModulo("HOME");
   }
 
-}
-function historiamedicaComponent(historiamedicaComponent: any) {
-  throw new Error('Function not implemented.');
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+
+  }
+
 }
 

@@ -1,40 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { LoginService } from '../../service/login.service';
+import { DialogErrorComponent } from 'src/app/main/shared/components/dialog-error/dialog-error.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
+import { Validacionv2 } from 'src/app/main/shared/class/validacionV2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent  {
 
+  @ViewChild(DynamicFormDirective, { static: true }) DynamicFrom!: DynamicFormDirective;
+  
   bol_HidePass : boolean = true;
   bol_Load : boolean = false;
   bol_Recordar : boolean = false;
 
-  val = new Validacion();
+  val = new Validacionv2();
 
   
-  constructor(private _loginserv : LoginService) {
+  constructor(private _SrvLogin: LoginService, private DIALOG: MatDialog) {
 
-    this.val.add("txtUsuario", "1","LEN>", "0");
-    this.val.add("txtUsuario", "2","LEN>=", "3");
-    this.val.add("txtPass", "1", "LEN>", "0");
-    this.val.add("txtPass", "2", "LEN>=", "3");
-    this.val.add("chkRecordar", "1", "LEN>=", "0");
+    this.val.add(
+      "txtUsuario",
+      "1",
+      "LEN>",
+      "0",
+      "Usuario",
+      "El usuario es requerido."
+    );
+    this.val.add(
+      "txtPass",
+      "1",
+      "LEN>",
+      "0",
+      "Contraseña",
+      "La contraseña es requerida"
+    );
+    this.val.add(
+      "txtPass",
+      "2",
+      "LEN>=",
+      "3",
+      "",
+      "La contraseña debe de contener almenos 3 caracteres."
+    );
+
+  
+    this.v_Limpiar();
+    this._SrvLogin.isLogin();
+
    }
-
-   InicioSesion() : void{
-
-    if(this.val.ValForm.invalid || this.bol_Load ) return;
-
-    this.val.ValForm.get("txtLoginUsuario")?.disable();
-    this.val.ValForm.get("txtLoginPass")?.disable();
-    this.val.ValForm.get("chkRecordar")?.disable();
-    this.bol_Load = true;
-    this._loginserv.InicioSesion(this.val.ValForm.get("txtUsuario")?.value, this.val.ValForm.get("txtPass")?.value, this.bol_Recordar);
-  }
 
 
   onKeyEnter(event: any){
@@ -55,28 +74,38 @@ export class LoginComponent implements OnInit {
 
     if(_input == "txtPass")
     {
-      this.InicioSesion();
+      this.v_Iniciar();
     }
 
     event.preventDefault();
 
   }
 
-  Recordar() : void{
-    this.bol_Recordar = !this.bol_Recordar;
+ 
+  private v_Limpiar() {
+    this.val.ValForm.get("txtUsuario")?.setValue("");
+    this.val.ValForm.get("txtPass")?.setValue("");
+    this.val.Iniciar = true;
+
+    this.DynamicFrom?.viewContainerRef.clear();
+    this.DIALOG.closeAll();
   }
-  
-  ngOnInit(): void {
 
-    this._loginserv.change.subscribe(s =>{
+  public v_Iniciar(): void {
+    if (this.val.EsValido()) {
+      this._SrvLogin.Session(this.val.ValForm.get("txtUsuario")?.value!, this.val.ValForm.get("txtPass")?.value!);
+    } else {
 
+      let dialogRef: MatDialogRef<DialogErrorComponent> = this.DIALOG.open(
+        DialogErrorComponent,
+        {
+          data: this.val.Errores,
+        }
+      );
 
-      this.val.ValForm.get("txtUsuario")?.enable();
-      this.val.ValForm.get("txtPass")?.enable();
-      this.val.ValForm.get("chkRecordar")?.enable();
-      this.bol_Load = false
-     
-    });
+    }
   }
+
+
 
 }

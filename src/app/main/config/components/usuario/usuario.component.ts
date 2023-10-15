@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Validacion } from 'src/app/main/shared/class/validacion';
 import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo.component';
@@ -6,6 +6,10 @@ import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iUsuario } from '../../Interface/i-Usuario';
 import { SistemaService } from '../../service/sistema.service';
 import { I_Rol } from '../roles/roles-registro/roles-registro.component';
+import { iMedicos } from 'src/app/main/cat/interface/i-medicos';
+import { GlobalPositionStrategy, IgxComboComponent, OverlaySettings, scaleInCenter, scaleOutCenter } from 'igniteui-angular';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
+import { getUsuario } from '../../service/getUsuario';
 
 @Component({
   selector: 'app-usuario',
@@ -25,9 +29,13 @@ export class UsuarioComponent implements OnInit {
   private _SistemaService: SistemaService;
   private IdUsuario : Number;
 
+  public lstMedico: iMedicos[] = [];
+  private isLoad : boolean = false;
+
+  public overlaySettings: OverlaySettings = {};
 
 
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private cFunciones : Funciones, private GET : getUsuario) {
 
     this.val.add("txtRol", "1","LEN>", "0");
     this.val.add("txtNombre", "1","LEN>", "0");
@@ -37,8 +45,10 @@ export class UsuarioComponent implements OnInit {
     this.val.add("txtPass", "1", "LEN>", "0");
     this.val.add("txtPass", "2", "LEN>=", "3");
     this.val.add("chkInactivo", "1","LEN>=", "0");
+    this.val.add("cmbMedico", "1","LEN>", "0");
     this._SistemaService = new SistemaService(this._Dialog);
-    this._SistemaService.BuscarRol();
+    this.v_CargarDatos();
+    
    
     this.Limpiar();
    }
@@ -61,6 +71,7 @@ export class UsuarioComponent implements OnInit {
     this.val.ValForm.get("txtApellido")?.setValue("");
     this.val.ValForm.get("txtLogin")?.setValue("");
     this.val.ValForm.get("txtPass")?.setValue("");
+    this.val.ValForm.get("cmbMedico")?.setValue("");
     this.val.ValForm.get("chkInactivo")?.setValue(false);
     this.val.ValForm.get("")?.setValue("");
   }
@@ -86,6 +97,94 @@ Cerrar() : void{
     this.ServerScv.CerrarFormulario();
     
 }
+
+
+
+
+  
+@ViewChild("cmbMedico", { static: false })
+public cmbMedico: IgxComboComponent;
+
+public v_Select_Medico(event: any) {
+  if(this.isLoad) return;
+  this.val.ValForm.get("txtEspecialidad")?.setValue("");
+
+  if (event.added.length) {
+    let i_Medico: iMedicos = this.lstMedico.find(f => f.IdMedico == event.added)!;
+
+    event.newSelection = event.added;
+    this.val.ValForm.get("cmbMedico")?.setValue([event.added]);
+    this.val.ValForm.get("txtEspecialidad")?.setValue(i_Medico?.Especialidad);
+  }
+}
+
+public v_Enter_Medico(event: any) {
+  if (event.key == "Enter") {
+    let _Item: iMedicos = this.cmbMedico.dropdown.focusedItem.value;
+    this.cmbMedico.setSelectedItem(_Item.IdMedico);
+    this.val.ValForm.get("cmbMedico")?.setValue([_Item?.IdMedico]);
+
+  }
+}
+
+
+
+
+public v_CargarDatos(): void {
+
+
+  document.getElementById("btnGuardar-Cita")?.setAttribute("disabled", "disabled");
+  document.getElementById("btnCanclar-Cita")?.setAttribute("disabled", "disabled");
+
+
+
+
+
+  this.GET.DatosUsuario().subscribe(
+    {
+      next: (data) => {
+
+
+        let _json = JSON.parse(data);
+
+        if (_json["esError"] == 1) {
+          if (this.cFunciones.DIALOG.getDialogById("error-servidor-msj") == undefined) {
+            this.cFunciones.DIALOG.open(DialogoComponent, {
+              id: "error-servidor-msj",
+              data: _json["msj"].Mensaje,
+            });
+          }
+        } else {
+
+          this.lstRoles = _json.d[0].d;
+          this.lstMedico = _json.d[1].d;
+
+        }
+
+      },
+      error: (err) => {
+
+
+
+        if (this.cFunciones.DIALOG.getDialogById("error-servidor") == undefined) {
+          this.cFunciones.DIALOG.open(DialogoComponent, {
+            id: "error-servidor",
+            data: "<b class='error'>" + err.message + "</b>",
+          });
+        }
+
+      },
+      complete: () => { 
+        document.getElementById("btnGuardar-Cita")?.removeAttribute("disabled");
+        document.getElementById("btnCanclar-Cita")?.removeAttribute("disabled"); 
+      }
+    }
+  );
+
+
+}
+
+
 
 
 public Guardar(): void {
@@ -118,6 +217,11 @@ if (this.val.ValForm.get("txtPass")?.invalid) {
   esError += "1";
 }
 
+if (this.val.ValForm.get("cmbMedico")?.invalid) {
+  mensaje += "<li>Seleccione un medico</li>";
+  esError += "1";
+}
+
 
 
 mensaje += "</ol>"
@@ -147,6 +251,7 @@ E.Nombre = this.val.ValForm.get("txtNombre")?.value;
 E.Apellido = this.val.ValForm.get("txtApellido")?.value;
 E.Usuario1 = this.val.ValForm.get("txtLogin")?.value;
 E.Contrasena = this.val.ValForm.get("txtPass")?.value;
+E.IdMedico = this.val.ValForm.get("cmbMedico")?.value[0]
 E.Activo = true;
 this._SistemaService.GuardarUsuario(E);
 
@@ -156,6 +261,19 @@ this._SistemaService.GuardarUsuario(E);
 
 
   ngOnInit(): void {
+
+
+    this.overlaySettings = {};
+
+    if (window.innerWidth <= 992) {
+      this.overlaySettings = {
+        positionStrategy: new GlobalPositionStrategy({ openAnimation: scaleInCenter, closeAnimation: scaleOutCenter }),
+        modal: true,
+        closeOnOutsideClick: true
+      };
+    }
+
+    
     this._SistemaService.change.subscribe(s => {
     
       if (s instanceof Array) {
