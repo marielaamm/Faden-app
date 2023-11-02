@@ -13,7 +13,7 @@
             
             
             <div>
-                <p>¿Está seguro de {{mensaje}}?</p>
+                <p>{{mensaje}}?</p>
             </div>
             
             <div>
@@ -29,8 +29,8 @@
             
             <div class="button-row text-end">
                 
-                <button type="button" class="btn-outline-success" (click)="Confirmar();">{{mensaje}}</button>
-                <button type="button" class="btn-outline-secondary" (click)="Cancelar();">Cancelar</button>
+                <button type="button" class="btn-outline-success" (click)="Confirmar();">{{(btn1 == '' ? mensaje : btn1)}}</button>
+                <button type="button" class="btn-outline-secondary" (click)="Cancelar();">{{(btn2 == '' ? "Cancelar" : btn2)}}</button>
             </div>
 
         </div>

@@ -8,6 +8,7 @@ import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iMedicos } from '../../interface/i-medicos';
 import { CatalogoService } from '../../service/catalogo.service';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
 
 @Component({
   selector: 'app-medicos',
@@ -25,10 +26,11 @@ export class MedicosComponent implements OnInit {
   public igxComboMunicipio: IgxComboComponent;
   private esDialog : boolean = false;
   private _Fila_Medico : any = undefined;
+  private FechaServidor : Date;
  
 
   
-  constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv: ServerService, private _Dialog: MatDialog,  private cFunciones : Funciones) {
 
     this.val.add("txtNoMedico", "1", "LEN>=", "0");
     this.val.add("txtFecha", "1", "LEN>=", "0");
@@ -47,10 +49,11 @@ export class MedicosComponent implements OnInit {
     this.val.add("txtCelular", "1", "LEN>", "0");
     this.limpiar();
 
+
     this._CatalogoService = new CatalogoService(this._Dialog);
     this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
     this._FuncionesGenerales.BuscarFechaNac();
-
+    this._FuncionesGenerales.FechaServidor();
 
   }
 
@@ -72,6 +75,7 @@ export class MedicosComponent implements OnInit {
     this.val.ValForm.get("txtCelular")?.setValue("");
 
     this.val.ValForm.get("txtNoMedico")?.disable();
+    this.val.ValForm.get("txtEdad")?.disable();
 
     this.EditarMedico(this._Fila_Medico);
 
@@ -83,6 +87,15 @@ export class MedicosComponent implements OnInit {
       event.newSelection = event.added;
     }
   }
+
+  public CalcularEdad(f : any)
+  {
+    
+   let Fecha = new Date(this.val.ValForm.get("txtFechaNacimiento")?.value)
+
+    this.val.ValForm.get("txtEdad")?.setValue(this.FechaServidor.getFullYear() - Fecha.getFullYear());
+  }
+
 
   public Guardar(): void {
     let esError: string = " ";
@@ -299,6 +312,14 @@ export class MedicosComponent implements OnInit {
         if (s[0] == "Llenar_lugarnacimiento") {
           this.LlenarLugarNac(s[1]);
 
+          }
+
+          if (s[0] == "Llenar_FechaServidor") {
+            let _json = JSON.parse(s[1]);
+  
+            this.FechaServidor = new Date(_json["d"][0])
+  
+  
           }
       }
     );

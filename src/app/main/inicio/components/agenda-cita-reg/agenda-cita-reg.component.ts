@@ -8,6 +8,8 @@ import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo
 import { AgendaCitaComponent } from '../agenda-cita/agenda-cita.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { getAgendaCita } from '../../service/getAgenda.service';
+import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
+import { postAgendaCita } from '../../service/posAgenda.service';
 
 @Component({
   selector: 'app-agenda-cita-reg',
@@ -26,7 +28,7 @@ export class AgendaCitaRegComponent implements OnInit {
   public lstCita : MatTableDataSource<any>;
  
 
-  constructor(private GET: getAgendaCita, private cFunciones : Funciones
+  constructor(private GET: getAgendaCita, private cFunciones : Funciones, private POST : postAgendaCita
   ) {
 
     this.val.add("txtFecha1", "1", "LEN>", "0", "Fecha Inicio", "Seleccione una fecha de inicio.");
@@ -120,6 +122,84 @@ export class AgendaCitaRegComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(s =>{
       this.v_CargarDatos();
+    });
+
+   
+
+  }
+
+
+  public v_Cancelar(e : any) : void{
+
+    let dialogRef: MatDialogRef<DialogoConfirmarComponent> = this.cFunciones.DIALOG.open(
+      DialogoConfirmarComponent,
+      {
+        panelClass: window.innerWidth < 992 ? "faden-dialog-full" : "faden-dialog",
+        disableClose: true
+      }
+    );
+
+
+
+    dialogRef.afterOpened().subscribe(s => {
+      dialogRef.componentInstance.mensaje = "¿Está seguro de Cancelar la cita?";
+      dialogRef.componentInstance.btn1 = "Cancelar Cita";
+      dialogRef.componentInstance.btn2 = "Salir";
+      dialogRef.componentInstance.texto = "<b> " + e.Paciente+"</b>";
+    });
+
+    
+
+    dialogRef.afterClosed().subscribe(s => {
+      if(dialogRef.componentInstance.retorno == "1"){
+
+        document.getElementById("reg-agenda")?.setAttribute("disabled", "disabled");
+        this.POST.Cancelar(e.IdAgenda).subscribe(
+          {
+            next: (data) => {
+    
+              let _json = JSON.parse(data);
+    
+              if (_json["esError"] == 1) {
+                if (this.cFunciones.DIALOG.getDialogById("error-servidor-msj") == undefined) {
+                  this.cFunciones.DIALOG.open(DialogoComponent, {
+                    id: "error-servidor-msj",
+                    data: _json["msj"].Mensaje,
+                  });
+                }
+              }
+              else {
+    
+           
+                this.cFunciones.DIALOG.open(DialogoComponent, {
+                  data: "<p><b class='bold'>" + _json["msj"].Mensaje + "</b></p>"
+                });
+    
+    
+                this.v_CargarDatos();
+    
+              }
+    
+            },
+            error: (err) => {
+    
+              document.getElementById("reg-agenda")?.removeAttribute("disabled");
+
+              document.getElementById("btnGuardar-Asiento")?.removeAttribute("disabled");
+              if (this.cFunciones.DIALOG.getDialogById("error-servidor") == undefined) {
+                this.cFunciones.DIALOG.open(DialogoComponent, {
+                  id: "error-servidor",
+                  data: "<b class='error'>" + err.message + "</b>",
+                });
+              }
+            },
+            complete: () => {
+              document.getElementById("reg-agenda")?.removeAttribute("disabled");
+            }
+          }
+        );
+    
+      }
     });
 
    

@@ -28,4 +28,11 @@ export class postAgendaCita{
 
 }
 
+
+Cancelar(IdAgenda : Number) : Observable<string> { 
+   
+    return this.http.post<any>(this._Cnx.Url() + "Agenda/Cancelar?IdAgenda=" + IdAgenda, { headers: { 'content-type': 'application/text' } });
+
+}
+
 }

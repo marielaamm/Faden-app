@@ -32,7 +32,7 @@ export class AgendaCitaComponent implements OnInit {
     this.val.add("txtEspecialidad", "1", "LEN>", "0", "Especialidad", "El medico no tiene definida una especialidad");
     this.val.add("txtFecha", "1", "LEN>", "0", "", "Seleccione una fecha.");
     this.val.add("txtHora1", "1", "LEN>", "0", "Hora Inicio", "Seleccione una opción.");
-    this.val.add("txtHora2", "1", "LEN>", "0", "Hora Fin", "eleccione una opción.");
+    this.val.add("txtHora2", "1", "LEN>", "0", "Hora Fin", "Seleccione una opción.");
     this.val.add("txtObservaciones", "1", "LEN>=", "0", "", "");
 
     this.v_CargarDatos();
@@ -78,18 +78,20 @@ export class AgendaCitaComponent implements OnInit {
   public cmbPaciente: IgxComboComponent;
 
   public v_Select_Paciente(event: any) {
-    if(this.isLoad) return;
-    if (event.added.length) {
-      event.newSelection = event.added;
+
+    if (event.added.length == 1)  {
+      if(event.oldSelection[0] != event.added[0]) event.newSelection =   event.added;
       this.val.ValForm.get("cmbPaciente")?.setValue([event.added]);
     }
   }
 
   public v_Enter_Paciente(event: any) {
     if (event.key == "Enter") {
-      let _Item: iPaciente = this.cmbPaciente.dropdown.focusedItem.value;
-      this.cmbPaciente.setSelectedItem(_Item.IdPaciente);
-      this.val.ValForm.get("cmbPaciente")?.setValue([_Item.IdPaciente]);
+      let cmb : any = this.cmbPaciente.dropdown;
+      let _Item: iPaciente = cmb._focusedItem.value;
+      this.cmbPaciente.setSelectedItem(_Item);
+      this.val.ValForm.get("cmbPaciente")?.setValue([_Item?.IdPaciente]);
+
 
     }
   }
@@ -101,13 +103,12 @@ export class AgendaCitaComponent implements OnInit {
   public cmbMedico: IgxComboComponent;
 
   public v_Select_Medico(event: any) {
-    if(this.isLoad) return;
+
     this.val.ValForm.get("txtEspecialidad")?.setValue("");
 
-    if (event.added.length) {
+    if (event.added.length == 1) {
       let i_Medico: iMedicos = this.lstMedico.find(f => f.IdMedico == event.added)!;
-
-      event.newSelection = event.added;
+      if(event.oldSelection[0] != event.added[0]) event.newSelection =   event.added;
       this.val.ValForm.get("cmbMedico")?.setValue([event.added]);
       this.val.ValForm.get("txtEspecialidad")?.setValue(i_Medico?.Especialidad);
     }
@@ -115,8 +116,9 @@ export class AgendaCitaComponent implements OnInit {
 
   public v_Enter_Medico(event: any) {
     if (event.key == "Enter") {
-      let _Item: iMedicos = this.cmbMedico.dropdown.focusedItem.value;
-      this.cmbMedico.setSelectedItem(_Item.IdMedico);
+      let cmb : any = this.cmbMedico.dropdown;
+      let _Item: iMedicos = cmb._focusedItem.value;
+      this.cmbMedico.setSelectedItem(_Item);
       this.val.ValForm.get("cmbMedico")?.setValue([_Item?.IdMedico]);
 
     }
@@ -202,9 +204,9 @@ export class AgendaCitaComponent implements OnInit {
     let i_Medico: iMedicos = this.lstMedico.find(f => f.IdMedico == this.FILA.IdMedico)!;
 
 
-    this.cmbPaciente.setSelectedItem(this.FILA.IdPaciente)
-    this.cmbMedico.setSelectedItem(this.FILA.IdMedico)
 
+    this.val.ValForm.get("cmbPaciente")?.setValue([this.FILA.IdPaciente]);
+    this.val.ValForm.get("cmbMedico")?.setValue([this.FILA.IdMedico]);
     this.val.ValForm.get("txtFecha")?.setValue(this.FILA.Fecha);
     this.val.ValForm.get("txtFecha")?.setValue(this.FILA.Fecha);
     this.val.ValForm.get("txtHora1")?.setValue(this.FILA.HoraInicio);
@@ -258,6 +260,9 @@ export class AgendaCitaComponent implements OnInit {
 
         },
         error: (err) => {
+
+          document.getElementById("btnGuardar-Cita")?.removeAttribute("disabled");
+          document.getElementById("btnCanclar-Cita")?.removeAttribute("disabled");
       
           document.getElementById("btnGuardar-Asiento")?.removeAttribute("disabled");
           if (this.cFunciones.DIALOG.getDialogById("error-servidor") == undefined) {

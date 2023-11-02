@@ -43,7 +43,7 @@
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Fecha de ingreso</mat-label>
                                                     <input matInput [matDatepicker]="picker" id="txtFecha"
-                                                        formControlName="txtFecha">
+                                                        formControlName="txtFecha" >
                                                     <mat-datepicker-toggle matSuffix [for]="picker">
                                                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                     </mat-datepicker-toggle>
@@ -122,7 +122,7 @@
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Fecha de Nacimiento</mat-label>
                                                     <input matInput [matDatepicker]="pickerNacimiento"
-                                                        id="txtFechaNacimiento" formControlName="txtFechaNacimiento">
+                                                        id="txtFechaNacimiento" formControlName="txtFechaNacimiento"  (ngModelChange)="CalcularEdad($event)">
                                                     <mat-datepicker-toggle matSuffix [for]="pickerNacimiento">
                                                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                     </mat-datepicker-toggle>

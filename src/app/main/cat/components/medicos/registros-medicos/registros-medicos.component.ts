@@ -43,7 +43,7 @@ export class RegistrosMedicosComponent implements OnInit {
     }
   }
 
-  filtrar(event: Event) {
+  v_Filtrar(event: Event) {
     const filtro = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filtro.trim().toLowerCase();
   }

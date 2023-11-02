@@ -1,5 +1,36 @@
 
 <div class="app-registros-medicos">
+
+    <div class="row">
+
+        <div class="contenedor-filtro">
+
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-4 offset-lg-8 mb-1">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+        
+                        <div class="form-floating">
+                            <input type="text" id="txtBuscar-v" class="form-control" placeholder="Buscar"
+                                aria-label="Buscar" formControlName="txtBuscar-c"
+                                (keyup)="v_Filtrar($event)"
+                               >
+                            <label for="txtBuscar-v">Buscar</label>
+        
+                        </div>
+           
+                    </div>
+            
+                </div>
+        
+              
+            </div>
+        </div>
+      
+    </div>
+
+    
+
     <div class="faden-container-table">
         <div class="mat-elevation-z8 faden-tabla">
                         

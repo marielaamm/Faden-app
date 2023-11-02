@@ -12,6 +12,8 @@ export class DialogoConfirmarComponent implements OnInit {
   public titulo: String="";
   public mensaje: string="Continuar";
   public texto: String="";
+  public btn1: String="";
+  public btn2: String="";
 
   constructor(public hostElement: ElementRef, public dialogRef: MatDialogRef<DialogoConfirmarComponent>) { }
 
