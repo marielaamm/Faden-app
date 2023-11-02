@@ -17,7 +17,6 @@
                                           FORMULARIO
   **************************************************************************************************/
 
-
     mat-form-field:not(.mat-paginator-page-size-select),
     .igx-input-group {
         width: 100%;
@@ -91,7 +90,6 @@
 
 
 
-
     .formulario,
 
     .faden-registros {
@@ -99,8 +97,7 @@
         border: var(--faden-border-size) solid var(--faden-morado);
         box-shadow: var(--faden-border-size) 4px 14px 6px rgba(0, 0, 0, 0.76);
         border-radius: 5px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+
         min-width: var(--faden-min--width);
         margin-left: 0;
         margin-right: 0;

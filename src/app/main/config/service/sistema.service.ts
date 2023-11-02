@@ -89,7 +89,7 @@ export class SistemaService {
   }
 
   public BuscarUsuario(){
-    this.http.get<any>(this._Cnx.Url() + "SIS/Usuario/Buscar").subscribe(
+    this.http.get<any>(this._Cnx.Url() + "SIS/Usuario/Get").subscribe(
       datos =>{
         this.change.emit(["Llenar_Usuario", datos]);
       },

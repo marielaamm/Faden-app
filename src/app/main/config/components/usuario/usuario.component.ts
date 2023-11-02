@@ -10,6 +10,7 @@ import { iMedicos } from 'src/app/main/cat/interface/i-medicos';
 import { GlobalPositionStrategy, IgxComboComponent, OverlaySettings, scaleInCenter, scaleOutCenter } from 'igniteui-angular';
 import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
 import { getUsuario } from '../../service/getUsuario';
+import { iRol } from '../../Interface/i-Rol';
 
 @Component({
   selector: 'app-usuario',
@@ -20,7 +21,7 @@ import { getUsuario } from '../../service/getUsuario';
 export class UsuarioComponent implements OnInit {
 
   public bol_HidePass : boolean = true;
-  public bol_Inactivo : boolean = false;
+  public bol_Activo : boolean = false;
   public lstRoles: I_Rol[] = [];
   public bol_Guardando : boolean = false;
   public EsModal : boolean = false;
@@ -37,7 +38,7 @@ export class UsuarioComponent implements OnInit {
 
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private cFunciones : Funciones, private GET : getUsuario) {
 
-    this.val.add("txtRol", "1","LEN>", "0");
+    this.val.add("cmbRol", "1","LEN>", "0");
     this.val.add("txtNombre", "1","LEN>", "0");
     this.val.add("txtApellido", "1","LEN>", "0");
     this.val.add("txtLogin", "1","LEN>", "0");
@@ -66,13 +67,13 @@ export class UsuarioComponent implements OnInit {
   private Limpiar()
   {
     this.bol_Guardando = true;
-    this.val.ValForm.get("txtRol")?.setValue([]);
+    this.val.ValForm.get("cmbRol")?.setValue([]);
     this.val.ValForm.get("txtNombre")?.setValue("");
     this.val.ValForm.get("txtApellido")?.setValue("");
     this.val.ValForm.get("txtLogin")?.setValue("");
     this.val.ValForm.get("txtPass")?.setValue("");
     this.val.ValForm.get("cmbMedico")?.setValue("");
-    this.val.ValForm.get("chkInactivo")?.setValue(false);
+    this.val.ValForm.get("chkActivo")?.setValue(true);
     this.val.ValForm.get("")?.setValue("");
   }
 
@@ -83,21 +84,46 @@ export class UsuarioComponent implements OnInit {
     }
 }
 
-Inactivo() :void{
-  this.bol_Inactivo = !this.bol_Inactivo;
+Activo() :void{
+  this.bol_Activo = !this.bol_Activo;
 }
 
 Cerrar() : void{
-  /*this.viewContainerRef
-    .element
-    .nativeElement
-    .parentElement
-    .removeChild(this.viewContainerRef.element.nativeElement);*/
-
+  if(this.EsModal)
+  {
+    this.ServerScv.change.emit(["CerrarDialog","frmUsuario", ""]);
+  }
+  else
+  {
+    
     this.ServerScv.CerrarFormulario();
+  }
     
 }
 
+
+@ViewChild("cmbRol", { static: false })
+public cmbRol: IgxComboComponent;
+
+public v_Select_Rol(event: any) {
+
+  if (event.added.length) {
+    if(event.oldSelection[0] != event.added[0]) event.newSelection =   event.added;
+    this.val.ValForm.get("cmbRol")?.setValue([event.added]);
+
+  }
+}
+
+public v_Enter_Rol(event: any) {
+  if (event.key == "Enter") {
+
+    let cmb : any = this.cmbRol.dropdown;
+      let _Item: iRol = cmb._focusedItem.value;
+      this.cmbRol.setSelectedItem(_Item);
+      this.val.ValForm.get("cmbMedico")?.setValue([_Item?.IdRol]);
+
+  }
+}
 
 
 
@@ -106,28 +132,47 @@ Cerrar() : void{
 public cmbMedico: IgxComboComponent;
 
 public v_Select_Medico(event: any) {
-  if(this.isLoad) return;
-  this.val.ValForm.get("txtEspecialidad")?.setValue("");
+
 
   if (event.added.length) {
     let i_Medico: iMedicos = this.lstMedico.find(f => f.IdMedico == event.added)!;
-
-    event.newSelection = event.added;
+    if(event.oldSelection[0] != event.added[0]) event.newSelection =   event.added;
     this.val.ValForm.get("cmbMedico")?.setValue([event.added]);
-    this.val.ValForm.get("txtEspecialidad")?.setValue(i_Medico?.Especialidad);
+    this.val.ValForm.get("txtNombre")?.setValue(i_Medico?.PNombre + " " + i_Medico.SNombre);
+    this.val.ValForm.get("txtApellido")?.setValue(i_Medico?.PApellido + " " + i_Medico.SApellido);
+
   }
 }
 
 public v_Enter_Medico(event: any) {
   if (event.key == "Enter") {
-    let _Item: iMedicos = this.cmbMedico.dropdown.focusedItem.value;
-    this.cmbMedico.setSelectedItem(_Item.IdMedico);
-    this.val.ValForm.get("cmbMedico")?.setValue([_Item?.IdMedico]);
+
+    let cmb : any = this.cmbMedico.dropdown;
+      let _Item: iMedicos = cmb._focusedItem.value;
+      this.cmbMedico.setSelectedItem(_Item);
+      this.val.ValForm.get("cmbMedico")?.setValue([_Item?.IdMedico]);
 
   }
 }
 
 
+
+public Editar(fila: any){
+
+  this.EsModal= true;
+  this.IdUsuario=fila.IdUsuario;
+  this.cmbMedico.setSelectedItem(fila.IdMedico);
+  this.cmbRol.setSelectedItem(fila.IdMedico);
+  this.val.ValForm.get("cmbMedico")?.setValue([fila.IdMedico]);
+  this.val.ValForm.get("cmbRol")?.setValue([fila.IdRol]);
+  this.val.ValForm.get("txtNombre")?.setValue(fila.Nombre);
+  this.val.ValForm.get("txtNombre")?.setValue(fila.Nombre);
+  this.val.ValForm.get("txtApellido")?.setValue(fila.Apellido);
+  this.val.ValForm.get("txtLogin")?.setValue(fila.Usuario1);
+  this.val.ValForm.get("txtPass")?.setValue(fila.Contrasena);
+  this.val.ValForm.get("chkActivo")?.setValue(fila.Activo);
+
+ }
 
 
 public v_CargarDatos(): void {
@@ -192,7 +237,7 @@ public Guardar(): void {
   let esError: string = " ";
   let mensaje: string = " <ol>";
 
- if (this.val.ValForm.get("txtRol")?.invalid) {
+ if (this.val.ValForm.get("cmbRol")?.invalid) {
   mensaje += "<li>Seleccione un Rol</li>";
   esError += "1";
 }
@@ -239,7 +284,7 @@ if (esError.includes("1")) {
 
 }
 this.bol_Guardando = true;
-let _FilaRol : any = this.lstRoles.find(f => f.IdRol == this.val.ValForm.get("txtRol")?.value);
+let _FilaRol : any = this.lstRoles.find(f => f.IdRol == this.val.ValForm.get("cmbRol")?.value[0]);
 
 let E: iUsuario = {}as  iUsuario;
 
@@ -252,7 +297,7 @@ E.Apellido = this.val.ValForm.get("txtApellido")?.value;
 E.Usuario1 = this.val.ValForm.get("txtLogin")?.value;
 E.Contrasena = this.val.ValForm.get("txtPass")?.value;
 E.IdMedico = this.val.ValForm.get("cmbMedico")?.value[0]
-E.Activo = true;
+E.Activo = this.bol_Activo;
 this._SistemaService.GuardarUsuario(E);
 
  }

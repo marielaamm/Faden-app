@@ -30,6 +30,7 @@ import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
 import { Subscription, interval } from 'rxjs';
 import { DialogErrorComponent } from 'src/app/main/shared/components/dialog-error/dialog-error.component';
 import { iDatos } from 'src/app/main/shared/interface/i-Datos';
+import { RegistrousuarioComponent } from '../usuario/registrousuario/registrousuario.component';
 
 @Component({
   selector: 'app-menu',
@@ -208,6 +209,21 @@ export class MenuComponent {
 
         
         break;
+
+
+        case "LinkRegistroUsuario":
+        
+        if(this.str_formulario != f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(RegistrousuarioComponent);
+          this.str_formulario = f;
+        }
+
+        
+        break;
+
+
+        
 
       case "LinkRol":
 

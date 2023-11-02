@@ -32,12 +32,12 @@ export interface iUsuario{
 export class RegistrousuarioComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['IdUsuario', 'IdRol', 'Nombre', 'Apellido', 'Usuario1', 'Contrasena', 'Activo'];
+  displayedColumns: string[] = ['Usuario1', 'Nombre', 'Rol1', 'Activo'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   clickedRows = new Set<iUsuario>();
   private _liveAnnouncer: any;
   private _SistemaService: SistemaService;
-  private dialogRef : MatDialogRef<RegistrousuarioComponent>;
+  private dialogRef : MatDialogRef<UsuarioComponent>;
 
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
     this._SistemaService = new SistemaService(this._Dialog);
@@ -79,10 +79,10 @@ export class RegistrousuarioComponent implements OnInit {
   }
 
   public EditarUsuario (fila: any){
-    this.dialogRef = this._Dialog.open(RegistrousuarioComponent, { disableClose: true })
+    this.dialogRef = this._Dialog.open(UsuarioComponent, { disableClose: true })
 
     this.dialogRef.afterOpened().subscribe(s => {
-    this.dialogRef.componentInstance.EditarUsuario(fila);
+    this.dialogRef.componentInstance.Editar(fila);
     })
   }
  

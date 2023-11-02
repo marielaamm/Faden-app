@@ -35,31 +35,17 @@
                                 <mat-card-content class="row col-12 no-padding-margin">
 
                                     <div class="col-12">
-                                        <!--<div class="combo-section">
-                                            <igx-combo class="combo" #withValueKey [data]="cities" valueKey="id" displayKey="name" groupKey="name"
-                                            placeholder="Role(s)" searchPlaceholder="Buscar...">
-                                            </igx-combo>
-                     
-                                        </div>-->
-
+                  
                                         <div>
-                                            <igx-combo _ngcontent-pmm-5 class="combo" #withValueKey [data]="lstRoles"
-                                                valueKey="IdRol" displayKey="Rol1" id="txtRol" formControlName="txtRol"
+                                            <igx-combo #cmbRol class="combo" [data]="lstRoles"
+                                                valueKey="IdRol" displayKey="Rol1" id="cmbRol" formControlName="cmbRol"
                                                 placeholder="Rol" searchPlaceholder="Seleccione un Rol..."
-                                                (selectionChanging)="singleSelection($event)" [itemsMaxHeight]="250"
-                                                appAutofocus>
+                                                [autoFocusSearch]="true"
+                                            [overlaySettings]="overlaySettings" (selectionChanging)="v_Select_Rol($event)"
+                                            (keyup)="v_Enter_Rol($event);">
                                             </igx-combo>
 
-                                            <!--<igx-combo #withValueKey [data]="cities" valueKey="id" displayKey="name" groupKey="name">
-                                                <ng-template   let-display let-key="valueKey">
-                                                    <div class="item2">
-                                                        <span class="state">State: {{ display[key] }}</span>
-                                                        <span class="region">Region: {{ display.name }}</span>
-                                                    </div>
-                                                </ng-template>
-            
-                                                
-                                            </igx-combo>-->
+                        
 
                                         </div>
 
@@ -67,7 +53,7 @@
 
                                     </div>
 
-                                    <mat-form-field _ngcontent-pmm-5 class="col-12">
+                                    <mat-form-field  class="col-12">
                                         <mat-label>Nombres</mat-label>
                                         <input matInput type="text" id="txtNombre" formControlName="txtNombre">
                                         <mat-error *ngIf="val.ValForm.get('txtNombre')?.errors?.['Regla']=='1'">Nombres
@@ -145,8 +131,8 @@
 
                         <div class="col-12">
                             <div class="checkbox mb-3">
-                                <mat-checkbox color="primary" formControlName="chkInactivo" (click)="Inactivo()">
-                                    <b>Inactivo</b>
+                                <mat-checkbox color="primary" formControlName="chkActivo" (click)="Activo()">
+                                    <b>Activo</b>
                                 </mat-checkbox>
                             </div>
                         </div>
