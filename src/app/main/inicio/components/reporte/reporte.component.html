@@ -1,1 +1,43 @@
-<p>reporte works!</p>
+<div class="row">
+      
+    <div class="row">
+
+        <div class="contenedor-filtro linea-bottom-primario">
+            <div class="row">
+                <p>REPORTE</p>
+            </div>
+            
+            <form autocomplete="off" [formGroup]="val.ValForm">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-4 mb-1">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-list fa-lg"></i></span>
+                            <div class="form-floating">
+                                <select class="form-select form-select-lg" aria-label="Reporte"
+                                id="cmbReporte" formControlName="cmbReporte">
+                                    <option value="1">Reporte 1</option>
+                                    <option value="2">Reporte 2</option>
+                                    <option value="3">Reporte 3</option>
+                                    <option value="4">Reporte 4</option>
+                                    <option value="5">Reporte 5</option>
+                                    <option value="6">Reporte 6</option>
+                                    <option value="7">Reporte 7</option>
+                                </select>
+                                <label for="cmbReporte">Reporte</label>
+                            </div>
+                            <span class="input-group-text"> 
+                                <button type="button" class="btn btn-refescar"
+                                     (click)="v_Imprimir();"><i
+                                        class="fa-solid fa-print fa-beat-fade fa-lg"></i></button>
+                                    </span>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+          
+        </div>
+      
+    </div>
+
+</div>

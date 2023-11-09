@@ -6,6 +6,7 @@ import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
 import { MatDialogRef } from '@angular/material/dialog';
 import { iDatos } from 'src/app/main/shared/interface/i-Datos';
 import { getImprimir } from '../../service/getImprimir.service';
+import { Validacionv2 } from 'src/app/main/shared/class/validacionV2';
 
 let DatosImpresion: iDatos[];
 
@@ -16,15 +17,32 @@ let DatosImpresion: iDatos[];
 })
 export class ReporteComponent implements OnInit {
 
-  constructor(private cFunciones : Funciones, private GET : getImprimir) { }
+  public val = new Validacionv2();
+  
+  constructor(private cFunciones : Funciones, private GET : getImprimir) { 
+
+    this.val.add("cmbReporte", "1", "LEN>", "0", "Reporte", "Seleccione un reporte.");
+  }
 
 
 
 
   public v_Imprimir(): void {
 
+    
+    this.val.EsValido();
 
-    this.GET.Imprimir("1").subscribe(
+
+    if (this.val.Errores != "") {
+      this.cFunciones.DIALOG.open(DialogErrorComponent, {
+        data: this.val.Errores,
+      });
+
+      return;
+    }
+
+
+    this.GET.Imprimir(this.val.Get("cmbReporte").value).subscribe(
       {
         next: (s) => {
 

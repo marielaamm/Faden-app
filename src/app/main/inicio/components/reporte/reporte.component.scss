@@ -1,0 +1,21 @@
+.contenedor-filtro{
+    text-align: center;
+    z-index: 1;
+    background-color: var(--escan-fondo);
+   
+   p{
+   
+    font-weight: bold;
+    font-size: 1.5em;
+   }
+
+   button:first-child{
+    width: 100%;
+   }
+   button:last-child{
+    margin-left: 10px;
+   }
+
+  
+
+}
