@@ -67,7 +67,6 @@ import { UsuarioComponent } from './main/config/components/usuario/usuario.compo
 import { DynamicFormDirective } from './main/shared/directive/dynamic-form.directive';
 import { IgxComboModule } from 'igniteui-angular';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { ModalModule } from 'ng-modal-lib';
 
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { RolesComponent } from './main/config/components/roles/roles.component';
@@ -232,7 +231,7 @@ display: {
     ReactiveFormsModule,
     HttpClientModule,
     IgxComboModule,
-    ModalModule,
+
     
 
   ],

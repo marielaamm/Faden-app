@@ -31,6 +31,7 @@ import { Subscription, interval } from 'rxjs';
 import { DialogErrorComponent } from 'src/app/main/shared/components/dialog-error/dialog-error.component';
 import { iDatos } from 'src/app/main/shared/interface/i-Datos';
 import { RegistrousuarioComponent } from '../usuario/registrousuario/registrousuario.component';
+import { ReporteComponent } from 'src/app/main/inicio/components/reporte/reporte.component';
 
 @Component({
   selector: 'app-menu',
@@ -187,6 +188,15 @@ export class MenuComponent {
           this.str_formulario=f; 
         }
         break;
+
+      case "navReporte":
+        if(this.str_formulario !=f){
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(ReporteComponent);
+          this.str_formulario=f; 
+        }
+        break;
+      break;
 
 
     }

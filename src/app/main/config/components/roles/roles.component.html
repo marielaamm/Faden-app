@@ -11,9 +11,6 @@
               <div class="col-12 btnAccion">
                 <div class="btn-contenedor">
 
-                  <button mat-fab class="btn-faden-buscar" (click)="modal1.show();">
-                    <mat-icon>search</mat-icon>
-                  </button>
                   <div class="line-vertical"></div>
                   <button mat-fab class="btn-faden-aceptar" (click)="Guardar();" [disabled]="bol_Guardando">
                     <mat-icon>save</mat-icon>
@@ -64,21 +61,3 @@
 
 
 
-
-<!--https://github.com/mazdik/ng-modal-->
-<app-modal #modal1 class="container row faden-modal" [maximizable]="true" [backdrop]="true">
-  <ng-container class="app-modal-header">REGISTROS DE ROLES</ng-container>
-  <ng-container class="app-modal-body">
-    <app-roles-registro></app-roles-registro>
-  </ng-container>
-  <ng-container class="app-modal-footer">
-    <div class="row col-12">
-      <div class="col-12 btnAccion hide-element">
-        <button mat-fab class="btn-faden-salir" id="modal-registro-roles" (click)="modal1.hide();">
-          <mat-icon>exit_to_app</mat-icon>
-        </button>
-      </div>
-    </div>
-
-  </ng-container>
-</app-modal>

@@ -69,6 +69,7 @@ export class NavComponent{
       {EsMenu: false, Modulo: "HOME", ModuloNombre: "Inicio", Id:"navExpediente", Link: "Expediente" , MenuPadre: "", Clase : ""},
       {EsMenu: false, Modulo:"HOME", ModuloNombre:"Inicio", Id:"navsoap",Link:"Sistema SOAP", MenuPadre: "", Clase: "" },
       {EsMenu: false, Modulo:"HOME", ModuloNombre:"Inicio", Id:"navAgenda",Link:"Agrenda", MenuPadre: "", Clase: "" },
+      {EsMenu: false, Modulo:"HOME", ModuloNombre:"Inicio", Id:"navReporte",Link:"Reporte", MenuPadre: "", Clase: "" },
    
 
     

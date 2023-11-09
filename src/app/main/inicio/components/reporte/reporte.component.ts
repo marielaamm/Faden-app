@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogErrorComponent } from 'src/app/main/shared/components/dialog-error/dialog-error.component';
+import * as printJS from 'print-js';
+import { PDFDocument } from 'pdf-lib';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
+import { MatDialogRef } from '@angular/material/dialog';
+import { iDatos } from 'src/app/main/shared/interface/i-Datos';
+import { getImprimir } from '../../service/getImprimir.service';
+
+let DatosImpresion: iDatos[];
 
 @Component({
   selector: 'app-reporte',
@@ -8,7 +16,7 @@ import { DialogErrorComponent } from 'src/app/main/shared/components/dialog-erro
 })
 export class ReporteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cFunciones : Funciones, private GET : getImprimir) { }
 
 
 
@@ -72,56 +80,20 @@ export class ReporteComponent implements OnInit {
     let url = URL.createObjectURL(file);
      let pdfsToMerge = [url];
 
-      if (this.cFunciones.MyBrowser() == "Firefox")
-      {
-        let dialogRef: MatDialogRef<ImprimirFacturaComponent> = this.cFunciones.DIALOG.open(
-          ImprimirFacturaComponent,
-          {
-            panelClass: window.innerWidth < 992 ? "escasan-dialog-full" : "escasan-dialog",
-            data : pdfsToMerge,
-            disableClose: true
-          }
-        );
-      }
-      else
-      {
-        pdfsToMerge = [url]; //  let pdfsToMerge = [url, url2] imprimir multiples pdf en una sola ventana;
-        const mergedPdf = await PDFDocument.create();
-        for (const pdfCopyDoc of pdfsToMerge) {
-          const pdfBytes = await fetch(pdfCopyDoc).then(res => res.arrayBuffer())
-          //const pdfBytes = fs.readFileSync(pdfCopyDoc);
-          const pdf = await PDFDocument.load(pdfBytes);
-          const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-          copiedPages.forEach((page) => {
-            mergedPdf.addPage(page);
-          });
-        }
-        const mergedPdfFile = await mergedPdf.save();
-        this.downloadFile(mergedPdfFile);
-   
-      }
+     pdfsToMerge = [url]; //  let pdfsToMerge = [url, url2] imprimir multiples pdf en una sola ventana;
+     const mergedPdf = await PDFDocument.create();
+     for (const pdfCopyDoc of pdfsToMerge) {
+       const pdfBytes = await fetch(pdfCopyDoc).then(res => res.arrayBuffer())
+       //const pdfBytes = fs.readFileSync(pdfCopyDoc);
+       const pdf = await PDFDocument.load(pdfBytes);
+       const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+       copiedPages.forEach((page) => {
+         mergedPdf.addPage(page);
+       });
+     }
+     const mergedPdfFile = await mergedPdf.save();
+     this.downloadFile(mergedPdfFile);
 
-      
- //   }
- /*   else
-    {
-      var a = document.createElement("a");
-      a.href = url;
-      a.download = DatosImpresion[0].Nombre + ".pdf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove()
-
-      a = document.createElement("a");
-      a.href = url2;
-      a.download = DatosImpresion[1].Nombre + ".pdf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove()
-
-    }
-
-*/
   }
       
 
