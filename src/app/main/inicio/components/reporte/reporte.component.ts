@@ -8,7 +8,7 @@ import { iDatos } from 'src/app/main/shared/interface/i-Datos';
 import { getImprimir } from '../../service/getImprimir.service';
 import { Validacionv2 } from 'src/app/main/shared/class/validacionV2';
 
-let DatosImpresion: iDatos[];
+let DatosImpresion: iDatos;
 
 @Component({
   selector: 'app-reporte',
@@ -90,7 +90,7 @@ export class ReporteComponent implements OnInit {
 
    
     
-    let byteArray = new Uint8Array(atob(DatosImpresion[0].d).split('').map(char => char.charCodeAt(0)));
+    let byteArray = new Uint8Array(atob(DatosImpresion.d).split('').map(char => char.charCodeAt(0)));
 
 
     var file = new Blob([byteArray], { type: 'application/pdf' });
