@@ -195,7 +195,8 @@ export class EstiloVidaComponent implements OnInit {
     let Datos : iEstiloVidaDatos  = {} as iEstiloVidaDatos;
     let EstiloVida : iEstiloVida = {} as iEstiloVida;
 
-    EstiloVida.Alcoholismo = this.rdSenderismo;
+
+    EstiloVida.Senderismo = this.rdSenderismo;
     EstiloVida.Alcoholismo = this.rdAlcoholismo;
     EstiloVida.Tabaquismo = this.rdTabaquismo;
     EstiloVida.Cafe = this.rdCafe;
@@ -245,9 +246,9 @@ export class EstiloVidaComponent implements OnInit {
       {IdEjercicio : 0, IdElemento : "Correr",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
       {IdEjercicio : 0, IdElemento : "Nadar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
       {IdEjercicio : 0, IdElemento : "Ciclismo",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Jardin",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Cuido Jardin",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
       {IdEjercicio : 0, IdElemento : "Bailar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Trabaja",  Frecuencia : "",  Activo : false, IdPaciente : 0 }
+      {IdEjercicio : 0, IdElemento : "Trabaja dentro o fuera de casa",  Frecuencia : "",  Activo : false, IdPaciente : 0 }
     ];
     }
 
