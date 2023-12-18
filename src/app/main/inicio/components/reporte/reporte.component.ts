@@ -8,8 +8,6 @@ import { iDatos } from 'src/app/main/shared/interface/i-Datos';
 import { getImprimir } from '../../service/getImprimir.service';
 import { Validacionv2 } from 'src/app/main/shared/class/validacionV2';
 
-let DatosImpresion: iDatos;
-
 @Component({
   selector: 'app-reporte',
   templateUrl: './reporte.component.html',
@@ -58,10 +56,9 @@ export class ReporteComponent implements OnInit {
               });
             }
           } else {
-            DatosImpresion = _json["d"];
 
+            this.printPDFS(_json["d"].d);
 
-            this.printPDFS();
             
     
           }
@@ -86,47 +83,24 @@ export class ReporteComponent implements OnInit {
 
 
 
-  async printPDFS() {
+  async printPDFS(datos: any) {
 
    
-    
-    let byteArray = new Uint8Array(atob(DatosImpresion.d).split('').map(char => char.charCodeAt(0)));
-
+    let byteArray = new Uint8Array(atob(datos).split('').map(char => char.charCodeAt(0)));
 
     var file = new Blob([byteArray], { type: 'application/pdf' });
 
     let url = URL.createObjectURL(file);
-     let pdfsToMerge = [url];
 
-     pdfsToMerge = [url]; //  let pdfsToMerge = [url, url2] imprimir multiples pdf en una sola ventana;
-     const mergedPdf = await PDFDocument.create();
-     for (const pdfCopyDoc of pdfsToMerge) {
-       const pdfBytes = await fetch(pdfCopyDoc).then(res => res.arrayBuffer())
-       //const pdfBytes = fs.readFileSync(pdfCopyDoc);
-       const pdf = await PDFDocument.load(pdfBytes);
-       const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-       copiedPages.forEach((page) => {
-         mergedPdf.addPage(page);
-       });
-     }
-     const mergedPdfFile = await mergedPdf.save();
-     this.downloadFile(mergedPdfFile);
+    let tabOrWindow : any = window.open(url, '_blank');
+    tabOrWindow.focus();
+
 
   }
       
 
 
-   /* Convert the merged pdf array buffer to blob url for print or open in browser.*/
-   downloadFile(data: any) {
-    const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
-    //window.open(url);
-    printJS({
-      printable: url,
-      type: 'pdf'
-    })
 
-  }
 
 
 
