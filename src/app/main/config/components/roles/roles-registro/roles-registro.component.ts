@@ -32,6 +32,7 @@ export class RolesRegistroComponent implements OnInit {
   private _liveAnnouncer: any;
   private _SistemaService: SistemaService;
   private  dialogRef : MatDialogRef<RolesComponent>;
+  private Acceso : any[];
 
   
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) { 
@@ -68,7 +69,8 @@ export class RolesRegistroComponent implements OnInit {
 
 
     ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
-    ELEMENT_DATA = _json["d"];
+    ELEMENT_DATA = _json["d"][0];
+    this.Acceso = _json["d"][1];
 
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -77,6 +79,8 @@ export class RolesRegistroComponent implements OnInit {
 
   public EditarRol (fila: any){
     this.dialogRef =this._Dialog.open(RolesComponent, { disableClose: true })
+
+    fila.Acceso = this.Acceso.filter(f => f.IdRol == fila.IdRol);
 
 
     this.dialogRef.afterOpened().subscribe(s => {

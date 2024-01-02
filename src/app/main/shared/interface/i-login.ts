@@ -1,3 +1,5 @@
+import { I_Nav } from "./i-Nav";
+
 export interface iLogin{
     User: string;
     Nombre : string;
@@ -8,4 +10,5 @@ export interface iLogin{
     Desconecion : boolean;
     FechaServer : string;
     TimeOut: number;
+    Acceso : I_Nav[];
 }

@@ -91,15 +91,16 @@ export class RegistrousuarioComponent implements OnInit {
 
     let dialogo : MatDialogRef<DialogoConfirmarComponent> = this._Dialog.open(DialogoConfirmarComponent, { disableClose: true })
 
-    dialogo.componentInstance.titulo = "Eliminar Usuario";
-    dialogo.componentInstance.mensaje = "Eliminar";
-    dialogo.componentInstance.texto = fila.IdRol + " " + fila.Rol1;
+    dialogo.componentInstance.titulo = fila.Activo ? "Inactivar" : "Activar" + " Usuario";
+    dialogo.componentInstance.mensaje = fila.Activo ? "Inactivar" : "Activar";
+    dialogo.componentInstance.texto = fila.Usuario1 + " " + fila.Rol1;
 
     dialogo.afterClosed().subscribe(s=>{
 
       if(dialogo.componentInstance.retorno=="1"){
-        fila.Activo = false;
+        fila.Activo = !fila.Activo;
         this._SistemaService.GuardarUsuario(fila);
+        this.dataSource._updateChangeSubscription();
       }
       
     });

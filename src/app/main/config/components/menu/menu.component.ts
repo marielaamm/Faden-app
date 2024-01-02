@@ -114,6 +114,18 @@ export class MenuComponent {
     faden_NAV = this.dynamicNav.viewContainerRef.createComponent(NavComponent);
 
     switch(m){
+
+      case "HOME":
+        this.str_NomModulo = "INICIO";
+        document.getElementById("mov_inicio")?.classList.add('activo');
+        break;
+
+      case "EXP":
+        this.str_NomModulo = "EXPEDIENTE";
+        document.getElementById("mov_exp")?.classList.add('activo');
+        break;
+
+
       case "SIS":
         this.str_NomModulo = "CONFIGURACIÓN";
         document.getElementById("mov_sis")?.classList.add('activo');
@@ -124,10 +136,7 @@ export class MenuComponent {
         document.getElementById("mov_cat")?.classList.add('activo');
         break;
       
-      case "HOME":
-        this.str_NomModulo = "INICIO";
-        document.getElementById("mov_inicio")?.classList.add('activo');
-        break;
+     
     }
 
 
@@ -145,8 +154,8 @@ export class MenuComponent {
 
     switch(this.str_Modulo){
 
-      case "HOME":
-        this.Modulo_INICIO(f);
+      case "EXP":
+        this.Modulo_EXP(f);
         break;
 
       case "SIS":
@@ -160,7 +169,7 @@ export class MenuComponent {
 
     
   }
-  private Modulo_INICIO(f: string){
+  private Modulo_EXP(f: string){
 
     switch(f){
 
@@ -345,6 +354,11 @@ export class MenuComponent {
   }
 
 
+  public Menu(str_Modulo : string, str_ModuloNombre : string) : number{
+    return this.cFunciones.ACCESO.findIndex(f =>  f.Modulo ==  str_Modulo && f.ModuloNombre == str_ModuloNombre && f.Seleccionar)
+  }
+
+
 
   private ActualizarDatosServidor() : void{
     this.ErrorServidor = false;
@@ -371,6 +385,24 @@ export class MenuComponent {
           this.cFunciones.FechaServidor(Datos[0].d);
           this.cFunciones.SetTiempoDesconexion(Number(Datos[1].d));
           this._SrvLogin.UpdFecha(String(Datos[0].d));
+
+
+              this.cFunciones.ACCESO.filter( f=>{
+
+                let nav : any = Datos[2].d.find((w : any) => w.Modulo == f.Modulo && w.Id == f.Id);
+
+                if(nav != undefined)
+                {
+                  f.IdAcceso = nav.IdAcceso;
+                  f.Seleccionar = nav.Seleccionar;
+                  f.Seleccionar = nav.Seleccionar;
+                }
+            
+              });
+              
+
+
+
         }
 
           if(this.cFunciones.DIALOG.getDialogById("error-servidor") != undefined) 

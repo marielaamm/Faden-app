@@ -1,4 +1,8 @@
-.formulario{
-    min-width: var(--faden-min--width);
+.bold{
+    font-weight: bold;
+    color: blue;
 }
 
+input[type=checkbox] {
+    margin-right: 5px; 
+}

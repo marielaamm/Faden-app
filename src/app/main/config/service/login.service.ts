@@ -49,6 +49,24 @@ export class LoginService {
             this.cFunciones.SetTiempoDesconexion(Number(datos[2].d));
             l.FechaServer = datos[1].d;
             l.TimeOut = Number(datos[2].d);
+
+
+            this.cFunciones.ACCESO.filter( f=>{
+
+              let nav : any = datos[3].d.find((w : any) => w.Modulo == f.Modulo && w.Id == f.Id);
+
+              if(nav != undefined)
+              {
+                f.IdAcceso = nav.IdAcceso;
+                f.Seleccionar = nav.Seleccionar;
+                f.Seleccionar = nav.Seleccionar;
+              }
+          
+            });
+
+            l.Acceso = this.cFunciones.ACCESO;
+
+
     
               localStorage.removeItem("login");
 
@@ -102,8 +120,10 @@ export class LoginService {
       this.cFunciones.User = l.User;
       this.cFunciones.Nombre = l.Nombre;
       this.cFunciones.Rol = l.Rol;
+      this.cFunciones.ACCESO = l.Acceso;
       this.cFunciones.FechaServidor(new Date(l.FechaServer));
       this.cFunciones.SetTiempoDesconexion(l.TimeOut);
+
     }
 
 

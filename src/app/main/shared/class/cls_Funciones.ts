@@ -2,6 +2,8 @@ import { DatePipe, formatNumber } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { getServidor } from '../service/get-servidor';
+import { I_Nav } from '../interface/i-Nav';
+
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +29,59 @@ export class Funciones {
   public User : string = "";
   public Nombre : string = "";
   public Rol : string = "";
+
+
+  public ACCESO: I_Nav[] = [
+
+
+    
+        /**************************************EXPEDIENTE************************************* */ 
+  
+        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "EXP", ModuloNombre: "Expediente", Id:"navExpediente", Link: "Paciente" , MenuPadre: "", Clase : ""},
+        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navsoap",Link:"Sistema SOAP", MenuPadre: "", Clase: "" },
+        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navAgenda",Link:"Agrenda", MenuPadre: "", Clase: "" },
+        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navReporte",Link:"Reporte", MenuPadre: "", Clase: "" },
+     
+    
+
+
+    /**************************************USUARIO************************************* */
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo : "SIS", ModuloNombre : "Configuración", Id: "navUsuario", Link : "Usuarios", MenuPadre : "", Clase : "bi bi-people-fill"},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkUsuario", Link : "Nuevo Usuario", MenuPadre : "navUsuario", Clase : "bi bi-person-plus-fill"},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkRegistroUsuario", Link : "Registro Usuarios", MenuPadre : "navUsuario", Clase : "bi bi-table"},
+  
+  
+    /**************************************ROLES************************************* */
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo : "SIS", ModuloNombre : "", Id: "navRol", Link : "Roles", MenuPadre : "", Clase : "bi bi-key-fill"},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkRol", Link : "Nuevo Rol", MenuPadre : "navRol", Clase : "bi bi-key-fill"},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkRol-Registro", Link : "Registros", MenuPadre : "navRol", Clase : "bi bi-key-fill"},
+   
+  
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navDepartamento", Link: "Departamento", MenuPadre: "", Clase: ""},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkNuevoDepartamento", Link: "Nuevo Departamento", MenuPadre: "navDepartamento", Clase: ""},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkRegistrosDepartamento", Link: "Registros de Departamento", MenuPadre: "navDepartamento", Clase: ""},
+    
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo: "CAT", ModuloNombre: "", Id: "navMunicipio", Link: "Municipio", MenuPadre: "", Clase: ""}, 
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkNuevoMunicipio", Link: "Nuevo Municipio", MenuPadre: "navMunicipio", Clase: ""},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkRegistroMunicipio", Link: "Registros de Municipio", MenuPadre: "navMunicipio", Clase: ""},
+    
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo: "CAT", ModuloNombre: "", Id: "navEscolaridad", Link: "Escolaridad", MenuPadre: "", Clase: ""}, 
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkNuevaEscolaridad", Link: "Nueva Escolaridad", MenuPadre: "navEscolaridad", Clase: ""},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkRegistrosEscolaridad", Link: "Registros de Escolaridad", MenuPadre: "navEscolaridad", Clase: ""},
+  
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo: "CAT", ModuloNombre: "", Id:"navMedicos", Link: "Medicos", MenuPadre: "", Clase: ""},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkNuevoMedico", Link: "Nuevo Medico", MenuPadre: "navMedicos", Clase: ""},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkRegistrosMedico", Link: "Registros de medicos", MenuPadre: "navMedicos", Clase: ""},
+  
+    /**************************************INICIO************************************* */ 
+  
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "HOME", ModuloNombre: "Inicio", Id:"navInicio", Link: "" , MenuPadre: "", Clase : ""},
+     
+    
+    
+  
+  ]
+  
 
 
   constructor(public GET: getServidor, public DIALOG: MatDialog) {

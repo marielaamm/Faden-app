@@ -64,11 +64,11 @@
                                                 
                                         </div>
                                         <div class="col-6">
-                                            <a href="#"(click)="EliminarUsuario(element)"><i class="bi bi-trash3" style="font-size: 2.5em;"></i></a>
+                                            <a href="#"(click)="EliminarUsuario(element)"  ><i [ngClass]="element.Activo == true ? 'fa-solid fa-check' : 'fa-regular fa-square'"  style="font-size: 2.5em;"></i></a>
+                                       
                                         </div>
                                     </div>
-                                
-                                
+
                                 </td>
                             </ng-container>
 

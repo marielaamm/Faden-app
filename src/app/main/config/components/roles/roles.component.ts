@@ -5,6 +5,11 @@ import { DialogoComponent } from 'src/app/main/shared/components/dialogo/dialogo
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iRol } from '../../Interface/i-Rol';
 import { SistemaService } from '../../service/sistema.service';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
+import { MatTableDataSource } from '@angular/material/table';
+import { I_Nav } from 'src/app/main/shared/interface/i-Nav';
+
+
 
 @Component({
   selector: 'app-roles',
@@ -18,8 +23,14 @@ export class RolesComponent implements OnInit {
   private serviceSIS : SistemaService
   public bol_Guardando : boolean = false;
   private Id : Number=0;
+
+
+  displayedColumns: string[] = ['ModuloNombre','Link','Clase'];
+  clickedRows = new Set<any>();
+  dataSource : I_Nav[] = [];
   
-  constructor(private ServerScv : ServerService,   private _Dialog: MatDialog) {
+  
+  constructor(private ServerScv : ServerService,   private _Dialog: MatDialog, public cFunciones : Funciones) {
     this.val.add("txtRol", "1","LEN>", "0");
 
     this.serviceSIS = new SistemaService(_Dialog);
@@ -57,6 +68,7 @@ export class RolesComponent implements OnInit {
   E.IdRol = this.Id;
   E.Rol1 = this.val.ValForm.get("txtRol")?.value;
   E.Activo = true;
+  E.Acceso = JSON.parse(JSON.stringify(this.dataSource));
   this.serviceSIS.GuardarRol(E);
   
 
@@ -67,6 +79,25 @@ export class RolesComponent implements OnInit {
     this.EsModal= true;
     this.Id=fila.IdRol;
     this.val.ValForm.get("txtRol")?.setValue(fila.Rol1);
+
+    this.dataSource = JSON.parse(JSON.stringify( this.cFunciones.ACCESO));
+
+
+
+    this.dataSource.filter( f=>{
+      f.Seleccionar = false;
+      let nav : any = fila.Acceso.find(w => w.Modulo == f.Modulo && w.Id == f.Id);
+
+      if(nav != undefined)
+      {
+        f.IdAcceso = nav.IdAcceso;
+        f.IdRol = nav.IdRol;
+        f.Seleccionar = nav.Seleccionar;
+      }
+   
+    });
+
+  
   
    }
 
@@ -93,7 +124,21 @@ export class RolesComponent implements OnInit {
     
 }
 
+
+
+
+
+
   ngOnInit(): void {
+
+    this.dataSource = JSON.parse(JSON.stringify( this.cFunciones.ACCESO));
+
+    this.dataSource.filter( f=>{
+      f.Seleccionar = false;
+    });
+
+
+
     this.ServerScv.change.subscribe(s =>{
 
       if(s instanceof Array){

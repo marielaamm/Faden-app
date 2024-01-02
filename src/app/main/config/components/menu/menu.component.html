@@ -12,9 +12,10 @@
         </a>
   
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" id="modulos">
-          <li><a href="#" class="nav-link px-2 link-secondary" id="mov_inicio" (click)="AbrirModulo('HOME')">Inicio</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark" id="mov_sis" (click)="AbrirModulo('SIS')">Configuración</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark" id="mov_cat" (click)="AbrirModulo('CAT')">Catálogo</a></li>
+          <li><a href="#" class="nav-link px-2 link-secondary" id="mov_inicio" (click)="AbrirModulo('HOME')" *ngIf="Menu('HOME', 'Inicio') != -1">Inicio</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark" id="mov_exp" (click)="AbrirModulo('EXP')"  *ngIf="Menu('EXP', 'Expediente') != -1">Expediente</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark" id="mov_sis" (click)="AbrirModulo('SIS')" *ngIf="Menu('SIS', 'Configuración') != -1">Configuración</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark" id="mov_cat" (click)="AbrirModulo('CAT')" *ngIf="Menu('CAT', 'Catálogo') != -1">Catálogo</a></li>
         </ul>
   
         <div class="dropdown text-end">
