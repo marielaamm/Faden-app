@@ -27,7 +27,8 @@ export class RolesComponent implements OnInit {
 
   displayedColumns: string[] = ['ModuloNombre','Link','Clase'];
   clickedRows = new Set<any>();
-  dataSource : I_Nav[] = [];
+  dataSource :  I_Nav[] = [];
+  private esNuevo : boolean = true;
   
   
   constructor(private ServerScv : ServerService,   private _Dialog: MatDialog, public cFunciones : Funciones) {
@@ -68,25 +69,29 @@ export class RolesComponent implements OnInit {
   E.IdRol = this.Id;
   E.Rol1 = this.val.ValForm.get("txtRol")?.value;
   E.Activo = true;
+
+  this.dataSource.forEach(f => { f.IdAcceso = (this.esNuevo ? 0 : f.IdAcceso) });
+
+
   E.Acceso = JSON.parse(JSON.stringify(this.dataSource));
   this.serviceSIS.GuardarRol(E);
   
 
    }
 
-   public EditarRol(fila: iRol){
+   public EditarRol(fila: iRol ){
 
     this.EsModal= true;
     this.Id=fila.IdRol;
     this.val.ValForm.get("txtRol")?.setValue(fila.Rol1);
-
-    this.dataSource = JSON.parse(JSON.stringify( this.cFunciones.ACCESO));
-
+    this.esNuevo = false;
 
 
     this.dataSource.filter( f=>{
       f.Seleccionar = false;
       let nav : any = fila.Acceso.find(w => w.Modulo == f.Modulo && w.Id == f.Id);
+      f.IdAcceso = 0;
+      f.IdRol = 0;
 
       if(nav != undefined)
       {
@@ -99,6 +104,12 @@ export class RolesComponent implements OnInit {
 
   
   
+   }
+
+
+   public V_Seleccionar(f : any){
+
+    f.Seleccionar = !f.Seleccionar;
    }
 
 
