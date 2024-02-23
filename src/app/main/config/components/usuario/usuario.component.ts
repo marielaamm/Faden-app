@@ -45,8 +45,8 @@ export class UsuarioComponent implements OnInit {
     this.val.add("txtLogin", "2","LEN>=", "3");
     this.val.add("txtPass", "1", "LEN>", "0");
     this.val.add("txtPass", "2", "LEN>=", "3");
-    this.val.add("chkInactivo", "1","LEN>=", "0");
-    this.val.add("cmbMedico", "1","LEN>", "0");
+    this.val.add("chkActivo", "1","LEN>=", "0");
+    this.val.add("cmbMedico", "1","LEN>=", "0");
     this._SistemaService = new SistemaService(this._Dialog);
     this.v_CargarDatos();
     
@@ -162,15 +162,15 @@ public Editar(fila: any){
   this.EsModal= true;
   this.IdUsuario=fila.IdUsuario;
   this.cmbMedico.setSelectedItem(fila.IdMedico);
-  this.cmbRol.setSelectedItem(fila.IdMedico);
-  this.val.ValForm.get("cmbMedico")?.setValue([fila.IdMedico]);
-  this.val.ValForm.get("cmbRol")?.setValue([fila.IdRol]);
-  this.val.ValForm.get("txtNombre")?.setValue(fila.Nombre);
+  this.cmbRol.setSelectedItem(fila.IdRol);
+  //this.val.ValForm.get("cmbMedico")?.setValue([fila.IdMedico]);
+  //this.val.ValForm.get("cmbRol")?.setValue([fila.IdRol]);
   this.val.ValForm.get("txtNombre")?.setValue(fila.Nombre);
   this.val.ValForm.get("txtApellido")?.setValue(fila.Apellido);
   this.val.ValForm.get("txtLogin")?.setValue(fila.Usuario1);
   this.val.ValForm.get("txtPass")?.setValue(fila.Contrasena);
   this.val.ValForm.get("chkActivo")?.setValue(fila.Activo);
+  this.bol_Activo = fila.Activo;
 
  }
 

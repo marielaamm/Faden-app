@@ -170,7 +170,7 @@ export class MenuComponent {
     
   }
   private Modulo_EXP(f: string){
-
+    this.dynamicForm.viewContainerRef.clear();
     switch(f){
 
       case "navExpediente":
