@@ -151,7 +151,7 @@ export class MenuComponent {
 
 
   public AbrirFormulario(f : string) : void{
-
+    this.dynamicForm.viewContainerRef.clear();
     switch(this.str_Modulo){
 
       case "EXP":
@@ -170,7 +170,7 @@ export class MenuComponent {
     
   }
   private Modulo_EXP(f: string){
-    this.dynamicForm.viewContainerRef.clear();
+   
     switch(f){
 
       case "navExpediente":
