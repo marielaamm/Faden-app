@@ -39,7 +39,7 @@ export class Funciones {
   
         {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "EXP", ModuloNombre: "Expediente", Id:"navExpediente", Link: "Paciente" , MenuPadre: "", Clase : ""},
         {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navsoap",Link:"Sistema SOAP", MenuPadre: "", Clase: "" },
-        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navAgenda",Link:"Agrenda", MenuPadre: "", Clase: "" },
+        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navAgenda",Link:"Agenda", MenuPadre: "", Clase: "" },
         {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navReporte",Link:"Reporte", MenuPadre: "", Clase: "" },
      
     
