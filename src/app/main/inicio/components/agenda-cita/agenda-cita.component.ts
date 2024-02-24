@@ -281,6 +281,8 @@ export class AgendaCitaComponent implements OnInit {
             });
 
 
+            this.printPDFS(_json["d"].d);
+
             if(this.EsNuevo) this.v_Evento("Limpiar");
 
           }
@@ -312,6 +314,23 @@ export class AgendaCitaComponent implements OnInit {
 
   }
 
+
+  
+  async printPDFS(datos: any) {
+
+   
+    let byteArray = new Uint8Array(atob(datos).split('').map(char => char.charCodeAt(0)));
+
+    var file = new Blob([byteArray], { type: 'application/pdf' });
+
+    let url = URL.createObjectURL(file);
+
+    let tabOrWindow : any = window.open(url, '_blank');
+    tabOrWindow.focus();
+
+
+  }
+      
 
 
   ngOnInit(): void {
