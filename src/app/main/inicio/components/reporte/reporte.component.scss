@@ -19,3 +19,37 @@
   
 
 }
+
+
+
+
+.combo-header, .combo-footer {
+    text-align: center;
+    padding: 4px;
+}
+
+.header-etiqueta{
+    color: black;
+}
+
+.header-etiqueta,
+.header-valor{
+    font-size: 1.5em;
+}
+
+
+.header-valor{
+    color: var(--faden-morado);
+    font-weight: bold;
+}
+
+.combo-item {
+    margin-bottom: 1px dashed red;
+    min-width: 100%;
+}
+
+
+.combo-item-contenedor{
+    width: 100%;
+}
+

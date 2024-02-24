@@ -20,15 +20,17 @@ export class ReporteComponent implements OnInit {
 
   public val = new Validacionv2();
   public overlaySettings: OverlaySettings = {};
-  lstPaciente: iPaciente[] = [];
+  lstPaciente: any[] = [];
 
 
   
   constructor(private cFunciones : Funciones, private GET : getImprimir) { 
 
     this.val.add("cmbReporte", "1", "LEN>", "0", "Reporte", "Seleccione un reporte.");
-    this.val.add("txtFecha1", "1", "LEN>=", "0", "Fecha Inicio", "");
-    this.val.add("txtFecha2", "1", "LEN>=", "0", "Fecha Final", "");
+    this.val.add("txtFecha1", "1", "LEN>=", "0", "Reporte", "");
+    this.val.add("txtFecha2", "1", "LEN>=", "0", "Reporte", "");
+    this.val.add("cmbExpediente", "1", "LEN>", "0", "Reporte", "");
+    
 
     this.val.Get("txtFecha1").disable();
     this.val.Get("txtFecha2").disable();
@@ -46,9 +48,10 @@ export class ReporteComponent implements OnInit {
   public cmbExpediente: IgxComboComponent;
 
   public v_Select_Expediente(event: any) {
-    if (event.added.length) {
-      if(event.newValue.length > 1) event.newValue.splice(0, 1);
-      this.val.Get("cmbExpediente").setValue(event.newValue);
+
+    if (event.added.length == 1) {
+      if(event.newSelection.length > 1) event.newSelection.splice(0, 1);
+      this.val.Get("cmbExpediente").setValue(event.added);
       if(window.innerWidth <= this.cFunciones.TamanoPantalla("md")) this.cmbExpediente.close();
     }
   }
@@ -69,14 +72,25 @@ export class ReporteComponent implements OnInit {
 
   public v_Reporte(){
 
+    this.cmbExpediente.deselectAllItems();
+
+    this.val.Get("cmbExpediente").disable();
     this.val.Get("txtFecha1").disable();
     this.val.Get("txtFecha2").disable();
 
     this.val.replace("txtFecha1", "1", "LEN>=", "0", "");
     this.val.replace("txtFecha2", "1", "LEN>=", "0", "");
+    this.val.replace("cmbExpediente", "1", "LEN>=", "0", "");
+
+    if(this.val.Get("cmbReporte").value == "1")
+    {
+      this.val.Get("cmbExpediente").enable();
+
+      this.val.replace("cmbExpediente", "1", "LEN>", "0", "Seleccione un expediente");
+    }
 
 
-    if(this.val.Get("cmbReporte").value == "4")
+    if(this.val.Get("cmbReporte").value == "4") 
     {
       this.val.Get("txtFecha1").enable();
       this.val.Get("txtFecha2").enable();
@@ -123,7 +137,7 @@ export class ReporteComponent implements OnInit {
   
       }
 
-    this.GET.Imprimir(this.val.Get("cmbReporte").value, this.val.Get("txtFecha1").value, this.val.Get("txtFecha2").value).subscribe(
+    this.GET.Imprimir(this.val.Get("cmbReporte").value, this.val.Get("txtFecha1").value, this.val.Get("txtFecha2").value, this.val.Get("cmbExpediente").value).subscribe(
       {
         next: (s) => {
 
@@ -214,7 +228,7 @@ export class ReporteComponent implements OnInit {
       {
         next: (data) => {
 
-
+        
           dialogRef.close();
           let _json: any = JSON.parse(data);
 
@@ -227,9 +241,8 @@ export class ReporteComponent implements OnInit {
             }
           } else {
 
-
-            this.lstPaciente = _json["d"].d;
-     
+           
+            this.lstPaciente = _json["d"];
 
           }
 

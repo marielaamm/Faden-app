@@ -20,13 +20,13 @@ export class getImprimir{
 
     }
 
-   public Imprimir(op : string, Fecha1 : Date, Fecha2 : Date) : Observable<string>{
-    return this.http.get<any>(this._Cnx.Url() + "Reporte/Imprimir?op=" + op + "&Fecha1=" + Fecha1 + "&Fecha2=" + Fecha2);
+   public Imprimir(op : string, Fecha1 : Date, Fecha2 : Date, NoExpediente : string) : Observable<string>{
+    return this.http.get<any>(this._Cnx.Url() + "Reporte/Imprimir?op=" + op + "&Fecha1=" + Fecha1 + "&Fecha2=" + Fecha2 + "&NoExpediente=" + NoExpediente);
  }
    
 
  public BuscarPaciente() : Observable<string>{
-    return this.http.get<any>(this._Cnx.Url() + "cat/Paciente/Buscar");
+    return this.http.get<any>(this._Cnx.Url() + "Reporte/Paciente");
  }
    
 

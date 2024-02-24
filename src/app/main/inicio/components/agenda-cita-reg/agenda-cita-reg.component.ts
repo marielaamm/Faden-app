@@ -132,7 +132,7 @@ export class AgendaCitaRegComponent implements OnInit {
 
 
 
-  public v_Estado(e : any, s : string) : void{
+  public v_Estado(e : any, estado : string) : void{
 
     let dialogRef: MatDialogRef<DialogoConfirmarComponent> = this.cFunciones.DIALOG.open(
       DialogoConfirmarComponent,
@@ -145,8 +145,8 @@ export class AgendaCitaRegComponent implements OnInit {
 
 
     dialogRef.afterOpened().subscribe(s => {
-      dialogRef.componentInstance.mensaje = "¿Está seguro de Cancelar la cita?";
-      dialogRef.componentInstance.btn1 = "Cancelar Cita";
+      dialogRef.componentInstance.mensaje = "¿Está seguro de " + estado +" la cita?";
+      dialogRef.componentInstance.btn1 = estado + " Cita";
       dialogRef.componentInstance.btn2 = "Salir";
       dialogRef.componentInstance.texto = "<b> " + e.Paciente+"</b>";
     });
@@ -157,7 +157,7 @@ export class AgendaCitaRegComponent implements OnInit {
       if(dialogRef.componentInstance.retorno == "1"){
 
         document.getElementById("reg-agenda")?.setAttribute("disabled", "disabled");
-        this.POST.CambiarEstado(e.IdAgenda, s).subscribe(
+        this.POST.CambiarEstado(e.IdAgenda, estado).subscribe(
           {
             next: (data) => {
     
