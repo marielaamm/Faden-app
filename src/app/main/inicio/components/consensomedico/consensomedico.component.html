@@ -1,309 +1,306 @@
 <div class="app-consensomedico">
     <div class="faden-mat-form">
-        <div class="faden-contener">
+        <div id="frmConsensomedico">
 
-            <div id="frmConsensomedico">
+            <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
+                <div class="row">
 
-                <form class="formulario" [formGroup]="val.ValForm" novalidate autocomplete="off">
                     <div class="row">
-
-                        <div class="row">
-                            <div class="col-12 btnAccion">
-                                <div class="btn-contenedor">
-                                    <button mat-fab class="btn-faden-aceptar" (click)="Guardar();" id="btn-guardar-concenso">
-                                        <mat-icon>save</mat-icon>
-                                    </button>
-                                    <button mat-fab class="btn-faden-cancelar">
-                                        <mat-icon>undo</mat-icon>
-                                    </button>
-                                    <div class="line-vertical"></div>
-                                    <button mat-fab class="btn-faden-salir" (click)="Cerrar();">
-                                        <mat-icon>exit_to_app</mat-icon>
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <mat-card class="mat-card">
-                                    <mat-card-header>
-                                        <mat-card-title class="mat-card-title">Consenso Diagnóstico</mat-card-title>
-                                    </mat-card-header>
-                                </mat-card>
-                            </div>
-
-
-                            <div class="faden-border">
-                                <div class="row">
-                                    <label><b>Nivel de Deterioro Cognitivo</b></label>
-                                </div>
-
-                                <div class="row">
-                                    <mat-radio-group  formControlName="rdDetCognitivo" [(ngModel)]="rdDetCognitivo">
-                                        <div class="row">
-
-                                            <div class="col-3 offset-sm-1">
-                                                <mat-radio-button [value]="1" (change)="f_DetCognitivo($event.value)">Normal</mat-radio-button>
-                                            </div>
-                                            <div class="col-8">
-                                                <mat-form-field>
-                                                    <input matInput type="text" formControlName="txtDetNormal" >
-                                                    <mat-error *ngIf="val.ValForm.get('txtDetNormal')?.errors?.['Regla']=='1'"
-                                                        style="color:black">Ingrese una breve descripción del <strong> nivel de deterioro </strong>
-                                                    </mat-error>
-                                                </mat-form-field>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3 offset-sm-1">
-                                                <mat-radio-button [value]="2" (change)="f_DetCognitivo($event.value)">Leve</mat-radio-button>
-                                            </div>
-                                            <div class="col-8">
-                                                <mat-form-field>
-                                                    <input matInput type="text" formControlName="txtDetLeve">
-                                                    <mat-error *ngIf="val.ValForm.get('txtDetLeve')?.errors?.['Regla']=='1'"
-                                                        style="color:black">Ingrese una breve descripción del <strong> nivel de deterioro </strong>
-                                                    </mat-error>
-                                                </mat-form-field>
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3 offset-sm-1">
-                                                <mat-radio-button [value]="3" (change)="f_DetCognitivo($event.value)">Mayor/Demencia</mat-radio-button>
-                                            </div>
-                                            <div class="col-8">
-                                                <mat-form-field>
-                                                    <input matInput type="text" formControlName="txtDetMayor">
-                                                    <mat-error *ngIf="val.ValForm.get('txtDetMayor')?.errors?.['Regla']=='1'"
-                                                        style="color:black">Ingrese una breve descripción del  <strong> nivel de deterioro</strong>
-                                                    </mat-error>
-                                                </mat-form-field>
-                                            </div>                                            
-                                        </div>  
-                                    </mat-radio-group>
-                                </div>  
-                            </div>
-
-                            <div class="faden-border">
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <label class="col-12"><b>Otro Diagnóstico</b></label>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <section>
-                                        <div class="row">
-                                            <div class="row">
-                                                <div class="col-3 offset-sm-1"> 
-                                                    <mat-checkbox formControlName="chkDepre" (change)="f_RefDepre()">Depresión</mat-checkbox>
-                                                </div>
-                                                <div class="col-8">
-                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
-                                                    floatLabel="never">
-                                                    <input matInput type="text" formControlName="txtDepresion">
-                                                    <mat-error *ngIf="val.ValForm.get('txtDepresion')?.errors?.['Regla']=='1'"
-                                                        style="color:black">Ingrese una breve descripción del <strong> Diagnóstico</strong>
-                                                    </mat-error>
-                                                </mat-form-field> 
-                                                </div>                                                
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkBipolar" (change)="f_RefBipolar()">Trastorno Bipolar</mat-checkbox>
-                                                </div>
-                                            
-                                                <div class="col-8">
-                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
-                                                        <input matInput type="text" formControlName="txtBipolar">
-                                                        <mat-error *ngIf="val.ValForm.get('txtBipolar')?.errors?.['Regla']=='1'"
-                                                        style="color:black">Ingrese una breve descripción del <strong> Diagnóstico</strong>
-                                                    </mat-error>
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkEsquizo" (change)="f_RefEsquizo()">Esquizofrenia</mat-checkbox>                                                
-                                                </div>
-                                                <div class="col-8">
-                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
-                                                        <input matInput type="text" formControlName="txtEsquizo">
-                                                        <mat-error *ngIf="val.ValForm.get('txtEsquizo')?.errors?.['Regla']=='1'"
-                                                        style="color:black">Ingrese una breve descripción del <strong> Diagnóstico</strong>
-                                                    </mat-error>
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="row">
-                                                <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkOtroDiag" (change)="f_RefOtroDiag()">Otro Diagnóstico</mat-checkbox> 
-                                                </div>
-                                                <div class="col-8">
-                                                    <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
-                                                        <input matInput type="text" formControlName="txtOtroDiag">
-                                                        <mat-error *ngIf="val.ValForm.get('txtOtroDiag')?.errors?.['Regla']=='1'"
-                                                        style="color:black">Ingrese una breve descripción del <strong> Diagnóstico</strong>
-                                                        </mat-error>
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>      
-                                        </div>
-                                           
-                                    </section>
-                                </div>
-                            </div>
-
-                            <div class="faden-border">
-                                <div class="row">
-                                    <label class="col-12"><b>Síndrome Predominante</b></label>
-                                </div>
-
-                                <div>
-                                    <app-sindromepredominante #Sindrome></app-sindromepredominante>
-                                </div>
-                            </div>
-
-                            <div class="faden-border">
-                                <div class="row">
-                                    <label class="col-12"><b>Sospecha Diagnóstica</b></label>
-                                </div>
-
-                                <div class="row">
-                                    <mat-radio-group formControlName="rdSospechaDiag" [(ngModel)]="rdSospechaDiag">
-                                    <div class="row">
-                                        <div class="col-3 offset-sm-1">
-                                            <mat-radio-button [value]="1" (change)="f_SospechaDiag($event.value)">Probable</mat-radio-button>
-                                        </div>
-                                        <div class="col-8">
-                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
-                                                <input matInput type="text" formControlName="txtDiagProbable">
-                                                <mat-error *ngIf="val.ValForm.get('txtDiagProbable')?.errors?.['Regla']=='1'"
-                                                style="color:black">Ingrese una breve descripción del <strong> Diagnóstico Probable</strong>
-                                                </mat-error>
-                                            </mat-form-field>
-                                        </div>
-                                    </div>  
-
-                                    <div class="row">
-                                        <div class="col-3 offset-sm-1">
-                                            <mat-radio-button [value]="2" (change)="f_SospechaDiag($event.value)">Confirmado</mat-radio-button>
-                                        </div>
-                                        <div class="col-8">
-                                            <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
-                                                <input matInput type="text" formControlName="txtDiagConfir">
-                                                <mat-error *ngIf="val.ValForm.get('txtDiagConfir')?.errors?.['Regla']=='1'"
-                                                style="color:black">Ingrese una breve descripción del <strong> Diagnóstico Confirmado</strong>
-                                                </mat-error>
-                                            </mat-form-field>
-                                        </div>
-                                    </div> 
-                                </mat-radio-group>                                   
-                                </div>  
-                            </div>
-
-                            <div class="col-12">
-                                <mat-card class="mat-card">
-                                    <mat-card-header>
-                                        <mat-card-title class="mat-card-title">Plan de tratamiento</mat-card-title>
-                                    </mat-card-header>
-                                </mat-card>
-                            </div>
-
-                            <div class="col-12">
-                                <mat-card class="mat-card">
-                                    <mat-card-content>
-                                        <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-
-                                            <mat-step>
-                                                <ng-template matStepLabel>Tratamiento Farmacológico</ng-template>
-                                                <div class="col-12 no-padding-margin">
-                                                    <mat-form-field
-                                                        class="col-lg-6 text-area-tratamiento-farmacologico">
-                                                        <textarea matInput type="text" id="txtTraFarma"
-                                                            formControlName="txtTraFarma"></textarea>
-                                                        <mat-error
-                                                            *ngIf="val.ValForm.get('txtTraFarma')?.errors?.['Regla']=='1'"
-                                                            style="color:black">Escriba el <strong> Tratamiento
-                                                                Farmacologico </strong>
-                                                        </mat-error>
-                                                    </mat-form-field>
-                                                </div>
-
-                                                <div>
-                                                    <button mat-button matStepperNext>Siguiente</button>
-                                                </div>
-                                            </mat-step>
-
-                                            <mat-step>
-                                                <ng-template matStepLabel>Tratamiento No Farmacológico</ng-template>
-                                                <div class="col-12 no-padding-margin">
-                                                    <mat-form-field class="col-lg-6 text-area-tratamiento-no-farmacologico">
-                                                        <textarea matInput type="text" id="txtTraNoFarma" formControlName="txtTraNoFarma"></textarea>
-                                                        <mat-error *ngIf="val.ValForm.get('txtTraNoFarma')?.errors?.['Regla']=='1'" style="color:black">Escriba el <strong>
-                                                                Tratamiento No
-                                                                Farmacologico </strong>
-                                                        </mat-error>
-                                                    </mat-form-field>
-                                                </div>
-
-                                                <div>
-                                                    <button mat-button matStepperPrevious>Atras</button>
-                                                    <button mat-button matStepperNext>Siguiente</button>
-                                                </div>
-                                            </mat-step>
-
-                                            <mat-step>
-                                                <ng-template matStepLabel>Recomendaciones Generales</ng-template>
-                                                <div class="col-12 no-padding-margin">
-                                                    <mat-form-field
-                                                        class="col-lg-6 text-area-recomendaciones-generales">
-                                                        <textarea matInput type="text" id="txtRecomendaciones" formControlName="txtRecomendaciones"></textarea>
-                                                        <mat-error *ngIf="val.ValForm.get('txtRecomendaciones')?.errors?.['Regla']=='1'" style="color:black">Escriba las <strong>
-                                                            Recomendaciones Generales </strong>
-                                                        </mat-error>
-                                                    </mat-form-field>
-                                                </div>
-
-                                                <div>
-                                                    <button mat-button matStepperPrevious>Atras</button>
-                                                    <button mat-button matStepperNext>Siguiente</button>
-                                                </div>
-                                            </mat-step>
-
-                                            <mat-step>
-                                                <ng-template matStepLabel>Exámenes</ng-template>
-                                                <div class="col-12 no-padding-margin">
-                                                    <mat-form-field class="col-lg-6 text-area-examenes">
-                                                        <textarea matInput type="text" id="txtExamenes" formControlName="txtExamenes"></textarea>
-                                                        <mat-error *ngIf="val.ValForm.get('txtExamenes')?.errors?.['Regla']=='1'" style="color:black">Indique los <strong>
-                                                            Examenes a realizar </strong>
-                                                        </mat-error>
-                                                    </mat-form-field>
-                                                </div>
-
-                                                <div>
-                                                    <button mat-button matStepperPrevious>Atras</button>
-                                                </div>
-                                            </mat-step>
-                                        </mat-stepper>
-                                    </mat-card-content>
-                                </mat-card>
+                        <div class="col-12 btnAccion">
+                            <div class="btn-contenedor">
+                                <button mat-fab class="btn-faden-aceptar" (click)="Guardar();" id="btn-guardar-concenso">
+                                    <mat-icon>save</mat-icon>
+                                </button>
+                                <button mat-fab class="btn-faden-cancelar">
+                                    <mat-icon>undo</mat-icon>
+                                </button>
+                                <div class="line-vertical"></div>
+                                <button mat-fab class="btn-faden-salir" (click)="Cerrar();">
+                                    <mat-icon>exit_to_app</mat-icon>
+                                </button>
 
                             </div>
 
                         </div>
-                    </div>
-                </form>
-            </div>
 
+                        <div class="row">
+                            <mat-card class="mat-card">
+                                <mat-card-header>
+                                    <mat-card-title class="mat-card-title">Consenso Diagnóstico</mat-card-title>
+                                </mat-card-header>
+                            </mat-card>
+                        </div>
+
+
+                        <div class="faden-border">
+                            <div class="row">
+                                <label><b>Nivel de Deterioro Cognitivo</b></label>
+                            </div>
+
+                            <div class="row">
+                                <mat-radio-group  formControlName="rdDetCognitivo" [(ngModel)]="rdDetCognitivo">
+                                    <div class="row">
+
+                                        <div class="col-3 offset-sm-1">
+                                            <mat-radio-button [value]="1" (change)="f_DetCognitivo($event.value)">Normal</mat-radio-button>
+                                        </div>
+                                        <div class="col-8">
+                                            <mat-form-field>
+                                                <input matInput type="text" formControlName="txtDetNormal" >
+                                                <mat-error *ngIf="val.ValForm.get('txtDetNormal')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Ingrese una breve descripción del <strong> nivel de deterioro </strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3 offset-sm-1">
+                                            <mat-radio-button [value]="2" (change)="f_DetCognitivo($event.value)">Leve</mat-radio-button>
+                                        </div>
+                                        <div class="col-8">
+                                            <mat-form-field>
+                                                <input matInput type="text" formControlName="txtDetLeve">
+                                                <mat-error *ngIf="val.ValForm.get('txtDetLeve')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Ingrese una breve descripción del <strong> nivel de deterioro </strong>
+                                                </mat-error>
+                                            </mat-form-field>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3 offset-sm-1">
+                                            <mat-radio-button [value]="3" (change)="f_DetCognitivo($event.value)">Mayor/Demencia</mat-radio-button>
+                                        </div>
+                                        <div class="col-8">
+                                            <mat-form-field>
+                                                <input matInput type="text" formControlName="txtDetMayor">
+                                                <mat-error *ngIf="val.ValForm.get('txtDetMayor')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Ingrese una breve descripción del  <strong> nivel de deterioro</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>                                            
+                                    </div>  
+                                </mat-radio-group>
+                            </div>  
+                        </div>
+
+                        <div class="faden-border">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="col-12"><b>Otro Diagnóstico</b></label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <section>
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-3 offset-sm-1"> 
+                                                <mat-checkbox formControlName="chkDepre" (change)="f_RefDepre()">Depresión</mat-checkbox>
+                                            </div>
+                                            <div class="col-8">
+                                                <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
+                                                floatLabel="never">
+                                                <input matInput type="text" formControlName="txtDepresion">
+                                                <mat-error *ngIf="val.ValForm.get('txtDepresion')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Ingrese una breve descripción del <strong> Diagnóstico</strong>
+                                                </mat-error>
+                                            </mat-form-field> 
+                                            </div>                                                
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3 offset-sm-1">
+                                                <mat-checkbox formControlName="chkBipolar" (change)="f_RefBipolar()">Trastorno Bipolar</mat-checkbox>
+                                            </div>
+                                        
+                                            <div class="col-8">
+                                                <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                    <input matInput type="text" formControlName="txtBipolar">
+                                                    <mat-error *ngIf="val.ValForm.get('txtBipolar')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Ingrese una breve descripción del <strong> Diagnóstico</strong>
+                                                </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3 offset-sm-1">
+                                                <mat-checkbox formControlName="chkEsquizo" (change)="f_RefEsquizo()">Esquizofrenia</mat-checkbox>                                                
+                                            </div>
+                                            <div class="col-8">
+                                                <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                    <input matInput type="text" formControlName="txtEsquizo">
+                                                    <mat-error *ngIf="val.ValForm.get('txtEsquizo')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Ingrese una breve descripción del <strong> Diagnóstico</strong>
+                                                </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-3 offset-sm-1">
+                                                <mat-checkbox formControlName="chkOtroDiag" (change)="f_RefOtroDiag()">Otro Diagnóstico</mat-checkbox> 
+                                            </div>
+                                            <div class="col-8">
+                                                <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                                    <input matInput type="text" formControlName="txtOtroDiag">
+                                                    <mat-error *ngIf="val.ValForm.get('txtOtroDiag')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Ingrese una breve descripción del <strong> Diagnóstico</strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                       
+                                </section>
+                            </div>
+                        </div>
+
+                        <div class="faden-border">
+                            <div class="row">
+                                <label class="col-12"><b>Síndrome Predominante</b></label>
+                            </div>
+
+                            <div>
+                                <app-sindromepredominante #Sindrome></app-sindromepredominante>
+                            </div>
+                        </div>
+
+                        <div class="faden-border">
+                            <div class="row">
+                                <label class="col-12"><b>Sospecha Diagnóstica</b></label>
+                            </div>
+
+                            <div class="row">
+                                <mat-radio-group formControlName="rdSospechaDiag" [(ngModel)]="rdSospechaDiag">
+                                <div class="row">
+                                    <div class="col-3 offset-sm-1">
+                                        <mat-radio-button [value]="1" (change)="f_SospechaDiag($event.value)">Probable</mat-radio-button>
+                                    </div>
+                                    <div class="col-8">
+                                        <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                            <input matInput type="text" formControlName="txtDiagProbable">
+                                            <mat-error *ngIf="val.ValForm.get('txtDiagProbable')?.errors?.['Regla']=='1'"
+                                            style="color:black">Ingrese una breve descripción del <strong> Diagnóstico Probable</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>  
+
+                                <div class="row">
+                                    <div class="col-3 offset-sm-1">
+                                        <mat-radio-button [value]="2" (change)="f_SospechaDiag($event.value)">Confirmado</mat-radio-button>
+                                    </div>
+                                    <div class="col-8">
+                                        <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
+                                            <input matInput type="text" formControlName="txtDiagConfir">
+                                            <mat-error *ngIf="val.ValForm.get('txtDiagConfir')?.errors?.['Regla']=='1'"
+                                            style="color:black">Ingrese una breve descripción del <strong> Diagnóstico Confirmado</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div> 
+                            </mat-radio-group>                                   
+                            </div>  
+                        </div>
+
+                        <div class="col-12">
+                            <mat-card class="mat-card">
+                                <mat-card-header>
+                                    <mat-card-title class="mat-card-title">Plan de tratamiento</mat-card-title>
+                                </mat-card-header>
+                            </mat-card>
+                        </div>
+
+                        <div class="col-12">
+                            <mat-card class="mat-card">
+                                <mat-card-content>
+                                    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+
+                                        <mat-step>
+                                            <ng-template matStepLabel>Tratamiento Farmacológico</ng-template>
+                                            <div class="col-12 no-padding-margin">
+                                                <mat-form-field
+                                                    class="col-lg-6 text-area-tratamiento-farmacologico">
+                                                    <textarea matInput type="text" id="txtTraFarma"
+                                                        formControlName="txtTraFarma"></textarea>
+                                                    <mat-error
+                                                        *ngIf="val.ValForm.get('txtTraFarma')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Escriba el <strong> Tratamiento
+                                                            Farmacologico </strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div>
+                                                <button mat-button matStepperNext>Siguiente</button>
+                                            </div>
+                                        </mat-step>
+
+                                        <mat-step>
+                                            <ng-template matStepLabel>Tratamiento No Farmacológico</ng-template>
+                                            <div class="col-12 no-padding-margin">
+                                                <mat-form-field class="col-lg-6 text-area-tratamiento-no-farmacologico">
+                                                    <textarea matInput type="text" id="txtTraNoFarma" formControlName="txtTraNoFarma"></textarea>
+                                                    <mat-error *ngIf="val.ValForm.get('txtTraNoFarma')?.errors?.['Regla']=='1'" style="color:black">Escriba el <strong>
+                                                            Tratamiento No
+                                                            Farmacologico </strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div>
+                                                <button mat-button matStepperPrevious>Atras</button>
+                                                <button mat-button matStepperNext>Siguiente</button>
+                                            </div>
+                                        </mat-step>
+
+                                        <mat-step>
+                                            <ng-template matStepLabel>Recomendaciones Generales</ng-template>
+                                            <div class="col-12 no-padding-margin">
+                                                <mat-form-field
+                                                    class="col-lg-6 text-area-recomendaciones-generales">
+                                                    <textarea matInput type="text" id="txtRecomendaciones" formControlName="txtRecomendaciones"></textarea>
+                                                    <mat-error *ngIf="val.ValForm.get('txtRecomendaciones')?.errors?.['Regla']=='1'" style="color:black">Escriba las <strong>
+                                                        Recomendaciones Generales </strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div>
+                                                <button mat-button matStepperPrevious>Atras</button>
+                                                <button mat-button matStepperNext>Siguiente</button>
+                                            </div>
+                                        </mat-step>
+
+                                        <mat-step>
+                                            <ng-template matStepLabel>Exámenes</ng-template>
+                                            <div class="col-12 no-padding-margin">
+                                                <mat-form-field class="col-lg-6 text-area-examenes">
+                                                    <textarea matInput type="text" id="txtExamenes" formControlName="txtExamenes"></textarea>
+                                                    <mat-error *ngIf="val.ValForm.get('txtExamenes')?.errors?.['Regla']=='1'" style="color:black">Indique los <strong>
+                                                        Examenes a realizar </strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div>
+                                                <button mat-button matStepperPrevious>Atras</button>
+                                            </div>
+                                        </mat-step>
+                                    </mat-stepper>
+                                </mat-card-content>
+                            </mat-card>
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
         </div>
+
 
 
     </div>
