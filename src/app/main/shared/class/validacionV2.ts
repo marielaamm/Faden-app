@@ -1,17 +1,32 @@
 import {
-    AbstractControl,
-    ValidatorFn,
-    FormGroupDirective,
-    NgForm,
-    FormControl,
-    FormBuilder,
-  } from "@angular/forms";
-  import { ErrorStateMatcher } from "@angular/material/core";
-  
-  import { formatDate } from "@angular/common";
-  import { EventEmitter, Injectable, Output } from "@angular/core";
+  AbstractControl,
+  ValidatorFn,
+  FormGroupDirective,
+  NgForm,
+  FormControl,
+  FormBuilder,
+} from "@angular/forms";
+import { ErrorStateMatcher } from "@angular/material/core";
 
-  
+import { formatDate, formatNumber } from "@angular/common";
+import { IgxComboComponent } from "igniteui-angular";
+import { QueryList } from "@angular/core";
+
+declare var $: any;
+
+function getRectArea(elmento: HTMLElement) : any {
+
+  let _element_next = lstFocus.find(f => f.Id == elmento.id)!;
+  if (_element_next == undefined) return elmento;
+
+  elmento = document?.getElementById(_element_next.IdNext)!;
+
+  if (elmento.getAttribute("disabled") == undefined) return elmento;
+
+  return getRectArea(elmento)
+
+}
+
   /** Error when invalid control is dirty, touched, or submitted. */
   export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(
@@ -50,7 +65,7 @@ import {
   
   
   const lstFocus: iFocus[] = [];
-  
+  let cmb: QueryList<IgxComboComponent>;
   
   export class Validacionv2 {
     
@@ -233,6 +248,96 @@ import {
       return true;
     }
   
+
+    public addFocus(id: string, idNext: string, evento: any) {
+      let i: number = lstFocus.findIndex(f => f.Id == id);
+  
+      if (i != -1) {
+        lstFocus[i].IdNext == idNext;
+      }
+      else {
+        lstFocus.push({ Id: id, IdNext: idNext, Evento: evento });
+      }
+  
+  
+      document.querySelector('#' + id)?.addEventListener('keypress', this.onKeyEnter);
+  
+    }
+
+
+    onKeyEnter(event: any) {
+
+      if (event.key !== "Enter") return;
+  
+  
+      let id: string = event.target.id;
+  
+      if (id == "" && event.target.name == "comboInput") {
+        id = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+        event.target.setAttribute("id", id);
+      }
+  
+      if (id == "" && event.target.localName == "input") {
+        id = event.target.parentElement.parentElement.parentElement.parentElement.id;
+        event.target.setAttribute("id", id);
+      }
+  
+  
+  
+      let _element_next = lstFocus.find(f => f.Id == id);
+  
+      if (_element_next == undefined) return;
+      if (_element_next.IdNext == "") return;
+  
+  
+      let elmento: HTMLElement = document?.getElementById(_element_next.Id)!;
+      elmento = getRectArea(elmento);
+  
+  
+  
+  
+  
+      elmento?.focus();
+  
+  
+  
+      if (cmb != undefined && elmento.localName == "igx-combo") {
+        let input: HTMLElement = elmento.getElementsByTagName("input")[0];
+        input?.setAttribute("id", _element_next?.IdNext);
+  
+        let elment: IgxComboComponent = cmb.find(f => f.id == _element_next?.IdNext)!;
+  
+        if (elment != undefined) elment.open();
+  
+  
+  
+      }
+  
+      if (elmento.localName == "select")
+      {
+  
+        //(<any>$("#" + _element_next.IdNext)).modal("show");
+        //(<any>elmento).size = 50
+        
+  
+      }
+  
+      if (_element_next.Evento != undefined) $("#" + _element_next.IdNext)?.trigger(_element_next.Evento);
+  
+  
+      /*
+      if(String(event.target.value) == "") {
+        document?.getElementById(_input)?.focus();
+        event.preventDefault();
+        return;
+      }*/
+  
+  
+      event.preventDefault();
+  
+    }
+  
+
     private Cls_Validaciones(id: string): ValidatorFn {
       return (control: AbstractControl): { [key: string]: string } | null => {
         if (!this.Iniciar) return { Regla: "" };

@@ -5,6 +5,7 @@ import { Conexion } from '../../shared/class/conexion';
 import { DialogoComponent } from '../../shared/components/dialogo/dialogo.component';
 import { iRol } from '../Interface/i-Rol';
 import { iUsuario } from '../Interface/i-Usuario';
+import { WaitComponent } from '../../shared/components/wait/wait.component';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,37 @@ export class SistemaService {
 
 
   public GuardarRol(Rol : iRol) {
+
+    
+    document.getElementById("btn-reporte")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
+
     this.http.post<any>(this._Cnx.Url()+ "SIS/Rol/Guardar", JSON.stringify(Rol),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-rol")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Rol_Guardar", undefined]);
           return;
@@ -48,6 +77,10 @@ export class SistemaService {
         this.change.emit(["dato_Rol_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-rol")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Rol_Guardar", undefined]);
           this.Msj();
       }
@@ -72,9 +105,37 @@ export class SistemaService {
 
 
   public GuardarUsuario(Usuario : iUsuario) {
+
+    
+    document.getElementById("btn-guardar-usuario")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "SIS/Usuario/Guardar", JSON.stringify(Usuario),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-usuario")?.removeAttribute("disabled");
+
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Usuario_Guardar", undefined]);
           return;
@@ -82,6 +143,10 @@ export class SistemaService {
         this.change.emit(["dato_Usuario_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-usuario")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Usuario_Guardar", undefined]);
           this.Msj();
       }

@@ -115,6 +115,8 @@ export class AgendaCitaRegComponent implements OnInit {
        
     dialogRef.afterOpened().subscribe(s =>{
       dialogRef.componentInstance.FILA = e;
+      dialogRef.componentInstance.EsNuevo = false;
+      dialogRef.componentInstance.Estado = e.Estado;
   
       dialogRef.componentInstance.v_CargarDatos();
 
@@ -129,7 +131,8 @@ export class AgendaCitaRegComponent implements OnInit {
   }
 
 
-  public v_Cancelar(e : any) : void{
+
+  public v_Estado(e : any, s : string) : void{
 
     let dialogRef: MatDialogRef<DialogoConfirmarComponent> = this.cFunciones.DIALOG.open(
       DialogoConfirmarComponent,
@@ -154,7 +157,7 @@ export class AgendaCitaRegComponent implements OnInit {
       if(dialogRef.componentInstance.retorno == "1"){
 
         document.getElementById("reg-agenda")?.setAttribute("disabled", "disabled");
-        this.POST.Cancelar(e.IdAgenda).subscribe(
+        this.POST.CambiarEstado(e.IdAgenda, s).subscribe(
           {
             next: (data) => {
     

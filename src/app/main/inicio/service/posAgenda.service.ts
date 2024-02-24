@@ -29,9 +29,9 @@ export class postAgendaCita{
 }
 
 
-Cancelar(IdAgenda : Number) : Observable<string> { 
+CambiarEstado(IdAgenda : Number, s : string) : Observable<string> { 
    
-    return this.http.post<any>(this._Cnx.Url() + "Agenda/Cancelar?IdAgenda=" + IdAgenda, { headers: { 'content-type': 'application/text' } });
+    return this.http.post<any>(this._Cnx.Url() + "Agenda/CambiarEstado?IdAgenda=" + IdAgenda + "&s=" + s, { headers: { 'content-type': 'application/text' } });
 
 }
 

@@ -83,6 +83,11 @@ export class LoginService {
         },
         error: (err) => {
 
+          
+          let dialogRef : any = this.cFunciones.DIALOG.getDialogById("wait") ;
+
+         dialogRef?.close();
+         
           document.getElementById("btnLogin")?.removeAttribute("disabled");
 
 
@@ -132,6 +137,12 @@ export class LoginService {
 
         if(this._Router.url !== '/Menu')
         {
+
+       
+          let dialogRef : any = this.cFunciones.DIALOG.getDialogById("wait") ;
+
+         dialogRef?.close();
+
           this._Router.navigate(['/Menu'], { skipLocationChange: false });
         }
        

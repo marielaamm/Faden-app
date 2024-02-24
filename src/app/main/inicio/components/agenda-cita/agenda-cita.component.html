@@ -140,7 +140,7 @@
         </div>
 
         <div class="row mb-1">
-            <div class="botones-edicion">
+            <div class="botones-edicion"  *ngIf="Estado !='Cancelada' && Estado !='Finalizada'">
                 <button type="button"  class="btn btn-primario" id="btnGuardar-Cita" (click)="v_Guardar();"><i
                         class="fa-solid fa-floppy-disk fa-beat-fade fa-lg"></i>
                     Guardar</button>

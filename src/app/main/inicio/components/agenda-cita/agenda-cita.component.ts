@@ -8,6 +8,7 @@ import { Funciones } from "src/app/main/shared/class/cls_Funciones";
 import { DialogoComponent } from "src/app/main/shared/components/dialogo/dialogo.component";
 import { iAgendaMedica } from "../../interface/i-agenda-medica";
 import { postAgendaCita } from "../../service/posAgenda.service";
+import { WaitComponent } from "src/app/main/shared/components/wait/wait.component";
 
 @Component({
   selector: 'app-agenda-cita',
@@ -20,9 +21,11 @@ export class AgendaCitaComponent implements OnInit {
   public lstMedico: iMedicos[] = [];
   public lstPaciente: iPaciente[] = [];
   public FILA : iAgendaMedica = {} as iAgendaMedica;
+  public Estado : String = "";
 
   public overlaySettings: OverlaySettings = {};
   private isLoad : boolean = false;
+  public EsNuevo : boolean = true;
 
 
 
@@ -232,9 +235,33 @@ export class AgendaCitaComponent implements OnInit {
     document.getElementById("btnCanclar-Cita")?.setAttribute("disabled", "disabled");
 
 
+     
+
+
+    let dialogRef : any = this.cFunciones.DIALOG.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this.cFunciones.DIALOG.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
+
+
     this.POST.Guardar(this.FILA).subscribe(
       {
         next: (data) => {
+
+          dialogRef.close();
 
           let _json = JSON.parse(data);
 
@@ -248,18 +275,20 @@ export class AgendaCitaComponent implements OnInit {
           }
           else {
 
-       
+
             this.cFunciones.DIALOG.open(DialogoComponent, {
               data: "<p><b class='bold'>" + _json["msj"].Mensaje + "</b></p>"
             });
 
 
-            this.v_Evento("Limpiar");
+            if(this.EsNuevo) this.v_Evento("Limpiar");
 
           }
 
         },
         error: (err) => {
+
+          dialogRef.close();
 
           document.getElementById("btnGuardar-Cita")?.removeAttribute("disabled");
           document.getElementById("btnCanclar-Cita")?.removeAttribute("disabled");

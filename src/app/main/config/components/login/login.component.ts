@@ -5,6 +5,8 @@ import { DialogErrorComponent } from 'src/app/main/shared/components/dialog-erro
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormDirective } from 'src/app/main/shared/directive/dynamic-form.directive';
 import { Validacionv2 } from 'src/app/main/shared/class/validacionV2';
+import { WaitComponent } from 'src/app/main/shared/components/wait/wait.component';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,7 @@ export class LoginComponent  {
   val = new Validacionv2();
 
   
-  constructor(private _SrvLogin: LoginService, private DIALOG: MatDialog) {
+  constructor(private _SrvLogin: LoginService, private DIALOG: MatDialog, private cFunciones : Funciones) {
 
     this.val.add(
       "txtUsuario",
@@ -93,6 +95,30 @@ export class LoginComponent  {
 
   public v_Iniciar(): void {
     if (this.val.EsValido()) {
+
+      
+      
+    document.getElementById("btnLogin")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this.cFunciones.DIALOG.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this.cFunciones.DIALOG.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
       this._SrvLogin.Session(this.val.ValForm.get("txtUsuario")?.value!, this.val.ValForm.get("txtPass")?.value!);
     } else {
 

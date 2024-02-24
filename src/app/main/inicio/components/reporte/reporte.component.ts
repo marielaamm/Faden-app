@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DialogErrorComponent } from 'src/app/main/shared/components/dialog-error/dialog-error.component';
 import * as printJS from 'print-js';
 import { PDFDocument } from 'pdf-lib';
@@ -7,6 +7,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { iDatos } from 'src/app/main/shared/interface/i-Datos';
 import { getImprimir } from '../../service/getImprimir.service';
 import { Validacionv2 } from 'src/app/main/shared/class/validacionV2';
+import { IgxComboComponent, OverlaySettings } from 'igniteui-angular';
+import { iPaciente } from '../../interface/i-paciente';
+import { WaitComponent } from 'src/app/main/shared/components/wait/wait.component';
 
 @Component({
   selector: 'app-reporte',
@@ -16,13 +19,73 @@ import { Validacionv2 } from 'src/app/main/shared/class/validacionV2';
 export class ReporteComponent implements OnInit {
 
   public val = new Validacionv2();
+  public overlaySettings: OverlaySettings = {};
+  lstPaciente: iPaciente[] = [];
+
+
   
   constructor(private cFunciones : Funciones, private GET : getImprimir) { 
 
     this.val.add("cmbReporte", "1", "LEN>", "0", "Reporte", "Seleccione un reporte.");
+    this.val.add("txtFecha1", "1", "LEN>=", "0", "Fecha Inicio", "");
+    this.val.add("txtFecha2", "1", "LEN>=", "0", "Fecha Final", "");
+
+    this.val.Get("txtFecha1").disable();
+    this.val.Get("txtFecha2").disable();
+
+    this.v_CargarDatos();
+
+    
   }
 
 
+
+   
+
+  @ViewChild("cmbExpediente", { static: false })
+  public cmbExpediente: IgxComboComponent;
+
+  public v_Select_Expediente(event: any) {
+    if (event.added.length) {
+      if(event.newValue.length > 1) event.newValue.splice(0, 1);
+      this.val.Get("cmbExpediente").setValue(event.newValue);
+      if(window.innerWidth <= this.cFunciones.TamanoPantalla("md")) this.cmbExpediente.close();
+    }
+  }
+
+  public v_Enter_Expediente(event: any) {
+    if (event.key == "Enter") {
+      let cmb : any = this.cmbExpediente.dropdown;
+      let _Item: iPaciente = cmb._focusedItem.value;
+      this.cmbExpediente.setSelectedItem(_Item.NoExpediente);
+      this.val.Get("cmbExpediente").setValue([_Item.NoExpediente]);
+
+    }
+  }
+
+
+
+  
+
+  public v_Reporte(){
+
+    this.val.Get("txtFecha1").disable();
+    this.val.Get("txtFecha2").disable();
+
+    this.val.replace("txtFecha1", "1", "LEN>=", "0", "");
+    this.val.replace("txtFecha2", "1", "LEN>=", "0", "");
+
+
+    if(this.val.Get("cmbReporte").value == "4")
+    {
+      this.val.Get("txtFecha1").enable();
+      this.val.Get("txtFecha2").enable();
+
+      this.val.replace("txtFecha1", "1", "LEN>", "0", "Ingrese una fecha de inicio");
+      this.val.replace("txtFecha2", "1", "LEN>", "0", "Ingrese una fecha de final");
+    }
+
+  }
 
 
   public v_Imprimir(): void {
@@ -40,11 +103,31 @@ export class ReporteComponent implements OnInit {
     }
 
 
-    this.GET.Imprimir(this.val.Get("cmbReporte").value).subscribe(
+    document.getElementById("btn-reporte")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this.cFunciones.DIALOG.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this.cFunciones.DIALOG.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+    this.GET.Imprimir(this.val.Get("cmbReporte").value, this.val.Get("txtFecha1").value, this.val.Get("txtFecha2").value).subscribe(
       {
         next: (s) => {
 
-
+          dialogRef.close();
           let _json: any = JSON.parse(s);
 
 
@@ -65,7 +148,8 @@ export class ReporteComponent implements OnInit {
 
         },
         error: (err) => {
-
+          dialogRef.close();
+          document.getElementById("btn-reporte")?.removeAttribute("disabled");
           if (this.cFunciones.DIALOG.getDialogById("error-servidor") == undefined) {
             this.cFunciones.DIALOG.open(DialogErrorComponent, {
               id: "error-servidor",
@@ -74,7 +158,7 @@ export class ReporteComponent implements OnInit {
           }
         },
         complete: () => {
-  
+          document.getElementById("btn-reporte")?.removeAttribute("disabled");
         }
       }
     );
@@ -102,10 +186,98 @@ export class ReporteComponent implements OnInit {
 
 
 
+  public v_CargarDatos(): void {
+
+    document.getElementById("btn-reporte")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this.cFunciones.DIALOG.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this.cFunciones.DIALOG.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
+
+    this.GET.BuscarPaciente().subscribe(
+      {
+        next: (data) => {
+
+
+          dialogRef.close();
+          let _json: any = JSON.parse(data);
+
+          if (_json["esError"] == 1) {
+            if (this.cFunciones.DIALOG.getDialogById("error-servidor-msj") == undefined) {
+              this.cFunciones.DIALOG.open(DialogErrorComponent, {
+                id: "error-servidor-msj",
+                data: _json["msj"].Mensaje,
+              });
+            }
+          } else {
+
+
+            this.lstPaciente = _json["d"].d;
+     
+
+          }
+
+        },
+        error: (err) => {
+
+          
+          dialogRef.close();
+          document.getElementById("btn-reporte")?.removeAttribute("disabled");
+          if (this.cFunciones.DIALOG.getDialogById("error-servidor") == undefined) {
+            this.cFunciones.DIALOG.open(DialogErrorComponent, {
+              id: "error-servidor",
+              data: "<b class='error'>" + err.message + "</b>",
+            });
+          }
+
+        },
+        complete: () => {
+          document.getElementById("btn-reporte")?.removeAttribute("disabled");
+
+
+        }
+      }
+    );
+
+
+  }
+
+  
+
+  ngDoCheck(){
+
+
+ 
+    this.val.addFocus("txtFecha1", "txtFecha2", undefined);
+    this.val.addFocus("txtFecha2", "btn-reporte", "click");
+
+     
+ }
+
+
 
 
 
   ngOnInit(): void {
+
+    
+ 
   }
 
 }

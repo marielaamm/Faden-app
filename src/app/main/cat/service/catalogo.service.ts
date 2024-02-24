@@ -7,6 +7,7 @@ import { iDepartamento } from '../interface/i-departamento';
 import { iEscolaridad } from '../interface/i-escolaridad';
 import { iMedicos } from '../interface/i-medicos';
 import { iMunicipio } from '../interface/i-municipio';
+import { WaitComponent } from '../../shared/components/wait/wait.component';
 
 @Injectable({
   providedIn: 'root'
@@ -61,9 +62,38 @@ export class CatalogoService {
 
   public GuardarMunicipio(d : iMunicipio){
 
+
+     
+    document.getElementById("btn-guardar-municipio")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Municipio/Guardar", JSON.stringify(d) ,{headers: {"content-type":"application/json"}}).subscribe(
       dato =>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-municipio")?.removeAttribute("disabled");
+
+
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Municipio_Guardar", undefined]);
           return;
@@ -71,6 +101,11 @@ export class CatalogoService {
         this.change.emit(["dato_Municipio_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+        document.getElementById("btn-guardar-municipio")?.removeAttribute("disabled");
+
+
           this.change.emit(["dato_Municipio_Guardar", undefined]);
           this.Msj();
         }
@@ -98,9 +133,36 @@ export class CatalogoService {
   }
 
   public GuardarDepartamento(Departamento : iDepartamento) {
+
+     
+    document.getElementById("btn-guardar-departamento")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Departamento/Guardar", JSON.stringify(Departamento),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-departamento")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Departamento_Guardar", undefined]);
           return;
@@ -108,6 +170,10 @@ export class CatalogoService {
         this.change.emit(["dato_Departamento_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-departamento")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Departamento_Guardar", undefined]);
           this.Msj();
       }
@@ -149,9 +215,37 @@ export class CatalogoService {
 
 
   public GuardarEscolaridad(Escolaridad : iEscolaridad) {
+
+    document.getElementById("btn-guardar-escolaridad")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Escolaridad/Guardar", JSON.stringify(Escolaridad),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-escolaridad")?.removeAttribute("disabled");
+
+
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Escolaridad_Guardar", undefined]);
           return;
@@ -159,6 +253,11 @@ export class CatalogoService {
         this.change.emit(["dato_Escolaridad_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+        document.getElementById("btn-guardar-escolaridad")?.removeAttribute("disabled");
+
+
           this.change.emit(["dato_Escolaridad_Guardar", undefined]);
           this.Msj();
       }
@@ -166,9 +265,37 @@ export class CatalogoService {
   }
 
   public GuardarMedicos(Medicos : iMedicos){
+
+    document.getElementById("btn-guardar-medico")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Medicos/Guardar", JSON.stringify(Medicos),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-medico")?.removeAttribute("disabled");
+
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Medicos_Guardar", undefined]);
           return;
@@ -176,6 +303,11 @@ export class CatalogoService {
         this.change.emit(["dato_Medicos_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-medico")?.removeAttribute("disabled");
+  
+          
           this.change.emit(["dato_Medicos_Guardar", undefined]);
           this.Msj();
       }

@@ -110,6 +110,8 @@ import { ExamenFisicoComponent } from './main/inicio/components/expediente/histo
 import { AgendaCitaComponent } from './main/inicio/components/agenda-cita/agenda-cita.component';
 import { AgendaCitaRegComponent } from './main/inicio/components/agenda-cita-reg/agenda-cita-reg.component';
 import { ReporteComponent } from './main/inicio/components/reporte/reporte.component';
+import { WaitComponent } from './main/shared/components/wait/wait.component';
+
 
 //FIN
 
@@ -179,7 +181,8 @@ display: {
     ExamenFisicoComponent,
     AgendaCitaComponent,
     AgendaCitaRegComponent,
-    ReporteComponent
+    ReporteComponent,
+    WaitComponent
     
   ],
   imports: [

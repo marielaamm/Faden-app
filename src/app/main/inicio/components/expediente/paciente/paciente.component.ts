@@ -411,6 +411,10 @@ export class PacienteComponent implements OnInit {
    
    // const acompananteArray = this.Acompanante.dataSource.data? this.Acompanante.dataSource.data: this.Acompanante.dataSource;
     P.TAcompanante = this.Acompanante.dataSource//acompananteArray as unknown as iAcompanante[];
+
+
+
+    
     this._ExpdienteService.GuardarPaciente(P);
 
   }
@@ -616,6 +620,8 @@ public EditarPaciente(fila: any){
           this.val.ValForm.enable();
 
           if (s[1] == undefined) {
+
+            
 
             let s: string = "{ \"d\":  [{ }],  \"msj\": " + "{\"Codigo\":\"" + 1 + "\",\"Mensaje\":\"" + "error al guardar" + "\"}" + ", \"count\":" + 0 + ", \"esError\":" + 1 + "}";
             let _json = JSON.parse(s);

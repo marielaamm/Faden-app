@@ -17,6 +17,8 @@ import { iPresuncion } from '../interface/i-presuncion';
 import { iHistoriaFamSoc } from '../interface/i-historia-familiar-social';
 import { iExamenFisicoSistema } from '../interface/i-examen-fisico-sistema';
 import { iEstiloVidaDatos } from '../interface/i-estilo-vida-datos';
+import { Funciones } from '../../shared/class/cls_Funciones';
+import { WaitComponent } from '../../shared/components/wait/wait.component';
 
 @Injectable({
   providedIn: 'root'
@@ -45,9 +47,40 @@ export class ExpdienteService {
 
 
   public GuardarPaciente(Paciente : iPaciente){
+
+
+
+   
+    document.getElementById("btn-guardar-paciente")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Paciente/Guardar", JSON.stringify(Paciente),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-paciente")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Paciente_Guardar", undefined]);
           return;
@@ -55,6 +88,8 @@ export class ExpdienteService {
         this.change.emit(["dato_Paciente_Guardar", _json]);
       },
         err =>{
+          dialogRef?.close();
+          document.getElementById("btn-guardar-paciente")?.removeAttribute("disabled");
           this.change.emit(["dato_Paciente_Guardar", undefined]);
           this.Msj();
       }
@@ -88,9 +123,36 @@ export class ExpdienteService {
 
 
   public GuardarConsenso(Consenso : iConsenso){
+
+
+    document.getElementById("btn-guardar-concenso")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Consenso/Guardar", JSON.stringify(Consenso),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-concenso")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Consenso_Guardar", undefined]);
           return;
@@ -98,6 +160,11 @@ export class ExpdienteService {
         this.change.emit(["dato_Consenso_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-concenso")?.removeAttribute("disabled");
+
+
           this.change.emit(["dato_Consenso_Guardar", undefined]);
           this.Msj();
       }
@@ -107,9 +174,38 @@ export class ExpdienteService {
   }
 
   public GuardarSOAP(Soap : iSistemaSoap){
+
+    
+    document.getElementById("btn-guardar-soap")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/SOAP/Guardar", JSON.stringify(Soap),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-soap")?.removeAttribute("disabled");
+
+
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_SOAP_Guardar", undefined]);
           return;
@@ -117,6 +213,12 @@ export class ExpdienteService {
         this.change.emit(["dato_SOAP_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-soap")?.removeAttribute("disabled");
+  
+  
+  
           this.change.emit(["dato_SOAP_Guardar", undefined]);
           this.Msj();
       }
@@ -125,9 +227,36 @@ export class ExpdienteService {
 
 
   public GuardarValoracion(Valoracion : iValoracionNeuroPsicologica){
+
+    document.getElementById("btn-guardar-neuro")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Valoracion/Guardar", JSON.stringify(Valoracion),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-neuro")?.removeAttribute("disabled");
+
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Valoracion_Guardar", undefined]);
           return;
@@ -135,6 +264,11 @@ export class ExpdienteService {
         this.change.emit(["dato_Valoracion_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-neuro")?.removeAttribute("disabled");
+
+          
           this.change.emit(["dato_Valoracion_Guardar", undefined]);
           this.Msj();
       }
@@ -158,9 +292,36 @@ export class ExpdienteService {
 
 
   public GuardarTratamiento(T : iTratamientoActual){
+
+     
+    document.getElementById("btn-guardar-tratamientoactual")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Tratamiento/Guardar", JSON.stringify(T),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-tratamientoactual")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Tratamiento_Guardar", undefined]);
           return;
@@ -168,6 +329,10 @@ export class ExpdienteService {
         this.change.emit(["dato_Tratamiento_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-tratamientoactual")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Tratamiento_Guardar", undefined]);
           this.Msj();
       }
@@ -249,9 +414,36 @@ export class ExpdienteService {
 
 
   public GuardarAntecedenteQuirurgico(e : iAntecedenteQuirurgico){
+
+    
+    document.getElementById("btn-guardar-quirurgico")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/AntecedenteQuirurgico/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-quirurgico")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Antecedente_Quirurgico_Guardar", undefined]);
           return;
@@ -259,6 +451,10 @@ export class ExpdienteService {
         this.change.emit(["dato_Antecedente_Quirurgico_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+        document.getElementById("btn-guardar-quirurgico")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Antecedente_Quirurgico_Guardar", undefined]);
           this.Msj();
       }
@@ -304,9 +500,35 @@ export class ExpdienteService {
 
 
   public GuardarExamenClinico(e : iExamenClinico){
+
+      
+    document.getElementById("btn-guardar-examenclinico")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
     this.http.post<any>(this._Cnx.Url()+ "cat/ExamenClinico/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-examenclinico")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Examen_Clinico_Guardar", undefined]);
           return;
@@ -314,6 +536,10 @@ export class ExpdienteService {
         this.change.emit(["dato_Examen_Clinico_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+        document.getElementById("btn-guardar-examenclinico")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Examen_Clinico_Guardar", undefined]);
           this.Msj();
       }
@@ -357,9 +583,35 @@ export class ExpdienteService {
 
 
   public GuardarAntPatologico(e : iAntecedentePatologico){
+
+    document.getElementById("btn-guardar-patologico")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/AntPatologico/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-patologico")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Ant_Patologico_Guardar", undefined]);
           return;
@@ -367,6 +619,10 @@ export class ExpdienteService {
         this.change.emit(["dato_Ant_Patologico_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+        document.getElementById("btn-guardar-patologico")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Ant_Patologico_Guardar", undefined]);
           this.Msj();
       }
@@ -414,9 +670,36 @@ export class ExpdienteService {
 
 
   public GuardarAntFamiliar(e : iAntecedentesFamiliares){
+
+    document.getElementById("btn-guardar-familiar")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/AntFamiliar/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-familiar")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Ant_Familiar_Guardar", undefined]);
           return;
@@ -424,6 +707,10 @@ export class ExpdienteService {
         this.change.emit(["dato_Ant_Familiar_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+        document.getElementById("btn-guardar-familiar")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Ant_Familiar_Guardar", undefined]);
           this.Msj();
       }
@@ -524,9 +811,36 @@ export class ExpdienteService {
 
   
   public GuardarAntPresuncion(e : iPresuncion){
+
+    document.getElementById("btn-guardar-presuncion")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/AntPresuncion/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-presuncion")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Ant_Presuncion_Guardar", undefined]);
           return;
@@ -534,6 +848,10 @@ export class ExpdienteService {
         this.change.emit(["dato_Ant_Presuncion_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-presuncion")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Ant_Presuncion_Guardar", undefined]);
           this.Msj();
       }
@@ -573,9 +891,37 @@ export class ExpdienteService {
 
 
   public GuardarHistoriaMedSoc(Historia : iHistoriaFamSoc){
+
+
+    
+    document.getElementById("btn-guardar-historiamedica")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/Historia/Guardar", JSON.stringify(Historia),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-historiamedica")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Historia_Guardar", undefined]);
           return;
@@ -583,6 +929,10 @@ export class ExpdienteService {
         this.change.emit(["dato_Historia_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+        document.getElementById("btn-guardar-historiamedica")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Historia_Guardar", undefined]);
           this.Msj();
       }
@@ -603,9 +953,35 @@ export class ExpdienteService {
 
 
   public GuardarExamenFisicoSistema(e : iExamenFisicoSistema[]){
+
+    document.getElementById("btn-guardar-fisico")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/ExamenFisicoSistema/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-fisico")?.removeAttribute("disabled");
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Examen_Fisico_Sistema_Guardar", undefined]);
           return;
@@ -613,6 +989,10 @@ export class ExpdienteService {
         this.change.emit(["dato_Examen_Fisico_Sistema_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+        document.getElementById("btn-guardar-fisico")?.removeAttribute("disabled");
+
           this.change.emit(["dato_Examen_Fisico_Sistema_Guardar", undefined]);
           this.Msj();
       }
@@ -637,9 +1017,37 @@ export class ExpdienteService {
 
 
   public GuardarEstiloVida(e : iEstiloVidaDatos){
+
+    document.getElementById("btn-guardar-vida")?.setAttribute("disabled", "disabled");
+
+
+
+    let dialogRef : any = this._Dialog.getDialogById("wait") ;
+
+
+      if(dialogRef == undefined)
+      {
+        dialogRef = this._Dialog.open(
+          WaitComponent,
+          {
+            panelClass: "faden-dialog-full-blur",
+            data: "",
+            id : "wait"
+          }
+        );
+  
+      }
+
+
     this.http.post<any>(this._Cnx.Url()+ "cat/EstiloVida/Guardar", JSON.stringify(e),{headers: {"content-type":"application/json"}}).subscribe(
       dato=>{
         let _json =  JSON.parse(dato);
+
+        dialogRef?.close();
+        document.getElementById("btn-guardar-vida")?.removeAttribute("disabled");
+
+
+
         if(_json["esError"] == 1){
           this.change.emit(["dato_Estilo_Vida_Guardar", undefined]);
           return;
@@ -647,6 +1055,11 @@ export class ExpdienteService {
         this.change.emit(["dato_Estilo_Vida_Guardar", _json]);
       },
         err =>{
+
+          dialogRef?.close();
+          document.getElementById("btn-guardar-vida")?.removeAttribute("disabled");
+
+          
           this.change.emit(["dato_Estilo_Vida_Guardar", undefined]);
           this.Msj();
       }
