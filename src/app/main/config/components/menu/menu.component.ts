@@ -170,10 +170,15 @@ export class MenuComponent {
     
   }
   private Modulo_EXP(f: string){
-   
+
+    document.getElementById(this.str_formulario)?.classList.remove('activo');
+    document.getElementById(f)?.classList.add('activo');
+
     switch(f){
 
+      
       case "navExpediente":
+    
         if (this.str_formulario !=f){
          this.dynamicForm.viewContainerRef.clear();
          this.dynamicForm.viewContainerRef.createComponent(ExpedienteComponent);

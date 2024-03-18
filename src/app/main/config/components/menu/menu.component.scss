@@ -22,18 +22,18 @@
 
 
 
-.faden-header ul li a{
-    color: var(--faden-amarillo);
+.faden-header   a{
+    color: var(--faden-morado);
     margin: 2px;
 }
 
 
-.faden-header ul li a:focus, .faden-header  ul li .activo{
-    color: var(--faden-fondo);
+.faden-header   a:focus, .faden-header   .activo{
+    color: white;
     background-color: var(--faden-morado);
 }
 
-.faden-header ul li a:hover{
+.faden-header   a:hover{
     color: var(--faden-fondo);
     background-color: var(--faden-amarillo);
 }

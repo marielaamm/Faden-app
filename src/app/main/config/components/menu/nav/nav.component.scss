@@ -15,9 +15,15 @@
   
   
 
-.faden-nav  a{
+.faden-nav  a:not(.activo){
     color: var(--faden-fondo);
 }
+
+ .activo{
+    background-color: var(--faden-fondo);
+    color: var(--faden-amarillo);
+}
+
 
 
 .faden-nav ul li a:hover, .faden-nav ul li a:focus{

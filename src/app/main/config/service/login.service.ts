@@ -101,6 +101,12 @@ export class LoginService {
 
         },
         complete: () => { 
+
+               
+          let dialogRef : any = this.cFunciones.DIALOG.getDialogById("wait") ;
+
+         dialogRef?.close();
+         
         document.getElementById("btnLogin")?.removeAttribute("disabled");
  
       }

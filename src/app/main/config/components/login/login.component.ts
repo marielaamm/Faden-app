@@ -122,7 +122,10 @@ export class LoginComponent  {
       this._SrvLogin.Session(this.val.ValForm.get("txtUsuario")?.value!, this.val.ValForm.get("txtPass")?.value!);
     } else {
 
-      let dialogRef: MatDialogRef<DialogErrorComponent> = this.DIALOG.open(
+
+
+
+      this.DIALOG.open(
         DialogErrorComponent,
         {
           data: this.val.Errores,
