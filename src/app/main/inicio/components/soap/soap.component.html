@@ -9,7 +9,8 @@
                         <div class="row">
                             <div class=" col-12 btnAccion">
                                 <div class="btn-contenedor">
-                                    <button mat-fab class="btn-faden-aceptar" (click)="Guardar();" id="btn-guardar-soap">
+                                    <button mat-fab class="btn-faden-aceptar" (click)="Guardar();"
+                                        id="btn-guardar-soap">
                                         <mat-icon>save</mat-icon>
                                     </button>
                                     <button mat-fab class="btn-faden-cancelar">
@@ -34,15 +35,16 @@
                                             <div class="col-6 col-sm-3 col-md-2 col-lg-2">
                                                 <mat-form-field appearance="legacy">
                                                     <mat-label>Fecha</mat-label>
-                                                    <input matInput [matDatepicker]="picker" id="txtFecha" formControlName="txtFecha">
+                                                    <input matInput [matDatepicker]="picker" id="txtFecha"
+                                                        formControlName="txtFecha">
                                                     <mat-datepicker-toggle matSuffix [for]="picker">
                                                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                                     </mat-datepicker-toggle>
                                                     <mat-datepicker #picker></mat-datepicker>
                                                     <mat-error
-                                                            *ngIf="val.ValForm.get('txtFecha')?.errors?.['Regla']=='1'"
-                                                            style="color:black">Seleccione una<strong> Fecha </strong>
-                                                        </mat-error>
+                                                        *ngIf="val.ValForm.get('txtFecha')?.errors?.['Regla']=='1'"
+                                                        style="color:black">Seleccione una<strong> Fecha </strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
 
@@ -52,22 +54,24 @@
 
                                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                 <igx-combo #txtPaciente [data]="lstPaciente" valueKey="IdPaciente"
-                                                    displayKey="NombreCompleto" id="txtPaciente"   formControlName="txtPaciente" placeholder="Paciente"
+                                                    displayKey="NombreCompleto" id="txtPaciente"
+                                                    formControlName="txtPaciente" placeholder="Paciente"
                                                     searchPlaceholder="Seleccione un Paciente"
-                                                    (selectionChanging)="Seleccion_Paciente($event)" [itemsMaxHeight]="250"
-                                                    (keyup)="f_key_Enter_Paciente($event)">
+                                                    (selectionChanging)="Seleccion_Paciente($event)"
+                                                    [itemsMaxHeight]="250" (keyup)="f_key_Enter_Paciente($event)">
                                                 </igx-combo>
                                             </div>
 
                                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 ">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>No de Expediente </mat-label>
-                                                    <input matInput type="text" id="txtNoExpediente" formControlName="txtNoExpediente">
+                                                    <input matInput type="text" id="txtNoExpediente"
+                                                        formControlName="txtNoExpediente">
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 ">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Edad </mat-label>
                                                     <input matInput type="text" id="txtEdad" formControlName="txtEdad">
                                                 </mat-form-field>
@@ -75,36 +79,65 @@
 
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                                <label class="col-12"><b>Sobre el acompañante: </b></label>
-                                                <mat-radio-group aria-label="Seleccione tipo"  formControlName="rdTipoAcompanante">
-                                                    <mat-radio-button value="1">Acompañante</mat-radio-button>
-                                                    <mat-radio-button value="2">Cuidador</mat-radio-button>
-                                                </mat-radio-group>
-
-                                            </div>
-                                        </div>
-
+                    
                                         <div class="row border-paciente">
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                                                <mat-form-field >
-                                                    <mat-label>Nombre</mat-label>
-                                                    <input matInput type="text" id="txtNombrecuidador" formControlName="txtNombrecuidador">
-                                                </mat-form-field>
-                                            </div>                                            
+                                                <igx-combo #cmbAcompanante [data]="lstAcompanante" valueKey="IdAcpte"
+                                                displayKey="NombreCompleto" id="cmbAcompanante"  
+                                                formControlName="cmbAcompanante" placeholder="Acompañante"
+                                                searchPlaceholder="Seleccione un Acompañante" [itemsMaxHeight]="250"
+                                                [allowCustomValues]="true"  [itemHeight]='128'
+                                                (selectionChanging)="v_Select_AcomPanante($event);"
+                                                (keyup)="v_Enter_AcomPanante($event);">
+                                                
+                                                <ng-template igxComboItem let-display
+                                                let-key="valueKey">
+                                                <div class="combo-item">
+                                                    <div class="row combo-item-contenedor">
+
+                                                        <div class="col-12">
+                                                            <span class="item"><b>Nombre: </b>{{display.NombreCompleto}}</span>
+                                                        </div>
+
+                                                        <div class="col-6">
+                                                            <span class="item"><b>Telefono: </b>{{display.Telefono}}</span>
+                                                        </div>
+
+                                                        <div class="col-6">
+                                                            <span class="item"><b>Correo: </b>{{display.Correo}}</span>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="item"><b>Cuidador: </b><i  [ngClass]="display.EsAcpte ? 'fa-regular fa-square-check' : 'fa-regular fa-square'"></i></span>
+                                                        </div>
+                                        
+                                                        <div class="col-6">
+                                                            <span class="item"><b>Acompañante: </b><i  [ngClass]="display.EsCuidador ? 'fa-regular fa-square-check' : 'fa-regular fa-square'"></i></span>
+
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+
+                                            </ng-template>
+
+           
+
+                                            </igx-combo>
+                                            </div>
 
                                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Dirección </mat-label>
-                                                    <input matInput type="text" id="txtDireccion" formControlName="txtDireccion">
+                                                    <input matInput type="text" id="txtDireccion"
+                                                        formControlName="txtDireccion">
                                                 </mat-form-field>
                                             </div>
 
                                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                                <mat-form-field >
+                                                <mat-form-field>
                                                     <mat-label>Teléfono</mat-label>
-                                                    <input matInput type="text" id="txtTelefono" formControlName="txtTelefono">
+                                                    <input matInput type="text" id="txtTelefono"
+                                                        formControlName="txtTelefono">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -112,7 +145,8 @@
                                         <div class="row border-paciente">
                                             <div class="col-12">
                                                 <label class="col-12"><b>Propósito de la visita:</b></label>
-                                                <mat-radio-group aria-label="Seleccione visita" formControlName="rdPropositoVisita"
+                                                <mat-radio-group aria-label="Seleccione visita"
+                                                    formControlName="rdPropositoVisita"
                                                     class="col-6 col-sm-4 col-md-4 col-lg-4">
                                                     <mat-radio-button value="1"
                                                         class="col-6 col-sm-4 col-md-2 col-lg-2">Cita
@@ -137,8 +171,11 @@
                                         <div class="row ">
                                             <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Subjetivo</mat-label>
-                                                <textarea matInput type="text" id="txtSubjetivo" formControlName="txtSubjetivo"></textarea>
-                                                <mat-error *ngIf="val.ValForm.get('txtSubjetivo')?.errors?.['Regla']=='1'" style="color:black">Describa el sistema<strong>
+                                                <textarea matInput type="text" id="txtSubjetivo"
+                                                    formControlName="txtSubjetivo"></textarea>
+                                                <mat-error
+                                                    *ngIf="val.ValForm.get('txtSubjetivo')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Describa el sistema<strong>
                                                         Subjetivo </strong>
                                                 </mat-error>
                                             </mat-form-field>
@@ -147,8 +184,11 @@
                                         <div class="row ">
                                             <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Objetivo</mat-label>
-                                                <textarea matInput type="text" id="txtObjetivo" formControlName="txtObjetivo"></textarea>
-                                                <mat-error *ngIf="val.ValForm.get('txtObjetivo')?.errors?.['Regla']=='1'" style="color:black">Describa el sistema
+                                                <textarea matInput type="text" id="txtObjetivo"
+                                                    formControlName="txtObjetivo"></textarea>
+                                                <mat-error
+                                                    *ngIf="val.ValForm.get('txtObjetivo')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Describa el sistema
                                                     <strong>Objetivo </strong>
                                                 </mat-error>
                                             </mat-form-field>
@@ -157,8 +197,10 @@
                                         <div class="row">
                                             <mat-form-field class="col-12 col-sm-12 col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Avalúo</mat-label>
-                                                <textarea matInput type="text" id="txtAvaluo" formControlName="txtAvaluo"></textarea>
-                                                <mat-error *ngIf="val.ValForm.get('txtAvaluo')?.errors?.['Regla']=='1'" style="color:black">Describa el sistema
+                                                <textarea matInput type="text" id="txtAvaluo"
+                                                    formControlName="txtAvaluo"></textarea>
+                                                <mat-error *ngIf="val.ValForm.get('txtAvaluo')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Describa el sistema
                                                     <strong>Objetivo </strong>
                                                 </mat-error>
                                             </mat-form-field>
@@ -168,8 +210,10 @@
                                             <mat-form-field
                                                 class="col-12 col-sm-12  col-md-12 col-lg-12 text-area-soap">
                                                 <mat-label>Planes</mat-label>
-                                                <textarea matInput type="text" id="txtPlanes" formControlName="txtPlanes"></textarea>
-                                                <mat-error *ngIf="val.ValForm.get('txtPlanes')?.errors?.['Regla']=='1'" style="color:black">Describa el sistema
+                                                <textarea matInput type="text" id="txtPlanes"
+                                                    formControlName="txtPlanes"></textarea>
+                                                <mat-error *ngIf="val.ValForm.get('txtPlanes')?.errors?.['Regla']=='1'"
+                                                    style="color:black">Describa el sistema
                                                     <strong>Planes </strong>
                                                 </mat-error>
                                             </mat-form-field>

@@ -19,6 +19,9 @@ export class SoapComponent implements OnInit {
   public isLinear = false;
   
   public lstPaciente: any []=[]
+  private lstDatosAcomp : any []=[]
+  public lstAcompanante : any []=[]
+  
 
   public val: Validacion = new Validacion ();
   
@@ -40,8 +43,7 @@ export class SoapComponent implements OnInit {
    this.val.add("txtPaciente","1","LEN>","0");
    this.val.add("txtNoExpediente", "1", "LEN>","0");
    this.val.add("txtEdad", "1","LEN>", "0");
-   this.val.add("rdTipoAcompanante", "1","LEN>", "0");
-   this.val.add("txtNombrecuidador", "1", "LEN>", "0");
+   this.val.add("cmbAcompanante", "1","LEN>", "0");
    this.val.add("txtDireccion", "1", "LEN>","0");
    this.val.add("txtTelefono", "1", "LEN>","0");
    this.val.add("rdPropositoVisita","1","LEN>","0");
@@ -68,7 +70,6 @@ export class SoapComponent implements OnInit {
     this.val.ValForm.get("txtNoExpediente")?.setValue("");
     this.val.ValForm.get("txtEdad")?.setValue("");
     this.val.ValForm.get("rdTipoAcompanante")?.setValue("");
-    this.val.ValForm.get("txtNombrecuidador")?.setValue("");
     this.val.ValForm.get("txtDireccion")?.setValue("");
     this.val.ValForm.get("txtTelefono")?.setValue("");
     this.val.ValForm.get("rdPropositoVisita")?.setValue("");
@@ -87,25 +88,31 @@ export class SoapComponent implements OnInit {
 
    private LlenarPaciente(datos: string): void {
 
+    
     let _json = JSON.parse(datos);
 
     this.lstPaciente.splice(0, this.lstPaciente.length);
+    this.lstPaciente = _json["d"][0];
+    this.lstDatosAcomp = _json["d"][1];
 
-    _json["d"][0].forEach(
-      (b: any) => {
-        this.lstPaciente.push(b);
-      }
-    );
-        
-  
   }
 
   public Seleccion_Paciente(event: any) {
+
+    this.lstAcompanante.splice(0, this.lstAcompanante.length);
+    this.cmbAcompanante.deselectAllItems();
+    this.val.ValForm.get("cmbAcompanante")?.setValue("");
+
+
     if (event.added.length) {
       event.newSelection = event.added;
       let _Fila: any = this.lstPaciente.find(f => f.IdPaciente == event.added);
       this.val.ValForm.get("txtPaciente")?.setValue([_Fila.IdPaciente]);
       this.val.ValForm.get("txtNoExpediente")?.setValue(_Fila.NoExpediente);
+
+      this.lstAcompanante = this.lstDatosAcomp.filter(f => f.IdPaciente ==_Fila.IdPaciente)
+      
+
     }
 
     this.igxComboPaciente.close();
@@ -121,6 +128,44 @@ export class SoapComponent implements OnInit {
     this.igxComboPaciente.close();
 
 
+  }
+
+
+
+  @ViewChild("cmbAcompanante", { static: false })
+  public cmbAcompanante: IgxComboComponent;
+  
+  public v_Select_AcomPanante(event: any): void {
+
+
+    if (event.added.length) {
+      event.newSelection = event.added;
+
+      let cmb : any = this.cmbAcompanante.dropdown;
+      let _Item: any = cmb._focusedItem.value;
+
+
+      this.val.ValForm.get("cmbAcompanante")?.setValue([_Item.Codigo]);
+      this.val.ValForm.get("txtDireccion")?.setValue(_Item.Direccion);
+      this.val.ValForm.get("txtTelefono")?.setValue(_Item.Telefono);
+      this.rdTipoAcompanante = 1;
+       if(_Item.EsAcpte) this.rdTipoAcompanante = 0
+
+      
+    }
+
+
+
+  }
+
+
+  public v_Enter_AcomPanante(event: any) {
+    if (event.key == "Enter") {
+      let cmb: any = this.cmbAcompanante.dropdown;
+      let _Item: any = cmb._focusedItem.value;
+      this.cmbAcompanante.select([_Item.IdAcpte]);
+      
+    }
   }
 
 
@@ -171,12 +216,15 @@ export class SoapComponent implements OnInit {
 
   let S: iSistemaSoap = {} as iSistemaSoap;
 
+  let cmb : any = this.cmbAcompanante.dropdown;
+  let _Item: any = cmb._focusedItem.value;
+
 
   S.TipoAcompanante = this.rdTipoAcompanante;
   S.PropositoVisita = this.rdPropositoVisita;
   S.Fecha = this.val.ValForm.get("txtFecha")?.value;
   S.IdPaciente = _filaPaciente.IdPaciente; // aqui ya se captura el IDPaciente
-  S.NombreAcompanante = this.val.ValForm.get("txtNombrecuidador")?.value;
+  S.NombreAcompanante = _Item.NombreCompleto;
   S.Direccion = this.val.ValForm.get("txtDireccion")?.value;
   S.Telefono = this.val.ValForm.get("txtTelefono")?.value;
   S.Subjetivo = this.val.ValForm.get("txtSubjetivo")?.value;
