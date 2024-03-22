@@ -8,6 +8,7 @@ import { FuncionesGeneralesService } from 'src/app/main/shared/service/funciones
 import { ServerService } from 'src/app/main/shared/service/server.service';
 import { iSistemaSoap } from '../../interface/i-sistema-soap';
 import { ExpdienteService } from '../../service/expediente.service';
+import { Funciones } from 'src/app/main/shared/class/cls_Funciones';
 
 @Component({
   selector: 'app-soap',
@@ -21,7 +22,7 @@ export class SoapComponent implements OnInit {
   public lstPaciente: any []=[]
   private lstDatosAcomp : any []=[]
   public lstAcompanante : any []=[]
-  
+  private FechaServidor : Date;
 
   public val: Validacion = new Validacion ();
   
@@ -36,7 +37,7 @@ export class SoapComponent implements OnInit {
   public rdTipoAcompanante : Number = 1;
   public rdPropositoVisita : Number = 1;
 
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private cFunciones : Funciones) {
    // [ REGLAS ] 
 
    this.val.add("txtFecha", "1", "LEN>","0");  
@@ -55,6 +56,7 @@ export class SoapComponent implements OnInit {
    this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._CatalogoService = new CatalogoService(this._Dialog);
     this._FuncionesGenerales = new FuncionesGeneralesService(this._Dialog);
+    this._FuncionesGenerales.FechaServidor();
 
     this.limpiar();
 
@@ -79,6 +81,8 @@ export class SoapComponent implements OnInit {
     this.val.ValForm.get("txtPlanes")?.setValue("");
 
     this.val.ValForm.get("txtFecha")?.disable();
+    this.val.ValForm.get("txtEdad")?.disable();
+    this.val.ValForm.get("txtNoExpediente")?.disable();
 
     this._FuncionesGenerales.FechaServidor();
     this._ExpdienteService.BuscarPaciente();
@@ -102,7 +106,7 @@ export class SoapComponent implements OnInit {
     this.lstAcompanante.splice(0, this.lstAcompanante.length);
     this.cmbAcompanante.deselectAllItems();
     this.val.ValForm.get("cmbAcompanante")?.setValue("");
-
+    this.val.ValForm.get("txtEdad")?.setValue("0");
 
     if (event.added.length) {
       event.newSelection = event.added;
@@ -111,6 +115,7 @@ export class SoapComponent implements OnInit {
       this.val.ValForm.get("txtNoExpediente")?.setValue(_Fila.NoExpediente);
 
       this.lstAcompanante = this.lstDatosAcomp.filter(f => f.IdPaciente ==_Fila.IdPaciente)
+      this.val.ValForm.get("txtEdad")?.setValue(this.FechaServidor.getFullYear() - (new Date(_Fila.FechaNacim)).getFullYear());
       
 
     }
@@ -287,7 +292,8 @@ export class SoapComponent implements OnInit {
        if (s[0] == "Llenar_FechaServidor") {
           let _json = JSON.parse(s[1]);
 
-          this.val.ValForm.get("txtFecha")?.setValue(_json["d"][0]);
+          this.FechaServidor = new Date(_json["d"][0])
+          this.val.ValForm.get("txtFecha")?.setValue(this.cFunciones.DateFormat(this.FechaServidor, "yyyy-MM-dd"));
 
         }
       }
