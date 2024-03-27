@@ -19,7 +19,12 @@
     color: var(--faden-fondo);
 }
 
- .activo{
+.faden-nav  a.activo{
+    color: var(--faden-amarillo);
+}
+
+
+.activo{
     background-color: var(--faden-fondo);
     color: var(--faden-amarillo);
 }
