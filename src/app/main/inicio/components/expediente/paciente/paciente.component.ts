@@ -532,7 +532,7 @@ public EditarPaciente(fila: any){
 
   }
 
-  private CargarFichaPaciente(Paciente: any, Acompanante: any) {
+  private CargarFichaPaciente(Paciente: any, Acompanante: any, DesdeForm : boolean) {
     const conviveArray = [...Paciente.Convive]
     const visitaArray = [...Paciente.Visita]
     const refvisitaArray = [...Paciente.RefVisita]
@@ -545,7 +545,8 @@ public EditarPaciente(fila: any){
     this.val.ValForm.get("txtPrimerApellido")?.setValue(Paciente.PApellido);
     this.val.ValForm.get("txtSegundoApellido")?.setValue(Paciente.SApellido);
     this.val.ValForm.get("rdSexo")?.setValue(Paciente.Sexo);
-    this.val.ValForm.get("txtMunicipio")?.setValue([Paciente.IdLugarNac]);
+    if(!DesdeForm)this.val.ValForm.get("txtMunicipio")?.setValue([Paciente.IdLugarNac]);
+    if(DesdeForm)this.val.ValForm.get("txtMunicipio")?.setValue([String(Paciente.IdDepto + "_" + Paciente.IdCiudad)]);
     this.val.ValForm.get("txtFechaNacimiento")?.setValue(Paciente.FechaNacim);
     this.val.ValForm.get("txtEdad")?.setValue(this.FechaServidor.getFullYear() - (new Date(Paciente.FechaNacim)).getFullYear());
     this.val.ValForm.get("txtOcupacion")?.setValue(Paciente.Ocupacion);
@@ -636,8 +637,13 @@ public EditarPaciente(fila: any){
             data: s[1]["msj"]
           });
   
-          this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
+          this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"][0].NoExpediente);
           this.val.ValForm.get("txtNoExpediente")?.disable();
+
+          this.CargarFichaPaciente(s[1]["d"][0], s[1]["d"][1], true)
+
+          
+         
         }
 
 
@@ -680,7 +686,7 @@ public EditarPaciente(fila: any){
       s => {
         if (s[0] == "CerrarDialog" && s[1] == "frmRegistroPaciente") {
 
-          this.CargarFichaPaciente(s[2][0], s[2][1])
+          this.CargarFichaPaciente(s[2][0], s[2][1], false)
           this.dialogRef.close();
 
 
