@@ -19,7 +19,7 @@ export class ExamenFisicoComponent implements OnInit {
   public IdPaciente : Number = 0;
   public Guardando : boolean = false;
 
-  private lstTabla: iExamenFisicoSistema[];
+  public lstTabla: iExamenFisicoSistema[];
 
 
  
@@ -122,6 +122,14 @@ export class ExamenFisicoComponent implements OnInit {
     this.val.ValForm.get("txtMuscular")?.setValue("");
     this.val.ValForm.get("txtMuscular")?.disable();
 
+    this.LlenarTabla();
+    
+   }
+
+
+
+   private LlenarTabla()
+   {
     this.lstTabla = [
       {IdExFisicoSistema : 0, IdElemento : "CardioVascular",  Observaciones : "",  Activo : false, IdPaciente : 0 },
       {IdExFisicoSistema : 0, IdElemento : "Endocrinologico",  Observaciones : "",  Activo : false, IdPaciente : 0 },
@@ -138,11 +146,16 @@ export class ExamenFisicoComponent implements OnInit {
 
    }
 
-
    public fn_Enable(id_chk: string, id_txt : string, estado : boolean){
+
+    if(this.lstTabla.length == 0){
+      this.LlenarTabla();
+    }
 
     this.val.ValForm.get(id_chk)?.setValue(estado);
 
+    let index = this.lstTabla.findIndex(f => "chk" + f.IdElemento == id_chk);
+    this.lstTabla[index].Activo = estado;
     
     if(estado)
     {
@@ -244,7 +257,7 @@ export class ExamenFisicoComponent implements OnInit {
           data: s[1]["msj"]
         });
 
-        
+     
       }
 
 
