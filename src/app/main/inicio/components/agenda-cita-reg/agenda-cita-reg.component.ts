@@ -10,6 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { getAgendaCita } from '../../service/getAgenda.service';
 import { DialogoConfirmarComponent } from 'src/app/main/shared/components/dialogo-confirmar/dialogo-confirmar.component';
 import { postAgendaCita } from '../../service/posAgenda.service';
+import { ServerService } from 'src/app/main/shared/service/server.service';
 
 @Component({
   selector: 'app-agenda-cita-reg',
@@ -22,13 +23,14 @@ export class AgendaCitaRegComponent implements OnInit {
   displayedColumns: string[] = ["col1"];
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
+  private dialogAgenda: MatDialogRef<AgendaCitaComponent>;
  
  
   
   public lstCita : MatTableDataSource<any>;
  
 
-  constructor(private GET: getAgendaCita, private cFunciones : Funciones, private POST : postAgendaCita
+  constructor(private GET: getAgendaCita, private cFunciones : Funciones, private POST : postAgendaCita, private ServerScv: ServerService
   ) {
 
     this.val.add("txtFecha1", "1", "LEN>", "0", "Fecha Inicio", "Seleccione una fecha de inicio.");
@@ -104,7 +106,7 @@ export class AgendaCitaRegComponent implements OnInit {
 
   public v_Editar(e : iAgendaMedica) : void{
 
-    let dialogRef: MatDialogRef<AgendaCitaComponent> = this.cFunciones.DIALOG.open(
+    this.dialogAgenda = this.cFunciones.DIALOG.open(
       AgendaCitaComponent,
       {
         panelClass: window.innerWidth < 992 ? "faden-dialog-full" : "",
@@ -113,16 +115,16 @@ export class AgendaCitaRegComponent implements OnInit {
     );
     
        
-    dialogRef.afterOpened().subscribe(s =>{
-      dialogRef.componentInstance.FILA = e;
-      dialogRef.componentInstance.EsNuevo = false;
-      dialogRef.componentInstance.Estado = e.Estado;
+    this.dialogAgenda.afterOpened().subscribe(s =>{
+      this.dialogAgenda.componentInstance.FILA = e;
+      this.dialogAgenda.componentInstance.EsNuevo = false;
+      this.dialogAgenda.componentInstance.Estado = e.Estado;
   
-      dialogRef.componentInstance.v_CargarDatos();
+      this.dialogAgenda.componentInstance.v_CargarDatos();
 
     });
 
-    dialogRef.afterClosed().subscribe(s =>{
+    this.dialogAgenda.afterClosed().subscribe(s =>{
       this.v_CargarDatos();
     });
 
@@ -212,7 +214,7 @@ export class AgendaCitaRegComponent implements OnInit {
 
   public v_Nuevo() : void{
 
-    let dialogRef: MatDialogRef<AgendaCitaComponent> = this.cFunciones.DIALOG.open(
+    this.dialogAgenda = this.cFunciones.DIALOG.open(
       AgendaCitaComponent,
       {
         panelClass: window.innerWidth < 992 ? "faden-dialog-full" : "",
@@ -221,12 +223,12 @@ export class AgendaCitaRegComponent implements OnInit {
     );
     
        
-    dialogRef.afterOpened().subscribe(s =>{
-      dialogRef.componentInstance.v_CargarDatos();
+    this.dialogAgenda.afterOpened().subscribe(s =>{
+      this.dialogAgenda.componentInstance.v_CargarDatos();
 
     });
 
-    dialogRef.afterClosed().subscribe(s =>{
+    this.dialogAgenda.afterClosed().subscribe(s =>{
       this.v_CargarDatos();
     });
 
@@ -237,6 +239,21 @@ export class AgendaCitaRegComponent implements OnInit {
 
   ngOnInit(): void {
     
+
+    
+    this.ServerScv.change.subscribe(s => {
+    
+      if (s instanceof Array) {
+
+        if (s[0] == "CerrarDialog" && s[1] == "frmAgenda") {
+          this.dialogAgenda.close();
+        }
+
+
+      }
+    });
+
+
   }
 
 

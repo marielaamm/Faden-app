@@ -143,7 +143,7 @@ export class RolesComponent implements OnInit {
   ngOnInit(): void {
 
     this.dataSource = JSON.parse(JSON.stringify( this.cFunciones.ACCESO));
-
+console.log(this.dataSource)
     this.dataSource.filter( f=>{
       f.Seleccionar = false;
     });

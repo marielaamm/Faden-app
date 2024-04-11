@@ -35,16 +35,20 @@ export class Funciones {
 
 
     
-        /**************************************EXPEDIENTE************************************* */ 
+    /**************************************EXPEDIENTE************************************* */ 
   
-        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "EXP", ModuloNombre: "Expediente", Id:"navExpediente", Link: "Paciente" , MenuPadre: "", Clase : ""},
-        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navsoap",Link:"Sistema SOAP", MenuPadre: "", Clase: "" },
-        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navAgenda",Link:"Agenda", MenuPadre: "", Clase: "" },
-        {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navReporte",Link:"Reporte", MenuPadre: "", Clase: "" },
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "EXP", ModuloNombre: "Expediente", Id:"navExpediente", Link: "Paciente" , MenuPadre: "", Clase : ""},
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navsoap",Link:"Sistema SOAP", MenuPadre: "", Clase: "" },
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navReporte",Link:"Reporte", MenuPadre: "", Clase: "" },
      
     
+    
+    /**************************************EXPEDIENTE************************************* */ 
+  
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "AG", ModuloNombre: "Agenda Medica", Id:"navAgenda", Link: "Cita Medica" , MenuPadre: "", Clase : ""},
 
-
+    
+    
     /**************************************USUARIO************************************* */
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo : "SIS", ModuloNombre : "Configuración", Id: "navUsuario", Link : "Usuarios", MenuPadre : "", Clase : "bi bi-people-fill"},
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkUsuario", Link : "Nuevo Usuario", MenuPadre : "navUsuario", Clase : "bi bi-person-plus-fill"},

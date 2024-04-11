@@ -44,14 +44,14 @@ export class MenuComponent {
   @ViewChild(DynamicFormDirective, { static: true }) dynamicForm!: DynamicFormDirective;
 
 
-  private str_NomModulo : string = "Inicio";
-  private str_Modulo : string = "HOME";
-  private str_formulario : string = "";
+  private str_NomModulo: string = "Inicio";
+  private str_Modulo: string = "HOME";
+  private str_formulario: string = "";
 
 
   @ViewChild(DynamicFormDirective, { static: true }) DynamicFrom!: DynamicFormDirective;
-  public ErrorServidor : boolean = false;
-  
+  public ErrorServidor: boolean = false;
+
   subscription: Subscription = {} as Subscription;
 
 
@@ -65,9 +65,9 @@ export class MenuComponent {
     ) {
       var element = <HTMLElement>event.target;
 
-      
+
       if (element.tagName.toString().toLocaleLowerCase() == "a" && element.getAttribute("href") == "#") {
-       
+
         this.AbrirFormulario(element.id);
       }
 
@@ -79,26 +79,26 @@ export class MenuComponent {
     }
   }
 
-  
-  
+
+
   constructor(
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: HTMLDocument,
     private _SrvLogin: LoginService,
     private Conexion: getServidor,
-    private cFunciones : Funciones,
+    private cFunciones: Funciones,
     private ServerScv: ServerService
   ) {
-}
-  
-
-
-  public AbrirModulo(m : string) : void{
-    let faden_NAV : any;
+  }
 
 
 
-    let parent  = document.getElementById("modulos")?.getElementsByTagName('a');
+  public AbrirModulo(m: string): void {
+    let faden_NAV: any;
+
+
+
+    let parent = document.getElementById("modulos")?.getElementsByTagName('a');
     let child = Array.prototype.slice.call(parent)
 
     Array.from(child).forEach((element) => {
@@ -106,14 +106,14 @@ export class MenuComponent {
     });
 
 
-    if(this.str_NomModulo == m) return;
+    if (this.str_NomModulo == m) return;
 
     this.str_Modulo = m;
 
     this.dynamicNav.viewContainerRef.clear()
     faden_NAV = this.dynamicNav.viewContainerRef.createComponent(NavComponent);
 
-    switch(m){
+    switch (m) {
 
       case "HOME":
         this.str_NomModulo = "INICIO";
@@ -126,17 +126,23 @@ export class MenuComponent {
         break;
 
 
+      case "AG":
+        this.str_NomModulo = "AGENDA";
+        document.getElementById("mov_ag")?.classList.add('activo');
+        break;
+
+
       case "SIS":
         this.str_NomModulo = "CONFIGURACIÓN";
         document.getElementById("mov_sis")?.classList.add('activo');
         break;
 
       case "CAT":
-        this.str_NomModulo= "CATALOGO";
+        this.str_NomModulo = "CATALOGO";
         document.getElementById("mov_cat")?.classList.add('activo');
         break;
-      
-     
+
+
     }
 
 
@@ -145,18 +151,23 @@ export class MenuComponent {
 
   }
 
-  public CerrarSession() : void{
+  public CerrarSession(): void {
     this._SrvLogin.CerrarSession();
   }
 
 
-  public AbrirFormulario(f : string) : void{
+  public AbrirFormulario(f: string): void {
     this.dynamicForm.viewContainerRef.clear();
-    switch(this.str_Modulo){
+    switch (this.str_Modulo) {
 
       case "EXP":
         this.Modulo_EXP(f);
         break;
+
+      case "AG":
+        this.Modulo_AG(f);
+        break;
+
 
       case "SIS":
         this.Modulo_SIS(f);
@@ -167,50 +178,50 @@ export class MenuComponent {
         break;
     }
 
-    
+
   }
-  private Modulo_EXP(f: string){
+  private Modulo_EXP(f: string) {
 
     document.getElementById(this.str_formulario)?.classList.remove('activo');
     document.getElementById(f)?.classList.add('activo');
 
-    switch(f){
+    switch (f) {
 
-      
+
       case "navExpediente":
-    
-        if (this.str_formulario !=f){
-         this.dynamicForm.viewContainerRef.clear();
-         this.dynamicForm.viewContainerRef.createComponent(ExpedienteComponent);
-         this.str_formulario=f;
+
+        if (this.str_formulario != f) {
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(ExpedienteComponent);
+          this.str_formulario = f;
         }
-       break;
+        break;
 
 
       case "navsoap":
-        if(this.str_formulario !=f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(SoapComponent);
-          this.str_formulario=f; 
+          this.str_formulario = f;
         }
         break;
 
       case "navAgenda":
-        if(this.str_formulario !=f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(AgendaCitaRegComponent);
-          this.str_formulario=f; 
+          this.str_formulario = f;
         }
         break;
 
       case "navReporte":
-        if(this.str_formulario !=f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(ReporteComponent);
-          this.str_formulario=f; 
+          this.str_formulario = f;
         }
         break;
-      break;
+        break;
 
 
     }
@@ -218,40 +229,61 @@ export class MenuComponent {
   }
 
 
+  private Modulo_AG(f: string) {
 
-  private Modulo_SIS(f : string) : void{
+    document.getElementById(this.str_formulario)?.classList.remove('activo');
+    document.getElementById(f)?.classList.add('activo');
+
+    switch (f) {
 
 
-    switch(f){
+      case "navAgenda":
+        if (this.str_formulario != f) {
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(AgendaCitaRegComponent);
+          this.str_formulario = f;
+        }
+        break;
+
+    }
+
+  }
+
+
+
+  private Modulo_SIS(f: string): void {
+
+
+    switch (f) {
       case "LinkUsuario":
-        
-        if(this.str_formulario != f){
+
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(UsuarioComponent);
           this.str_formulario = f;
         }
 
-        
+
         break;
 
 
-        case "LinkRegistroUsuario":
-        
-        if(this.str_formulario != f){
+      case "LinkRegistroUsuario":
+
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RegistrousuarioComponent);
           this.str_formulario = f;
         }
 
-        
+
         break;
 
 
-        
+
 
       case "LinkRol":
 
-        if(this.str_formulario != f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RolesComponent);
           this.str_formulario = f;
@@ -261,7 +293,7 @@ export class MenuComponent {
 
       case "LinkRol-Registro":
 
-        if(this.str_formulario != f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RolesRegistroComponent);
           this.str_formulario = f;
@@ -269,175 +301,172 @@ export class MenuComponent {
 
         break;
     }
-          
-    
+
+
   }
 
 
-  private Modulo_CAT(f : string) : void{
-    switch(f){
+  private Modulo_CAT(f: string): void {
+    switch (f) {
       case "LinkNuevoDepartamento":
-        
-        if(this.str_formulario != f){
+
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(DepartamentoComponent);
           this.str_formulario = f;
         }
 
-        
+
         break;
 
-        case "LinkRegistrosDepartamento":
-          if(this.str_formulario != f){
-            this.dynamicForm.viewContainerRef.clear();
+      case "LinkRegistrosDepartamento":
+        if (this.str_formulario != f) {
+          this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(DepartamentoRegistroComponent);
           this.str_formulario = f;
 
-          }
+        }
 
-          break;
+        break;
 
       case "LinkNuevoMunicipio":
-        if(this.str_formulario != f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(MunicipioComponent);
           this.str_formulario = f;
         }
-      break;
+        break;
 
       case "LinkRegistroMunicipio":
-        if(this.str_formulario != f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(MunicipioRegistroComponent);
-          this.str_formulario = f; 
+          this.str_formulario = f;
 
         }
         break;
-      
+
 
       case "LinkNuevaEscolaridad":
-        if(this.str_formulario != f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(EscolaridadComponent);
           this.str_formulario = f;
         }
 
-      break;
+        break;
 
 
       case "LinkRegistrosEscolaridad":
-        if(this.str_formulario != f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(EscolaridadRegistroComponent);
           this.str_formulario = f;
         }
 
-      break;
+        break;
 
       case "LinkNuevoMedico":
-        if(this.str_formulario != f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(MedicosComponent);
           this.str_formulario = f;
 
         }
 
-      break;  
+        break;
 
       case "LinkRegistrosMedico":
-        if(this.str_formulario != f){
+        if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RegistrosMedicosComponent);
           this.str_formulario = f;
 
         }
         break;
-    
+
     }
-    
-   
+
+
   }
 
 
-  public Menu(str_Modulo : string, str_ModuloNombre : string) : number{
-    return this.cFunciones.ACCESO.findIndex(f =>  f.Modulo ==  str_Modulo && f.ModuloNombre == str_ModuloNombre && f.Seleccionar)
+  public Menu(str_Modulo: string, str_ModuloNombre: string): number {
+    return this.cFunciones.ACCESO.findIndex(f => f.Modulo == str_Modulo && f.ModuloNombre == str_ModuloNombre && f.Seleccionar)
   }
 
 
 
-  private ActualizarDatosServidor() : void{
+  private ActualizarDatosServidor(): void {
     this.ErrorServidor = false;
 
 
     this.Conexion.FechaServidor(this.cFunciones.User).subscribe(
       {
-        next : (data) => {
-          
-          let _json : any = JSON.parse(data) ;
+        next: (data) => {
 
-        if (_json["esError"] == 1) {
+          let _json: any = JSON.parse(data);
 
-          if(this.cFunciones.DIALOG.getDialogById("error-servidor-msj") == undefined){
-            this.cFunciones.DIALOG.open(DialogErrorComponent, {
-              id: "error-servidor-msj",
-              data: _json["msj"].Mensaje,
-            });
-          }
-         
-        } else {
-          let Datos: iDatos[] = _json["d"];
+          if (_json["esError"] == 1) {
 
-          this.cFunciones.FechaServidor(Datos[0].d);
-          this.cFunciones.SetTiempoDesconexion(Number(Datos[1].d));
-          this._SrvLogin.UpdFecha(String(Datos[0].d));
-
-
-              this.cFunciones.ACCESO.filter( f=>{
-
-                let nav : any = Datos[2].d.find((w : any) => w.Modulo == f.Modulo && w.Id == f.Id);
-
-                if(nav != undefined)
-                {
-                  f.IdAcceso = nav.IdAcceso;
-                  f.Seleccionar = nav.Seleccionar;
-                  f.Seleccionar = nav.Seleccionar;
-                }
-            
+            if (this.cFunciones.DIALOG.getDialogById("error-servidor-msj") == undefined) {
+              this.cFunciones.DIALOG.open(DialogErrorComponent, {
+                id: "error-servidor-msj",
+                data: _json["msj"].Mensaje,
               });
-              
+            }
+
+          } else {
+            let Datos: iDatos[] = _json["d"];
+
+            this.cFunciones.FechaServidor(Datos[0].d);
+            this.cFunciones.SetTiempoDesconexion(Number(Datos[1].d));
+            this._SrvLogin.UpdFecha(String(Datos[0].d));
+
+
+            this.cFunciones.ACCESO.filter(f => {
+
+              let nav: any = Datos[2].d.find((w: any) => w.Modulo == f.Modulo && w.Id == f.Id);
+
+              if (nav != undefined) {
+                f.IdAcceso = nav.IdAcceso;
+                f.Seleccionar = nav.Seleccionar;
+                f.Seleccionar = nav.Seleccionar;
+              }
+
+            });
 
 
 
-        }
 
-          if(this.cFunciones.DIALOG.getDialogById("error-servidor") != undefined) 
-          {
+          }
+
+          if (this.cFunciones.DIALOG.getDialogById("error-servidor") != undefined) {
             this.cFunciones.DIALOG.getDialogById("error-servidor")?.close();
           }
 
 
         },
         error: (err) => {
-         
+
           this.ErrorServidor = true;
-        
-          
-          if(this.cFunciones.DIALOG.getDialogById("error-servidor") == undefined) 
-          {
+
+
+          if (this.cFunciones.DIALOG.getDialogById("error-servidor") == undefined) {
             this.cFunciones.DIALOG.open(DialogErrorComponent, {
-              id : "error-servidor",
+              id: "error-servidor",
               data: "<b class='error'>" + err.message + "</b>",
             });
           }
-       
+
 
         },
-        complete : ( ) => { 
+        complete: () => {
 
         }
       }
     );
-    
+
   }
 
 
@@ -446,21 +475,21 @@ export class MenuComponent {
 
     this.subscription = interval(10000).subscribe(val => this.ActualizarDatosServidor())
 
-    
-    this.ServerScv.change.subscribe(s =>{
-      if(s == "CerrarForm"){
+
+    this.ServerScv.change.subscribe(s => {
+      if (s == "CerrarForm") {
         this.dynamicForm.viewContainerRef.clear();
         this.str_formulario = "";
       }
 
-      if(s instanceof Array){
+      if (s instanceof Array) {
 
-        if(s[0] == "CerrarModal"){
+        if (s[0] == "CerrarModal") {
           document.getElementById(s[1])!.click();
 
-          if(s[2] != undefined) this.ServerScv.change.emit(["DatosModal", s[1], s[2]])
+          if (s[2] != undefined) this.ServerScv.change.emit(["DatosModal", s[1], s[2]])
         }
-        
+
       }
 
     });

@@ -9,6 +9,7 @@ import { DialogoComponent } from "src/app/main/shared/components/dialogo/dialogo
 import { iAgendaMedica } from "../../interface/i-agenda-medica";
 import { postAgendaCita } from "../../service/posAgenda.service";
 import { WaitComponent } from "src/app/main/shared/components/wait/wait.component";
+import { ServerService } from "src/app/main/shared/service/server.service";
 
 @Component({
   selector: 'app-agenda-cita',
@@ -29,7 +30,7 @@ export class AgendaCitaComponent implements OnInit {
 
 
 
-  constructor(private cFunciones : Funciones, private GET : getAgendaCita, private POST : postAgendaCita) {
+  constructor(private cFunciones : Funciones, private GET : getAgendaCita, private POST : postAgendaCita, private ServerScv: ServerService) {
     this.val.add("cmbPaciente", "1", "LEN>", "0", "Paciente", "Seleccione un paciente.");
     this.val.add("cmbMedico", "1", "LEN>", "0", "Medico", "Seleccione un medico.");
     this.val.add("txtEspecialidad", "1", "LEN>", "0", "Especialidad", "El medico no tiene definida una especialidad");
@@ -283,7 +284,10 @@ export class AgendaCitaComponent implements OnInit {
 
             this.printPDFS(_json["d"].d);
 
-            if(this.EsNuevo) this.v_Evento("Limpiar");
+            //if(this.EsNuevo) this.v_Evento("Limpiar");
+
+            this.v_Evento("Limpiar");
+            this.ServerScv.change.emit(["CerrarDialog","frmAgenda", ""]);
 
           }
 
