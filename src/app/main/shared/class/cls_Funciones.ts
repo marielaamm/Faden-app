@@ -43,7 +43,7 @@ export class Funciones {
      
     
     
-    /**************************************EXPEDIENTE************************************* */ 
+    /**************************************AGRENDA************************************* */ 
   
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "AG", ModuloNombre: "Agenda Medica", Id:"navAgenda", Link: "Cita Medica" , MenuPadre: "", Clase : ""},
 
