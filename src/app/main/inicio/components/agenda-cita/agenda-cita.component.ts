@@ -86,6 +86,7 @@ export class AgendaCitaComponent implements OnInit {
     if (event.added.length == 1)  {
       if(event.oldSelection[0] != event.added[0]) event.newSelection =   event.added;
       this.val.ValForm.get("cmbPaciente")?.setValue([event.added]);
+      this.cmbPaciente.close();
     }
   }
 
@@ -115,6 +116,7 @@ export class AgendaCitaComponent implements OnInit {
       if(event.oldSelection[0] != event.added[0]) event.newSelection =   event.added;
       this.val.ValForm.get("cmbMedico")?.setValue([event.added]);
       this.val.ValForm.get("txtEspecialidad")?.setValue(i_Medico?.Especialidad);
+      this.cmbMedico.close();
     }
   }
 
