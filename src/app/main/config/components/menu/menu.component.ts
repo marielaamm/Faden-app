@@ -131,6 +131,11 @@ export class MenuComponent {
         document.getElementById("mov_ag")?.classList.add('activo');
         break;
 
+      case "RPT":
+        this.str_NomModulo = "REPORTE";
+        document.getElementById("mov_rpt")?.classList.add('activo');
+        break;
+
 
       case "SIS":
         this.str_NomModulo = "CONFIGURACIÓN";
@@ -168,6 +173,9 @@ export class MenuComponent {
         this.Modulo_AG(f);
         break;
 
+      case "RPT":
+        this.Modulo_RPT(f);
+        break;
 
       case "SIS":
         this.Modulo_SIS(f);
@@ -214,14 +222,8 @@ export class MenuComponent {
         }
         break;
 
-      case "navReporte":
-        if (this.str_formulario != f) {
-          this.dynamicForm.viewContainerRef.clear();
-          this.dynamicForm.viewContainerRef.createComponent(ReporteComponent);
-          this.str_formulario = f;
-        }
-        break;
-        break;
+
+
 
 
     }
@@ -248,6 +250,29 @@ export class MenuComponent {
     }
 
   }
+
+
+  private Modulo_RPT(f: string) {
+
+    document.getElementById(this.str_formulario)?.classList.remove('activo');
+    document.getElementById(f)?.classList.add('activo');
+
+    switch (f) {
+
+
+      case "navReporte":
+        if (this.str_formulario != f) {
+          this.dynamicForm.viewContainerRef.clear();
+          this.dynamicForm.viewContainerRef.createComponent(ReporteComponent);
+          this.str_formulario = f;
+        }
+        break;
+
+
+    }
+
+  }
+
 
 
 

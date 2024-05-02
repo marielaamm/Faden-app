@@ -39,13 +39,15 @@ export class Funciones {
   
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "EXP", ModuloNombre: "Expediente", Id:"navExpediente", Link: "Paciente" , MenuPadre: "", Clase : ""},
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navsoap",Link:"Sistema SOAP", MenuPadre: "", Clase: "" },
-    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"EXP", ModuloNombre:"", Id:"navReporte",Link:"Reporte", MenuPadre: "", Clase: "" },
-     
+   
     
     
     /**************************************AGRENDA************************************* */ 
   
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "AG", ModuloNombre: "Agenda Medica", Id:"navAgenda", Link: "Cita Medica" , MenuPadre: "", Clase : ""},
+
+    {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo:"RPT", ModuloNombre:"Reporte", Id:"navReporte",Link:"Reporte", MenuPadre: "", Clase: "" },
+     
 
     
     
