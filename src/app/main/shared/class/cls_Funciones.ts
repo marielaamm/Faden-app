@@ -56,12 +56,14 @@ export class Funciones {
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkUsuario", Link : "Nuevo Usuario", MenuPadre : "navUsuario", Clase : "bi bi-person-plus-fill"},
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkRegistroUsuario", Link : "Registro Usuarios", MenuPadre : "navUsuario", Clase : "bi bi-table"},
   
-  
-    /**************************************ROLES************************************* */
+
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo : "SIS", ModuloNombre : "", Id: "navRol", Link : "Roles", MenuPadre : "", Clase : "bi bi-key-fill"},
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkRol", Link : "Nuevo Rol", MenuPadre : "navRol", Clase : "bi bi-key-fill"},
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo : "SIS", ModuloNombre : "", Id: "LinkRol-Registro", Link : "Registros", MenuPadre : "navRol", Clase : "bi bi-key-fill"},
    
+  
+    /**************************************CATALOGO************************************* */
+
   
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: true, Modulo: "CAT", ModuloNombre: "Catálogo", Id: "navDepartamento", Link: "Departamento", MenuPadre: "", Clase: ""},
     {IdAcceso:0, IdRol : 0, Seleccionar: false, EsMenu: false, Modulo: "CAT", ModuloNombre: "", Id:"LinkNuevoDepartamento", Link: "Nuevo Departamento", MenuPadre: "navDepartamento", Clase: ""},

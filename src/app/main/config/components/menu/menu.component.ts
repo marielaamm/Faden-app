@@ -278,10 +278,13 @@ export class MenuComponent {
 
   private Modulo_SIS(f: string): void {
 
+    document.getElementById("navUsuario")?.classList.remove('activo');
+    document.getElementById("navRol")?.classList.remove('activo');
+
 
     switch (f) {
       case "LinkUsuario":
-
+        document.getElementById("navUsuario")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(UsuarioComponent);
@@ -293,7 +296,7 @@ export class MenuComponent {
 
 
       case "LinkRegistroUsuario":
-
+        document.getElementById("navUsuario")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RegistrousuarioComponent);
@@ -307,7 +310,7 @@ export class MenuComponent {
 
 
       case "LinkRol":
-
+        document.getElementById("navRol")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RolesComponent);
@@ -317,7 +320,7 @@ export class MenuComponent {
         break;
 
       case "LinkRol-Registro":
-
+        document.getElementById("navRol")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RolesRegistroComponent);
@@ -332,8 +335,21 @@ export class MenuComponent {
 
 
   private Modulo_CAT(f: string): void {
+
+    document.getElementById("navDepartamento")?.classList.remove('activo');
+    document.getElementById("navMunicipio")?.classList.remove('activo');
+    document.getElementById("navEscolaridad")?.classList.remove('activo');
+    document.getElementById("navMedicos")?.classList.remove('activo');
+
+
     switch (f) {
       case "LinkNuevoDepartamento":
+
+
+      
+    
+      document.getElementById("navDepartamento")?.classList.add('activo');
+
 
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
@@ -345,6 +361,7 @@ export class MenuComponent {
         break;
 
       case "LinkRegistrosDepartamento":
+        document.getElementById("navDepartamento")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(DepartamentoRegistroComponent);
@@ -355,6 +372,9 @@ export class MenuComponent {
         break;
 
       case "LinkNuevoMunicipio":
+
+      document.getElementById("navMunicipio")?.classList.add('activo');
+
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(MunicipioComponent);
@@ -363,6 +383,8 @@ export class MenuComponent {
         break;
 
       case "LinkRegistroMunicipio":
+
+      document.getElementById("navMunicipio")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(MunicipioRegistroComponent);
@@ -373,6 +395,7 @@ export class MenuComponent {
 
 
       case "LinkNuevaEscolaridad":
+        document.getElementById("navEscolaridad")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(EscolaridadComponent);
@@ -383,6 +406,7 @@ export class MenuComponent {
 
 
       case "LinkRegistrosEscolaridad":
+        document.getElementById("navEscolaridad")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(EscolaridadRegistroComponent);
@@ -392,6 +416,7 @@ export class MenuComponent {
         break;
 
       case "LinkNuevoMedico":
+        document.getElementById("navMedicos")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(MedicosComponent);
@@ -402,6 +427,7 @@ export class MenuComponent {
         break;
 
       case "LinkRegistrosMedico":
+        document.getElementById("navMedicos")?.classList.add('activo');
         if (this.str_formulario != f) {
           this.dynamicForm.viewContainerRef.clear();
           this.dynamicForm.viewContainerRef.createComponent(RegistrosMedicosComponent);
