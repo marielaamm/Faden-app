@@ -137,7 +137,9 @@ export class ReporteComponent implements OnInit {
   
       }
 
-    this.GET.Imprimir(this.val.Get("cmbReporte").value, this.val.Get("txtFecha1").value, this.val.Get("txtFecha2").value, this.val.Get("cmbExpediente").value).subscribe(
+    
+
+    this.GET.Imprimir(this.val.Get("cmbReporte").value, this.val.Get("txtFecha1").value, this.val.Get("txtFecha2").value, this.val.Get("cmbExpediente").value[0]).subscribe(
       {
         next: (s) => {
 

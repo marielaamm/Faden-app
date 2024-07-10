@@ -53,3 +53,55 @@
     width: 100%;
 }
 
+
+
+
+  
+  
+  
+  ::ng-deep {
+  
+  
+
+
+
+    .cmbExpediente {
+  
+        background-color: var(--faden-morado) !important;
+      
+        i,
+        label{
+          color: white;
+        }
+      
+        
+      
+      }
+      
+  
+  
+    .cmbExpediente .igx-input-group__input {
+      color: white;
+    }
+  
+  
+    .cmbExpediente.igx-combo ::placeholder {
+      color: white;
+    }
+  
+    .cmbExpediente.igx-combo:hover ::placeholder {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: white;
+    }
+  
+    .cmbExpediente .igx-input-group__input:focus,
+    .cmbExpediente .igx-input-group__input,
+    .cmbExpediente .igx-icon{
+          color: white ;
+      }
+  
+  
+  }
+  
+  
