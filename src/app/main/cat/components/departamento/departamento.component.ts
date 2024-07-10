@@ -21,7 +21,7 @@ export class DepartamentoComponent implements OnInit {
 
   constructor(private ServerScv: ServerService, private _Dialog: MatDialog) {
     this.val.add("txtCodigo", "1", "LEN>", "0");
-    this.val.add("txtCodigo", "2", "LEN<=", "4");
+    this.val.add("txtCodigo", "2", "LEN<=", "5");
     this.val.add("txtDepartamento", "1", "LEN>", "0");
     this.val.add("txtDepartamento", "2", "LEN<=", "50");
     this.limpiar();
