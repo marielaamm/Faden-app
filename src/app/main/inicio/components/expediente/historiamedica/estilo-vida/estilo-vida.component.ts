@@ -267,12 +267,12 @@ export class EstiloVidaComponent implements OnInit {
 
  
 
-    this.rdSenderismo = EstiloVida.Senderismo;
-    this.rdAlcoholismo = EstiloVida.Alcoholismo
-    this.rdTabaquismo = EstiloVida.Tabaquismo
-    this.rdCafe =  EstiloVida.Cafe
-    this.rdRuido =  EstiloVida.Ruido
-    this.rdDespertar =  EstiloVida.Despertar
+    this.rdSenderismo = EstiloVida?.Senderismo;
+    this.rdAlcoholismo = EstiloVida?.Alcoholismo
+    this.rdTabaquismo = EstiloVida?.Tabaquismo
+    this.rdCafe =  EstiloVida?.Cafe
+    this.rdRuido =  EstiloVida?.Ruido
+    this.rdDespertar =  EstiloVida?.Despertar
 
 
     this.val.ValForm.get("rdSenderismo")?.setValue(this.rdSenderismo );

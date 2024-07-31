@@ -549,13 +549,31 @@ public EditarPaciente(fila: any){
     this.val.ValForm.get("txtPrimerApellido")?.setValue(Paciente.PApellido);
     this.val.ValForm.get("txtSegundoApellido")?.setValue(Paciente.SApellido);
     this.val.ValForm.get("rdSexo")?.setValue(Paciente.Sexo);
-    if(!DesdeForm)this.val.ValForm.get("txtMunicipio")?.setValue([Paciente.IdLugarNac]);
-    if(DesdeForm)this.val.ValForm.get("txtMunicipio")?.setValue([String(Paciente.IdDepto + "_" + Paciente.IdCiudad)]);
+
+    
+    if(!DesdeForm){
+      this.igxComboMunicipio.setSelectedItem([Paciente.IdLugarNac]);
+      this.val.ValForm.get("txtMunicipio")?.setValue([Paciente.IdLugarNac]);
+      
+    }
+    else{
+      let Mun : any = String(Paciente?.IdDepto + "_" + Paciente?.IdCiudad);
+      this.igxComboMunicipio.setSelectedItem([Mun]);
+      this.val.ValForm.get("txtMunicipio")?.setValue([String(Paciente.IdDepto + "_" + Paciente.IdCiudad)]);
+    }
+
+
+ 
+   
+
+
+
     this.val.ValForm.get("txtFechaNacimiento")?.setValue(Paciente.FechaNacim);
     this.val.ValForm.get("txtEdad")?.setValue(this.FechaServidor.getFullYear() - (new Date(Paciente.FechaNacim)).getFullYear());
     this.val.ValForm.get("txtOcupacion")?.setValue(Paciente.Ocupacion);
     this.val.ValForm.get("txtCedula")?.setValue(Paciente.Identificacion);
-    this.val.ValForm.get("txtEscolaridad")?.setValue([Paciente.IdEscolaridad]);
+    this.igxComboEscolaridad.setSelectedItem([Paciente.IdEscolaridad]);
+   this.val.ValForm.get("txtEscolaridad")?.setValue([Paciente.IdEscolaridad]);
     this.val.ValForm.get("txtEstadoCivil")?.setValue(Paciente.ECivil);
     this.val.ValForm.get("txtDireccion")?.setValue(Paciente.Direccion);
     this.val.ValForm.get("txtTelefono")?.setValue(Paciente.Telefono);

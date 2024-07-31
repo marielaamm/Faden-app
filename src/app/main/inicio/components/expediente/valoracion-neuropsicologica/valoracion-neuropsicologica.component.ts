@@ -267,13 +267,13 @@ private LlenarValoracion(datos : any)
   let V: iValoracionNeuroPsicologica =  _json["d"][0];
 
    
-   this.val.ValForm.get("txtMemoria")?.setValue(V.Memoria);
-   this.val.ValForm.get("txtFuncionEjec")?.setValue(V.FuncionesEjecutivas);
-   this.val.ValForm.get("txtLenguaje")?.setValue(V.Lenguaje);
-   this.val.ValForm.get("txtFuncVisoEsp")?.setValue(V.FuncionesVisoEspaciales);
-   this.val.ValForm.get("txtFuncMotoras")?.setValue(V.FuncionesMotoras);
-   this.val.ValForm.get("txtEmociones")?.setValue(V.Comportamiento);
-   this.val.ValForm.get("txtSueno")?.setValue(V.FuncionAutonomica);
+   this.val.ValForm.get("txtMemoria")?.setValue(V?.Memoria);
+   this.val.ValForm.get("txtFuncionEjec")?.setValue(V?.FuncionesEjecutivas);
+   this.val.ValForm.get("txtLenguaje")?.setValue(V?.Lenguaje);
+   this.val.ValForm.get("txtFuncVisoEsp")?.setValue(V?.FuncionesVisoEspaciales);
+   this.val.ValForm.get("txtFuncMotoras")?.setValue(V?.FuncionesMotoras);
+   this.val.ValForm.get("txtEmociones")?.setValue(V?.Comportamiento);
+   this.val.ValForm.get("txtSueno")?.setValue(V?.FuncionAutonomica);
     
 }
 
