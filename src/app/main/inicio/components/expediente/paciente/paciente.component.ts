@@ -404,6 +404,10 @@ export class PacienteComponent implements OnInit {
     P.RefTrabajo = this.val.ValForm.get("txtRefTrab")?.value;
     P.UltimoTrabajo = (AntLab.split(";")[1] == "1");
     P.RefUltTrabajo = this.val.ValForm.get("txtRefUltTrab")?.value;
+    P.Jubilado = this.val.ValForm.get("chkjubilado")?.value;
+    P.Pensionado = this.val.ValForm.get("chkpension")?.value;
+
+
     
     //**TODO REVISAR CON JAIR PORQUE LA PROPIEDAD DATA DE DATASOURCE DEVUELVE UNDEFINED CUANDO SE AGREGA UNA NUEVA FILA, 
     //ESTE CAMBIO ESTA SUJETO A REVISION Y APROBACION DE JAIR
