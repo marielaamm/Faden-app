@@ -236,6 +236,7 @@ export class SoapComponent implements OnInit {
   S.Objetivo = this.val.ValForm.get("txtObjetivo")?.value;
   S.Avaluo = this.val.ValForm.get("txtAvaluo")?.value;
   S.Planes = this.val.ValForm.get("txtPlanes")?.value;
+  S.Usuario = this.cFunciones.User;
 
   this._ExpdienteService.GuardarSOAP(S);
 

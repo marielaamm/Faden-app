@@ -11,4 +11,5 @@ export interface iSistemaSoap{
     Avaluo: String,
     Planes: String,
     IdPaciente: Number
+    Usuario: string
 }
