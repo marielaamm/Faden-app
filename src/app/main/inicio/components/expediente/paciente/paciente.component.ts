@@ -145,19 +145,19 @@ export class PacienteComponent implements OnInit {
     this.val.ValForm.get("txtCorreo")?.setValue("");
     this.val.ValForm.get("txtReligion")?.setValue("");
 
-    this.val.ValForm.get("chkSolo")?.setValue("");
-    this.val.ValForm.get("chkHijo")?.setValue("");
-    this.val.ValForm.get("chkNieto")?.setValue("");
-    this.val.ValForm.get("chkPareja")?.setValue("");
-    this.val.ValForm.get("chkHermano")?.setValue("");
-    this.val.ValForm.get("chkAmigo")?.setValue("");
+    this.val.ValForm.get("chkSolo")?.setValue(false);
+    this.val.ValForm.get("chkHijo")?.setValue(false);
+    this.val.ValForm.get("chkNieto")?.setValue(false);
+    this.val.ValForm.get("chkPareja")?.setValue(false);
+    this.val.ValForm.get("chkHermano")?.setValue(false);
+    this.val.ValForm.get("chkAmigo")?.setValue(false);
 
-    this.val.ValForm.get("chkEsp")?.setValue("");
-    this.val.ValForm.get("chkRef")?.setValue("");
-    this.val.ValForm.get("chkReco")?.setValue("");
-    this.val.ValForm.get("chkMedios")?.setValue("");
+    this.val.ValForm.get("chkEsp")?.setValue(false);
+    this.val.ValForm.get("chkRef")?.setValue(false);
+    this.val.ValForm.get("chkReco")?.setValue(false);
+    this.val.ValForm.get("chkMedios")?.setValue(false);
 
-    this.val.ValForm.get("chkFB")?.setValue("");
+    this.val.ValForm.get("chkFB")?.setValue(false);
     this.val.ValForm.get("chkInst")?.setValue("");
     this.val.ValForm.get("chkTwi")?.setValue("");
     this.val.ValForm.get("chkTransf")?.setValue("");
@@ -170,7 +170,7 @@ export class PacienteComponent implements OnInit {
 
 
     this.val.ValForm.get("chkTrabAct")?.setValue(false);
-    this.val.ValForm.get("txtRefTrab")?.setValue("");
+    this.val.ValForm.get("txtRefTrab")?.setValue(false);
     this.val.ValForm.get("txtRefTrab")?.disable();
 
 
@@ -180,8 +180,8 @@ export class PacienteComponent implements OnInit {
 
 
 
-    this.val.ValForm.get("chkjubilado")?.setValue("");
-    this.val.ValForm.get("chkpension")?.setValue("");
+    this.val.ValForm.get("chkjubilado")?.setValue(false);
+    this.val.ValForm.get("chkpension")?.setValue(false);
 
 
     this.val.ValForm.get("rdSexo")?.setValue("");

@@ -17,6 +17,15 @@ export class ValoracionNeuropsicologicaComponent implements OnInit {
   public IdPaciente : Number = 0;
   public val: Validacion = new Validacion();
 
+    public chkMemoria : boolean = false;
+    public chkFuncionEjec: boolean = false;
+    public chkLenguaje: boolean = false;
+    public chkFuncVisoEspaciales: boolean = false;
+    public chkFuncMotoras: boolean = false;
+    public chkEmociones: boolean = false;
+    public chkSueno: boolean = false;
+
+
   constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
 
    
@@ -100,7 +109,7 @@ public f_RefMemo(): void {
 
   if (this.val.ValForm.get("chkMemoria")?.value == true) {
     this.val.ValForm.get("txtMemoria")?.enable();
-    this.val.add("txtMemoria", "1", "LEN>", "0");
+   // this.val.add("txtMemoria", "1", "LEN>", "0");
 
   }
 }
@@ -114,7 +123,7 @@ public f_RefFuncionEjec(): void {
 
   if (this.val.ValForm.get("chkFuncionEjec")?.value == true) {
     this.val.ValForm.get("txtFuncionEjec")?.enable();
-    this.val.add("txtFuncionEjec", "1", "LEN>", "0");
+   // this.val.add("txtFuncionEjec", "1", "LEN>", "0");
 
   }
 }
@@ -128,7 +137,7 @@ public f_RefLenguaje(): void {
 
   if (this.val.ValForm.get("chkLenguaje")?.value == true) {
     this.val.ValForm.get("txtLenguaje")?.enable();
-    this.val.add("txtLenguaje", "1", "LEN>", "0");
+   // this.val.add("txtLenguaje", "1", "LEN>", "0");
 
   }
 } 
@@ -138,11 +147,11 @@ public f_RefFuncVisoEsp(): void {
   this.val.Replace("txtFuncVisoEsp", "1", "LEN>=", "0");
 
 
-  this.val.ValForm.get("txtLenguaje")?.disable();
+  this.val.ValForm.get("txtFuncVisoEsp")?.disable();
 
   if (this.val.ValForm.get("chkFuncVisoEspaciales")?.value == true) {
     this.val.ValForm.get("txtFuncVisoEsp")?.enable();
-    this.val.add("txtFuncVisoEsp", "1", "LEN>", "0");
+   // this.val.add("txtFuncVisoEsp", "1", "LEN>", "0");
 
   }
 } 
@@ -156,7 +165,7 @@ public f_RefFuncMotora(): void {
 
   if (this.val.ValForm.get("chkFuncMotoras")?.value == true) {
     this.val.ValForm.get("txtFuncMotoras")?.enable();
-    this.val.add("txtFuncMotoras", "1", "LEN>", "0");
+    //this.val.add("txtFuncMotoras", "1", "LEN>", "0");
 
   }
 }
@@ -170,7 +179,7 @@ public f_RefEmociones(): void {
 
   if (this.val.ValForm.get("chkEmociones")?.value == true) {
     this.val.ValForm.get("txtEmociones")?.enable();
-    this.val.add("txtEmociones", "1", "LEN>", "0");
+    //this.val.add("txtEmociones", "1", "LEN>", "0");
 
   }
 }
@@ -184,7 +193,7 @@ public f_RefSueno(): void {
 
   if (this.val.ValForm.get("chkSueno")?.value == true) {
     this.val.ValForm.get("txtSueno")?.enable();
-    this.val.add("txtSueno", "1", "LEN>", "0");
+   // this.val.add("txtSueno", "1", "LEN>", "0");
 
   }
 }
@@ -274,6 +283,27 @@ private LlenarValoracion(datos : any)
    this.val.ValForm.get("txtFuncMotoras")?.setValue(V?.FuncionesMotoras);
    this.val.ValForm.get("txtEmociones")?.setValue(V?.Comportamiento);
    this.val.ValForm.get("txtSueno")?.setValue(V?.FuncionAutonomica);
+
+
+
+   if( V?.Memoria)  this.chkMemoria = true;
+   if(  V?.FuncionesEjecutivas)   this.chkFuncionEjec = true;
+     if(  V?.Lenguaje)   this.chkLenguaje = true;
+       if(  V?.FuncionesVisoEspaciales)   this.chkFuncVisoEspaciales = true;
+   if(  V?.FuncionesMotoras)   this.chkFuncMotoras = true;
+     if(  V?.Comportamiento)   this.chkEmociones = true;
+       if(  V?.FuncionAutonomica)   this.chkSueno = true;
+
+
+
+   if( this.chkMemoria)  this.val.ValForm.get("txtMemoria")?.enable();
+    if(  this.chkFuncionEjec)   this.val.ValForm.get("txtFuncionEjec")?.enable();
+      if(  this.chkLenguaje)   this.val.ValForm.get("txtLenguaje")?.enable();
+        if(  this.chkFuncVisoEspaciales)   this.val.ValForm.get("txtFuncVisoEsp")?.enable();
+    if(  this.chkFuncMotoras)   this.val.ValForm.get("txtFuncMotoras")?.enable();
+      if(  this.chkEmociones)   this.val.ValForm.get("txtEmociones")?.enable();
+        if(  this.chkSueno)   this.val.ValForm.get("txtSueno")?.enable();
+
     
 }
 

@@ -51,7 +51,7 @@
                                         <div class="row">
                                             <div class="row">
                                                 <div class="col-3 offset-sm-1"> 
-                                                    <mat-checkbox formControlName="chkMemoria" (change)="f_RefMemo()">Memoria</mat-checkbox>
+                                                    <mat-checkbox formControlName="chkMemoria" [(ngModel)]="chkMemoria" (change)="f_RefMemo()">Memoria</mat-checkbox>
                                                 </div>
                                                 <div class="col-8">
                                                     <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3"
@@ -66,7 +66,7 @@
 
                                             <div class="row">
                                                 <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkFuncionEjec" (change)="f_RefFuncionEjec()">Funciones Ejecutivas</mat-checkbox>
+                                                    <mat-checkbox formControlName="chkFuncionEjec"  [(ngModel)]="chkFuncionEjec"  (change)="f_RefFuncionEjec()">Funciones Ejecutivas</mat-checkbox>
                                                 </div>
                                             
                                                 <div class="col-8">
@@ -81,7 +81,7 @@
 
                                             <div class="row">
                                                 <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkLenguaje" (change)="f_RefLenguaje()">Lenguaje</mat-checkbox>                                                
+                                                    <mat-checkbox formControlName="chkLenguaje" [(ngModel)]="chkLenguaje"  (change)="f_RefLenguaje()">Lenguaje</mat-checkbox>                                                
                                                 </div>
                                                 <div class="col-8">
                                                     <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
@@ -95,7 +95,7 @@
                                             
                                             <div class="row">
                                                 <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkFuncVisoEspaciales" (change)="f_RefFuncVisoEsp()">Función Viso Espacial</mat-checkbox> 
+                                                    <mat-checkbox formControlName="chkFuncVisoEspaciales" [(ngModel)]="chkFuncVisoEspaciales"  (change)="f_RefFuncVisoEsp()">Función Viso Espacial</mat-checkbox> 
                                                 </div>
                                                 <div class="col-8">
                                                     <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
@@ -109,7 +109,7 @@
                                             
                                             <div class="row">
                                                 <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkFuncMotoras" (change)="f_RefFuncMotora()">Funciones Motoras</mat-checkbox> 
+                                                    <mat-checkbox formControlName="chkFuncMotoras" [(ngModel)]="chkFuncMotoras" (change)="f_RefFuncMotora()">Funciones Motoras</mat-checkbox> 
                                                 </div>
                                                 <div class="col-8">
                                                     <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
@@ -123,7 +123,7 @@
 
                                             <div class="row">
                                                 <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkEmociones" (change)="f_RefEmociones()">Comportamiento/Emociones</mat-checkbox> 
+                                                    <mat-checkbox formControlName="chkEmociones" [(ngModel)]="chkEmociones" (change)="f_RefEmociones()">Comportamiento/Emociones</mat-checkbox> 
                                                 </div>
                                                 <div class="col-8">
                                                     <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">
@@ -137,7 +137,7 @@
 
                                             <div class="row">
                                                 <div class="col-3 offset-sm-1">
-                                                    <mat-checkbox formControlName="chkSueno" (change)="f_RefSueno()">Sueño y Función Autonómica</mat-checkbox> 
+                                                    <mat-checkbox formControlName="chkSueno" [(ngModel)]="chkSueno" (change)="f_RefSueno()">Sueño y Función Autonómica</mat-checkbox> 
                                                 </div>
                                                 <div class="col-8">
                                                     <mat-form-field class="col-12 col-sm-3 col-md-3 col-lg-3" floatLabel="never">

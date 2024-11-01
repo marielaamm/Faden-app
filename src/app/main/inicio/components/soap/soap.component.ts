@@ -150,7 +150,7 @@ export class SoapComponent implements OnInit {
       let _Item: any = cmb._focusedItem.value;
 
 
-      this.val.ValForm.get("cmbAcompanante")?.setValue([_Item.Codigo]);
+      this.val.ValForm.get("cmbAcompanante")?.setValue([_Item.IdAcpte]);
       this.val.ValForm.get("txtDireccion")?.setValue(_Item.Direccion);
       this.val.ValForm.get("txtTelefono")?.setValue(_Item.Telefono);
       this.rdTipoAcompanante = 1;
