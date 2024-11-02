@@ -62,14 +62,14 @@ export class EstiloVidaComponent implements OnInit {
     this.val.add("chkCiclismo", "1", "LEN>=", "0");
     this.val.add("txtCiclismo", "1", "LEN>=", "0");
 
-    this.val.add("chkJardin", "1", "LEN>=", "0");
-    this.val.add("txtJardin", "1", "LEN>=", "0");
+    this.val.add("chkCuido_Jardin", "1", "LEN>=", "0");
+    this.val.add("txtCuido_Jardin", "1", "LEN>=", "0");
 
     this.val.add("chkBailar", "1", "LEN>=", "0");
     this.val.add("txtBailar", "1", "LEN>=", "0");
 
-    this.val.add("chkTrabaja", "1", "LEN>=", "0");
-    this.val.add("txtTrabaja", "1", "LEN>=", "0");
+    this.val.add("chkTrabaja_dentro_o_fuera_de_casa", "1", "LEN>=", "0");
+    this.val.add("txtTrabaja_dentro_o_fuera_de_casa", "1", "LEN>=", "0");
 
 
     this.val.add("txtPFruta", "1", "LEN>=", "0");
@@ -246,9 +246,9 @@ export class EstiloVidaComponent implements OnInit {
       {IdEjercicio : 0, IdElemento : "Correr",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
       {IdEjercicio : 0, IdElemento : "Nadar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
       {IdEjercicio : 0, IdElemento : "Ciclismo",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Cuido Jardin",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
+      {IdEjercicio : 0, IdElemento : "Cuido_Jardin",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
       {IdEjercicio : 0, IdElemento : "Bailar",  Frecuencia : "",  Activo : false, IdPaciente : 0 },
-      {IdEjercicio : 0, IdElemento : "Trabaja dentro o fuera de casa",  Frecuencia : "",  Activo : false, IdPaciente : 0 }
+      {IdEjercicio : 0, IdElemento : "Trabaja_dentro_o_fuera_de_casa",  Frecuencia : "",  Activo : false, IdPaciente : 0 }
     ];
     }
 

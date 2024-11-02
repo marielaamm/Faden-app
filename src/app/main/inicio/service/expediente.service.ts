@@ -157,6 +157,12 @@ export class ExpdienteService {
           this.change.emit(["dato_Consenso_Guardar", undefined]);
           return;
         }
+        else
+        {
+          this._Dialog.open(DialogoComponent, {
+            data: _json["msj"]
+          });
+        }
         this.change.emit(["dato_Consenso_Guardar", _json]);
       },
         err =>{
@@ -260,6 +266,12 @@ export class ExpdienteService {
         if(_json["esError"] == 1){
           this.change.emit(["dato_Valoracion_Guardar", undefined]);
           return;
+        }
+        else
+        {
+          this._Dialog.open(DialogoComponent, {
+            data: _json["msj"]
+          });
         }
         this.change.emit(["dato_Valoracion_Guardar", _json]);
       },

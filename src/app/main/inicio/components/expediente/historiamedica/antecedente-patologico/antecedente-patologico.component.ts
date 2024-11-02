@@ -156,6 +156,7 @@ export class AntecedentePatologicoComponent implements OnInit {
         {
           this.IdPaciente = 0
           this.dataSource.data.splice(0, this.dataSource.data.length);
+          this.dataSource._updateChangeSubscription();
         }
 
        

@@ -67,7 +67,7 @@ export class PacienteComponent implements OnInit {
     this.val.add("txtSegundoNombre", "1", "LEN>", "0");
     this.val.add("txtPrimerApellido", "1", "LEN>", "0");
     this.val.add("txtSegundoApellido", "1", "LEN>", "0");
-    this.val.add("txtMunicipio", "1", "LEN>=", "0");
+    this.val.add("txtMunicipio", "1", "LEN>", "0");
     this.val.add("txtFechaNacimiento", "1", "LEN>=", "0");
     this.val.add("txtEdad", "1", "LEN>", "0");
     this.val.add("txtOcupacion", "1", "LEN>", "0");
@@ -123,6 +123,7 @@ export class PacienteComponent implements OnInit {
   }
 
   public limpiar() {
+  
     this.val.ValForm.get("txtNoExpediente")?.disable();
     this.val.ValForm.get("txtNoExpediente")?.setValue("");
     this.val.ValForm.get("txtFecha")?.setValue("");
@@ -170,7 +171,7 @@ export class PacienteComponent implements OnInit {
 
 
     this.val.ValForm.get("chkTrabAct")?.setValue(false);
-    this.val.ValForm.get("txtRefTrab")?.setValue(false);
+    this.val.ValForm.get("txtRefTrab")?.setValue("");
     this.val.ValForm.get("txtRefTrab")?.disable();
 
 

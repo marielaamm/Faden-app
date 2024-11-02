@@ -209,14 +209,14 @@ public f_SospechaDiag(value : any): void {
 
 public f_RefDepre(): void {
 
-  this.val.Replace("chkDepre", "1", "LEN>=", "0");
+  //this.val.Replace("chkDepre", "1", "LEN>=", "0");
 
 
   this.val.ValForm.get("txtDepresion")?.disable();
 
   if (this.val.ValForm.get("chkDepre")?.value == true) {
     this.val.ValForm.get("txtDepresion")?.enable();
-    this.val.add("txtDepresion", "1", "LEN>", "0");
+   // this.val.add("txtDepresion", "1", "LEN>", "0");
 
   }
 }
@@ -226,13 +226,13 @@ public f_RefDepre(): void {
 
 public f_RefBipolar(): void {
 
-  this.val.Replace("chkBipolar", "1", "LEN>=", "0");
+ // this.val.Replace("chkBipolar", "1", "LEN>=", "0");
 
   this.val.ValForm.get("txtBipolar")?.disable();
 
   if (this.val.ValForm.get("chkBipolar")?.value == true) {
     this.val.ValForm.get("txtBipolar")?.enable();
-    this.val.Replace("txtBipolar", "1", "LEN>", "0");
+    //this.val.Replace("txtBipolar", "1", "LEN>", "0");
   }
 }
 
@@ -242,11 +242,11 @@ public f_RefBipolar(): void {
 public f_RefEsquizo(): void {
 
   this.val.Replace("chkEsquizo", "1", "LEN>=", "0");
-  this.val.ValForm.get("txtEsquizo")?.disable();
+  //this.val.ValForm.get("txtEsquizo")?.disable();
 
   if (this.val.ValForm.get("chkEsquizo")?.value == true) {
     this.val.ValForm.get("txtEsquizo")?.enable();
-    this.val.Replace("txtEsquizo", "1", "LEN>", "0");
+    //this.val.Replace("txtEsquizo", "1", "LEN>", "0");
   }
 }
 
@@ -255,12 +255,12 @@ public f_RefEsquizo(): void {
 //****** OTRO DIAG*/
 public f_RefOtroDiag(): void {
 
-  this.val.Replace("chkOtroDiag", "1", "LEN>=", "0");
+ // this.val.Replace("chkOtroDiag", "1", "LEN>=", "0");
   this.val.ValForm.get("txtOtroDiag")?.disable();
 
   if (this.val.ValForm.get("chkOtroDiag")?.value == true) {
     this.val.ValForm.get("txtOtroDiag")?.enable();
-    this.val.Replace("txtOtroDiag", "1", "LEN>", "0");
+   // this.val.Replace("txtOtroDiag", "1", "LEN>", "0");
   }
 }
 
@@ -464,7 +464,10 @@ private LlenarSindrome(datos : any)
     this.ServerScv.change.subscribe(s => {
 
       if(s[0] == "Menu Expediente") this.IdPaciente =  s[1];
-      if(s[0] == "Cerrar Expediente") this.IdPaciente = 0
+      if(s[0] == "Cerrar Expediente") {
+        this.IdPaciente = 0
+        this.limpiar();
+      }
 
     });
 
