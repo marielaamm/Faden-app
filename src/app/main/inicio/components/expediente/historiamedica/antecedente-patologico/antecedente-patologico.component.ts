@@ -144,7 +144,7 @@ export class AntecedentePatologicoComponent implements OnInit {
       if (s instanceof Array) {
 
         if (s[0] == "CerrarDialog" && s[1] == "frmAntPatologico") {
-          this.dialogRef.close();
+          this.dialogRef?.close();
           this._ExpdienteService.BuscarAntPatologico(this.IdPaciente);
         }
 

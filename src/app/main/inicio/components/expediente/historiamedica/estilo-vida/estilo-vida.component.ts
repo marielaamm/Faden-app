@@ -206,13 +206,13 @@ export class EstiloVidaComponent implements OnInit {
 
 
 
-    this.lstTablaEjercicio.forEach(f =>{
+    this.lstTablaEjercicio?.forEach(f =>{
      f.IdPaciente = this.IdPaciente;
      f.Activo = this.val.ValForm.get("chk" + f.IdElemento.toString())?.value;
      f.Frecuencia = this.val.ValForm.get("txt" + f.IdElemento.toString())?.value;
     });
 
-    this.lstTablaAlimentacion.forEach(f =>{
+    this.lstTablaAlimentacion?.forEach(f =>{
       f.IdPaciente = this.IdPaciente;
       f.Porcion = this.val.ValForm.get("txtP" + f.IdElemento.toString())?.value;
       f.Frecuencia = this.val.ValForm.get("txtF" + f.IdElemento.toString())?.value;

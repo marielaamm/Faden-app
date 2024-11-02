@@ -145,7 +145,7 @@ export class AnalisisPresuncionComponent implements OnInit {
       if (s instanceof Array) {
 
         if (s[0] == "CerrarDialog" && s[1] == "frmAntPresuncion") {
-          this.dialogRef.close();
+          this.dialogRef?.close();
           this._ExpdienteService.BuscarAntPresuncion(this.IdPaciente);
         }
 

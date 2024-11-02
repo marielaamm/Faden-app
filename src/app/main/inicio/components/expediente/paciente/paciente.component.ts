@@ -552,7 +552,7 @@ public EditarPaciente(fila: any){
 
     
     if(!DesdeForm){
-      this.igxComboMunicipio.setSelectedItem([Paciente.IdLugarNac]);
+      this.igxComboMunicipio?.setSelectedItem([Paciente.IdLugarNac]);
       this.val.ValForm.get("txtMunicipio")?.setValue([Paciente.IdLugarNac]);
       
     }

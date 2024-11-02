@@ -148,7 +148,7 @@ export class AntecedenteQuirurgicoComponent implements OnInit {
       if (s instanceof Array) {
 
         if (s[0] == "CerrarDialog" && s[1] == "frmAntecedenteQuirurgico") {
-          this.dialogRef.close();
+          this.dialogRef?.close();
           this._ExpdienteService.BuscarAntecedenteQuirurgico(this.IdPaciente);
         }
 

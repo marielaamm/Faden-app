@@ -146,7 +146,7 @@ ngOnInit(): void {
     if (s instanceof Array) {
 
       if (s[0] == "CerrarDialog" && s[1] == "frmAntFamiliar") {
-        this.dialogRef.close();
+        this.dialogRef?.close();
         this._ExpdienteService.BuscarAntFamiliar(this.IdPaciente);
       }
 
