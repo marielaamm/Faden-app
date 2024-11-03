@@ -153,7 +153,7 @@ Cerrar() : void{
           this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
           this.val.ValForm.get("txtNoExpediente")?.disable();
         }
-        console.log(s[1])
+
         if(s[0] == "Llenar_Datos_Paciente") this.LlenarHistoriaFamSoc(s[1] );
 
 

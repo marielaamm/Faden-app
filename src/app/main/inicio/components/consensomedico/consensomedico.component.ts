@@ -25,7 +25,7 @@ export class ConsensomedicoComponent implements OnInit {
   public Sindrome: SindromepredominanteComponent;
 
   private _CatalogoService: CatalogoService;
-  private _ExpdienteService: ExpdienteService;
+ 
   public IdPaciente : Number = 0;
 
 
@@ -34,7 +34,7 @@ export class ConsensomedicoComponent implements OnInit {
   
 
   
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) { 
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog,  private _ExpdienteService: ExpdienteService) { 
 
     //[ REGLAS]
     this.val.add("rdDetCognitivo","1", "LEN>=", "0");
@@ -60,7 +60,7 @@ export class ConsensomedicoComponent implements OnInit {
     this.val.add("txtRecomendaciones","1", "LEN>","0");
     this.val.add("txtExamenes","1", "LEN>","0");
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
+   // this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._CatalogoService = new CatalogoService(this._Dialog);
 
     this.limpiar();
@@ -370,6 +370,7 @@ this._ExpdienteService.GuardarConsenso(C);
 
 private LlenarConsenso(datos : any)
 {
+ 
   let _json = JSON.parse(datos);
 
   let C: iConsenso  =  _json["d"][0];
@@ -406,6 +407,7 @@ private LlenarSindrome(datos : any)
   this.Sindrome.dataSource.data.splice(0, this.Sindrome.dataSource.data.length);
 
   this.Sindrome.dataSource.data =  _json["d"];
+  this.Sindrome.dataSource._updateChangeSubscription()
 
 }
 
@@ -420,6 +422,7 @@ private LlenarSindrome(datos : any)
 
     this.ServerScv.change.subscribe(s => {
       if(s[0] == "Menu Expediente"){
+       
         this.IdPaciente =  s[1];
         this._ExpdienteService.BuscarConcenso(this.IdPaciente);
         this._ExpdienteService.BuscarSindrome(this.IdPaciente);
@@ -452,15 +455,29 @@ private LlenarSindrome(datos : any)
           this.val.ValForm.get("txtNoExpediente")?.setValue(s[1]["d"].NoExpediente);
           this.val.ValForm.get("txtNoExpediente")?.disable();
 
-          if(s[0] == "Llenar_Consenso") this.LlenarConsenso(s[1] );
+          if(s[0] == "Llenar_Concenso") this.LlenarConsenso(s[1] );
           if(s[0] == "Llenar_Sindrome") this.LlenarSindrome(s[1] );
+          
   
+        }
+
+        if(s[0] == "Llenar_Concenso") {
+            
+          this.LlenarConsenso(s[1] );
+      
+        }
+
+
+        if(s[0] == "Llenar_Sindrome") {
+            
+
+          this.LlenarSindrome(s[1] );
         }
        
       }
     );
 
-
+/*
     this.ServerScv.change.subscribe(s => {
 
       if(s[0] == "Menu Expediente") this.IdPaciente =  s[1];
@@ -470,7 +487,7 @@ private LlenarSindrome(datos : any)
       }
 
     });
-
+*/
 
 
   }
