@@ -13,7 +13,7 @@ import { iValoracionNeuroPsicologica } from '../../../interface/i-valoracion-neu
 })
 export class ValoracionNeuropsicologicaComponent implements OnInit {
 
-  private _ExpdienteService: ExpdienteService;
+  
   public IdPaciente : Number = 0;
   public val: Validacion = new Validacion();
 
@@ -26,7 +26,7 @@ export class ValoracionNeuropsicologicaComponent implements OnInit {
     public chkSueno: boolean = false;
 
 
-  constructor(private ServerScv : ServerService, private _Dialog: MatDialog) {
+  constructor(private ServerScv : ServerService, private _Dialog: MatDialog, private _ExpdienteService: ExpdienteService) {
 
    
 
@@ -85,7 +85,7 @@ export class ValoracionNeuropsicologicaComponent implements OnInit {
     this.val.ValForm.get("txtSueno")?.disable();
   
 
-    this._ExpdienteService = new ExpdienteService(this._Dialog);
+   // this._ExpdienteService = new ExpdienteService(this._Dialog);
 
 
   }

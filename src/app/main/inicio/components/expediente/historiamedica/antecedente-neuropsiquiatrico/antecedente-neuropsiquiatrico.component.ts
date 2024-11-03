@@ -146,7 +146,7 @@ export class AntecedenteNeuropsiquiatricoComponent implements OnInit {
 
 
     this.ServerScv.change.subscribe(s => {
-    
+      alert("asdsa")
       if (s instanceof Array) {
 
         if (s[0] == "CerrarDialog" && s[1] == "frmAntNeuroPsiquiatrico") {
@@ -164,7 +164,7 @@ export class AntecedenteNeuropsiquiatricoComponent implements OnInit {
           this.dataSource.data.splice(0, this.dataSource.data.length);
           this.dataSource._updateChangeSubscription();
         }
-
+      
        
         
       }
