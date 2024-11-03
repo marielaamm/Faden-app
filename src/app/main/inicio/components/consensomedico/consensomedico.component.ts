@@ -55,10 +55,10 @@ export class ConsensomedicoComponent implements OnInit {
     this.val.add("txtDiagProbable","1", "LEN>", "0");
     this.val.add("txtDiagConfir","1", "LEN>", "0");
 
-    this.val.add("txtTraFarma","1", "LEN>","0");
-    this.val.add("txtTraNoFarma","1", "LEN>","0");
-    this.val.add("txtRecomendaciones","1", "LEN>","0");
-    this.val.add("txtExamenes","1", "LEN>","0");
+    this.val.add("txtTraFarma","1", "LEN>=","0");
+    this.val.add("txtTraNoFarma","1", "LEN>=","0");
+    this.val.add("txtRecomendaciones","1", "LEN>=","0");
+    this.val.add("txtExamenes","1", "LEN>=","0");
 
    // this._ExpdienteService = new ExpdienteService(this._Dialog);
     this._CatalogoService = new CatalogoService(this._Dialog);
@@ -137,9 +137,9 @@ export class ConsensomedicoComponent implements OnInit {
 
 public f_DetCognitivo(value : any): void {
 
-  this.val.Replace("txtDetNormal", "1", "LEN>=", "0");
+ /* this.val.Replace("txtDetNormal", "1", "LEN>=", "0");
   this.val.Replace("txtDetLeve", "1", "LEN>=", "0");
-  this.val.Replace("txtDetMayor", "1", "LEN>=", "0");
+  this.val.Replace("txtDetMayor", "1", "LEN>=", "0");*/
   
 
 
@@ -153,7 +153,7 @@ public f_DetCognitivo(value : any): void {
   if (value == 1) {
     this.val.ValForm.get("txtDetNormal")?.enable();
     
-    this.val.Replace("txtDetNormal","1", "LEN>", "0");
+   // this.val.Replace("txtDetNormal","1", "LEN>", "0");
 
 
     
@@ -163,14 +163,14 @@ public f_DetCognitivo(value : any): void {
 
   if (value == 2) {
     this.val.ValForm.get("txtDetLeve")?.enable();
-    this.val.Replace("txtDetLeve","1", "LEN>", "0");
+   // this.val.Replace("txtDetLeve","1", "LEN>", "0");
     this.val.ValForm.get("txtDetNormal")?.setValue("");
     this.val.ValForm.get("txtDetMayor")?.setValue("");
   }
 
   if (value == 3) {
     this.val.ValForm.get("txtDetMayor")?.enable();
-    this.val.Replace("txtDetMayor","1", "LEN>", "0");  
+    //this.val.Replace("txtDetMayor","1", "LEN>", "0");  
     this.val.ValForm.get("txtDetNormal")?.setValue("");
     this.val.ValForm.get("txtDetLeve")?.setValue("");  
   }
@@ -179,8 +179,8 @@ public f_DetCognitivo(value : any): void {
 //********SOSPECHA DIAGNOSTICA******/
 public f_SospechaDiag(value : any): void {
 
-  this.val.Replace("txtDiagProbable", "1", "LEN>=", "0");
-  this.val.Replace("txtDiagConfir", "1", "LEN>=", "0");
+ // this.val.Replace("txtDiagProbable", "1", "LEN>=", "0");
+ // this.val.Replace("txtDiagConfir", "1", "LEN>=", "0");
 
   this.val.ValForm.get("txtDiagProbable")?.disable();
   this.val.ValForm.get("txtDiagConfir")?.disable();
@@ -188,14 +188,14 @@ public f_SospechaDiag(value : any): void {
 
   if (value == 1) {
     this.val.ValForm.get("txtDiagProbable")?.enable();
-    this.val.ValForm.get("txtDiagConfir")?.setValue("");
-    this.val.Replace("txtDiagProbable", "1", "LEN>=", "0");
+   // this.val.ValForm.get("txtDiagConfir")?.setValue("");
+ //   this.val.Replace("txtDiagProbable", "1", "LEN>=", "0");
   }
 
   if (value == 2) {
     this.val.ValForm.get("txtDiagConfir")?.enable();
     this.val.ValForm.get("txtDiagProbable")?.setValue("");
-    this.val.Replace("txtDiagConfir", "1", "LEN>=", "0");
+  //  this.val.Replace("txtDiagConfir", "1", "LEN>=", "0");
   }
  
 }
@@ -241,7 +241,7 @@ public f_RefBipolar(): void {
 //********ESQUIZOFRENIA */
 public f_RefEsquizo(): void {
 
-  this.val.Replace("chkEsquizo", "1", "LEN>=", "0");
+  //this.val.Replace("chkEsquizo", "1", "LEN>=", "0");
   //this.val.ValForm.get("txtEsquizo")?.disable();
 
   if (this.val.ValForm.get("chkEsquizo")?.value == true) {
